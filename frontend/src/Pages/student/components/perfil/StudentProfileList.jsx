@@ -2,7 +2,7 @@ import StudentProfileItem from "./StudentProfileItem";
 
 const studentData = [
   {
-    name: "Luzia Gonçãlves",
+    name: "Luzia Gonçalves",
     id: 4355,
     phoneNumber: 930886401,
     email: "luziagoncalves@gmail.com",
@@ -21,7 +21,7 @@ const studentData = [
 
 function StudentProfileList() {
   return (
-    <ul className="grid grid-cols-[1.5fr_3fr] gap-7">
+    <ul className="grid grid-cols-[1.5fr_3fr] gap-7 items-start ">
       {studentData.map((item) => (
         <StudentProfileItem item={item} />
       ))}

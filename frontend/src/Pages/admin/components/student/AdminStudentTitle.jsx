@@ -1,3 +1,5 @@
+import AdminStudentTitleItem from "./AdminStudentTitleItem";
+
 const data = ["Nome", "Código Interno", "Classe", "Curso", "Genero", "Idade"];
 
 function AdminStudentTitle() {
@@ -11,7 +13,3 @@ function AdminStudentTitle() {
 }
 
 export default AdminStudentTitle;
-
-function AdminStudentTitleItem({ item }) {
-  return <li className="font-semibold text-sm">{item}</li>;
-}
