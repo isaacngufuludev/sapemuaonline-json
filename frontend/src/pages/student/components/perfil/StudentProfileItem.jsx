@@ -1,5 +1,4 @@
 import Title4 from "../../../../components/ui/Title4";
-// import Title4 from "../../../../components/ui/Title4";
 
 import { FiUser, FiPhone, FiMail, FiCalendar } from "react-icons/fi";
 import { LuGraduationCap } from "react-icons/lu";
@@ -10,7 +9,7 @@ function StudentProfileItem({ item }) {
     <>
       <li className=" rounded-md bg-white dark:bg-gray-800  border-[0.1px] dark:border-gray-700 border-slate-200">
         <div className="flex gap-2 items-center p-5 border-b-[0.1px] dark:border-gray-700 border-slate-200">
-          <p className="text-4xl  bg-slate-100 p-5 rounded-full dark:bg-gray-900">
+          <p className="text-4xl  bg-blue-200 p-5 rounded-full dark:bg-gray-900">
             <FiUser />
           </p>
           <div>

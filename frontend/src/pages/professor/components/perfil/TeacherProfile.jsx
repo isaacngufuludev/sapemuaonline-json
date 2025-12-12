@@ -1,5 +1,12 @@
+import TeacherProfileLayout from "./TeacherProfileLayout";
+import TeacherProfileList from "./TeacherProfileList";
+
 function TeacherProfile() {
-  return <div>Perfil</div>;
+  return (
+    <TeacherProfileLayout>
+      <TeacherProfileList />
+    </TeacherProfileLayout>
+  );
 }
 
 export default TeacherProfile;

@@ -47,7 +47,7 @@ const socialMedia = [
 
 function Footer() {
   return (
-    <footer className="bg-blue-700 text-white py-7">
+    <footer className="bg-blue-700 text-white py-10">
       <div className="container grid grid-cols-4 mb-12">
         <div>
           <Title3>Sobre a escola</Title3>

@@ -21,7 +21,7 @@ const studentData = [
 
 function StudentProfileList() {
   return (
-    <ul className="grid grid-cols-[1.5fr_3fr] gap-7 items-start ">
+    <ul className="grid grid-cols-[1.5fr_3fr] gap-7 items-start">
       {studentData.map((item) => (
         <StudentProfileItem item={item} />
       ))}
