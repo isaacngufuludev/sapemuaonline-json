@@ -3,9 +3,9 @@ import { BsX } from "react-icons/bs";
 import { useModal } from "../../contexts/ModalContext";
 import { useNavigate } from "react-router-dom";
 
-import AdminBtnCloseModal from "../../Pages/admin/components/AdminBtnCloseModal";
-import AdminButton from "../../Pages/admin/components/AdminButton";
-import AdminModal from "../../Pages/admin/components/AdminModal";
+import AdminBtnCloseModal from "../../pages/admin/components/AdminBtnCloseModal";
+import AdminButton from "../../pages/admin/components/AdminButton";
+import AdminModal from "../../pages/admin/components/AdminModal";
 import Title3 from "../ui/Title3";
 
 function LogoutModal() {

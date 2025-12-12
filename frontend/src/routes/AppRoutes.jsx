@@ -2,30 +2,30 @@ import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 import { ThemeProvider } from "../contexts/ThemeContext";
 import { ModalProvider } from "../contexts/ModalContext";
 
-import Home from "../Pages/website/Home";
-import Sobre from "../Pages/website/Sobre";
-import ChatBoot from "../Pages/website/ChatBoot";
-import Login from "../Pages/auth/Login";
-import Area from "../Pages/areas/Area";
-import Admin from "../Pages/admin/Admin";
-import AdminStudents from "../Pages/admin/components/student/AdminStudents";
-import AdminTeacher from "../Pages/admin/components/teacher/AdminTeacher";
-import AdminTurmas from "../Pages/admin/components/turmas/AdminTurmas";
-import AdminNews from "../Pages/admin/components/news/AdminNews";
-import AdminConfigs from "../Pages/admin/components/configs/AdminConfigs";
-import AdminAddStudent from "../Pages/admin/components/student/AdminAddStudent";
-import AdminMainStudentLayout from "../Pages/admin/components/student/AdminMainStudentLayout";
-import AdminAddFatherInfo from "../Pages/admin/components/student/AdminAddFatherInfo";
-import AdminAddMotherInfo from "../Pages/admin/components/student/AdminAddMotherInfo";
-import AdminAddGuardionInfo from "../Pages/admin/components/student/AdminAddGuardionInfo";
-import AdminMainTeacherLayout from "../Pages/admin/components/teacher/AdminMainTeacherLayout";
-import AdminAddTeacher from "../Pages/admin/components/teacher/AdminAddTeacher";
-import Student from "../Pages/student/Student";
-import StudentProfile from "../Pages/student/components/perfil/StudentProfile";
-import StudentColleagues from "../Pages/student/components/colegas/StudentColleagues";
-import StudentTeacher from "../Pages/student/components/teachers/StudentTeacher";
-import StudentNotas from "../Pages/student/components/notas/StudentNotas";
-import Teacher from "../Pages/professor/Teacher";
+import Home from "../pages/website/Home";
+import Sobre from "../pages/website/Sobre";
+import ChatBoot from "../pages/website/ChatBoot";
+import Login from "../pages/auth/Login";
+import Area from "../pages/areas/Area";
+import Admin from "../pages/admin/Admin";
+import AdminStudents from "../pages/admin/components/student/AdminStudents";
+import AdminTeacher from "../pages/admin/components/teacher/AdminTeacher";
+import AdminTurmas from "../pages/admin/components/turmas/AdminTurmas";
+import AdminNews from "../pages/admin/components/news/AdminNews";
+import AdminConfigs from "../pages/admin/components/configs/AdminConfigs";
+import AdminAddStudent from "../pages/admin/components/student/AdminAddStudent";
+import AdminMainStudentLayout from "../pages/admin/components/student/AdminMainStudentLayout";
+import AdminAddFatherInfo from "../pages/admin/components/student/AdminAddFatherInfo";
+import AdminAddMotherInfo from "../pages/admin/components/student/AdminAddMotherInfo";
+import AdminAddGuardionInfo from "../pages/admin/components/student/AdminAddGuardionInfo";
+import AdminMainTeacherLayout from "../pages/admin/components/teacher/AdminMainTeacherLayout";
+import AdminAddTeacher from "../pages/admin/components/teacher/AdminAddTeacher";
+import Student from "../pages/student/Student";
+import StudentProfile from "../pages/student/components/perfil/StudentProfile";
+import StudentColleagues from "../pages/student/components/colegas/StudentColleagues";
+import StudentTeacher from "../pages/student/components/teachers/StudentTeacher";
+import StudentNotas from "../pages/student/components/notas/StudentNotas";
+import Teacher from "../pages/professor/Teacher";
 
 function AppRoutes() {
   return (
@@ -86,7 +86,9 @@ function AppRoutes() {
                 <Route path="adminNews" element={<AdminNews />} />
                 <Route path="adminConfigs" element={<AdminConfigs />} />
               </Route>
-              <Route path="teacher" element={<Teacher />} />
+              <Route path="teacher" element={<Teacher />}>
+                <Route index element={<Navigate replace to="" />} />
+              </Route>
               <Route path="student" element={<Student />}>
                 <Route
                   index
