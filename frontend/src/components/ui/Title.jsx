@@ -3,7 +3,7 @@ function Title({ children, type }) {
 
   const styles = {
     left: base + " text-left",
-    center: base + " text-center",
+    center: base + " text-center  ",
   };
 
   return <h2 className={styles[type]}>{children}</h2>;
