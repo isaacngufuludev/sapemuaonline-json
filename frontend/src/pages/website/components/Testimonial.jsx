@@ -2,6 +2,9 @@ import Title from "../../../components/ui/Title";
 import Subtitle from "../../../components/ui/Subtitle";
 import TestimonialItem from "./TestimonialItem";
 import ButtonSlide from "../../../components/ui/ButtonSlide";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Autoplay, Pagination, Navigation } from "swiper/modules";
+import { useRef } from "react";
 
 const testemunhos = [
   {
@@ -35,18 +38,49 @@ const testemunhos = [
 ];
 
 function Testimonial() {
+  const swiperRef = useRef(null);
+
   return (
     <section className="border-stone-200 border-t py-28  dark:border-stone-900">
       <div className="container relative">
         <Subtitle type="center">depoimentos</Subtitle>
         <Title type="center">O que Dizem Sobre Nós</Title>
-        <ul className="h-64 my-0 mx-auto relative">
+
+        <Swiper
+          slidesPerView={1}
+          loop={true}
+          modules={[Autoplay, Pagination]}
+          autoplay={{
+            delay: 3000,
+            disableOnInteraction: false,
+          }}
+          pagination={{
+            clickable: true,
+          }}
+          onBeforeInit={(swiper) => {
+            swiperRef.current = swiper;
+          }}
+          className="h-64 my-0 mx-auto relative"
+        >
           {testemunhos.map((item, i) => (
-            <TestimonialItem item={item} key={i} />
+            <SwiperSlide key={i}>
+              <TestimonialItem item={item} />
+            </SwiperSlide>
           ))}
-        </ul>
-        <ButtonSlide type="left">&larr;</ButtonSlide>
-        <ButtonSlide type="right">&rarr;</ButtonSlide>
+        </Swiper>
+
+        <div className="flex justify-between absolute top-1/4 left-0 right-0">
+          <ButtonSlide
+            onClick={() => swiperRef.current && swiperRef.current.slidePrev()}
+          >
+            &larr;
+          </ButtonSlide>
+          <ButtonSlide
+            onClick={() => swiperRef.current && swiperRef.current.slideNext()}
+          >
+            &rarr;
+          </ButtonSlide>
+        </div>
       </div>
     </section>
   );

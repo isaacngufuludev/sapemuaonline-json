@@ -6,8 +6,6 @@ import Testimonial from "./components/Testimonial";
 import Footer from "../../components/layout/Footer";
 import TopButton from "./components/TopButton";
 
-import { useModal } from "../../contexts/ModalContext";
-
 function Home() {
   return (
     <div>

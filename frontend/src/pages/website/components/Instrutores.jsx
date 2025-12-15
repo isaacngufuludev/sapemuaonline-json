@@ -30,7 +30,7 @@ function Instrutores() {
           <Titile type="center">Nossos Instrutores</Titile>
         </div>
         <div className="mb-7">
-          <Subtitle type="gray">Direcção executiva</Subtitle>
+          <Subtitle type="gray">Direcção Executiva</Subtitle>
         </div>
         <ul className="grid grid-cols-[0.5fr_0.5fr_0.5fr] items-center gap-28">
           {data.map((item) => (
