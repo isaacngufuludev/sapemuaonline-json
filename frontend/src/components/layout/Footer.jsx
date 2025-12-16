@@ -13,12 +13,12 @@ const contacts = [
   {
     icon: <FiPhone />,
     name: "+244 930 886 401",
-    link: "#",
+    link: "tel:+244930886401",
   },
   {
     icon: <FaEnvelope />,
     name: "sapemua@gmail.com",
-    link: "#",
+    link: "mailto:isaacngufulu70@gmail.com",
   },
   {
     icon: <MdLocationOn />,
@@ -36,7 +36,7 @@ const socialMedia = [
   {
     icon: <FaWhatsapp />,
     name: "WhatsApp",
-    link: "#",
+    link: "https://wa.me/244930886401",
   },
   {
     icon: <FaInstagram />,
@@ -47,7 +47,7 @@ const socialMedia = [
 
 function Footer() {
   return (
-    <footer className="bg-blue-700 text-white py-10">
+    <footer className="bg-blue-700 text-white py-16">
       <div className="container grid grid-cols-4 mb-12">
         <div>
           <Title3>Sobre a escola</Title3>

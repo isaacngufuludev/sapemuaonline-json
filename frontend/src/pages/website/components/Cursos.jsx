@@ -4,24 +4,6 @@ import CursoItem from "./CursoItem";
 
 const cursos = [
   {
-    name: "Curso de Recursos Humanos",
-    image: "/imgs/cursos/recursos-humanos.jpg",
-    conteudo:
-      "Prepara o aluno para atuar na seleção, formação, avaliação e desenvolvimento de pessoas dentro das organizações. Ênfase em comunicação, liderança e gestão de talentos.",
-  },
-  {
-    name: "Curso de Finanças",
-    image: "/imgs/cursos/finanças.jpg",
-    conteudo:
-      "Curso voltado para gestão financeira, contabilidade, investimentos e análise económica. Forma profissionais capazes de interpretar dados, gerir recursos e apoiar decisões estratégicas.",
-  },
-  {
-    name: "Curso Electronica e Telecomunicações",
-    image: "/imgs/cursos/eletronica.jpg",
-    conteudo:
-      "Foca na análise, montagem e reparação de circuitos e dispositivos eletrónicos. Desenvolve competências para trabalhar com tecnologias digitais, automação e equipamentos eletrónicos modernos.",
-  },
-  {
     name: "Curso de Informática",
     image: "imgs/cursos/informatica.jpg",
     conteudo:
@@ -39,6 +21,24 @@ const cursos = [
     conteudo:
       "Curso orientado para a administração de organizações, com ênfase em estratégias, liderança, operações e tomada de decisões. Prepara profissionais capazes de gerir negócios com eficiência e visão.",
   },
+  {
+    name: "Curso de Recursos Humanos",
+    image: "/imgs/cursos/recursos-humanos.jpg",
+    conteudo:
+      "Prepara o aluno para atuar na seleção, formação, avaliação e desenvolvimento de pessoas dentro das organizações. Ênfase em comunicação, liderança e gestão de talentos.",
+  },
+  {
+    name: "Curso de Finanças",
+    image: "/imgs/cursos/finanças.jpg",
+    conteudo:
+      "Curso voltado para gestão financeira, contabilidade, investimentos e análise económica. Forma profissionais capazes de interpretar dados, gerir recursos e apoiar decisões estratégicas.",
+  },
+  {
+    name: "Curso Electronica e Telecomunicações",
+    image: "/imgs/cursos/eletronica.jpg",
+    conteudo:
+      "Foca na análise, montagem e reparação de circuitos e dispositivos eletrónicos. Desenvolve competências para trabalhar com tecnologias digitais, automação e equipamentos eletrónicos modernos.",
+  },
 ];
 
 function Cursos() {
@@ -47,7 +47,7 @@ function Cursos() {
       <div className="container ">
         <Subtitle type="center">cursos</Subtitle>
         <Title type="center">Áreas de Desenvolvimento Académico</Title>
-        <ul className="grid grid-cols-3 items-center gap-x-7 gap-y-5 ">
+        <ul className="grid grid-cols-3 gap-x-7 gap-y-5">
           {cursos.map((item) => (
             <CursoItem item={item} key={item.name} />
           ))}

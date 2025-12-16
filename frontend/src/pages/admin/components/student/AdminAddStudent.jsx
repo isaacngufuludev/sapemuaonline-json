@@ -1,7 +1,6 @@
-import { NavLink, Outlet, useNavigate } from "react-router-dom";
+import { Outlet, useNavigate } from "react-router-dom";
 import { FaArrowLeft } from "react-icons/fa";
 import {
-  BsCheckLg,
   BsExclamationCircle,
   BsFileEarmark,
   BsPersonPlus,

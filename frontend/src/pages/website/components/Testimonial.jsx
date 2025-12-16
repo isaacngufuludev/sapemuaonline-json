@@ -41,7 +41,7 @@ function Testimonial() {
   const swiperRef = useRef(null);
 
   return (
-    <section className="border-stone-200 border-t py-28  dark:border-stone-900">
+    <section className="border-stone-200 border-t py-28 dark:border-stone-900">
       <div className="container relative">
         <Subtitle type="center">depoimentos</Subtitle>
         <Title type="center">O que Dizem Sobre Nós</Title>

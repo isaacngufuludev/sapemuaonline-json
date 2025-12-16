@@ -29,6 +29,8 @@ import Teacher from "../pages/professor/Teacher";
 import TeacherProfile from "../pages/professor/components/perfil/TeacherProfile";
 import TeacherTurmas from "../pages/professor/components/turmas/TeacherTurmas";
 import TeacherNotas from "../pages/professor/components/notas/TeacherNotas";
+import TeacherTurmasInfo from "../pages/professor/components/turmas/TeacherTurmasInfo";
+import TeacherAllTurmas from "../pages/professor/components/turmas/TeacherAllTurmas";
 
 function AppRoutes() {
   return (
@@ -95,7 +97,14 @@ function AppRoutes() {
                   element={<Navigate replace to="teacher-profile" />}
                 />
                 <Route path="teacher-profile" element={<TeacherProfile />} />
-                <Route path="teacher-turmas" element={<TeacherTurmas />} />
+                <Route path="teacher-turmas" element={<TeacherTurmas />}>
+                  <Route index element={<Navigate to="teacher-all-turmas" />} />
+                  <Route
+                    path="teacher-all-turmas"
+                    element={<TeacherAllTurmas />}
+                  />
+                  <Route path="teacher-info" element={<TeacherTurmasInfo />} />
+                </Route>
                 <Route path="teacher-notas" element={<TeacherNotas />} />
               </Route>
               <Route path="student" element={<Student />}>

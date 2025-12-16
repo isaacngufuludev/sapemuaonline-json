@@ -1,3 +1,4 @@
+import { useNavigate } from "react-router-dom";
 import Title4 from "../../../../components/ui/Title4";
 import TeacherTurmasBtn from "./TeacherTurmasBtn";
 
@@ -9,6 +10,8 @@ import {
 } from "react-icons/hi";
 
 function TeacherTurmasItem({ item }) {
+  const navigate = useNavigate();
+
   return (
     <li className="border border-slate-200  rounded-md text-xs  dark:border-gray-700">
       <div className="bg-gray-200 py-[10px] px-3 dark:bg-gray-900 rounded-t-md ">
@@ -48,7 +51,9 @@ function TeacherTurmasItem({ item }) {
           </span>
           <span>Sala {item.sala} </span>
         </p>
-        <TeacherTurmasBtn />
+        <TeacherTurmasBtn
+          onClick={() => navigate("/area/teacher/teacher-turmas/teacher-info")}
+        />
       </div>
     </li>
   );
