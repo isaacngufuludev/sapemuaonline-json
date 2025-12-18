@@ -19,6 +19,7 @@ import AdminLinks from "./components/AdminLinks";
 import LogoutBtn from "../../components/shared/LogoutBtn";
 import LogoutModal from "../../components/shared/LogoutModal";
 import Overlay from "../../components/shared/Overlay";
+import { FiUser } from "react-icons/fi";
 
 const links = [
   {
@@ -72,8 +73,15 @@ function Admin() {
         <div className="flex items-center gap-4">
           <ToggleDarkMode />
           <div>
-            <p className="leading-3 font-medium">Isaac Ngufulu</p>
-            <p className="text-xs">Administrador</p>
+            <div className="flex items-center gap-3 ">
+              <div className="text-2xl bg-blue-200 p-3 rounded-full dark:bg-gray-900 ">
+                <FiUser />
+              </div>
+              <div>
+                <p className="leading-3 font-semibold">Isaac Ngufulu</p>
+                <p className="text-xs">Administrador</p>
+              </div>
+            </div>
           </div>
           <LogoutBtn />
         </div>

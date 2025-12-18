@@ -4,6 +4,7 @@ import Hero from "./components/Hero";
 import Noticias from "./components/Noticias";
 import Testimonial from "./components/Testimonial";
 import Footer from "../../components/layout/Footer";
+import ChatBtn from "./components/ChatBtn";
 
 function Home() {
   return (
@@ -14,6 +15,7 @@ function Home() {
       <Cursos />
       <Testimonial />
       <Footer />
+      <ChatBtn />
     </div>
   );
 }

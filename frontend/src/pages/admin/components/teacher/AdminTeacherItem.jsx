@@ -6,7 +6,7 @@ import BtnEdit from "../../../../components/ui/BtnEdit";
 function AdminTeacherItem({ item, i }) {
   return (
     <li className="grid grid-cols-[0.3fr_1.5fr_0.7fr_0.7fr_0.7fr_0.5fr_0.3fr_0.3fr] items-center dark:border-gray-700 border-b border-slate-200  px-4 py-2">
-      <p className="font-semibold rounded-full w-2/4 flex items-center justify-center py-2 px-4 bg-slate-100  dark:bg-gray-900">
+      <p className="font-semibold rounded-full w-2/4 flex items-center justify-center py-3 px-4 bg-slate-100  dark:bg-gray-900">
         {i + 1}
       </p>
       <div>

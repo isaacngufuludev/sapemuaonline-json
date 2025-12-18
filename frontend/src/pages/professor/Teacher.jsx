@@ -26,11 +26,11 @@ const links = [
     link: "teacher-turmas",
     icon: <HiOutlineHome />,
   },
-  {
-    name: "Lançar Notas",
-    link: "teacher-notas",
-    icon: <FiFileText />,
-  },
+  // {
+  //   name: "Lançar Notas",
+  //   link: "teacher-notas",
+  //   icon: <FiFileText />,
+  // },
 ];
 
 function Teacher() {
@@ -54,11 +54,16 @@ function Teacher() {
         <div>
           <p>Bem Vindo de volta, Henriques</p>
         </div>
-        <div className="flex items-center gap-4">
+        <div className="flex items-center gap-4 ">
           <ToggleDarkMode />
-          <div>
-            <p className="leading-3 font-medium">Henriques Cidade</p>
-            <p className="text-xs">Professor</p>
+          <div className="flex items-center gap-3 ">
+            <div className="text-2xl bg-blue-200 p-3 rounded-full dark:bg-gray-900 ">
+              <FiUser />
+            </div>
+            <div>
+              <p className="leading-3 font-semibold">Henriques Cidade</p>
+              <p className="text-xs">Professor</p>
+            </div>
           </div>
           <LogoutBtn />
         </div>

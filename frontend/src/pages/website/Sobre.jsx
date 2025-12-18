@@ -3,7 +3,6 @@ import History from "./components/History";
 import Numbers from "./components/Numbers";
 import PagesContent from "./components/PagesContent";
 import Footer from "../../components/layout/Footer";
-import TopButton from "./components/Chat";
 import Instrutores from "./components/Instrutores";
 
 function Sobre() {

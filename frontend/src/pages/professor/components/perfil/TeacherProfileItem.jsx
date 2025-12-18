@@ -7,7 +7,7 @@ import { HiOutlineHome, HiOutlineBookOpen } from "react-icons/hi";
 function TeacherProfileItem({ item }) {
   return (
     <>
-      <li className=" rounded-md bg-white dark:bg-gray-800  border-[0.1px] dark:border-gray-700 border-slate-200">
+      <li className="rounded-md bg-white dark:bg-gray-800  border-[0.1px] dark:border-gray-700 border-slate-200">
         <div className="flex gap-2 items-center p-5 border-b-[0.1px] dark:border-gray-700 border-slate-200">
           <p className="text-4xl  bg-blue-200 p-5 rounded-full dark:bg-gray-900">
             <FiUser />

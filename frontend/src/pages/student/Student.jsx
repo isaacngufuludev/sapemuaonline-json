@@ -64,8 +64,15 @@ function Student() {
         <div className="flex items-center gap-4">
           <ToggleDarkMode />
           <div>
-            <p className="leading-3 font-medium">Luzia Gonçalves</p>
-            <p className="text-xs">Estudante</p>
+            <div className="flex items-center gap-3 ">
+              <div className="text-2xl bg-blue-200 p-3 rounded-full dark:bg-gray-900 ">
+                <FiUser />
+              </div>
+              <div>
+                <p className="leading-3 font-semibold">Luzia Gonçalves</p>
+                <p className="text-xs">Estudante</p>
+              </div>
+            </div>
           </div>
           <LogoutBtn />
         </div>

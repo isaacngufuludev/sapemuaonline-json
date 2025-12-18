@@ -10,3 +10,6 @@
 .active {
   color: #1d4ed8;
 }
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}

@@ -6,14 +6,14 @@ function Hero() {
   const data = [
     {
       id: `1`,
-      titulo: "Bem-vindo à Sapemua",
+      titulo: "Bem-vindo ao Sapemua",
       conteudo:
         "Comprometida com a formação integral, a Sapemua oferece ensino de qualidade ambiente seguro e projetos inovadores que promovem o desenvolvimento académico,  social e humano. Onde aprender é crescer e viver novas possibilidades todos os dias.",
       image: "imgs/hero.png",
     },
     {
       id: "2",
-      titulo: "Bem-vindo à Sapemua",
+      titulo: "Bem-vindo ao Sapemua",
       conteudo:
         " Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ea consectetur ab corrupti aliquid consequuntur, optio corporis doloremque quod illum eius voluptates praesentium incidunt, laudantium dolores? Perspiciatis exercitationem aperiam vero iusto?",
       image: "imgs/item-2.png",
