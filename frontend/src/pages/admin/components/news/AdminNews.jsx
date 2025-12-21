@@ -10,9 +10,10 @@ import Overlay from "../../../../components/shared/Overlay";
 
 import { HiOutlinePlus } from "react-icons/hi";
 import { useModal } from "../../../../contexts/ModalContext";
+import ModalRemoveNews from "./ModalRemoveNews";
 
 function AdminNews() {
-  const { isNewsModal, toggleNewsModal } = useModal();
+  const { isNewsModal, toggleNewsModal, isRemoveNewsModal } = useModal();
 
   return (
     <div>
@@ -35,6 +36,15 @@ function AdminNews() {
       {isNewsModal ? (
         <div>
           <NewsModal />
+          <Overlay />
+        </div>
+      ) : (
+        ""
+      )}
+
+      {isRemoveNewsModal ? (
+        <div>
+          <ModalRemoveNews />
           <Overlay />
         </div>
       ) : (

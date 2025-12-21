@@ -13,8 +13,8 @@ const data = [
 function AdminStudentTitle() {
   return (
     <ul className="grid grid-cols-[0.3fr_1.5fr_0.7fr_0.7fr_0.7fr_0.5fr_0.3fr_0.3fr] items-center px-4 py-2">
-      {data.map((item) => (
-        <AdminStudentTitleItem item={item} />
+      {data.map((item, i) => (
+        <AdminStudentTitleItem item={item} key={i} />
       ))}
     </ul>
   );

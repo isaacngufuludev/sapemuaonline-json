@@ -1,7 +1,7 @@
 import { BsX } from "react-icons/bs";
-import { useModal } from "../../../contexts/ModalContext";
+import { useModal } from "../../contexts/ModalContext";
 
-function AdminBtnCloseModal() {
+function BtnCloseModal() {
   const { toggle } = useModal();
 
   return (
@@ -13,4 +13,4 @@ function AdminBtnCloseModal() {
   );
 }
 
-export default AdminBtnCloseModal;
+export default BtnCloseModal;

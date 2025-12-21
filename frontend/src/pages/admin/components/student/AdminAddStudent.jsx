@@ -4,6 +4,7 @@ import {
   BsExclamationCircle,
   BsFileEarmark,
   BsPersonPlus,
+  BsX,
 } from "react-icons/bs";
 import { MdOutlineDone } from "react-icons/md";
 
@@ -162,7 +163,10 @@ function AdminAddStudent() {
             type="secondary"
             onClick={() => navigate("/area/admin/adminStudents")}
           >
-            Cancelar
+            <p className="text-lg">
+              <BsX />
+            </p>
+            <p>Cancelar</p>
           </AdminButton>
           <AdminButton type="primary">
             <p className="text-base">

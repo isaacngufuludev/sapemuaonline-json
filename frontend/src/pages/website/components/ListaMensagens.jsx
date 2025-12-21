@@ -38,12 +38,12 @@ const mensagens = [
     remetente: "bot",
   },
   {
-    id: 4,
+    id: 6,
     text: "Quando foi fundado a escola do SAPEMUA?",
     remetente: "usuario",
   },
   {
-    id: 5,
+    id: 8,
     text: "O Instituto Politécnico Privado SAPEMUA foi fundado em 2007...",
     remetente: "bot",
   },

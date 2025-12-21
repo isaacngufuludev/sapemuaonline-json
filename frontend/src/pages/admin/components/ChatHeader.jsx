@@ -1,21 +1,24 @@
 import { BsX } from "react-icons/bs";
 import { MdRefresh } from "react-icons/md";
+import { useModal } from "../../../contexts/ModalContext";
 
 function ChatHeader() {
+  const { toggle } = useModal();
+
   return (
     <header className="flex items-center justify-between h-8">
       <div className="flex items-center text-xl gap-1">
         <img src="/imgs/logo.png" className="w-7" />
         <p className="font-semibold">Sapemua Online</p>
       </div>
-      <div className="flex items-center text-xl gap-3">
+      <div className="flex items-center text-2xl gap-2">
         <button>
           <p>
             <MdRefresh style={{ transform: "rotate(180deg)" }} />
           </p>
         </button>
-        <button>
-          <p className="text-2xl">
+        <button onClick={toggle}>
+          <p>
             <BsX />
           </p>
         </button>

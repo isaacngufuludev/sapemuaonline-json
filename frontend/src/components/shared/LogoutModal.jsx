@@ -3,10 +3,10 @@ import { BsX } from "react-icons/bs";
 import { useModal } from "../../contexts/ModalContext";
 import { useNavigate } from "react-router-dom";
 
-import AdminBtnCloseModal from "../../pages/admin/components/AdminBtnCloseModal";
-import AdminButton from "../../pages/admin/components/AdminButton";
-import AdminModal from "../../pages/admin/components/AdminModal";
+import BtnCloseModal from "./BtnCloseModal";
+import Modal from "./Modal";
 import Title3 from "../ui/Title3";
+import BtnModal from "./BtnModal";
 
 function LogoutModal() {
   const { toggle } = useModal();
@@ -18,25 +18,25 @@ function LogoutModal() {
   };
 
   return (
-    <AdminModal>
-      <AdminBtnCloseModal />
+    <Modal>
+      <BtnCloseModal />
       <Title3>Terminar Sessão</Title3>
       <p className="text-sm mb-5">Tens a Certeza que queres terminar sessão?</p>
       <div className="flex gap-2 justify-end">
-        <AdminButton type="smallSecondary" onClick={toggle}>
+        <BtnModal type="smallSecondary" onClick={toggle}>
           <p className="text-lg">
             <BsX />
           </p>
           <p>Não</p>
-        </AdminButton>
-        <AdminButton type="smallPrimary" onClick={init}>
+        </BtnModal>
+        <BtnModal type="smallPrimary" onClick={init}>
           <p className="text-lg">
             <MdOutlineDone />
           </p>
           <p>Sim</p>
-        </AdminButton>
+        </BtnModal>
       </div>
-    </AdminModal>
+    </Modal>
   );
 }
 

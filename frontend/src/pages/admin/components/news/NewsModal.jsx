@@ -2,19 +2,19 @@ import { useModal } from "../../../../contexts/ModalContext";
 import { BsX } from "react-icons/bs";
 import { MdOutlineDone } from "react-icons/md";
 
-import AdminBtnCloseModal from "../AdminBtnCloseModal";
+import BtnCloseModal from "../../../../components/shared/BtnCloseModal";
 import AdminButton from "../AdminButton";
 import AdminInput from "../AdminInput";
 import AdminLabel from "../AdminLabel";
-import AdminModal from "../AdminModal";
+import Modal from "../../../../components/shared/Modal";
 import Title3 from "../../../../components/ui/Title3";
 
 function NewsModal() {
   const { toggle } = useModal();
 
   return (
-    <AdminModal>
-      <AdminBtnCloseModal />
+    <Modal>
+      <BtnCloseModal />
       <Title3>Adicionar noticia</Title3>
       <p className="text-xs mb-2">
         Preencha os campos para adicionar uma nova noticia
@@ -39,7 +39,7 @@ function NewsModal() {
           <p>Cadastrar</p>
         </AdminButton>
       </div>
-    </AdminModal>
+    </Modal>
   );
 }
 

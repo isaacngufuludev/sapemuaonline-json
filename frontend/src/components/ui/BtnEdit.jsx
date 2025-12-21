@@ -1,4 +1,4 @@
-function BtnEdit({ children, type }) {
+function BtnEdit({ children, type, onClick }) {
   const base = "text-lg";
 
   const styles = {
@@ -6,7 +6,11 @@ function BtnEdit({ children, type }) {
     delete: base + " text-red-700",
   };
 
-  return <button className={styles[type]}>{children}</button>;
+  return (
+    <button className={styles[type]} onClick={onClick}>
+      {children}
+    </button>
+  );
 }
 
 export default BtnEdit;

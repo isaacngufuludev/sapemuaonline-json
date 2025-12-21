@@ -24,8 +24,8 @@ const noticias = [
 function AdminNewsList() {
   return (
     <ul className="grid grid-cols-3 gap-5 p-7 dark:bg-gray-800">
-      {noticias.map((item) => (
-        <AdminNewsItem item={item} />
+      {noticias.map((item, i) => (
+        <AdminNewsItem item={item} key={i} />
       ))}
     </ul>
   );

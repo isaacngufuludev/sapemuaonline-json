@@ -30,8 +30,8 @@ function Mission() {
       <Subtitle type="center">Missão, Visão e Valores</Subtitle>
       <Title type="center">Educar com proposito para um futuro melhor</Title>
       <ul className="grid grid-cols-3">
-        {mission.map((item) => (
-          <MissionItem item={item} />
+        {mission.map((item, i) => (
+          <MissionItem item={item} key={i} />
         ))}
       </ul>
     </div>

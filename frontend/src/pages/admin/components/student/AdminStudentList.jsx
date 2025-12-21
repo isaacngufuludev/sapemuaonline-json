@@ -39,7 +39,7 @@ function AdminStudentList() {
   return (
     <ul className="bg-white dark:bg-gray-800 text-sm">
       {studentData.map((item, i) => (
-        <AdminStudentItem item={item} i={i} />
+        <AdminStudentItem item={item} i={i} key={i} />
       ))}
     </ul>
   );

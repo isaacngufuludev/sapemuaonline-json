@@ -6,7 +6,11 @@ function ModalProvider({ children }) {
   const [isLogoutModal, setIsLogoutModal] = useState(false);
   const [isTurmaModal, setIsTurmaModal] = useState(false);
   const [isNewsModal, setNewsModal] = useState(false);
-  const [showTopBtn, setShowTopButton] = useState(false);
+  const [isChatModal, setIsChatModal] = useState(false);
+  const [isRemoveStudentModal, setIsRemoveStudentModal] = useState(false);
+  const [isRemoveTeacherModal, setIsRemoveTeacherModal] = useState(false);
+  const [isRemoveTurmaModal, setIsRemoveTurmaModal] = useState(false);
+  const [isRemoveNewsModal, setIsRemoveNewsModal] = useState(false);
 
   function toggleLogoutModal() {
     setIsLogoutModal((modal) => !modal);
@@ -15,18 +19,40 @@ function ModalProvider({ children }) {
   function toggleTurmaModal() {
     setIsTurmaModal((modal) => !modal);
   }
+
   function toggleNewsModal() {
     setNewsModal((modal) => !modal);
   }
 
-  function toogleTopBtn() {
-    setShowTopButton((btn) => !btn);
+  function toggleChatBoot() {
+    setIsChatModal((modal) => !modal);
+  }
+
+  function toggleRemoveStudent() {
+    setIsRemoveStudentModal((modal) => !modal);
+  }
+
+  function toggleRemoveTeacher() {
+    setIsRemoveTeacherModal((modal) => !modal);
+  }
+
+  function toggleTurmas() {
+    setIsRemoveTurmaModal((modal) => !modal);
+  }
+
+  function toggleNews() {
+    setIsRemoveNewsModal((modal) => !modal);
   }
 
   function toggle() {
     setIsTurmaModal(false);
     setIsLogoutModal(false);
     setNewsModal(false);
+    setIsChatModal(false);
+    setIsRemoveStudentModal(false);
+    setIsRemoveTeacherModal(false);
+    setIsRemoveTurmaModal(false);
+    setIsRemoveNewsModal(false);
   }
 
   return (
@@ -35,11 +61,19 @@ function ModalProvider({ children }) {
         isLogoutModal,
         isTurmaModal,
         isNewsModal,
-        showTopBtn,
+        isChatModal,
+        isRemoveStudentModal,
+        isRemoveTeacherModal,
+        isRemoveTurmaModal,
+        isRemoveNewsModal,
         toggleLogoutModal,
         toggleTurmaModal,
         toggleNewsModal,
-        toogleTopBtn,
+        toggleChatBoot,
+        toggleRemoveStudent,
+        toggleRemoveTeacher,
+        toggleTurmas,
+        toggleNews,
         toggle,
       }}
     >

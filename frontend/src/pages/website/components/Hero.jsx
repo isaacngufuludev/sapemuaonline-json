@@ -27,7 +27,7 @@ function Hero() {
         loop={true}
         modules={[Autoplay]}
         autoplay={{
-          delay: 3000, // Tempo em milissegundos (3 segundos)
+          delay: 5000, // Tempo em milissegundos (3 segundos)
           disableOnInteraction: false,
         }}
       >

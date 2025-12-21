@@ -12,7 +12,7 @@ function Links() {
           <NavLink to="/Sobre">Sobre</NavLink>
         </li>
         <li>
-          <NavLink to="/ChatBoot">Chat</NavLink>
+          <NavLink to="/gallery">Galeria</NavLink>
         </li>
         <li className="bg-blue-700 text-white px-4 py-1 rounded-full">
           <NavLink

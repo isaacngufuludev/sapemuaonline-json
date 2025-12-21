@@ -4,7 +4,7 @@ import Mission from "./Mission";
 
 function History() {
   return (
-    <section className="border-stone-200 border-b-[0.1px] py-10 dark:border-stone-900 ">
+    <section className="border-stone-200 border-b-[0.1px] pt-28 dark:border-stone-900 h-screen ">
       <div className="container">
         <Subtitle type="left">historia</Subtitle>
         <Title type="left">Resumo da Nossa Trajetoria</Title>

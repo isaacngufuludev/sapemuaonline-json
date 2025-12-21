@@ -29,8 +29,8 @@ function Numbers() {
         <Title type="center">Nossa Historia em Números</Title>
 
         <ul className="grid grid-cols-4 items-center">
-          {numbers.map((item) => (
-            <NumberItem item={item} />
+          {numbers.map((item, i) => (
+            <NumberItem item={item} key={i} />
           ))}
         </ul>
       </div>

@@ -7,15 +7,15 @@ import AdminLabel from "../AdminLabel";
 import AdminInput from "../AdminInput";
 import AdminSelect from "../AdminSelect";
 import AdminButton from "../AdminButton";
-import AdminBtnCloseModal from "../AdminBtnCloseModal";
-import AdminModal from "../AdminModal";
+import BtnCloseModal from "../../../../components/shared/BtnCloseModal";
+import Modal from "../../../../components/shared/Modal";
 
 function ModalTurma() {
   const { toggle } = useModal();
 
   return (
-    <AdminModal>
-      <AdminBtnCloseModal />
+    <Modal>
+      <BtnCloseModal />
       <Title3>Cadastrar Turma</Title3>
       <p className="text-xs mb-2">
         Preencha os campos para cadastrar nova turma
@@ -25,10 +25,10 @@ function ModalTurma() {
           <AdminLabel htmlFor="classe">Classe</AdminLabel>
           <AdminSelect>
             <option>Nenhum Selecionado</option>
-            <option value="">10 Classe</option>
-            <option value="">11 Classe</option>
-            <option value="">12 Classe</option>
-            <option value="">13 Classe</option>
+            <option value="">10ª Classe</option>
+            <option value="">11ª Classe</option>
+            <option value="">12ª Classe</option>
+            <option value="">13ª Classe</option>
           </AdminSelect>
         </div>
         <div>
@@ -70,7 +70,7 @@ function ModalTurma() {
           <p>Cadastrar</p>
         </AdminButton>
       </div>
-    </AdminModal>
+    </Modal>
   );
 }
 

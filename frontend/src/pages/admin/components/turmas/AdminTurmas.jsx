@@ -9,6 +9,7 @@ import BtnEdit from "../../../../components/ui/BtnEdit";
 
 import { HiOutlineTrash } from "react-icons/hi";
 import { useModal } from "../../../../contexts/ModalContext";
+import ModalRemoveTurma from "./ModalRemoveTurma";
 
 function AdminTurmas() {
   const { isTurmaModal } = useModal();
@@ -54,7 +55,7 @@ function AdminTurmas() {
           <AdminTurmasCourses />
         </div>
         <AdminAddHeader type="turma">
-          <Title4># Finanças</Title4>{" "}
+          <Title4># Finanças</Title4>
           <BtnEdit type="delete">
             <HiOutlineTrash />
           </BtnEdit>

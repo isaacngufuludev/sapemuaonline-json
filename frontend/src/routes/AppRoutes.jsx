@@ -4,7 +4,7 @@ import { ModalProvider } from "../contexts/ModalContext";
 
 import Home from "../pages/website/Home";
 import Sobre from "../pages/website/Sobre";
-import ChatBoot from "../pages/website/ChatBoot";
+import Gallery from "../pages/website/Gallery";
 import Login from "../pages/auth/Login";
 import Area from "../pages/areas/Area";
 import Admin from "../pages/admin/Admin";
@@ -40,7 +40,7 @@ function AppRoutes() {
           <Routes>
             <Route index path="/" element={<Home />} />
             <Route path="/sobre" element={<Sobre />} />
-            <Route path="/chatBoot" element={<ChatBoot />} />
+            <Route path="/gallery" element={<Gallery />} />
             <Route path="/login" element={<Login />} />
             <Route path="/area" element={<Area />}>
               <Route path="admin" element={<Admin />}>
