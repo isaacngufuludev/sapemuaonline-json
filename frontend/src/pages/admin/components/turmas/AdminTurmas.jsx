@@ -12,7 +12,7 @@ import { useModal } from "../../../../contexts/ModalContext";
 import ModalRemoveTurma from "./ModalRemoveTurma";
 
 function AdminTurmas() {
-  const { isTurmaModal } = useModal();
+  const { isTurmaModal, isRemoveTurmaModal } = useModal();
 
   return (
     <div>
@@ -77,6 +77,14 @@ function AdminTurmas() {
       {isTurmaModal ? (
         <div>
           <ModalTurma />
+          <Overlay />
+        </div>
+      ) : (
+        ""
+      )}
+      {isRemoveTurmaModal ? (
+        <div>
+          <ModalRemoveTurma />
           <Overlay />
         </div>
       ) : (

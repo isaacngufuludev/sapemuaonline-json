@@ -1,8 +1,8 @@
 import BtnEdit from "../../../../components/ui/BtnEdit";
 import Title4 from "../../../../components/ui/Title4";
-import { useModal } from "../../../../contexts/ModalContext";
 import AdminButton from "../AdminButton";
 
+import { useModal } from "../../../../contexts/ModalContext";
 import {
   HiOutlineBookOpen,
   HiOutlineClock,
@@ -10,11 +10,9 @@ import {
   HiOutlineTrash,
   HiOutlineUserGroup,
 } from "react-icons/hi";
-import ModalRemoveTurma from "./ModalRemoveTurma";
-import Overlay from "../../../../components/shared/Overlay";
 
 function AdminTurmasItem({ item }) {
-  const { isRemoveTurmaModal, toggleTurmas } = useModal();
+  const { toggleTurmas } = useModal();
 
   return (
     <li className="border border-slate-200  rounded-md text-xs  dark:border-gray-700">
@@ -62,15 +60,6 @@ function AdminTurmasItem({ item }) {
         </p>
         <AdminButton type="turmas">Ver detalhes</AdminButton>
       </div>
-
-      {isRemoveTurmaModal ? (
-        <div>
-          <ModalRemoveTurma />
-          <Overlay />
-        </div>
-      ) : (
-        ""
-      )}
     </li>
   );
 }
