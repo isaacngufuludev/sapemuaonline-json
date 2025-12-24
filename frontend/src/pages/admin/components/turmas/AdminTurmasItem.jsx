@@ -52,12 +52,6 @@ function AdminTurmasItem({ item }) {
           </span>
           <span>Turma {item.turma} </span>
         </p>
-        <p className="flex items-center gap-1">
-          <span className="text-sm">
-            <HiOutlineHome />
-          </span>
-          <span>Sala {item.sala} </span>
-        </p>
         <AdminButton type="turmas">Ver detalhes</AdminButton>
       </div>
     </li>

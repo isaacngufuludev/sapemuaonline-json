@@ -6,20 +6,26 @@ import { HiOutlinePlus } from "react-icons/hi";
 import { useModal } from "../../../../contexts/ModalContext";
 
 function AdminTurmasHeading() {
-  const { toggleTurmaModal } = useModal();
+  const { toggleTurmaModal, toggleCourseModal } = useModal();
 
   return (
-    <div>
-      <AdminHeading>
-        <Title3>Turmas e Cursos</Title3>
+    <AdminHeading>
+      <Title3>Turmas e Cursos</Title3>
+      <div className="flex items-center gap-2">
+        <AdminButton type="primary" onClick={toggleCourseModal}>
+          <p>
+            <HiOutlinePlus />
+          </p>
+          <p>Curso</p>
+        </AdminButton>
         <AdminButton type="primary" onClick={toggleTurmaModal}>
           <p>
             <HiOutlinePlus />
           </p>
           <p>Turma</p>
         </AdminButton>
-      </AdminHeading>
-    </div>
+      </div>
+    </AdminHeading>
   );
 }
 

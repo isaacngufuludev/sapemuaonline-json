@@ -1,6 +1,6 @@
 function ProfessoresItem({ item }) {
   return (
-    <li className="border-stone-200 border-[0.1px] p-6 flex flex-col rounded-md dark:border-stone-900">
+    <li className="border-stone-200 border-[0.1px] p-6 flex flex-col rounded-md dark:border-stone-900 min-w-[350px]">
       <div className="place-items-center mb-6 text-center ">
         <p className="p-5 inline-block text-white text-[150px] bg-blue-700 rounded-full">
           {item.img}

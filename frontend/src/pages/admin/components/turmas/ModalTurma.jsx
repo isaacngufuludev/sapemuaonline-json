@@ -17,7 +17,7 @@ function ModalTurma() {
     <Modal>
       <BtnCloseModal />
       <Title3>Cadastrar Turma</Title3>
-      <p className="text-xs mb-2">
+      <p className="text-sm mb-2">
         Preencha os campos para cadastrar nova turma
       </p>
       <form className="grid grid-cols-2 gap-3 mb-7">
@@ -32,10 +32,14 @@ function ModalTurma() {
           </AdminSelect>
         </div>
         <div>
-          <AdminLabel htmlFor="sala">Número da sala</AdminLabel>
-          <AdminInput type="number" id="sala" />
+          <AdminLabel>Selecionar Periodo</AdminLabel>
+          <AdminSelect>
+            <option>Nenhum Selecionado</option>
+            <option value="">Manhã</option>
+            <option value="">Tarde</option>
+          </AdminSelect>
         </div>
-        <div>
+        <div className="">
           <AdminLabel>Número da curso</AdminLabel>
           <AdminSelect>
             <option>Nenhum Selecionado</option>
@@ -45,14 +49,6 @@ function ModalTurma() {
             <option value="">Electronica e Telecomunicações</option>
             <option value="">Finanças</option>
             <option value="">Gestão de Recursos Humanos</option>
-          </AdminSelect>
-        </div>
-        <div>
-          <AdminLabel>Selecionar Periodo</AdminLabel>
-          <AdminSelect>
-            <option>Nenhum Selecionado</option>
-            <option value="">Manhã</option>
-            <option value="">Tarde</option>
           </AdminSelect>
         </div>
       </form>

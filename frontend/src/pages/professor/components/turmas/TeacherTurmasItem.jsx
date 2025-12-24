@@ -5,7 +5,6 @@ import TeacherTurmasBtn from "./TeacherTurmasBtn";
 import {
   HiOutlineBookOpen,
   HiOutlineClock,
-  HiOutlineHome,
   HiOutlineUserGroup,
 } from "react-icons/hi";
 
@@ -44,12 +43,6 @@ function TeacherTurmasItem({ item }) {
             <HiOutlineUserGroup />
           </span>
           <span>Turma {item.turma} </span>
-        </p>
-        <p className="flex items-center gap-1">
-          <span className="text-sm">
-            <HiOutlineHome />
-          </span>
-          <span>Sala {item.sala} </span>
         </p>
         <TeacherTurmasBtn
           onClick={() => navigate("/area/teacher/teacher-turmas/teacher-info")}

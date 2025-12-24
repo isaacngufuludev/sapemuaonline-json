@@ -43,8 +43,8 @@ function TeacherTurmasInfoItem({ item }) {
               <HiOutlineHome />
             </p>
             <div className="flex flex-col gap-1">
-              <Title4>Sala</Title4>
-              <p>{item.sala}</p>
+              <Title4>Disciplinas</Title4>
+              <p>{item.disciplinas}</p>
             </div>
           </div>
           <div className="flex items-center gap-2">

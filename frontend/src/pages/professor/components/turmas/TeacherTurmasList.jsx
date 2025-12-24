@@ -7,8 +7,7 @@ const turmas = [
     disciplinas: 0,
     turno: "Manhã",
     turma: "A",
-    sala: "1",
-    classe: "10a",
+    classe: "10ª",
     curso: "Informática",
   },
   {
@@ -17,8 +16,7 @@ const turmas = [
     disciplinas: 0,
     turno: "Manhã",
     turma: "B",
-    sala: "1",
-    classe: "11a",
+    classe: "11ª",
     curso: "Informática",
   },
 ];

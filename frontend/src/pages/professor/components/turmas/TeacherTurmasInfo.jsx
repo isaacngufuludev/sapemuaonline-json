@@ -8,7 +8,6 @@ const turmas = [
     disciplinas: 0,
     turno: "Manhã",
     turma: "A",
-    sala: "1",
     classe: "10a",
     curso: "Informática",
   },

@@ -4,7 +4,7 @@ const studentData = [
   {
     name: "Isaac Ngufulu Nzinga Yambi",
     id: 4355,
-    class: "11 Classe",
+    class: "11ª Classe",
     course: "Informática",
     genero: "Masculino",
     idade: "29 anos",
@@ -12,7 +12,7 @@ const studentData = [
   {
     name: "Kinavuide Antonio Afonso David",
     id: 4355,
-    class: "11 Classe",
+    class: "11ª Classe",
     course: "Informática",
     genero: "Masculino",
     idade: "29 anos",
@@ -20,7 +20,7 @@ const studentData = [
   {
     name: "Henriques Manuel Antonio Cidade",
     id: 4355,
-    class: "11 Classe",
+    class: "11ª Classe",
     course: "Informática",
     genero: "Masculino",
     idade: "29 anos",
@@ -28,7 +28,7 @@ const studentData = [
   {
     name: "Dorivaldo Quimanga Quizembe",
     id: 4355,
-    class: "11 Classe",
+    class: "11ª Classe",
     course: "Informática",
     genero: "Masculino",
     idade: "29 anos",
