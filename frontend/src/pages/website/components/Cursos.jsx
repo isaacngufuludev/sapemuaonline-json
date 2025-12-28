@@ -43,7 +43,7 @@ const cursos = [
 
 function Cursos() {
   return (
-    <section className="border-stone-200 border-t-[0.1px] py-28 dark:border-stone-900 ">
+    <section className="border-stone-200 border-t-[0.1px] py-28 dark:border-gray-800 ">
       <div className="container ">
         <Subtitle type="center">cursos</Subtitle>
         <Title type="center">Áreas de Desenvolvimento Académico</Title>

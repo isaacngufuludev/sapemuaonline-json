@@ -5,7 +5,7 @@ function Overlay() {
 
   return (
     <div
-      className="absolute top-0 left-0 backdrop-blur-sm h-screen bg-black/30 w-full z-10"
+      className="fixed top-0 left-0 backdrop-blur-sm h-screen bg-black/30 w-full z-20"
       onClick={toggle}
     ></div>
   );

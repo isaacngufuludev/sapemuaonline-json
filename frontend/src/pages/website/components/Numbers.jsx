@@ -23,7 +23,7 @@ const numbers = [
 
 function Numbers() {
   return (
-    <section className="border-stone-200 border-b-[0.1px] py-24 dark:border-stone-900 ">
+    <section className="border-stone-200 border-b-[0.1px] py-24 dark:border-gray-800 ">
       <div className="container">
         <Subtitle type="center">números</Subtitle>
         <Title type="center">Nossa Historia em Números</Title>

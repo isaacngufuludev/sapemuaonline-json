@@ -29,7 +29,7 @@ function Mission() {
     <div className="py-20">
       <Subtitle type="center">Missão, Visão e Valores</Subtitle>
       <Title type="center">Educar com proposito para um futuro melhor</Title>
-      <ul className="grid grid-cols-3">
+      <ul className="grid grid-cols-3 gap-x-5 ">
         {mission.map((item, i) => (
           <MissionItem item={item} key={i} />
         ))}

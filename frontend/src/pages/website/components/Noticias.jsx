@@ -25,7 +25,7 @@ const noticias = [
 
 function Noticias() {
   return (
-    <section className="border-stone-200 border-t py-20 dark:border-stone-900 ">
+    <section className="border-stone-200 border-t py-20 dark:border-gray-900 ">
       <div className="container">
         <Subtitle type="center">noticias e avisos</Subtitle>
         <Title type="center">Noticias e Atualizações Recentes</Title>
