@@ -1,5 +1,5 @@
 function BtnEdit({ children, type, onClick }) {
-  const base = "text-lg";
+  const base = "text-xl";
 
   const styles = {
     edit: base + " text-green-700",

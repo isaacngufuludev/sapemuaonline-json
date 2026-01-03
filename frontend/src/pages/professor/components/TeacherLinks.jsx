@@ -2,7 +2,7 @@ import { NavLink } from "react-router-dom";
 
 function TeacherLinks({ item }) {
   return (
-    <li>
+    <li className="hover:bg-blue-200 duration-300 hover:dark:bg-gray-900 ">
       <NavLink
         className={({ isActive }) =>
           isActive

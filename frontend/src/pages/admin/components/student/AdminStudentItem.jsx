@@ -18,7 +18,7 @@ function AdminStudentItem({ item, i }) {
       <p>{item.course}</p>
       <p>{item.genero}</p>
       <p>{item.idade}</p>
-      <div className="flex gap-1 items-center">
+      <div className="flex gap-2 items-center">
         <BtnEdit type="delete" onClick={toggleRemoveStudent}>
           <HiOutlineTrash />
         </BtnEdit>

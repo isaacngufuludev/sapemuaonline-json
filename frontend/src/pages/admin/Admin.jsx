@@ -4,9 +4,11 @@ import {
   HiOutlineUsers,
   HiOutlineNewspaper,
   HiOutlineCog,
+  HiOutlineViewGrid,
 } from "react-icons/hi";
 import { Outlet } from "react-router-dom";
 import { useModal } from "../../contexts/ModalContext";
+import { FiUser } from "react-icons/fi";
 
 import AuthHeader from "../../components/layout/AuthHeader";
 import AuthMain from "../../components/layout/AuthMain";
@@ -19,9 +21,13 @@ import AdminLinks from "./components/AdminLinks";
 import LogoutBtn from "../../components/shared/LogoutBtn";
 import LogoutModal from "../../components/shared/LogoutModal";
 import Overlay from "../../components/shared/Overlay";
-import { FiUser } from "react-icons/fi";
 
 const links = [
+  {
+    name: "Dashboard",
+    icon: <HiOutlineViewGrid />,
+    link: "AdminDashboard",
+  },
   {
     name: "Estudantes",
     icon: <HiOutlineUserGroup />,

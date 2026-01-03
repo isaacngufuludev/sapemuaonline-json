@@ -9,12 +9,14 @@ function AdminNewsItem({ item }) {
   const { toggleNews } = useModal();
 
   return (
-    <li className="flex flex-col gap-2 justify-between p-3 dark:border-gray-700 rounded-md duration-300 border border-slate-200 ">
-      <div className="flex items-center justify-between">
-        <Title3>{item.titulo}</Title3>
-        <p className="text-xs font-medium text-gray=700">{item.date}</p>
+    <li className="flex flex-col justify-between p-3 dark:border-gray-700 rounded-md duration-300 border border-slate-200 ">
+      <div>
+        <div className="flex items-center justify-between mb-2">
+          <Title3>{item.titulo}</Title3>
+          <p className="text-xs font-medium text-gray-700">{item.date}</p>
+        </div>
+        <p className="text-sm  leading-6">{item.conteudo}</p>
       </div>
-      <p className="text-sm  leading-6">{item.conteudo}</p>
       <div className="flex gap-1 justify-end">
         <BtnEdit type="delete" onClick={toggleNews}>
           <HiOutlineTrash />

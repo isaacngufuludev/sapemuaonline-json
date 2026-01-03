@@ -80,7 +80,7 @@ function Professores() {
           </div>
           <Swiper
             slidesPerView={4}
-            spaceBetween={80}
+            spaceBetween={60}
             loop={true}
             autoplay={{
               delay: 7000,

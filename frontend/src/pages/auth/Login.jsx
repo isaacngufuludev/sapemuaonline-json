@@ -7,7 +7,7 @@ function Login() {
     <div>
       <Header />
       <div className="pt-32 container">
-        <div className="max-w-xs px-4 py-6 mx-auto my-20 shadow-2xl rounded-md  ">
+        <div className="max-w-[350px] px-5 py-8 mx-auto my-32 shadow-2xl rounded-xl  ">
           <h2 className="font-semibold text-2xl">Iniciar sessão</h2>
           <p className="text-xs mb-3">
             Bem vindo de volta! Faça login para ter acesso

@@ -31,6 +31,7 @@ import TeacherTurmas from "../pages/professor/components/turmas/TeacherTurmas";
 import TeacherNotas from "../pages/professor/components/notas/TeacherNotas";
 import TeacherTurmasInfo from "../pages/professor/components/turmas/TeacherTurmasInfo";
 import TeacherAllTurmas from "../pages/professor/components/turmas/TeacherAllTurmas";
+import AdminDashboard from "../pages/admin/components/dashboard/AdminDashboard";
 
 function AppRoutes() {
   return (
@@ -46,8 +47,9 @@ function AppRoutes() {
               <Route path="admin" element={<Admin />}>
                 <Route
                   index
-                  element={<Navigate replace to="adminStudents" />}
+                  element={<Navigate replace to="adminDashboard" />}
                 />
+                <Route path="adminDashboard" element={<AdminDashboard />} />
                 <Route path="adminStudents" element={<AdminStudents />}>
                   <Route
                     index

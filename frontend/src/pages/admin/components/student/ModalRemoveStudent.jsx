@@ -3,34 +3,22 @@ import Title3 from "../../../../components/ui/Title3";
 import BtnModal from "../../../../components/shared/BtnModal";
 import Modal from "../../../../components/shared/Modal";
 
-import { useModal } from "../../../../contexts/ModalContext";
-import { BsX } from "react-icons/bs";
-import { MdOutlineDone } from "react-icons/md";
+import { HiOutlineTrash } from "react-icons/hi";
 
 function ModalRemoveStudent() {
-  const { toggle } = useModal();
-
   return (
     <Modal>
       <BtnCloseModal />
-      <Title3>Eliminar Estudante</Title3>
-      <p className="text-sm mb-5">
+      <div className="flex items-center gap-3 mb-3">
+        <p className="text-red-700 bg-red-100 p-2  text-xl rounded-full inline-block ">
+          <HiOutlineTrash />
+        </p>
+        <Title3>Eliminar Estudante</Title3>
+      </div>
+      <p className="text-sm mb-5  ">
         Tens a Certeza que queres eliminar este estudante?
       </p>
-      <div className="flex gap-2 justify-end">
-        <BtnModal type="smallSecondary" onClick={toggle}>
-          <p className="text-lg">
-            <BsX />
-          </p>
-          <p>Não</p>
-        </BtnModal>
-        <BtnModal type="smallPrimary">
-          <p className="text-lg">
-            <MdOutlineDone />
-          </p>
-          <p>Sim</p>
-        </BtnModal>
-      </div>
+      <BtnModal type="remove">Eliminar Estudante</BtnModal>
     </Modal>
   );
 }
