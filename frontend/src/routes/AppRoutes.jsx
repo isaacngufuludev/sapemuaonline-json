@@ -1,13 +1,16 @@
 import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 import { ThemeProvider } from "../contexts/ThemeContext";
 import { ModalProvider } from "../contexts/ModalContext";
+import { AuthProvider } from "../contexts/AuthContext";
 
 import Home from "../pages/website/Home";
 import Sobre from "../pages/website/Sobre";
 import Gallery from "../pages/website/Gallery";
+import PageNotFound from "../pages/website/PageNotFound";
 import Login from "../pages/auth/Login";
 import Area from "../pages/areas/Area";
 import Admin from "../pages/admin/Admin";
+import AdminDashboard from "../pages/admin/components/dashboard/AdminDashboard";
 import AdminStudents from "../pages/admin/components/student/AdminStudents";
 import AdminTeacher from "../pages/admin/components/teacher/AdminTeacher";
 import AdminTurmas from "../pages/admin/components/turmas/AdminTurmas";
@@ -31,102 +34,118 @@ import TeacherTurmas from "../pages/professor/components/turmas/TeacherTurmas";
 import TeacherNotas from "../pages/professor/components/notas/TeacherNotas";
 import TeacherTurmasInfo from "../pages/professor/components/turmas/TeacherTurmasInfo";
 import TeacherAllTurmas from "../pages/professor/components/turmas/TeacherAllTurmas";
-import AdminDashboard from "../pages/admin/components/dashboard/AdminDashboard";
+import ProtectedRoute from "../pages/website/ProtectedRoute";
 
 function AppRoutes() {
   return (
-    <ThemeProvider>
-      <ModalProvider>
-        <BrowserRouter>
-          <Routes>
-            <Route index path="/" element={<Home />} />
-            <Route path="/sobre" element={<Sobre />} />
-            <Route path="/gallery" element={<Gallery />} />
-            <Route path="/login" element={<Login />} />
-            <Route path="/area" element={<Area />}>
-              <Route path="admin" element={<Admin />}>
-                <Route
-                  index
-                  element={<Navigate replace to="adminDashboard" />}
-                />
-                <Route path="adminDashboard" element={<AdminDashboard />} />
-                <Route path="adminStudents" element={<AdminStudents />}>
+    <AuthProvider>
+      <ThemeProvider>
+        <ModalProvider>
+          <BrowserRouter>
+            <Routes>
+              <Route index path="/" element={<Home />} />
+              <Route path="/sobre" element={<Sobre />} />
+              <Route path="/gallery" element={<Gallery />} />
+              <Route path="/login" element={<Login />} />
+              <Route path="*" element={<PageNotFound />} />
+              <Route
+                path="/area"
+                element={
+                  <ProtectedRoute>
+                    <Area />
+                  </ProtectedRoute>
+                }
+              >
+                <Route path="admin" element={<Admin />}>
                   <Route
                     index
-                    element={<Navigate replace to="main-student" />}
+                    element={<Navigate replace to="adminDashboard" />}
                   />
-                  <Route
-                    path="main-student"
-                    element={<AdminMainStudentLayout />}
-                  />
-                  <Route path="add-student" element={<AdminAddStudent />}>
+                  <Route path="adminDashboard" element={<AdminDashboard />} />
+                  <Route path="adminStudents" element={<AdminStudents />}>
                     <Route
                       index
-                      element={<Navigate replace to="father-info" />}
+                      element={<Navigate replace to="main-student" />}
                     />
                     <Route
-                      path="father-info"
-                      element={<AdminAddFatherInfo />}
+                      path="main-student"
+                      element={<AdminMainStudentLayout />}
                     />
-                    <Route
-                      path="mother-info"
-                      element={<AdminAddMotherInfo />}
-                    />
-                    <Route
-                      path="guardion-info"
-                      element={<AdminAddGuardionInfo />}
-                    />
+                    <Route path="add-student" element={<AdminAddStudent />}>
+                      <Route
+                        index
+                        element={<Navigate replace to="father-info" />}
+                      />
+                      <Route
+                        path="father-info"
+                        element={<AdminAddFatherInfo />}
+                      />
+                      <Route
+                        path="mother-info"
+                        element={<AdminAddMotherInfo />}
+                      />
+                      <Route
+                        path="guardion-info"
+                        element={<AdminAddGuardionInfo />}
+                      />
+                    </Route>
                   </Route>
+                  <Route path="adminTeacher" element={<AdminTeacher />}>
+                    <Route
+                      index
+                      element={<Navigate replace to="main-teacher" />}
+                    />
+                    <Route
+                      path="main-teacher"
+                      element={<AdminMainTeacherLayout />}
+                    />
+                    <Route path="add-teacher" element={<AdminAddTeacher />} />
+                  </Route>
+                  <Route path="adminTurmas" element={<AdminTurmas />} />
+                  <Route path="adminNews" element={<AdminNews />} />
+                  <Route path="adminConfigs" element={<AdminConfigs />} />
                 </Route>
-                <Route path="adminTeacher" element={<AdminTeacher />}>
+                <Route path="teacher" element={<Teacher />}>
                   <Route
                     index
-                    element={<Navigate replace to="main-teacher" />}
+                    element={<Navigate replace to="teacher-profile" />}
                   />
-                  <Route
-                    path="main-teacher"
-                    element={<AdminMainTeacherLayout />}
-                  />
-                  <Route path="add-teacher" element={<AdminAddTeacher />} />
+                  <Route path="teacher-profile" element={<TeacherProfile />} />
+                  <Route path="teacher-turmas" element={<TeacherTurmas />}>
+                    <Route
+                      index
+                      element={<Navigate to="teacher-all-turmas" />}
+                    />
+                    <Route
+                      path="teacher-all-turmas"
+                      element={<TeacherAllTurmas />}
+                    />
+                    <Route
+                      path="teacher-info"
+                      element={<TeacherTurmasInfo />}
+                    />
+                  </Route>
+                  <Route path="teacher-notas" element={<TeacherNotas />} />
                 </Route>
-                <Route path="adminTurmas" element={<AdminTurmas />} />
-                <Route path="adminNews" element={<AdminNews />} />
-                <Route path="adminConfigs" element={<AdminConfigs />} />
-              </Route>
-              <Route path="teacher" element={<Teacher />}>
-                <Route
-                  index
-                  element={<Navigate replace to="teacher-profile" />}
-                />
-                <Route path="teacher-profile" element={<TeacherProfile />} />
-                <Route path="teacher-turmas" element={<TeacherTurmas />}>
-                  <Route index element={<Navigate to="teacher-all-turmas" />} />
+                <Route path="student" element={<Student />}>
                   <Route
-                    path="teacher-all-turmas"
-                    element={<TeacherAllTurmas />}
+                    index
+                    element={<Navigate replace to="student-profile" />}
                   />
-                  <Route path="teacher-info" element={<TeacherTurmasInfo />} />
+                  <Route path="student-profile" element={<StudentProfile />} />
+                  <Route
+                    path="student-colleagues"
+                    element={<StudentColleagues />}
+                  />
+                  <Route path="student-teacher" element={<StudentTeacher />} />
+                  <Route path="student-notas" element={<StudentNotas />} />
                 </Route>
-                <Route path="teacher-notas" element={<TeacherNotas />} />
               </Route>
-              <Route path="student" element={<Student />}>
-                <Route
-                  index
-                  element={<Navigate replace to="student-profile" />}
-                />
-                <Route path="student-profile" element={<StudentProfile />} />
-                <Route
-                  path="student-colleagues"
-                  element={<StudentColleagues />}
-                />
-                <Route path="student-teacher" element={<StudentTeacher />} />
-                <Route path="student-notas" element={<StudentNotas />} />
-              </Route>
-            </Route>
-          </Routes>
-        </BrowserRouter>
-      </ModalProvider>
-    </ThemeProvider>
+            </Routes>
+          </BrowserRouter>
+        </ModalProvider>
+      </ThemeProvider>
+    </AuthProvider>
   );
 }
 
