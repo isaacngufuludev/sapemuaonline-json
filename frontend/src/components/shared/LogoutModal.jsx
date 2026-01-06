@@ -1,7 +1,7 @@
 import { MdOutlineDone } from "react-icons/md";
 import { BsX } from "react-icons/bs";
 import { useModal } from "../../contexts/ModalContext";
-import { useNavigate } from "react-router-dom";
+import { useAuth } from "../../contexts/AuthContext";
 
 import BtnCloseModal from "./BtnCloseModal";
 import Modal from "./Modal";
@@ -10,11 +10,11 @@ import BtnModal from "./BtnModal";
 
 function LogoutModal() {
   const { toggle } = useModal();
-  const navigate = useNavigate();
+  const { logout } = useAuth();
 
   const init = () => {
     toggle();
-    navigate("/login");
+    logout();
   };
 
   return (

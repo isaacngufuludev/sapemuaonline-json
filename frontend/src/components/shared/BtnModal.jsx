@@ -3,7 +3,8 @@ function BtnModal({ children, type, onClick }) {
 
   const styles = {
     smallPrimary:
-      base + " px-2 py-1 bg-blue-700 text-white flex items-center gap-1 ",
+      base +
+      " px-2 py-1 bg-blue-700 text-white flex items-center gap-1 rounded-md ",
     smallSecondary:
       base +
       " px-2 py-1 bg-gray-300 text-gray-700 border dark:bg-gray-800 dark:border-gray-700 rounded-md flex items-center gap-1 ",

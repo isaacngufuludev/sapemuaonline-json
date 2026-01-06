@@ -1,5 +1,4 @@
 import { createContext, useContext, useReducer } from "react";
-import { toast } from "react-toastify";
 import { useToast } from "../hooks/useToast";
 
 const AuthContext = createContext();
@@ -7,8 +6,8 @@ const AuthContext = createContext();
 const users = [
   {
     id: 4355,
-    email: "carlosmorais@mail.com",
-    name: "Carlos Mendes",
+    email: "isaacngufulu70@gmail.com",
+    name: "Isaac Nzinga",
     birthYear: "1985-04-12",
     phoneNumber: "+244 923 456 789",
     genre: "Masculino",
@@ -18,7 +17,7 @@ const users = [
   {
     id: 2,
     name: "Ana Paulo",
-    email: "anapaulo11@hmail.com",
+    email: "anapaulo11@gmail.com",
     birthYear: "1992-09-25",
     phoneNumber: "+244 934 987 654",
     genre: "Feminino",
@@ -69,7 +68,7 @@ function AuthProvider({ children }) {
       showError("Credênciais invalidas, tente de novo");
     } else {
       dispatch({ type: "login", payload: userFound });
-      showSuccess("Login com sucesso");
+      showSuccess("Login executado com sucesso");
     }
   }
 

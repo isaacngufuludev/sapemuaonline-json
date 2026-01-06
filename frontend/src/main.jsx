@@ -18,6 +18,7 @@ createRoot(document.getElementById("root")).render(
     <ToastContainer
       position="top-center"
       toastClassName="Toastify__toast dark:bg-gray-800 dark:text-gray-100 text-sm "
+      hideProgressBar={true}
     />
   </StrictMode>
 );
