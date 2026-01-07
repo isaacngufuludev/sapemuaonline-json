@@ -59,9 +59,9 @@ function AuthProvider({ children }) {
   );
   const { showSuccess, showError } = useToast();
 
-  function login({ id, password }) {
+  function login({ email, password }) {
     const userFound = users.find(
-      (user) => user.id === id && user.password === password
+      (user) => user.email === email && user.password === password
     );
 
     if (!userFound) {
