@@ -43,11 +43,11 @@ const cursos = [
 
 function Cursos() {
   return (
-    <section className="border-stone-200 border-t-[0.1px] py-28 dark:border-gray-800 ">
+    <section className="border-stone-200 border-t-[0.1px] py-16 xl:py-28 dark:border-gray-800 ">
       <div className="container ">
         <Subtitle type="center">cursos</Subtitle>
         <Title type="center">Áreas de Desenvolvimento Académico</Title>
-        <ul className="grid grid-cols-3 gap-x-7 gap-y-5">
+        <ul className="grid grid-cols-1 xl:grid-cols-3 gap-x-7 gap-y-5">
           {cursos.map((item) => (
             <CursoItem item={item} key={item.name} />
           ))}

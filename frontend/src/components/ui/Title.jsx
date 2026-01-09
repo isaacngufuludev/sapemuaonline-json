@@ -1,5 +1,5 @@
 function Title({ children, type }) {
-  const base = "text-2xl font-semibold mb-7";
+  const base = "text-xl  xl:text-2xl font-semibold mb-5 xl:mb-7";
 
   const styles = {
     left: base + " text-left",

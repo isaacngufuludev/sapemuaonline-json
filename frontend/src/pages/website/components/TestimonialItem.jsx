@@ -1,8 +1,10 @@
 function TestimonialItem({ item }) {
   return (
-    <li className="absolute text-center px-32">
+    <li className="absolute text-center px-10 xl:px-32">
       <div className="">
-        <blockquote className="text-center mb-10">{item.message}</blockquote>
+        <blockquote className="text-center xl:text-sm text-xs leading-5  mb-10">
+          {item.message}
+        </blockquote>
         <img src={item.image} className="h-20 rounded-full mx-auto" />
       </div>
       <div className="mb-10">

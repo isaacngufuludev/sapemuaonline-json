@@ -21,7 +21,7 @@ function Hero() {
   ];
 
   return (
-    <section>
+    <section className="pt-20">
       <Swiper
         slidesPerView={1}
         loop={true}
@@ -33,18 +33,22 @@ function Hero() {
       >
         {data.map((item) => (
           <SwiperSlide key={item.id}>
-            <div className="container grid grid-cols-2 items-center py-8 h-screen ">
-              <div className="flex flex-col">
-                <h1 className="text-3xl font-semibold mb-3">{item.titulo}</h1>
-                <p className="mb-5">{item.conteudo}</p>
+            <div className="container flex flex-col items-center py-10 xl:py-8 xl:h-screen">
+              <div className="flex flex-col text-center mb-10">
+                <h1 className="xl:text-3xl text-2xl  font-semibold mb-2 xl:mb-3">
+                  {item.titulo}
+                </h1>
+                <p className="mb-5 text-xs xl:text-sm leading-5 ">
+                  {item.conteudo}
+                </p>
                 <Link to="/sobre">
-                  <p className="bg-blue-700 text-white px-5 py-2 rounded-full inline-block">
+                  <p className="bg-blue-700 text-white text-xs xl:text-sm  px-4 xl:px-5 py-3 font-semibold xl:py-2 rounded-full inline-block">
                     Saber mais
                   </p>
                 </Link>
               </div>
               <div className="justify-self-center">
-                <img className="h-96" src={item.image} />
+                <img className="h-80 xl:h-96" src={item.image} />
               </div>
             </div>
           </SwiperSlide>

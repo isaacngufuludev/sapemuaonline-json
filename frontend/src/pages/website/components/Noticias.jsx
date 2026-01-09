@@ -25,11 +25,11 @@ const noticias = [
 
 function Noticias() {
   return (
-    <section className="border-stone-200 border-t py-20 dark:border-gray-900 ">
+    <section className="border-stone-200 border-t  py-14 xl:py-20 dark:border-gray-900 ">
       <div className="container">
         <Subtitle type="center">noticias e avisos</Subtitle>
         <Title type="center">Noticias e Atualizações Recentes</Title>
-        <ul className="grid grid-cols-3 gap-x-5 ">
+        <ul className="grid grid-cols-1 gap-6 xl:grid-cols-3 xl:gap-x-5 ">
           {noticias.map((item) => (
             <NoticiaItem item={item} key={item.titulo} />
           ))}

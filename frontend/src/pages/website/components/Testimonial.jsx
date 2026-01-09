@@ -41,7 +41,7 @@ function Testimonial() {
   const swiperRef = useRef(null);
 
   return (
-    <section className="border-stone-200 border-t py-28 dark:border-gray-800">
+    <section className="border-stone-200 border-t py-16 xl:py-28 dark:border-gray-800">
       <div className="container relative">
         <Subtitle type="center">depoimentos</Subtitle>
         <Title type="center">O que Dizem Sobre Nós</Title>
@@ -60,7 +60,7 @@ function Testimonial() {
           onBeforeInit={(swiper) => {
             swiperRef.current = swiper;
           }}
-          className="h-64 my-0 mx-auto relative"
+          className="xl:h-64 h-72 my-0 mx-auto relative"
         >
           {testemunhos.map((item, i) => (
             <SwiperSlide key={i}>
@@ -69,7 +69,7 @@ function Testimonial() {
           ))}
         </Swiper>
 
-        <div className="flex justify-between absolute top-1/4 left-0 right-0">
+        <div className="flex justify-between absolute top-1/4 left-3 right-3">
           <ButtonSlide
             onClick={() => swiperRef.current && swiperRef.current.slidePrev()}
           >

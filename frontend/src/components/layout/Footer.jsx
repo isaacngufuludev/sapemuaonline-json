@@ -48,7 +48,7 @@ const socialMedia = [
 function Footer() {
   return (
     <footer className="bg-blue-700 text-white py-16">
-      <div className="container grid grid-cols-4 mb-12">
+      <div className="container grid grid-cols-1 gap-8 xl:grid-cols-4 mb-12">
         <div>
           <Title3>Sobre a escola</Title3>
           <p className="text-sm mt-3">
@@ -57,7 +57,7 @@ function Footer() {
             academica e cidadã dos seus estudantes.{" "}
           </p>
         </div>
-        <div className="justify-self-center">
+        <div className="xl:justify-self-center">
           <Title3>Links</Title3>
           <nav>
             <ul className="flex flex-col gap-2 text-sm mt-3 ">
@@ -76,7 +76,7 @@ function Footer() {
             </ul>
           </nav>
         </div>
-        <div className="justify-self-center">
+        <div className="xl:justify-self-center">
           <Title3>Contactos</Title3>
           <ul className="text-sm flex flex-col gap-2 mt-3">
             {contacts.map((item) => (
@@ -84,7 +84,7 @@ function Footer() {
             ))}
           </ul>
         </div>
-        <div className="justify-self-center">
+        <div className="xl:justify-self-center">
           <Title3>Redes Sociais</Title3>
           <ul className="text-sm flex flex-col gap-2 mt-3">
             {socialMedia.map((item) => (
@@ -94,7 +94,7 @@ function Footer() {
         </div>
       </div>
       <p className="container text-center text-sm ">
-        &copy;2025 Sapemua. Todos os direitos reservados.{" "}
+        &copy;2025 Sapemua. Todos os direitos reservados.-
       </p>
     </footer>
   );
