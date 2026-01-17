@@ -1,4 +1,4 @@
-import Mensagem from "./Mensagem";
+import Mensagem from "./ChatMessage";
 
 const mensagens = [
   {
@@ -49,9 +49,9 @@ const mensagens = [
   },
 ];
 
-const ListaMensagens = () => {
+const ChatMessageList = () => {
   return (
-    <ul className="flex-1 overflow-y-scroll scrollbar-none h-[550px] p-4 space-y-4 no-scrollbar">
+    <ul className="flex-1 overflow-y-scroll scrollbar-none h-[500px] 2xl:h-[600px] p-2 space-y-4 no-scrollbar">
       {mensagens.map((mensagem) => (
         <Mensagem key={mensagem.id} mensagem={mensagem} />
       ))}
@@ -59,4 +59,4 @@ const ListaMensagens = () => {
   );
 };
 
-export default ListaMensagens;
+export default ChatMessageList;

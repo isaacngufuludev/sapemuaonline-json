@@ -60,7 +60,7 @@ function Testimonial() {
           onBeforeInit={(swiper) => {
             swiperRef.current = swiper;
           }}
-          className="xl:h-64 h-72 my-0 mx-auto relative"
+          className="md:h-64 h-72 my-0 mx-auto relative"
         >
           {testemunhos.map((item, i) => (
             <SwiperSlide key={i}>
@@ -69,13 +69,15 @@ function Testimonial() {
           ))}
         </Swiper>
 
-        <div className="flex justify-between absolute top-1/4 left-3 right-3">
+        <div className="flex justify-between ">
           <ButtonSlide
+            type="left"
             onClick={() => swiperRef.current && swiperRef.current.slidePrev()}
           >
             &larr;
           </ButtonSlide>
           <ButtonSlide
+            type="right"
             onClick={() => swiperRef.current && swiperRef.current.slideNext()}
           >
             &rarr;

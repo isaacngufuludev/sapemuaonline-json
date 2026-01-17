@@ -3,9 +3,11 @@ import { BsPencilSquare } from "react-icons/bs";
 import { useModal } from "../../../../contexts/ModalContext";
 
 import BtnEdit from "../../../../components/ui/BtnEdit";
+import { useNavigate } from "react-router-dom";
 
 function AdminTeacherItem({ item, i }) {
   const { toggleRemoveTeacher } = useModal();
+  const navigate = useNavigate();
 
   return (
     <li className="grid grid-cols-[0.3fr_1.5fr_0.7fr_0.7fr_0.7fr_0.5fr_0.3fr_0.3fr] items-center dark:border-gray-700 border-b border-slate-200  px-4 py-2">
@@ -28,7 +30,10 @@ function AdminTeacherItem({ item, i }) {
         <BtnEdit type="delete" onClick={toggleRemoveTeacher}>
           <HiOutlineTrash />
         </BtnEdit>
-        <BtnEdit type="edit">
+        <BtnEdit
+          type="edit"
+          onClick={() => navigate("/area/admin/adminTeacher/add-teacher")}
+        >
           <BsPencilSquare />
         </BtnEdit>
       </div>

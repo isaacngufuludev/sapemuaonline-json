@@ -7,14 +7,14 @@ function ChatHeader() {
 
   return (
     <header className="flex items-center justify-between h-8">
-      <div className="flex items-center text-xl gap-1">
+      <div className="flex items-center sm:text-xl  text-base gap-1">
         <img src="/imgs/logo.png" className="w-7" />
         <p className="font-semibold">Sapemua Online</p>
       </div>
       <div className="flex items-center text-2xl gap-2">
         <button>
           <p>
-            <MdRefresh style={{ transform: "rotate(180deg)" }} />
+            <MdRefresh />
           </p>
         </button>
         <button onClick={toggle}>

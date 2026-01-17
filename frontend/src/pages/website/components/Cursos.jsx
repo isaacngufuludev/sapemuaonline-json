@@ -47,7 +47,7 @@ function Cursos() {
       <div className="container ">
         <Subtitle type="center">cursos</Subtitle>
         <Title type="center">Áreas de Desenvolvimento Académico</Title>
-        <ul className="grid grid-cols-1 xl:grid-cols-3 gap-x-7 gap-y-5">
+        <ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 sm:gap-x-3 md:gap-x-5 xl:gap-x-7 gap-y-5">
           {cursos.map((item) => (
             <CursoItem item={item} key={item.name} />
           ))}

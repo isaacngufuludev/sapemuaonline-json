@@ -1,4 +1,4 @@
-const Mensagem = ({ mensagem }) => {
+const ChatMessage = ({ mensagem }) => {
   const isBot = mensagem.remetente === "bot";
   return (
     <li className={`flex ${isBot ? `justify-start ` : `justify-end`}`}>
@@ -17,4 +17,4 @@ const Mensagem = ({ mensagem }) => {
   );
 };
 
-export default Mensagem;
+export default ChatMessage;

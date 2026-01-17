@@ -46,21 +46,22 @@ const socialMedia = [
 ];
 
 function Footer() {
+  const year = new Date().getFullYear();
+
   return (
     <footer className="bg-blue-700 text-white py-16">
-      <div className="container grid grid-cols-1 gap-8 xl:grid-cols-4 mb-12">
+      <div className="container grid sm:grid-cols-2 grid-cols-1 gap-8 lg:grid-cols-4 mb-12">
         <div>
           <Title3>Sobre a escola</Title3>
-          <p className="text-sm mt-3">
-            {" "}
+          <p className="md:text-sm text-xs mt-3">
             A escola SAPEMUA é uma instituição comprometida com a formação
             academica e cidadã dos seus estudantes.{" "}
           </p>
         </div>
-        <div className="xl:justify-self-center">
+        <div className="sm:justify-self-center">
           <Title3>Links</Title3>
           <nav>
-            <ul className="flex flex-col gap-2 text-sm mt-3 ">
+            <ul className="flex flex-col gap-2 md:text-sm text-xs mt-3 ">
               <li>
                 <Link to="/">Home</Link>
               </li>
@@ -78,23 +79,23 @@ function Footer() {
         </div>
         <div className="xl:justify-self-center">
           <Title3>Contactos</Title3>
-          <ul className="text-sm flex flex-col gap-2 mt-3">
+          <ul className="md:text-sm text-xs flex flex-col gap-2 mt-3">
             {contacts.map((item) => (
               <ContactItem item={item} key={item.name} />
             ))}
           </ul>
         </div>
-        <div className="xl:justify-self-center">
+        <div className="sm:justify-self-center">
           <Title3>Redes Sociais</Title3>
-          <ul className="text-sm flex flex-col gap-2 mt-3">
+          <ul className="md:text-sm text-xs flex flex-col gap-2 mt-3">
             {socialMedia.map((item) => (
               <Media item={item} key={item.name} />
             ))}
           </ul>
         </div>
       </div>
-      <p className="container text-center text-sm ">
-        &copy;2025 Sapemua. Todos os direitos reservados.-
+      <p className="container text-center lg:text-sm text-xs ">
+        &copy;{year} Sapemua. Todos os direitos reservados.
       </p>
     </footer>
   );

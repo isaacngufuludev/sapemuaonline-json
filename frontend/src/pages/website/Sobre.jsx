@@ -1,7 +1,6 @@
 import Header from "../../components/layout/Header";
 import History from "./components/History";
 import Numbers from "./components/Numbers";
-import PagesContent from "./components/PagesContent";
 import Footer from "../../components/layout/Footer";
 import Instrutores from "./components/Instrutores";
 import ChatBtn from "./components/ChatBtn";
@@ -20,13 +19,11 @@ function Sobre() {
   return (
     <div>
       <Header />
-      <PagesContent>
-        <History />
-        <Numbers />
-        <Instrutores />
-        <ChatBtn />
-        {isChatModal ? <ChatBoot /> : ""}
-      </PagesContent>
+      <History />
+      <Numbers />
+      <Instrutores />
+      <ChatBtn />
+      {isChatModal ? <ChatBoot /> : ""}
       <Footer />
     </div>
   );

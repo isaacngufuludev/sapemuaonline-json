@@ -1,6 +1,6 @@
 function Subtitle({ children, type }) {
   const base =
-    "xs:text-sm text-xs font-semibold tracking-wider uppercase text-blue-700";
+    "lg:text-sm text-xs mb-1 sm:mb-0 font-semibold tracking-wider uppercase text-blue-700";
 
   const styles = {
     left: base + " text-left",

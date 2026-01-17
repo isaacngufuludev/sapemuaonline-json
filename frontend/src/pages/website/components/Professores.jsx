@@ -16,7 +16,7 @@ const data = [
     id: "2",
     name: "Henriques",
     img: <FiUser />,
-    cargo: "Sub-Director Administrativo",
+    cargo: "Sub-Director ",
   },
   {
     id: "3",
@@ -56,13 +56,13 @@ const data = [
   },
   {
     id: "9",
-    name: "Luzia",
+    name: "isaac",
     img: <FiUser />,
     cargo: "Sub-Director Pedagogico",
   },
   {
     id: "10",
-    name: "Luzia",
+    name: "isaac",
     img: <FiUser />,
     cargo: "Sub-Director Pedagogico",
   },
@@ -72,38 +72,55 @@ function Professores() {
   const { isShowTeachers, toggleTeachers } = useModal();
 
   return (
-    <div className="mt-10 mx-auto my-0 max-w-[1800px] px-6">
+    <div className="mt-10 mx-auto my-0 sm:max-w-[1800px] xl:px-6 px-4 ">
       {isShowTeachers ? (
         <div>
           <div className="mb-7">
             <Subtitle type="gray">Outras Entidades</Subtitle>
           </div>
-          <Swiper
-            slidesPerView={4}
-            spaceBetween={60}
-            loop={true}
-            autoplay={{
-              delay: 7000,
-              disableOnInteraction: false,
-            }}
-            modules={[Autoplay]}
-            className="h-80"
-          >
-            <ul className="h-full">
+          {/* Mobile & Tablet: Grid with scroll */}
+          <ul className="lg:hidden grid overflow-x-scroll grid-cols-[0.5fr_0.5fr_0.5fr_0.5fr_0.5fr_0.5fr_0.5fr_0.5fr_0.5fr_0.5fr] items-center gap-20 no-scrollbar">
+            {data.map((item) => (
+              <ProfessoresItem item={item} key={item.id} />
+            ))}
+          </ul>
+
+          {/* Desktop (lg+): Swiper */}
+          <div className="hidden lg:block">
+            <Swiper
+              slidesPerView={4}
+              spaceBetween={60}
+              breakpoints={{
+                1024: {
+                  slidesPerView: 3,
+                },
+                1300: {
+                  slidesPerView: 4,
+                  spaceBetween: 50,
+                },
+              }}
+              loop={true}
+              autoplay={{
+                delay: 3000,
+                disableOnInteraction: false,
+              }}
+              modules={[Autoplay]}
+              className="h-80"
+            >
               {data.map((item) => (
                 <SwiperSlide key={item.id} className="h-full">
                   <ProfessoresItem item={item} />
                 </SwiperSlide>
               ))}
-            </ul>
-          </Swiper>
+            </Swiper>
+          </div>
         </div>
       ) : (
         ""
       )}
       <button
         onClick={toggleTeachers}
-        className="text-sm text-blue-700 text-center font-semibold flex justify-center w-full mt-5 underline duration-300 hover:text-gray-800 dark:hover:text-gray-600"
+        className="text-sm text-blue-700 text-center  font-semibold flex justify-center w-full mt-5 underline duration-300 hover:text-gray-800 dark:hover:text-gray-600"
       >
         <p>{isShowTeachers ? "Ver menos" : "Ver mais"}</p>
       </button>

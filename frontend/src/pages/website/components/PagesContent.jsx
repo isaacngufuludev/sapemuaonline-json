@@ -1,5 +1,5 @@
 function PagesContent({ children }) {
-  return <div className="pt-20  ">{children}</div>;
+  return <div className="xl:pt-20 pt-7 ">{children}</div>;
 }
 
 export default PagesContent;

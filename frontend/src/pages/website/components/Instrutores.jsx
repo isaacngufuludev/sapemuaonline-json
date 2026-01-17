@@ -13,12 +13,12 @@ const data = [
   {
     name: "Henriques",
     img: <FiUser />,
-    cargo: "Sub-Director Administrativo",
+    cargo: "Sub-Director Pedagógico",
   },
   {
     name: "Luzia",
     img: <FiUser />,
-    cargo: "Sub-Director Pedagogico",
+    cargo: "Coordenador",
   },
 ];
 
@@ -33,7 +33,7 @@ function Instrutores() {
         <div className="mb-7">
           <Subtitle type="gray">Direcção Executiva</Subtitle>
         </div>
-        <ul className="grid grid-cols-[0.5fr_0.5fr_0.5fr] items-center gap-28">
+        <ul className="grid overflow-x-scroll grid-cols-[0.5fr_0.5fr_0.5fr] items-center gap-8 xl:gap-28 no-scrollbar">
           {data.map((item, i) => (
             <InstrutoresItem item={item} key={i} />
           ))}

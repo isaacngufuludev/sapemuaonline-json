@@ -8,7 +8,10 @@ function CursoItem({ item }) {
       </div>
       <div className="px-3 pt-2 pb-5 flex-grow">
         <Title3>{item.name}</Title3>
-        <p className="xl:text-sm text-xs leading-5"> {item.conteudo}</p>
+        <p className="md:text-sm text-xs leading-5 md:leading-6">
+          {" "}
+          {item.conteudo}
+        </p>
       </div>
     </li>
   );

@@ -21,7 +21,7 @@ function AdminNewsItem({ item }) {
         <BtnEdit type="delete" onClick={toggleNews}>
           <HiOutlineTrash />
         </BtnEdit>
-        <BtnEdit type="edit">
+        <BtnEdit type="edit" onClick={toggleNews}>
           <BsPencilSquare />
         </BtnEdit>
       </div>

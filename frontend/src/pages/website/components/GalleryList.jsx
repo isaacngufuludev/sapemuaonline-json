@@ -62,7 +62,7 @@ function GalleryList() {
       <div className="container">
         <Subtitle type="left">galeria</Subtitle>
         <Title type="left">Um Olhar, Muitas Histórias</Title>
-        <ul className="grid grid-cols-4 gap-x-7 gap-y-5">
+        <ul className="grid grid-cols-1  sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-x-3 xl:gap-x-3 gap-y-3 xl:gap-y-3">
           {currentGallery.map((item, i) => (
             <GalleryItem item={item} key={i} />
           ))}
@@ -88,7 +88,7 @@ function GalleryList() {
           <Overlay />
           <div className="fixed inset-0 z-20 flex items-center justify-center pointer-events-none">
             <div
-              className="relative bg-white dark:bg-gray-800 p-[15px] rounded-lg shadow-xl  pointer-events-auto "
+              className="relative bg-white dark:bg-gray-800 xl:p-[15px] pt-1 p-[10px] rounded-lg shadow-xl  pointer-events-auto "
               onClick={(e) => e.stopPropagation()}
             >
               <BtnCloseModal />
