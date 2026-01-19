@@ -6,14 +6,16 @@ import BtnEdit from "../../../../components/ui/BtnEdit";
 import { useModal } from "../../../../contexts/ModalContext";
 
 function AdminNewsItem({ item }) {
-  const { toggleNews } = useModal();
+  const { toggleNews, toggleNewsModal } = useModal();
 
   return (
     <li className="flex flex-col justify-between p-3 dark:border-gray-700 rounded-md duration-300 border border-slate-200 ">
       <div>
         <div className="flex items-center justify-between mb-2">
           <Title3>{item.titulo}</Title3>
-          <p className="text-xs font-medium text-gray-700">{item.date}</p>
+          <p className="text-xs font-medium text-gray-700 dark:text-gray-300">
+            {item.date}
+          </p>
         </div>
         <p className="text-sm  leading-6">{item.conteudo}</p>
       </div>
@@ -21,7 +23,7 @@ function AdminNewsItem({ item }) {
         <BtnEdit type="delete" onClick={toggleNews}>
           <HiOutlineTrash />
         </BtnEdit>
-        <BtnEdit type="edit" onClick={toggleNews}>
+        <BtnEdit type="edit" onClick={toggleNewsModal}>
           <BsPencilSquare />
         </BtnEdit>
       </div>

@@ -37,7 +37,7 @@ const cards = [
 
 function AdminDashboardCards() {
   return (
-    <ul className="grid grid-cols-5 gap-4">
+    <ul className="grid grid-cols-5 gap-4 mb-6">
       {cards.map((item) => (
         <AdminDashboardCardItem key={item.title} item={item} />
       ))}

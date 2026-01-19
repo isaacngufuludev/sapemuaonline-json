@@ -8,6 +8,7 @@ import {
   CartesianGrid,
   Tooltip,
 } from "recharts";
+import Title3 from "../../../../components/ui/Title3";
 
 const userGrowthData = [
   { date: "Jan 01", total: 320, novos: 45 },
@@ -34,10 +35,10 @@ const userGrowthData = [
   { date: "Feb 12", total: 1400, novos: 500 },
 ];
 
-function AdminDashboardStudentGrowth() {
+function ChartUsersGrowth() {
   return (
-    <div className="bg-white dark:bg-gray-800 p-6 rounded-xl border border-slate-200 dark:border-gray-700">
-      <h2 className="text-lg font-semibold mb-4">Crescimento de Usuários</h2>
+    <div className="bg-white dark:bg-gray-800 p-6 rounded-md border border-slate-200 dark:border-gray-700">
+      <Title3>Crescimento de Usuários</Title3>
 
       <ResponsiveContainer width="100%" height={250}>
         <AreaChart data={userGrowthData}>
@@ -105,4 +106,4 @@ function AdminDashboardStudentGrowth() {
   );
 }
 
-export default AdminDashboardStudentGrowth;
+export default ChartUsersGrowth;
