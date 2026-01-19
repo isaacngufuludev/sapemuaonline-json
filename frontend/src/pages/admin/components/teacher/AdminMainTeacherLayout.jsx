@@ -7,7 +7,7 @@ function AdminMainTeacherLayout() {
   return (
     <div>
       <AdminTeacherHeading />
-      <div className="border  dark:border-gray-700 rounded-md ">
+      <div className="rounded-md ">
         <AdminSearchTeacher />
         <AdminTeacherTitle />
         <AdminTeacherList />

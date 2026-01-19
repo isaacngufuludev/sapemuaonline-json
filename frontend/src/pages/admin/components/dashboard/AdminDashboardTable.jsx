@@ -1,6 +1,13 @@
+import BtnPagination from "../../../../components/ui/BtnPagination";
 import Title3 from "../../../../components/ui/Title3";
 
-const recentActivities = [
+import { usePagination } from "../../../../hooks/UsePagination";
+import { BsChevronLeft, BsChevronRight } from "react-icons/bs";
+import { ITEMS_PER_PAGE } from "../../../../utils/constants";
+import AdminButton from "../AdminButton";
+import { usePDFExport } from "./AdminDashboardLayout";
+
+const updates = [
   {
     id: 1,
     action: "Novo estudante registrado",
@@ -39,6 +46,17 @@ const recentActivities = [
 ];
 
 function AdminDashboardTable() {
+  const { isExporting } = usePDFExport();
+  const {
+    currentData,
+    currentPage,
+    totalPages,
+    handlerPrevPage,
+    handlerNextPage,
+  } = usePagination(updates, 3);
+
+  const dataToDisplay = isExporting ? updates : currentData;
+
   return (
     <div>
       <Title3>Atualizações Recentes</Title3>
@@ -54,7 +72,7 @@ function AdminDashboardTable() {
           </thead>
 
           <tbody>
-            {recentActivities.map((item) => (
+            {dataToDisplay.map((item) => (
               <tr
                 key={item.id}
                 className="border-b last:border-0 border-slate-200 dark:border-gray-700"
@@ -81,6 +99,22 @@ function AdminDashboardTable() {
           </tbody>
         </table>
       </div>
+      {!isExporting && (
+        <div className="flex gap-2 justify-end mt-3 items-center ">
+          <BtnPagination onClick={handlerPrevPage} disabled={currentPage === 1}>
+            <BsChevronLeft />
+          </BtnPagination>
+          <p>
+            {currentPage} de {totalPages}
+          </p>
+          <BtnPagination
+            onClick={handlerNextPage}
+            disabled={currentPage === totalPages}
+          >
+            <BsChevronRight />
+          </BtnPagination>
+        </div>
+      )}
     </div>
   );
 }

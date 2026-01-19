@@ -5,9 +5,10 @@ import Overlay from "../../../components/shared/Overlay";
 import BtnCloseModal from "../../../components/shared/BtnCloseModal";
 import GalleryImgBox from "./GalleryImgBox";
 import BtnPagination from "../../../components/ui/BtnPagination";
+
 import { useModal } from "../../../contexts/ModalContext";
+import { usePagination } from "../../../hooks/UsePagination";
 import { BsChevronLeft, BsChevronRight } from "react-icons/bs";
-import { useState } from "react";
 
 const gallery = [
   "/imgs/galeria/galeria_1.jpg",
@@ -38,24 +39,13 @@ const gallery = [
 
 function GalleryList() {
   const { isGalleryModal, selectedGalleryImg } = useModal();
-  const [currentPage, setCurrentPage] = useState(1);
-  const itemsPerPage = 12;
-  const totalPages = Math.ceil(gallery.length / itemsPerPage);
-  const startIndex = (currentPage - 1) * itemsPerPage;
-  const endIndex = startIndex + itemsPerPage;
-  const currentGallery = gallery.slice(startIndex, endIndex);
-
-  function handlerPrevPage() {
-    if (currentPage > 1) {
-      setCurrentPage((page) => page - 1);
-    }
-  }
-
-  function handlerNextPage() {
-    if (currentPage < totalPages) {
-      setCurrentPage((page) => page + 1);
-    }
-  }
+  const {
+    currentData,
+    currentPage,
+    totalPages,
+    handlerPrevPage,
+    handlerNextPage,
+  } = usePagination(gallery, 12);
 
   return (
     <section className="py-28">
@@ -63,7 +53,7 @@ function GalleryList() {
         <Subtitle type="left">galeria</Subtitle>
         <Title type="left">Um Olhar, Muitas Histórias</Title>
         <ul className="grid grid-cols-1  sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-x-3 xl:gap-x-3 gap-y-3 xl:gap-y-3">
-          {currentGallery.map((item, i) => (
+          {currentData.map((item, i) => (
             <GalleryItem item={item} key={i} />
           ))}
         </ul>

@@ -1,16 +1,34 @@
-import { HiOutlineTrash } from "react-icons/hi";
-import { BsPencilSquare } from "react-icons/bs";
+import { BsEye, BsPencilSquare, BsTrash } from "react-icons/bs";
 import { useModal } from "../../../../contexts/ModalContext";
 
-import BtnEdit from "../../../../components/ui/BtnEdit";
 import { useNavigate } from "react-router-dom";
+import { useEditOptions } from "../../../../hooks/useEditOptions";
+import { HiEllipsisVertical } from "react-icons/hi2";
 
 function AdminTeacherItem({ item, i }) {
   const { toggleRemoveTeacher } = useModal();
+  const { showMenu, menuRef, setShowMenu } = useEditOptions();
   const navigate = useNavigate();
 
+  const handleView = () => {
+    console.log("Ver estudante:", item);
+    setShowMenu(false);
+  };
+
+  const handleEdit = () => {
+    console.log("Editar estudante:", item);
+    navigate("/area/admin/adminStudents/add-student");
+    setShowMenu(false);
+  };
+
+  const handleDelete = () => {
+    console.log("Eliminar estudante:", item);
+    toggleRemoveTeacher();
+    setShowMenu(false);
+  };
+
   return (
-    <li className="grid grid-cols-[0.3fr_1.5fr_0.7fr_0.7fr_0.7fr_0.5fr_0.3fr_0.3fr] items-center dark:border-gray-700 border-b border-slate-200  px-4 py-2">
+    <li className="grid grid-cols-[0.3fr_1.5fr_0.7fr_0.7fr_0.7fr_0.5fr_0.5fr_0.2fr] items-center dark:border-gray-700 border-b border-slate-200  px-4 py-2">
       <p className="font-semibold rounded-full w-2/4 flex items-center justify-center py-3 px-4 bg-slate-100  dark:bg-gray-900">
         {i + 1}
       </p>
@@ -26,16 +44,39 @@ function AdminTeacherItem({ item, i }) {
       <p>{item.telefone}</p>
       <p>{item.genero}</p>
       <p>{item.idade}</p>
-      <div className="flex gap-1 items-center">
-        <BtnEdit type="delete" onClick={toggleRemoveTeacher}>
-          <HiOutlineTrash />
-        </BtnEdit>
-        <BtnEdit
-          type="edit"
-          onClick={() => navigate("/area/admin/adminTeacher/add-teacher")}
+      <div className="relative" ref={menuRef}>
+        <button
+          className="text-xl hover:text-blue-600 transition-colors"
+          onClick={() => setShowMenu(!showMenu)}
         >
-          <BsPencilSquare />
-        </BtnEdit>
+          <HiEllipsisVertical />
+        </button>
+
+        {showMenu && (
+          <div className="absolute right-0 mt-2 w-32 bg-white dark:bg-gray-800 rounded-lg shadow-lg border border-slate-200 dark:border-gray-700 z-50">
+            <button
+              onClick={handleView}
+              className="w-full flex items-center gap-2 px-4 py-2 text-sm hover:bg-blue-50 dark:hover:bg-gray-700 text-gray-700 dark:text-gray-200 transition-colors border-b border-slate-200 dark:border-gray-700"
+            >
+              <BsEye size={16} />
+              Ver
+            </button>
+            <button
+              onClick={handleEdit}
+              className="w-full flex items-center gap-2 px-4 py-2 text-sm hover:bg-yellow-50 dark:hover:bg-gray-700 text-gray-700 dark:text-gray-200 transition-colors border-b border-slate-200 dark:border-gray-700"
+            >
+              <BsPencilSquare size={16} />
+              Editar
+            </button>
+            <button
+              onClick={handleDelete}
+              className="w-full flex items-center gap-2 px-4 py-2 text-sm hover:bg-red-50 dark:hover:bg-gray-700 text-red-600 dark:text-red-400 transition-colors"
+            >
+              <BsTrash size={16} />
+              Eliminar
+            </button>
+          </div>
+        )}
       </div>
     </li>
   );

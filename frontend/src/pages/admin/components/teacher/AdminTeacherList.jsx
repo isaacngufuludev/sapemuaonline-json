@@ -1,3 +1,7 @@
+import { BsChevronLeft, BsChevronRight } from "react-icons/bs";
+import BtnPagination from "../../../../components/ui/BtnPagination";
+import { usePagination } from "../../../../hooks/UsePagination";
+import { ITEMS_PER_PAGE } from "../../../../utils/constants";
 import AdminTeacherItem from "./AdminTeacherItem";
 
 const teacherData = [
@@ -44,12 +48,37 @@ const teacherData = [
 ];
 
 function AdminTeacherList() {
+  const {
+    currentData,
+    currentPage,
+    totalPages,
+    handlerPrevPage,
+    handlerNextPage,
+  } = usePagination(teacherData, ITEMS_PER_PAGE);
+
   return (
-    <ul className="bg-white dark:bg-gray-800 text-sm">
-      {teacherData.map((item, i) => (
-        <AdminTeacherItem item={item} i={i} key={i} />
-      ))}
-    </ul>
+    <div>
+      <ul className="bg-white dark:bg-gray-800 text-sm">
+        {currentData.map((item, i) => (
+          <AdminTeacherItem item={item} i={i} key={i} />
+        ))}
+      </ul>
+
+      <div className="flex gap-2 justify-end mt-3 items-center ">
+        <BtnPagination onClick={handlerPrevPage} disabled={currentPage === 1}>
+          <BsChevronLeft />
+        </BtnPagination>
+        <p>
+          {currentPage} de {totalPages}
+        </p>
+        <BtnPagination
+          onClick={handlerNextPage}
+          disabled={currentPage === totalPages}
+        >
+          <BsChevronRight />
+        </BtnPagination>
+      </div>
+    </div>
   );
 }
 

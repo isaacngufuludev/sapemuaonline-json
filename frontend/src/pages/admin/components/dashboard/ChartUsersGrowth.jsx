@@ -9,6 +9,7 @@ import {
   Tooltip,
 } from "recharts";
 import Title3 from "../../../../components/ui/Title3";
+import { useRef } from "react";
 
 const userGrowthData = [
   { date: "Jan 01", total: 320, novos: 45 },
@@ -36,8 +37,13 @@ const userGrowthData = [
 ];
 
 function ChartUsersGrowth() {
+  const LineChartRef = useRef(null);
+
   return (
-    <div className="bg-white dark:bg-gray-800 p-6 rounded-md border border-slate-200 dark:border-gray-700">
+    <div
+      className="bg-white dark:bg-gray-800 p-6 rounded-md border border-slate-200 dark:border-gray-700"
+      ref={LineChartRef}
+    >
       <Title3>Crescimento de Usuários</Title3>
 
       <ResponsiveContainer width="100%" height={250}>

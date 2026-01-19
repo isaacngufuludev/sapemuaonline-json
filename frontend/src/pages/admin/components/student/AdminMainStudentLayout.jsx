@@ -25,7 +25,7 @@ function AdminMainStudentLayout() {
           <p>Estudante</p>
         </AdminButton>
       </AdminHeading>
-      <div className="border  dark:border-gray-700 rounded-md ">
+      <div className="rounded-md ">
         <AdminSearch />
         <AdminStudentTitle />
         <AdminStudentList />
