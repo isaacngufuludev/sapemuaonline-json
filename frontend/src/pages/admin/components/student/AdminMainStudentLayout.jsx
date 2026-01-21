@@ -7,6 +7,7 @@ import AdminSearch from "./AdminSearchStudent";
 import AdminStudentTitle from "./AdminStudentTitle";
 import AdminStudentList from "./AdminStudentList";
 import AdminHeading from "../AdminHeading";
+import AdminStudentDetail from "./AdminStudentDetail";
 
 function AdminMainStudentLayout() {
   const navigate = useNavigate();
@@ -30,6 +31,8 @@ function AdminMainStudentLayout() {
         <AdminStudentTitle />
         <AdminStudentList />
       </div>
+
+      {/* <AdminStudentDetail /> */}
     </div>
   );
 }

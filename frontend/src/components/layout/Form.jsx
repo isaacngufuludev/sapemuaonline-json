@@ -3,6 +3,7 @@ import { useAuth } from "../../contexts/AuthContext";
 import { useNavigate } from "react-router-dom";
 import { useToast } from "../../hooks/useToast";
 import { FiEye, FiEyeOff } from "react-icons/fi";
+import Loading from "../shared/Loading.jsx";
 
 function Form() {
   const [email, setEmail] = useState("");
@@ -10,7 +11,7 @@ function Form() {
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
 
-  const { user, login, isAuthenticated } = useAuth();
+  const { user, login, isAuthenticated, isLoading } = useAuth();
   const { showWarning } = useToast();
   const navigate = useNavigate();
 
@@ -77,8 +78,8 @@ function Form() {
             {showPassword ? <FiEye /> : <FiEyeOff />}
           </button>
         </div>
-        <button className="h-9 bg-blue-700 text-white rounded-md text-sm font-semibold">
-          Login
+        <button className="h-9 bg-blue-700 text-white rounded-md text-sm font-semibold flex items-center justify-center">
+          {isLoading ? <Loading size={20} /> : "Login"}
         </button>
       </form>
     </>

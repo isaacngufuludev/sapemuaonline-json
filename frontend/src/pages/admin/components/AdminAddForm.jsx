@@ -1,4 +1,4 @@
-function AdminAddForm({ children, type }) {
+function AdminAddForm({ children, type, onSubmit }) {
   const base =
     " grid dark:bg-gray-800 items-center gap-x-4 gap-y-3 bg-white px-4 py-8";
 
@@ -8,7 +8,11 @@ function AdminAddForm({ children, type }) {
     three: base + " grid-cols-3",
   };
 
-  return <form className={styles[type]}>{children}</form>;
+  return (
+    <div className={styles[type]} onSubmit={onSubmit}>
+      {children}
+    </div>
+  );
 }
 
 export default AdminAddForm;

@@ -1,7 +1,7 @@
 import Title3 from "../../../../components/ui/Title3";
 
 import { HiOutlineTrash } from "react-icons/hi";
-import { BsPencilSquare } from "react-icons/bs";
+import { BsPencil } from "react-icons/bs";
 import BtnEdit from "../../../../components/ui/BtnEdit";
 import { useModal } from "../../../../contexts/ModalContext";
 
@@ -24,7 +24,7 @@ function AdminNewsItem({ item }) {
           <HiOutlineTrash />
         </BtnEdit>
         <BtnEdit type="edit" onClick={toggleNewsModal}>
-          <BsPencilSquare />
+          <BsPencil />
         </BtnEdit>
       </div>
     </li>

@@ -1,74 +1,49 @@
 import { createContext, useContext, useReducer } from "react";
 import { useToast } from "../hooks/useToast";
+import { get } from "../services/api";
 
 const AuthContext = createContext();
 
-const users = [
-  {
-    id: 4355,
-    email: "isaacngufulu70@gmail.com",
-    name: "Isaac Nzinga",
-    birthYear: "1985-04-12",
-    phoneNumber: "+244 923 456 789",
-    genre: "Masculino",
-    password: "1234",
-    role: "admin",
-  },
-  {
-    id: 2,
-    name: "Ana Paulo",
-    email: "anapaulo11@gmail.com",
-    birthYear: "1992-09-25",
-    phoneNumber: "+244 934 987 654",
-    genre: "Feminino",
-    password: "2026",
-    role: "teacher",
-  },
-  {
-    id: 3,
-    name: "João Silva",
-    email: "joaosilva@gmail.com",
-    birthYear: "2004-02-18",
-    phoneNumber: "+244 912 345 678",
-    genre: "Masculino",
-    password: "2005",
-    role: "student",
-  },
-];
-
 const initialState = {
   user: null,
+  isLoading: false,
   isAuthenticated: false,
 };
 
 function reducer(state, action) {
   switch (action.type) {
     case "login":
-      return { ...state, user: action.payload, isAuthenticated: true };
+      return {
+        ...state,
+        isLoading: true,
+        user: action.payload,
+        isAuthenticated: true,
+      };
     case "logout":
-      return { ...state, user: null, isAuthenticated: false };
+      return { ...state, isLoading: false, user: null, isAuthenticated: false };
     default:
       throw new Error("Unknown action");
   }
 }
 
 function AuthProvider({ children }) {
-  const [{ user, isAuthenticated }, dispatch] = useReducer(
+  const [{ user, isLoading, isAuthenticated }, dispatch] = useReducer(
     reducer,
     initialState
   );
   const { showSuccess, showError } = useToast();
 
-  function login({ email, password }) {
+  async function login({ email, password }) {
+    const users = await get("users");
     const userFound = users.find(
       (user) => user.email === email && user.password === password
     );
 
-    if (!userFound) {
-      showError("Credênciais invalidas, tente de novo");
-    } else {
+    if (userFound) {
       dispatch({ type: "login", payload: userFound });
       showSuccess("Login executado com sucesso");
+    } else {
+      showError("Credênciais invalidas, tente de novo");
     }
   }
 
@@ -77,7 +52,9 @@ function AuthProvider({ children }) {
   }
 
   return (
-    <AuthContext.Provider value={{ user, isAuthenticated, login, logout }}>
+    <AuthContext.Provider
+      value={{ user, isAuthenticated, isLoading, login, logout }}
+    >
       {children}
     </AuthContext.Provider>
   );

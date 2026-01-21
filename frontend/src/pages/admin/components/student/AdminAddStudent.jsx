@@ -19,6 +19,11 @@ import AdminAddHeader from "../AdminAddHeader";
 import AdminAddForm from "../AdminAddForm";
 import AdminSelect from "../AdminSelect";
 import AdminParentLinks from "./AdminParentLinks";
+import { useRef, useState } from "react";
+import { useStudentForm } from "../../../../contexts/StudentFormContext";
+import { formateDate } from "../../../../utils/helpers";
+import { post } from "../../../../services/api";
+import { useToast } from "../../../../hooks/useToast";
 
 const parentLinks = [
   {
@@ -34,8 +39,92 @@ const parentLinks = [
     to: "guardion-info",
   },
 ];
+
 function AdminAddStudent() {
+  const [name, setName] = useState("");
+  const [birthDate, setBirthDate] = useState("");
+  const [province, setProvince] = useState("");
+  const [biCode, setBiCode] = useState("");
+  const [residence, setResidence] = useState("");
+  const [phoneNumber, setPhoneNumber] = useState("");
+  const [genre, setGenre] = useState("");
+  const [course, setCourse] = useState("");
+  const [classLevel, setClassLevel] = useState("");
+  const [turma, setTurma] = useState("");
+  const [email, setEmail] = useState("");
+  const fileInputRef = useRef(null);
   const navigate = useNavigate();
+  const {
+    fatherJob,
+    fatherPhoneNumber,
+    fatherName,
+    motherJob,
+    motherName,
+    motherPhoneNumber,
+    guardionJob,
+    guardionName,
+    guardionPhoneNumber,
+  } = useStudentForm();
+  const { showSuccess, showWarning } = useToast();
+
+  async function handlerSubmit(e) {
+    e.preventDefault();
+    const certificate = fileInputRef.current.files[0];
+    // if (certificate) {
+    //   console.log(
+    //     certificate,
+    //     certificate.name,
+    //     certificate.size,
+    //     certificate.type
+    //   );
+    // }
+
+    if (
+      !name ||
+      !birthDate ||
+      !phoneNumber ||
+      !course ||
+      !classLevel ||
+      !turma ||
+      !email
+    ) {
+      showWarning("Por favor, preencha todos os campos obrigatórios.");
+      return;
+    }
+
+    const newStudent = {
+      id: Math.floor(Math.random() * 5000) + 100,
+      dateIn: formateDate(new Date()),
+      name,
+      birthDate,
+      province,
+      biCode,
+      residence,
+      phoneNumber,
+      genre,
+      course,
+      classLevel,
+      turma,
+      email,
+      certificate,
+      fatherJob,
+      fatherName,
+      fatherPhoneNumber,
+      motherName,
+      motherJob,
+      motherPhoneNumber,
+      guardionJob,
+      guardionName,
+      guardionPhoneNumber,
+      password: Date.now().toString().slice(-8),
+      role: "student",
+    };
+
+    await post("users", newStudent);
+    showSuccess("Estudante cadastrado com sucesso!");
+
+    console.log("Novo estudante:", newStudent);
+  }
 
   return (
     <div>
@@ -51,7 +140,7 @@ function AdminAddStudent() {
           <p>Voltar</p>
         </AdminButton>
       </AdminHeading>
-      <AdminAddStudentLayout>
+      <AdminAddStudentLayout onSubmit={handlerSubmit}>
         <AdminAddHeader>
           <p className="bg-white inline-block p-[6px] text-blue-700 rounded-md">
             <BsExclamationCircle />
@@ -61,44 +150,77 @@ function AdminAddStudent() {
         <AdminAddForm type="four">
           <div>
             <AdminLabel htmlFor="name">Nome Completo</AdminLabel>
-            <AdminInput id="name" type="text" />
+            <AdminInput
+              id="name"
+              type="text"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+            />
           </div>
           <div>
             <AdminLabel htmlFor="date">Data de nascimento</AdminLabel>
-            <AdminInput id="date" type="date" />
+            <AdminInput
+              id="date"
+              type="date"
+              value={birthDate}
+              onChange={(e) => setBirthDate(e.target.value)}
+            />
           </div>
           <div>
             <AdminLabel htmlFor="province">Provincia</AdminLabel>
-            <AdminInput id="province" type="text" />
+            <AdminInput
+              id="province"
+              type="text"
+              value={province}
+              onChange={(e) => setProvince(e.target.value)}
+            />
           </div>
           <div>
             <AdminLabel htmlFor="bi">Numero do BI</AdminLabel>
-            <AdminInput id="bi" type="text" />
-          </div>
-          <div>
-            <AdminLabel htmlFor="emission">Data de emissão</AdminLabel>
-            <AdminInput id="emission" type="date" />
+            <AdminInput
+              id="bi"
+              type="text"
+              value={biCode}
+              onChange={(e) => setBiCode(e.target.value)}
+            />
           </div>
           <div>
             <AdminLabel htmlFor="residence">Residencia</AdminLabel>
-            <AdminInput id="residence" type="text" />
+            <AdminInput
+              id="residence"
+              type="text"
+              value={residence}
+              onChange={(e) => setResidence(e.target.value)}
+            />
           </div>
           <div>
             <AdminLabel htmlFor="phone">Telefone</AdminLabel>
-            <AdminInput id="phone" type="text" />
+            <AdminInput
+              id="phone"
+              type="text"
+              value={phoneNumber}
+              onChange={(e) => setPhoneNumber(e.target.value)}
+            />
+          </div>
+          <div>
+            <AdminLabel htmlFor="email">Email</AdminLabel>
+            <AdminInput
+              id="email"
+              type="text"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+            />
           </div>
           <div>
             <AdminLabel>Genero</AdminLabel>
-            <div className="flex items-center gap-4">
-              <div className="flex items-center gap-1">
-                <AdminInput type="radio" />
-                <p className="text-xs">Masculino</p>
-              </div>
-              <div className="flex items-center gap-1">
-                <AdminInput type="radio" />
-                <p className="text-xs">Femenino</p>
-              </div>
-            </div>
+            <AdminSelect
+              value={genre}
+              onChange={(e) => setGenre(e.target.value)}
+            >
+              <option>Nenhum Selecionado</option>
+              <option value="male">Masculino</option>
+              <option value="female">Feminino</option>
+            </AdminSelect>
           </div>
         </AdminAddForm>
         <AdminAddHeader>
@@ -110,7 +232,7 @@ function AdminAddStudent() {
         <div className="bg-white dark:bg-gray-800 flex items-center gap-2 pt-8 px-4 text-sm">
           <ul className="flex items-center gap-2">
             {parentLinks.map((item) => (
-              <AdminParentLinks item={item} />
+              <AdminParentLinks item={item} key={item.name} />
             ))}
           </ul>
         </div>
@@ -123,38 +245,49 @@ function AdminAddStudent() {
         </AdminAddHeader>
         <AdminAddForm type="two">
           <div>
-            <AdminLabel>Upload do Bilhete</AdminLabel>
-            <AdminInput type="file" />
-          </div>
-          <div>
             <AdminLabel>Upload do Certificado</AdminLabel>
-            <AdminInput type="file" />
+            <AdminInput
+              ref={fileInputRef}
+              accept=".jpg, .png, .pdf"
+              type="file"
+            />
           </div>
           <div>
             <AdminLabel>Selecionar Curso/Ensino</AdminLabel>
-            <AdminSelect>
+            <AdminSelect
+              value={course}
+              onChange={(e) => setCourse(e.target.value)}
+            >
               <option>Nenhum Selecionado</option>
-              <option value="">Informática</option>
-              <option value="">Gestão Empresarial</option>
-              <option value="">Electricidade</option>
+              <option value="informatica">Informática</option>
+              <option value="gestao_empresarial">Gestão Empresarial</option>
+              <option value="electricidade">Electricidade</option>
             </AdminSelect>
           </div>
           <div>
             <AdminLabel>Selecionar Classe</AdminLabel>
-            <AdminSelect>
+            <AdminSelect
+              value={classLevel}
+              onChange={(e) => setClassLevel(e.target.value)}
+            >
               <option>Nenhum Selecionado</option>
-              <option value="">10 Classe</option>
-              <option value="">11 Classe</option>
-              <option value="">12 Classe</option>
+              <option value="10">10ª Classe</option>
+              <option value="11">11ª Classe</option>
+              <option value="12">12ª Classe</option>
+              <option value="13">13ª Classe</option>
             </AdminSelect>
           </div>
           <div>
             <AdminLabel>Selecionar Turma</AdminLabel>
-            <AdminSelect>
+            <AdminSelect
+              value={turma}
+              onChange={(e) => setTurma(e.target.value)}
+            >
               <option>Nenhum Selecionado</option>
-              <option value="">Turma A</option>
-              <option value="">Turma B</option>
-              <option value="">Turma C</option>
+              <option value="A">Turma A</option>
+              <option value="B">Turma B</option>
+              <option value="C">Turma C</option>
+              <option value="D">Turma D</option>
             </AdminSelect>
           </div>
         </AdminAddForm>

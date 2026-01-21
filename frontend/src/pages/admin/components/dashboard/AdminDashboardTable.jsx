@@ -53,7 +53,7 @@ function AdminDashboardTable() {
     totalPages,
     handlerPrevPage,
     handlerNextPage,
-  } = usePagination(updates, 3);
+  } = usePagination(updates, ITEMS_PER_PAGE);
 
   const dataToDisplay = isExporting ? updates : currentData;
 

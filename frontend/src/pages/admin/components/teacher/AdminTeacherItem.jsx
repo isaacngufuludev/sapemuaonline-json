@@ -1,4 +1,4 @@
-import { BsEye, BsPencilSquare, BsTrash } from "react-icons/bs";
+import { BsEye, BsPencil, BsTrash } from "react-icons/bs";
 import { useModal } from "../../../../contexts/ModalContext";
 
 import { useNavigate } from "react-router-dom";
@@ -11,18 +11,19 @@ function AdminTeacherItem({ item, i }) {
   const navigate = useNavigate();
 
   const handleView = () => {
-    console.log("Ver estudante:", item);
+    console.log("Ver Professor:", item);
+    navigate("/area/admin/adminTeacher/teacher-detail");
     setShowMenu(false);
   };
 
   const handleEdit = () => {
-    console.log("Editar estudante:", item);
-    navigate("/area/admin/adminStudents/add-student");
+    console.log("Editar Professor:", item);
+    navigate("/area/admin/adminTeacher/add-teacher");
     setShowMenu(false);
   };
 
   const handleDelete = () => {
-    console.log("Eliminar estudante:", item);
+    console.log("Eliminar Professor:", item);
     toggleRemoveTeacher();
     setShowMenu(false);
   };
@@ -59,13 +60,13 @@ function AdminTeacherItem({ item, i }) {
               className="w-full flex items-center gap-2 px-4 py-2 text-sm hover:bg-blue-50 dark:hover:bg-gray-700 text-gray-700 dark:text-gray-200 transition-colors border-b border-slate-200 dark:border-gray-700"
             >
               <BsEye size={16} />
-              Ver
+              Visualizar
             </button>
             <button
               onClick={handleEdit}
               className="w-full flex items-center gap-2 px-4 py-2 text-sm hover:bg-yellow-50 dark:hover:bg-gray-700 text-gray-700 dark:text-gray-200 transition-colors border-b border-slate-200 dark:border-gray-700"
             >
-              <BsPencilSquare size={16} />
+              <BsPencil size={16} />
               Editar
             </button>
             <button

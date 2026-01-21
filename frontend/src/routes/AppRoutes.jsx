@@ -17,6 +17,7 @@ import AdminTurmas from "../pages/admin/components/turmas/AdminTurmas";
 import AdminNews from "../pages/admin/components/news/AdminNews";
 import AdminConfigs from "../pages/admin/components/configs/AdminConfigs";
 import AdminAddStudent from "../pages/admin/components/student/AdminAddStudent";
+import AdminStudentDetail from "../pages/admin/components/student/AdminStudentDetail";
 import AdminMainStudentLayout from "../pages/admin/components/student/AdminMainStudentLayout";
 import AdminAddFatherInfo from "../pages/admin/components/student/AdminAddFatherInfo";
 import AdminAddMotherInfo from "../pages/admin/components/student/AdminAddMotherInfo";
@@ -35,6 +36,8 @@ import TeacherNotas from "../pages/professor/components/notas/TeacherNotas";
 import TeacherTurmasInfo from "../pages/professor/components/turmas/TeacherTurmasInfo";
 import TeacherAllTurmas from "../pages/professor/components/turmas/TeacherAllTurmas";
 import ProtectedRoute from "../pages/website/ProtectedRoute";
+import AdminTeacherDetail from "../pages/admin/components/teacher/AdminTeacherDetail";
+import { StudentFormProvider } from "../contexts/StudentFormContext";
 
 function AppRoutes() {
   return (
@@ -71,7 +74,18 @@ function AppRoutes() {
                       path="main-student"
                       element={<AdminMainStudentLayout />}
                     />
-                    <Route path="add-student" element={<AdminAddStudent />}>
+                    <Route
+                      path="student-detail"
+                      element={<AdminStudentDetail />}
+                    />
+                    <Route
+                      path="add-student"
+                      element={
+                        <StudentFormProvider>
+                          <AdminAddStudent />
+                        </StudentFormProvider>
+                      }
+                    >
                       <Route
                         index
                         element={<Navigate replace to="father-info" />}
@@ -98,6 +112,10 @@ function AppRoutes() {
                     <Route
                       path="main-teacher"
                       element={<AdminMainTeacherLayout />}
+                    />
+                    <Route
+                      path="teacher-detail"
+                      element={<AdminTeacherDetail />}
                     />
                     <Route path="add-teacher" element={<AdminAddTeacher />} />
                   </Route>
