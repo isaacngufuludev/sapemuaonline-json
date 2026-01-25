@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { useEditOptions } from "../../../../hooks/useEditOptions";
 import { HiEllipsisVertical } from "react-icons/hi2";
 
-function AdminTeacherItem({ item, i }) {
+function AdminTeacherItem({ item }) {
   const { toggleRemoveTeacher } = useModal();
   const { showMenu, menuRef, setShowMenu } = useEditOptions();
   const navigate = useNavigate();
@@ -31,20 +31,20 @@ function AdminTeacherItem({ item, i }) {
   return (
     <li className="grid grid-cols-[0.3fr_1.5fr_0.7fr_0.7fr_0.7fr_0.5fr_0.5fr_0.2fr] items-center dark:border-gray-700 border-b border-slate-200  px-4 py-2">
       <p className="font-semibold rounded-full w-2/4 flex items-center justify-center py-3 px-4 bg-slate-100  dark:bg-gray-900">
-        {i + 1}
+        {item.name[0]}
       </p>
       <div>
-        <p className="font-semibold"> {item.name}</p>
+        <p className="font-semibold">{item.name}</p>
         <p className="text-xs">{item.email}</p>
       </div>
       <p>{item.id}</p>
       <div>
         <p className="font-semibold">{item.qualification}</p>
-        <p className="text-xs">{item.formation}</p>
+        <p className="text-xs">{item.area}</p>
       </div>
-      <p>{item.telefone}</p>
-      <p>{item.genero}</p>
-      <p>{item.idade}</p>
+      <p>{item.phoneNumber}</p>
+      <p>{item.genre}</p>
+      <p>{item.age}</p>
       <div className="relative" ref={menuRef}>
         <button
           className="text-xl hover:text-blue-600 transition-colors"

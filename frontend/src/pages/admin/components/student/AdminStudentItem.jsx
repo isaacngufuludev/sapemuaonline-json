@@ -5,7 +5,7 @@ import { useModal } from "../../../../contexts/ModalContext";
 import { useNavigate } from "react-router-dom";
 import { useEditOptions } from "../../../../hooks/useEditOptions";
 
-function AdminStudentItem({ item, i }) {
+function AdminStudentItem({ item }) {
   const { toggleRemoveStudent } = useModal();
   const { showMenu, menuRef, setShowMenu } = useEditOptions();
   const navigate = useNavigate();
@@ -31,14 +31,14 @@ function AdminStudentItem({ item, i }) {
   return (
     <li className="grid grid-cols-[0.3fr_1.5fr_0.7fr_0.7fr_0.7fr_0.5fr_0.5fr_0.2fr] items-center dark:border-gray-700 border-b border-slate-200 px-4 py-2">
       <p className="font-semibold rounded-full w-2/4 flex items-center justify-center py-3 px-4 bg-slate-100  dark:bg-gray-900">
-        {i + 1}
+        {item.name[0]}
       </p>
       <p>{item.name}</p>
       <p>{item.id}</p>
-      <p>{item.class}</p>
+      <p>{item.classLevel}</p>
       <p>{item.course}</p>
-      <p>{item.genero}</p>
-      <p>{item.idade}</p>
+      <p>{item.genre}</p>
+      <p>{item.age}</p>
       <div className="relative" ref={menuRef}>
         <button
           className="text-xl hover:text-blue-600 transition-colors"

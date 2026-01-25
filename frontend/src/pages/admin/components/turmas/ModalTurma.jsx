@@ -1,54 +1,119 @@
 import { BsX } from "react-icons/bs";
 import { useModal } from "../../../../contexts/ModalContext";
 import { MdOutlineDone } from "react-icons/md";
+import { useState } from "react";
+import { post } from "../../../../services/api";
+import { useToast } from "../../../../hooks/useToast";
+import { useCourses } from "../../../../hooks/useCourses";
 
 import Title3 from "../../../../components/ui/Title3";
 import AdminLabel from "../AdminLabel";
-import AdminInput from "../AdminInput";
 import AdminSelect from "../AdminSelect";
 import AdminButton from "../AdminButton";
 import BtnCloseModal from "../../../../components/shared/BtnCloseModal";
 import Modal from "../../../../components/shared/Modal";
+import { useCoursesRefresh } from "../../../../contexts/CoursesRefreshContext";
 
 function ModalTurma() {
+  const [classe, setClasse] = useState("");
+  const [courseId, setCourseId] = useState("");
+  const [period, setPeriod] = useState("");
+  const [turmaCategory, setTurmaCategory] = useState("");
   const { toggle } = useModal();
+  const { showSuccess, showWarning } = useToast();
+  const { courses, fetchCourses } = useCourses();
+  const { triggerRefresh } = useCoursesRefresh();
+
+  async function handleSubmit(e) {
+    e.preventDefault();
+
+    if (!classe || !period || !turmaCategory) {
+      showWarning("Por favor, preencha todos os campos");
+      return;
+    }
+
+    const newTurma = {
+      classe: `${classe}ª Classe`,
+      courseId,
+      turmaCategory,
+      period,
+      students: [],
+      subjects: [],
+    };
+
+    try {
+      await post("turmas", newTurma);
+      showSuccess("Turma cadastrada com sucesso!");
+      triggerRefresh();
+      console.log("Nova turma", newTurma);
+      await fetchCourses();
+      toggle();
+    } catch (error) {
+      showWarning(error.message || "Erro ao cadastrar turma");
+    }
+  }
 
   return (
     <Modal>
       <BtnCloseModal />
       <Title3>Cadastrar Turma</Title3>
-      <p className="text-sm mb-2">
+      <p className="text-sm mb-4">
         Preencha os campos para cadastrar nova turma
       </p>
-      <form className="grid grid-cols-2 gap-3 mb-7">
+      <form
+        onSubmit={handleSubmit}
+        className="grid grid-cols-2 gap-y-5 gap-x-3 mb-7"
+      >
         <div>
           <AdminLabel htmlFor="classe">Classe</AdminLabel>
-          <AdminSelect>
-            <option>Nenhum Selecionado</option>
-            <option value="">10ª Classe</option>
-            <option value="">11ª Classe</option>
-            <option value="">12ª Classe</option>
-            <option value="">13ª Classe</option>
+          <AdminSelect
+            value={classe}
+            onChange={(e) => setClasse(e.target.value)}
+          >
+            <option value="">Nenhum Selecionado</option>
+            <option value="10">10ª Classe</option>
+            <option value="11">11ª Classe</option>
+            <option value="12">12ª Classe</option>
+            <option value="13">13ª Classe</option>
           </AdminSelect>
         </div>
         <div>
-          <AdminLabel>Selecionar Periodo</AdminLabel>
-          <AdminSelect>
-            <option>Nenhum Selecionado</option>
-            <option value="">Manhã</option>
-            <option value="">Tarde</option>
+          <AdminLabel>Curso</AdminLabel>
+          <AdminSelect
+            value={courseId}
+            onChange={(e) => setCourseId(e.target.value)}
+          >
+            <option value="">Nenhum Selecionado</option>
+            {courses.map((course) => (
+              <option key={course.id} value={course.id}>
+                {course.courseName}
+              </option>
+            ))}
           </AdminSelect>
         </div>
-        <div className="">
-          <AdminLabel>Número da curso</AdminLabel>
-          <AdminSelect>
-            <option>Nenhum Selecionado</option>
-            <option value="">Informática</option>
-            <option value="">Gestão Empresarial</option>
-            <option value="">Electricidade</option>
-            <option value="">Electronica e Telecomunicações</option>
-            <option value="">Finanças</option>
-            <option value="">Gestão de Recursos Humanos</option>
+        <div>
+          <AdminLabel htmlFor="turma">Categoria (A, B, C, D...)</AdminLabel>
+          <AdminSelect
+            value={turmaCategory}
+            onChange={(e) => setTurmaCategory(e.target.value)}
+          >
+            <option value="">Nenhum Selecionado</option>
+            <option value="Unica">Única</option>
+            <option value="A">Turma A</option>
+            <option value="B">Turma B</option>
+            <option value="C">Turma C</option>
+            <option value="D">Turma D</option>
+          </AdminSelect>
+        </div>
+        <div>
+          <AdminLabel htmlFor="turma">Periodo</AdminLabel>
+          <AdminSelect
+            value={period}
+            onChange={(e) => setPeriod(e.target.value)}
+          >
+            <option value="">Nenhum Selecionado</option>
+            <option value="Manha">Manhã</option>
+            <option value="Tarde">Tarde</option>
           </AdminSelect>
         </div>
       </form>
@@ -59,7 +124,7 @@ function ModalTurma() {
           </p>
           <p>Cancelar</p>
         </AdminButton>
-        <AdminButton type="primary">
+        <AdminButton type="primary" onClick={handleSubmit}>
           <p className="text-lg">
             <MdOutlineDone />
           </p>

@@ -2,6 +2,7 @@ import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 import { ThemeProvider } from "../contexts/ThemeContext";
 import { ModalProvider } from "../contexts/ModalContext";
 import { AuthProvider } from "../contexts/AuthContext";
+import { CoursesRefreshProvider } from "../contexts/CoursesRefreshContext";
 
 import Home from "../pages/website/Home";
 import Sobre from "../pages/website/Sobre";
@@ -44,7 +45,8 @@ function AppRoutes() {
     <AuthProvider>
       <ThemeProvider>
         <ModalProvider>
-          <BrowserRouter>
+          <CoursesRefreshProvider>
+            <BrowserRouter>
             <Routes>
               <Route index path="/" element={<Home />} />
               <Route path="/sobre" element={<Sobre />} />
@@ -161,6 +163,7 @@ function AppRoutes() {
               </Route>
             </Routes>
           </BrowserRouter>
+        </CoursesRefreshProvider>
         </ModalProvider>
       </ThemeProvider>
     </AuthProvider>

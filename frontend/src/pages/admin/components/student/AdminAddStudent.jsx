@@ -21,7 +21,7 @@ import AdminSelect from "../AdminSelect";
 import AdminParentLinks from "./AdminParentLinks";
 import { useRef, useState } from "react";
 import { useStudentForm } from "../../../../contexts/StudentFormContext";
-import { formateDate } from "../../../../utils/helpers";
+import { calcAge, formateDate } from "../../../../utils/helpers";
 import { post } from "../../../../services/api";
 import { useToast } from "../../../../hooks/useToast";
 
@@ -78,6 +78,9 @@ function AdminAddStudent() {
     //     certificate.type
     //   );
     // }
+    // Validação de email
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    const isValidEmail = emailRegex.test(email);
 
     if (
       !name ||
@@ -88,22 +91,30 @@ function AdminAddStudent() {
       !turma ||
       !email
     ) {
-      showWarning("Por favor, preencha todos os campos obrigatórios.");
+      showWarning("Por favor, preencha todos os campos");
+      navigate("/area/admin/adminStudents/add-student");
+      return;
+    }
+
+    if (!isValidEmail) {
+      showWarning("Por favor, insira um email válido");
+      navigate("/area/admin/adminStudents/add-student");
       return;
     }
 
     const newStudent = {
       id: Math.floor(Math.random() * 5000) + 100,
       dateIn: formateDate(new Date()),
+      age: `${calcAge(birthDate)} anos`,
       name,
       birthDate,
       province,
       biCode,
       residence,
-      phoneNumber,
+      phoneNumber: `+244 ${phoneNumber}`,
       genre,
       course,
-      classLevel,
+      classLevel: `${classLevel}ª Classe`,
       turma,
       email,
       certificate,
@@ -122,9 +133,11 @@ function AdminAddStudent() {
 
     await post("users", newStudent);
     showSuccess("Estudante cadastrado com sucesso!");
-
+    navigate("/area/admin/adminStudents");
     console.log("Novo estudante:", newStudent);
   }
+
+  // if(isFinite) return
 
   return (
     <div>
@@ -197,6 +210,7 @@ function AdminAddStudent() {
             <AdminLabel htmlFor="phone">Telefone</AdminLabel>
             <AdminInput
               id="phone"
+              max={9}
               type="text"
               value={phoneNumber}
               onChange={(e) => setPhoneNumber(e.target.value)}
@@ -218,8 +232,8 @@ function AdminAddStudent() {
               onChange={(e) => setGenre(e.target.value)}
             >
               <option>Nenhum Selecionado</option>
-              <option value="male">Masculino</option>
-              <option value="female">Feminino</option>
+              <option value="Masculino">Masculino</option>
+              <option value="Feminino">Feminino</option>
             </AdminSelect>
           </div>
         </AdminAddForm>
@@ -259,9 +273,9 @@ function AdminAddStudent() {
               onChange={(e) => setCourse(e.target.value)}
             >
               <option>Nenhum Selecionado</option>
-              <option value="informatica">Informática</option>
-              <option value="gestao_empresarial">Gestão Empresarial</option>
-              <option value="electricidade">Electricidade</option>
+              <option value="Informatica">Informática</option>
+              <option value="Gestao_Empresarial">Gestão Empresarial</option>
+              <option value="Electricidade">Electricidade</option>
             </AdminSelect>
           </div>
           <div>
@@ -291,7 +305,7 @@ function AdminAddStudent() {
             </AdminSelect>
           </div>
         </AdminAddForm>
-        <div className="flex items-center gap-2 justify-end mt-2">
+        <div className="flex items-center gap-2 justify-end mt-4">
           <AdminButton
             type="secondary"
             onClick={() => navigate("/area/admin/adminStudents")}
@@ -301,7 +315,10 @@ function AdminAddStudent() {
             </p>
             <p>Cancelar</p>
           </AdminButton>
-          <AdminButton type="primary">
+          <AdminButton
+            type="primary"
+            onClick={() => navigate("/area/admin/adminStudents")}
+          >
             <p className="text-base">
               <MdOutlineDone />
             </p>

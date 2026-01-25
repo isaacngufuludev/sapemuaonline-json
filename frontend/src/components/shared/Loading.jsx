@@ -1,12 +1,11 @@
 import { AiOutlineLoading3Quarters } from "react-icons/ai";
 
-export default function Loading({ size = 28, type }) {
+export default function Loading({ size = 25, type = "white" }) {
   const base = "animate-spin";
 
   const styles = {
-    small: base + " text-white",
-    medium: base + " text-white",
-    large: base + " text-white",
+    blue: base + " text-blue-700",
+    white: base + " text-white",
   };
 
   return (

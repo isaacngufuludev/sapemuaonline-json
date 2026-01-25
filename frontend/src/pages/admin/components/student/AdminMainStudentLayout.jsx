@@ -7,10 +7,13 @@ import AdminSearch from "./AdminSearchStudent";
 import AdminStudentTitle from "./AdminStudentTitle";
 import AdminStudentList from "./AdminStudentList";
 import AdminHeading from "../AdminHeading";
-import AdminStudentDetail from "./AdminStudentDetail";
+import { useStudents } from "../../../../hooks/useStudents";
+import Message from "../../../../components/ui/Message";
+import Loading from "../../../../components/shared/Loading";
 
 function AdminMainStudentLayout() {
   const navigate = useNavigate();
+  const { students } = useStudents();
 
   return (
     <div>
@@ -26,13 +29,23 @@ function AdminMainStudentLayout() {
           <p>Estudante</p>
         </AdminButton>
       </AdminHeading>
-      <div className="rounded-md ">
-        <AdminSearch />
-        <AdminStudentTitle />
-        <AdminStudentList />
-      </div>
+      {students.length > 0 ? (
+        <div className="rounded-md ">
+          <AdminSearch />
+          <AdminStudentTitle />
+          <AdminStudentList />
+        </div>
+      ) : (
+        ""
+      )}
 
-      {/* <AdminStudentDetail /> */}
+      <div className="mt-20">
+        {!students.length ? (
+          <Message message="Adicione o primeiro estudante a plataforma clicando no botão acima" />
+        ) : (
+          ""
+        )}
+      </div>
     </div>
   );
 }

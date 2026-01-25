@@ -5,3 +5,8 @@ export function formateDate(dateStr) {
     year: "numeric",
   }).format(dateStr);
 }
+
+export function calcAge(year) {
+  const birthYear = new Date(year).getFullYear();
+  return Number(new Date().getFullYear()) - Number(birthYear);
+}

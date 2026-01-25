@@ -99,7 +99,7 @@ function AdminDashboardTable() {
           </tbody>
         </table>
       </div>
-      {!isExporting && (
+      {!isExporting && totalPages > 1 ? (
         <div className="flex gap-2 justify-end mt-3 items-center ">
           <BtnPagination onClick={handlerPrevPage} disabled={currentPage === 1}>
             <BsChevronLeft />
@@ -114,6 +114,8 @@ function AdminDashboardTable() {
             <BsChevronRight />
           </BtnPagination>
         </div>
+      ) : (
+        ""
       )}
     </div>
   );

@@ -78,8 +78,12 @@ function Form() {
             {showPassword ? <FiEye /> : <FiEyeOff />}
           </button>
         </div>
-        <button className="h-9 bg-blue-700 text-white rounded-md text-sm font-semibold flex items-center justify-center">
-          {isLoading ? <Loading size={20} /> : "Login"}
+        <button
+          className="h-9 bg-blue-700 text-white rounded-md text-sm font-semibold flex items-center justify-center"
+          disabled={isLoading}
+        >
+          {isLoading ? <Loading /> : "Login"}
+          {/* {<Loading size={25} />} */}
         </button>
       </form>
     </>

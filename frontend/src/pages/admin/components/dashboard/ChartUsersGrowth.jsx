@@ -44,7 +44,9 @@ function ChartUsersGrowth() {
       className="bg-white dark:bg-gray-800 p-6 rounded-md border border-slate-200 dark:border-gray-700"
       ref={LineChartRef}
     >
-      <Title3>Crescimento de Usuários</Title3>
+      <div className="mb-3">
+        <Title3>Crescimento de Usuários</Title3>
+      </div>
 
       <ResponsiveContainer width="100%" height={250}>
         <AreaChart data={userGrowthData}>

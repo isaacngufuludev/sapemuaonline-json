@@ -1,3 +1,4 @@
+import { useStudents } from "../../../../hooks/useStudents";
 import AdminStudentTitleItem from "./AdminStudentTitleItem";
 
 const data = [

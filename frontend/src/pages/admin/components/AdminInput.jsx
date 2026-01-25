@@ -1,4 +1,4 @@
-function AdminInput({ type, id, value, onChange, ref, accept }) {
+function AdminInput({ type, id, value, onChange, max, ref, accept }) {
   const base =
     "pl-1 focus:ring-1 ring-blue-700 w-full focus:outline-none rounded-md text-xs dark:text-stone-900 dark:bg-gray-800 dark:text-white dark:border-gray-700";
 
@@ -14,6 +14,7 @@ function AdminInput({ type, id, value, onChange, ref, accept }) {
   return (
     <input
       className={styles[type]}
+      maxLength={max}
       type={type}
       id={id}
       ref={ref}

@@ -1,12 +1,16 @@
 import { useNavigate } from "react-router-dom";
 import { FaArrowLeft } from "react-icons/fa";
+import { MdOutlineDone } from "react-icons/md";
+import { useRef, useState } from "react";
+import { post } from "../../../../services/api";
+import { useToast } from "../../../../hooks/useToast";
+import { calcAge, formateDate } from "../../../../utils/helpers";
 import {
   BsExclamationCircle,
   BsFileEarmark,
   BsMortarboard,
   BsX,
 } from "react-icons/bs";
-import { MdOutlineDone } from "react-icons/md";
 
 import AdminHeading from "../AdminHeading";
 import AdminButton from "../AdminButton";
@@ -18,10 +22,6 @@ import AdminAddForm from "../AdminAddForm";
 import AdminInput from "../AdminInput";
 import AdminLabel from "../AdminLabel";
 import AdminSelect from "../AdminSelect";
-import { useRef, useState } from "react";
-import { post } from "../../../../services/api";
-import { useToast } from "../../../../hooks/useToast";
-import { formateDate } from "../../../../utils/helpers";
 
 function AdminAddTeacher() {
   const [name, setName] = useState("");
@@ -41,13 +41,17 @@ function AdminAddTeacher() {
   const [description, setDescription] = useState("");
   const fileCVRef = useRef(null);
   const fileCertificateRef = useRef(null);
-  const { showSuccess } = useToast();
+  const { showSuccess, showWarning } = useToast();
   const navigate = useNavigate();
 
   async function handleSubmit(e) {
     e.preventDefault();
     const certificate = fileCertificateRef.current.files[0];
     const cv = fileCVRef.current.files[0];
+
+    // Validação de email
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    const isValidEmail = emailRegex.test(email);
 
     if (
       !name ||
@@ -59,19 +63,27 @@ function AdminAddTeacher() {
       !cv ||
       !email
     ) {
-      showSuccess("Por favor, preencha todos os campos obrigatórios.");
+      showWarning("Por favor, preencha todos os campos");
+      navigate("/area/admin/adminTeacher/add-teacher");
+      return;
+    }
+
+    if (!isValidEmail) {
+      showWarning("Por favor, insira um email válido");
+      navigate("/area/admin/adminTeacher/add-teacher");
       return;
     }
 
     const newTecher = {
       id: Math.floor(Math.random() * 5000) + 100,
       dateIn: formateDate(new Date()),
+      age: `${calcAge(birthDate)} anos`,
       name,
       birthDate,
       province,
       biCode,
       residence,
-      phoneNumber,
+      phoneNumber: `+244 ${phoneNumber}`,
       certificate,
       cv,
       genre,
@@ -81,16 +93,16 @@ function AdminAddTeacher() {
       adressCOllege,
       phoneCollege,
       email,
-      subjects: [...subjects.split(",")],
-      // subjects: subjects.split(",").map((subj) => subj.trim()),
+      subjects,
       description,
       password: Date.now().toString().slice(-8),
       role: "teacher",
     };
 
-    console.log("Novo professor cadastrado:", newTecher);
     await post("users", newTecher);
-    showSuccess("Estudante cadastrado com sucesso!");
+    showSuccess("Professor cadastrado com sucesso!");
+    navigate("/area/admin/adminTeacher");
+    console.log("Novo professor cadastrado:", newTecher);
   }
 
   return (
@@ -165,6 +177,7 @@ function AdminAddTeacher() {
             <AdminInput
               type="text"
               id="telefone"
+              max={9}
               value={phoneNumber}
               onChange={(e) => setPhoneNumber(e.target.value)}
             />
@@ -172,7 +185,7 @@ function AdminAddTeacher() {
           <div>
             <AdminLabel htmlFor="email">Email</AdminLabel>
             <AdminInput
-              type="email"
+              type="text"
               id="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
@@ -285,7 +298,7 @@ function AdminAddTeacher() {
             />
           </div>
         </AdminAddForm>
-        <div className="flex items-center gap-2 justify-end mt-2">
+        <div className="flex items-center gap-2 justify-end mt-4">
           <AdminButton
             type="secondary"
             onClick={() => navigate("/area/admin/adminTeacher")}
