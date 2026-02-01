@@ -1,5 +1,5 @@
 function TeacherProfileLayout({ children }) {
-  return <div>{children}</div>;
+  return <div className="p-10">{children}</div>;
 }
 
 export default TeacherProfileLayout;

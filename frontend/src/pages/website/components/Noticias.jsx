@@ -29,7 +29,7 @@ function Noticias() {
       <div className="container">
         <Subtitle type="center">noticias e avisos</Subtitle>
         <Title type="center">Noticias e Atualizações Recentes</Title>
-        <ul className="grid sm:grid-cols-2 grid-cols-1 lg:grid-cols-3 2xl:gap-28 ">
+        <ul className="grid sm:grid-cols-2 grid-cols-1 lg:grid-cols-3 ">
           {noticias.map((item) => (
             <NoticiaItem item={item} key={item.titulo} />
           ))}

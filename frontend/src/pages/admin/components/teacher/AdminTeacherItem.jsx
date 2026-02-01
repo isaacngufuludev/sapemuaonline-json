@@ -29,10 +29,12 @@ function AdminTeacherItem({ item }) {
   };
 
   return (
-    <li className="grid grid-cols-[0.3fr_1.5fr_0.7fr_0.7fr_0.7fr_0.5fr_0.5fr_0.2fr] items-center dark:border-gray-700 border-b border-slate-200  px-4 py-2">
-      <p className="font-semibold rounded-full w-2/4 flex items-center justify-center py-3 px-4 bg-slate-100  dark:bg-gray-900">
-        {item.name[0]}
-      </p>
+    <li className="grid grid-cols-[0.3fr_1.5fr_0.7fr_0.7fr_0.7fr_0.5fr_0.5fr_0.2fr] last:border-0 items-center dark:border-gray-700 border-b border-slate-200  px-4 py-2">
+      <dic className="font-semibold  flex items-center justify-start">
+        <span className="py-3 px-5 bg-slate-100 rounded-full dark:bg-gray-900">
+          {item.name[0].toUpperCase()}
+        </span>
+      </dic>
       <div>
         <p className="font-semibold">{item.name}</p>
         <p className="text-xs">{item.email}</p>

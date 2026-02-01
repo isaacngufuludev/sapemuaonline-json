@@ -2,21 +2,21 @@ import { useEffect, useState } from "react";
 import { get } from "../services/api";
 import { useRefresh } from "../contexts/RefreshContext";
 
-export function useTurmas() {
-  const [turmas, setTurmas] = useState([]);
+export function useClasses() {
+  const [classes, setClasses] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState();
+  const [error, setError] = useState(null);
   const { refreshKey } = useRefresh();
 
   useEffect(() => {
-    fetchTurmas();
+    fetchClasses();
   }, [refreshKey]);
 
-  async function fetchTurmas() {
+  async function fetchClasses() {
     try {
       setIsLoading(true);
-      const data = await get("turmas");
-      setTurmas(data);
+      const data = await get("classes");
+      setClasses(data);
     } catch (error) {
       setError(error.message);
     } finally {
@@ -24,5 +24,5 @@ export function useTurmas() {
     }
   }
 
-  return { turmas, isLoading, error, fetchTurmas };
+  return { classes, isLoading, error, fetchClasses };
 }

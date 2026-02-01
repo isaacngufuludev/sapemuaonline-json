@@ -1,12 +1,13 @@
+import SearchBox from "../../../../components/shared/SearchBox";
 import InputSearch from "../../../../components/ui/InputSearch";
 import SelectSearch from "../../../../components/ui/SelectSearch";
 
 function AdminSearchStudent() {
   return (
-    <div className="bg-white flex items-center justify-between p-3 rounded-md dark:bg-gray-800">
+    <SearchBox>
       <InputSearch placeholder="Procurar estudante" />
       <SelectSearch />
-    </div>
+    </SearchBox>
   );
 }
 

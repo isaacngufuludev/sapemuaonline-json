@@ -12,8 +12,9 @@ import TeacherLinks from "./components/TeacherLinks";
 
 import { Outlet } from "react-router-dom";
 import { useModal } from "../../contexts/ModalContext";
-import { FiUser, FiFileText } from "react-icons/fi";
+import { FiUser } from "react-icons/fi";
 import { HiOutlineHome } from "react-icons/hi";
+import { BsChat } from "react-icons/bs";
 
 const links = [
   {
@@ -26,11 +27,11 @@ const links = [
     link: "teacher-turmas",
     icon: <HiOutlineHome />,
   },
-  // {
-  //   name: "Lançar Notas",
-  //   link: "teacher-notas",
-  //   icon: <FiFileText />,
-  // },
+  {
+    name: "Chat",
+    link: "teacher-chats",
+    icon: <BsChat />,
+  },
 ];
 
 function Teacher() {
@@ -68,7 +69,7 @@ function Teacher() {
           <LogoutBtn />
         </div>
       </AuthHeader>
-      <AuthMain>
+      <AuthMain type="noSpace">
         {isLogoutModal ? (
           <div>
             <LogoutModal />

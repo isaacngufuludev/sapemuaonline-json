@@ -1,12 +1,12 @@
 import { useEffect, useState } from "react";
 import { get } from "../services/api";
-import { useCoursesRefresh } from "../contexts/CoursesRefreshContext";
+import { useRefresh } from "../contexts/RefreshContext";
 
 export function useCourses() {
   const [courses, setCourses] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
-  const { refreshKey } = useCoursesRefresh();
+  const { refreshKey } = useRefresh();
 
   useEffect(() => {
     fetchCourses();

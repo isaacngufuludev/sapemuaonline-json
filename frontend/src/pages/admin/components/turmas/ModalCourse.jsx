@@ -11,25 +11,26 @@ import { useState } from "react";
 import { post } from "../../../../services/api";
 import { useModal } from "../../../../contexts/ModalContext";
 import { useToast } from "../../../../hooks/useToast";
-import { useCoursesRefresh } from "../../../../contexts/CoursesRefreshContext";
+import { useRefresh } from "../../../../contexts/RefreshContext";
+import { formateDate } from "../../../../utils/helpers";
 
 function ModalCourse() {
   const [courseName, setCourseName] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const { showSuccess, showWarning } = useToast();
   const { toggle } = useModal();
-  const { triggerRefresh } = useCoursesRefresh();
+  const { triggerRefresh } = useRefresh();
 
   async function handleSubmit(e) {
     e.preventDefault();
     if (!courseName) {
-      showWarning("Preencha o campo para cadastrar curso!");
+      showWarning("Por favor preencha todos os campos!");
       return;
     }
 
     const newCourse = {
+      dateIn: formateDate(new Date()),
       courseName,
-      turmas: [],
     };
 
     try {
@@ -53,7 +54,7 @@ function ModalCourse() {
       <BtnCloseModal />
       <Title3>Cadastrar Curso</Title3>
       <p className="text-sm mb-4">Preencha o fórmulário para cadastrar curso</p>
-      <ModalForm onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit}>
         <div className="mb-5">
           <AdminLabel htmlFor="course">Nome do Curso</AdminLabel>
           <AdminInput
@@ -81,7 +82,7 @@ function ModalCourse() {
             )}
           </AdminButton>
         </div>
-      </ModalForm>
+      </form>
     </Modal>
   );
 }

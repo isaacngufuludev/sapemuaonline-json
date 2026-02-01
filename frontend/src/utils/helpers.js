@@ -1,7 +1,7 @@
-export function formateDate(dateStr) {
+export function formateDate(dateStr, type = "long") {
   return new Intl.DateTimeFormat("pt", {
     day: "numeric",
-    month: "long",
+    month: type,
     year: "numeric",
   }).format(dateStr);
 }

@@ -41,7 +41,7 @@ const notas = [
 
 function TeacherStudentsList() {
   return (
-    <ul className="overflow-y-scroll h-[308px] no-scrollbar">
+    <ul className="overflow-y-scroll h-[500px] no-scrollbar">
       {notas.map((item, i) => (
         <TeacherStudentItem item={item} i={i} />
       ))}

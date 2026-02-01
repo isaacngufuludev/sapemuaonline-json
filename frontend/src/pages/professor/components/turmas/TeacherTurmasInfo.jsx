@@ -15,7 +15,7 @@ const turmas = [
 
 function TeacherTurmasInfo() {
   return (
-    <div>
+    <div className="p-10">
       <div className="mb-5">
         <Title3>Informações da Turma</Title3>
       </div>

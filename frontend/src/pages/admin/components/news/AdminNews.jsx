@@ -11,9 +11,12 @@ import Overlay from "../../../../components/shared/Overlay";
 import { HiOutlinePlus } from "react-icons/hi";
 import { useModal } from "../../../../contexts/ModalContext";
 import ModalRemoveNews from "./ModalRemoveNews";
+import { useNews } from "../../../../hooks/useNews";
+import Message from "../../../../components/ui/Message";
 
 function AdminNews() {
   const { isNewsModal, toggleNewsModal, isRemoveNewsModal } = useModal();
+  const { news } = useNews();
 
   return (
     <div>
@@ -30,7 +33,15 @@ function AdminNews() {
         <AdminAddHeader type="turma">
           <Title4>Atualizaçóes sobre a instituiçáo</Title4>
         </AdminAddHeader>
-        <AdminNewsList />
+        {news.length > 0 && <AdminNewsList />}
+
+        <div className="bg-white dark:bg-gray-800 px-4 py-4">
+          {!news.length ? (
+            <Message message="Adicione a primeira noticia a plataforma clicando no botão acima" />
+          ) : (
+            ""
+          )}
+        </div>
       </AdminNewsLayout>
 
       {isNewsModal ? (

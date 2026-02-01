@@ -1,22 +1,22 @@
 import { useEffect, useState } from "react";
-import { get } from "../services/api";
 import { useRefresh } from "../contexts/RefreshContext";
+import { get } from "../services/api";
 
-export function useTurmas() {
-  const [turmas, setTurmas] = useState([]);
+export function useNews() {
+  const [news, setNews] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState();
+  const [error, setError] = useState(null);
   const { refreshKey } = useRefresh();
 
   useEffect(() => {
-    fetchTurmas();
+    fetchNews();
   }, [refreshKey]);
 
-  async function fetchTurmas() {
+  async function fetchNews() {
     try {
       setIsLoading(true);
-      const data = await get("turmas");
-      setTurmas(data);
+      const data = await get("news");
+      setNews(data);
     } catch (error) {
       setError(error.message);
     } finally {
@@ -24,5 +24,5 @@ export function useTurmas() {
     }
   }
 
-  return { turmas, isLoading, error, fetchTurmas };
+  return { news, isLoading, error, fetchNews };
 }

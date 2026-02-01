@@ -6,7 +6,7 @@ function AdminParentLinks({ item }) {
       <NavLink
         className={({ isActive }) =>
           isActive
-            ? "bg-blue-700 px-4 py-1 dark:bg-gray-900 rounded-sm text-white"
+            ? "bg-blue-700 px-4 py-1 dark:bg-blue-700 rounded-sm text-white"
             : "px-4 py-1 rounded-sm text-whitw"
         }
         to={item.to}

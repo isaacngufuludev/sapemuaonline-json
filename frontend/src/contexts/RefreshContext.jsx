@@ -1,8 +1,8 @@
 import { createContext, useContext, useState, useCallback } from "react";
 
-const CoursesRefreshContext = createContext();
+const RefreshContext = createContext();
 
-export const CoursesRefreshProvider = ({ children }) => {
+export const RefreshProvider = ({ children }) => {
   const [refreshKey, setRefreshKey] = useState(0);
 
   const triggerRefresh = useCallback(() => {
@@ -10,14 +10,14 @@ export const CoursesRefreshProvider = ({ children }) => {
   }, []);
 
   return (
-    <CoursesRefreshContext.Provider value={{ refreshKey, triggerRefresh }}>
+    <RefreshContext.Provider value={{ refreshKey, triggerRefresh }}>
       {children}
-    </CoursesRefreshContext.Provider>
+    </RefreshContext.Provider>
   );
 };
 
-export const useCoursesRefresh = () => {
-  const context = useContext(CoursesRefreshContext);
+export const useRefresh = () => {
+  const context = useContext(RefreshContext);
   if (!context) {
     throw new Error(
       "useCoursesRefresh deve ser usado dentro de CoursesRefreshProvider"

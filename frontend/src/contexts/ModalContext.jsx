@@ -6,6 +6,7 @@ function ModalProvider({ children }) {
   const [isLogoutModal, setIsLogoutModal] = useState(false);
   const [isTurmaModal, setIsTurmaModal] = useState(false);
   const [isCourseModal, setIsCourseModal] = useState(false);
+  const [isClassModal, setIsClassModal] = useState(false);
   const [isNewsModal, setNewsModal] = useState(false);
   const [isChatModal, setIsChatModal] = useState(false);
   const [isRemoveStudentModal, setIsRemoveStudentModal] = useState(false);
@@ -51,6 +52,10 @@ function ModalProvider({ children }) {
     setIsRemoveCourseModal((modal) => !modal);
   }
 
+  function toggleClassModal() {
+    setIsClassModal((modal) => !modal);
+  }
+
   function toggleNews() {
     setIsRemoveNewsModal((modal) => !modal);
   }
@@ -70,6 +75,7 @@ function ModalProvider({ children }) {
   function toggle() {
     setIsTurmaModal(false);
     setIsCourseModal(false);
+    setIsClassModal(false);
     setIsLogoutModal(false);
     setNewsModal(false);
     setIsChatModal(false);
@@ -87,6 +93,7 @@ function ModalProvider({ children }) {
         isLogoutModal,
         isTurmaModal,
         isCourseModal,
+        isClassModal,
         isNewsModal,
         isChatModal,
         isRemoveStudentModal,
@@ -107,6 +114,7 @@ function ModalProvider({ children }) {
         toggleTurmas,
         toggleNews,
         toggleCourse,
+        toggleClassModal,
         toggleTeachers,
         toggleGalleryModal,
         setGalleryImage,
