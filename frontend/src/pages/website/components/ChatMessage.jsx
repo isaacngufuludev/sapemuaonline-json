@@ -1,5 +1,5 @@
-const ChatMessage = ({ mensagem }) => {
-  const isBot = mensagem.remetente === "bot";
+const ChatMessage = ({ item }) => {
+  const isBot = item.remetente === "bot";
   return (
     <li className={`flex ${isBot ? `justify-start ` : `justify-end`}`}>
       <div
@@ -11,7 +11,7 @@ const ChatMessage = ({ mensagem }) => {
               }
             `}
       >
-        <p className="text-sm "> {mensagem.text} </p>
+        <p className="text-sm "> {item.text} </p>
       </div>
     </li>
   );

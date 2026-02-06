@@ -34,8 +34,7 @@ function AdminNews() {
           <Title4>Atualizaçóes sobre a instituiçáo</Title4>
         </AdminAddHeader>
         {news.length > 0 && <AdminNewsList />}
-
-        <div className="bg-white dark:bg-gray-800 px-4 py-4">
+        <div className="bg-white dark:bg-gray-800 py-5">
           {!news.length ? (
             <Message message="Adicione a primeira noticia a plataforma clicando no botão acima" />
           ) : (

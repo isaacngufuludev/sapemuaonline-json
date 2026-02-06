@@ -52,7 +52,8 @@ function AdminAddStudent() {
   const [classLevel, setClassLevel] = useState("");
   const [turma, setTurma] = useState("");
   const [email, setEmail] = useState("");
-  const fileInputRef = useRef(null);
+  const certfificateRef = useRef(null);
+  const photoRef = useRef(null);
   const navigate = useNavigate();
   const {
     fatherJob,
@@ -69,13 +70,14 @@ function AdminAddStudent() {
 
   async function handlerSubmit(e) {
     e.preventDefault();
-    const certificate = fileInputRef.current.files[0];
+    const certificate = certfificateRef.current.files[0];
+    const photo = photoRef.current.files[0];
     // if (certificate) {
     //   console.log(
     //     certificate,
     //     certificate.name,
     //     certificate.size,
-    //     certificate.type
+    //     certificate.type,
     //   );
     // }
     // Validação de email
@@ -86,6 +88,8 @@ function AdminAddStudent() {
       !name ||
       !birthDate ||
       !phoneNumber ||
+      !certificate ||
+      !photo ||
       !course ||
       !classLevel ||
       !turma ||
@@ -103,7 +107,7 @@ function AdminAddStudent() {
     }
 
     const newStudent = {
-      id: Math.floor(Math.random() * 5000) + 100,
+      id: (Math.floor(Math.random() * 5000) + 100).toString(),
       dateIn: formateDate(new Date()),
       age: `${calcAge(birthDate)} anos`,
       name,
@@ -118,6 +122,7 @@ function AdminAddStudent() {
       turma,
       email,
       certificate,
+      photo,
       fatherJob,
       fatherName,
       fatherPhoneNumber,
@@ -136,8 +141,6 @@ function AdminAddStudent() {
     navigate("/area/admin/adminStudents");
     console.log("Novo estudante:", newStudent);
   }
-
-  // if(isFinite) return
 
   return (
     <div>
@@ -259,9 +262,13 @@ function AdminAddStudent() {
         </AdminAddHeader>
         <AdminAddForm type="two">
           <div>
+            <AdminLabel>Foto-Passe</AdminLabel>
+            <AdminInput ref={photoRef} accept=".jpg, .png" type="file" />
+          </div>
+          <div>
             <AdminLabel>Upload do Certificado</AdminLabel>
             <AdminInput
-              ref={fileInputRef}
+              ref={certfificateRef}
               accept=".jpg, .png, .pdf"
               type="file"
             />

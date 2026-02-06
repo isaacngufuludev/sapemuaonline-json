@@ -1,4 +1,4 @@
-import Mensagem from "./ChatMessage";
+import ChatMessage from "./ChatMessage";
 
 const mensagens = [
   {
@@ -52,8 +52,8 @@ const mensagens = [
 const ChatMessageList = () => {
   return (
     <ul className="flex-1 overflow-y-scroll scrollbar-none h-[500px] 2xl:h-[600px] p-2 space-y-4 no-scrollbar">
-      {mensagens.map((mensagem) => (
-        <Mensagem key={mensagem.id} mensagem={mensagem} />
+      {mensagens.map((item) => (
+        <ChatMessage key={item.id} item={item} />
       ))}
     </ul>
   );

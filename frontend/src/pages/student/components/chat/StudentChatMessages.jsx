@@ -1,23 +1,23 @@
-import TeacherChatForm from "./TeacherChatForm";
-import TeacherChatMessagesList from "./TeacherChatMessagesList";
-import TeacherChatHeader from "./TeacherChatHeader";
+import StudentChatHeader from "./StudentChatHeader";
+import StudentChatMessagesList from "./StudentChatMessagesList";
+import StudentChatFrom from "./StudentChatForm";
 
-function TeacherChatMessages() {
+function StudentChatMessages() {
   return (
     <div className="bg-white dark:bg-gray-800 flex flex-col h-full">
       <div className="sticky top-0 z-10">
-        <TeacherChatHeader />
+        <StudentChatHeader />
       </div>
 
       <div className="flex-1 overflow-y-auto px-4 py-4">
-        <TeacherChatMessagesList />
+        <StudentChatMessagesList />
       </div>
 
       <div className="sticky bottom-0 bg-white dark:bg-gray-800 border-t border-gray-200 dark:border-gray-700 p-4 z-10">
-        <TeacherChatForm />
+        <StudentChatFrom />
       </div>
     </div>
   );
 }
 
-export default TeacherChatMessages;
+export default StudentChatMessages;

@@ -6,8 +6,6 @@ import { useModal } from "../../../../contexts/ModalContext";
 import {
   HiOutlineBookOpen,
   HiOutlineClock,
-  HiOutlineHome,
-  HiOutlineTrash,
   HiOutlineUserGroup,
 } from "react-icons/hi";
 import { useClasses } from "../../../../hooks/useClasses";
@@ -17,7 +15,7 @@ import { HiEllipsisVertical } from "react-icons/hi2";
 import { BsEye, BsPencil, BsTrash } from "react-icons/bs";
 
 function AdminTurmasItem({ item }) {
-  const { toggleTurmas } = useModal();
+  const { toggleTurmas, selectOptionItem } = useModal();
   const { classes } = useClasses();
   const turmaClasse = classes.find((c) => c.id === item.classId);
   const { showMenu, menuRef, setShowMenu } = useEditOptions();
@@ -34,7 +32,7 @@ function AdminTurmasItem({ item }) {
   };
 
   const handleDelete = () => {
-    console.log("Eliminar estudante:", item);
+    selectOptionItem(item);
     toggleTurmas();
     setShowMenu(false);
   };

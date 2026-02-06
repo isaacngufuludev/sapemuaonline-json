@@ -1,6 +1,6 @@
 import { FaHashtag } from "react-icons/fa";
 
-function TeacherChatHeader() {
+function StudentChatHeader() {
   return (
     <header className="bg-white dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700 px-6 py-4 flex items-center justify-between">
       <div className="flex items-center gap-3">
@@ -14,7 +14,7 @@ function TeacherChatHeader() {
           <div className="flex items-center gap-1">
             <span className="inline-block p-1 rounded-full bg-blue-600"></span>
             <p className="text-xs text-gray-500 dark:text-gray-400">
-              25 alunos online
+              25 online
             </p>
           </div>
         </div>
@@ -22,5 +22,4 @@ function TeacherChatHeader() {
     </header>
   );
 }
-
-export default TeacherChatHeader;
+export default StudentChatHeader;

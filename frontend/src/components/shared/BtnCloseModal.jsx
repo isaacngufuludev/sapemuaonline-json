@@ -8,7 +8,9 @@ function BtnCloseModal() {
     <button className="flex w-full justify-end" onClick={toggle}>
       <p className="text-2xl">
         <BsX />
+
       </p>
+
     </button>
   );
 }

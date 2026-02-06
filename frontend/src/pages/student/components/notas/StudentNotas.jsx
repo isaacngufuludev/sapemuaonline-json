@@ -5,11 +5,13 @@ import StudentNotasList from "./StudentNotasList";
 
 function StudentNotas() {
   return (
-    <StudentNotasLayout>
-      <StudentNotasHeader />
-      <StudentNotasTitle />
-      <StudentNotasList />
-    </StudentNotasLayout>
+    <div className="p-10">
+      <StudentNotasLayout>
+        <StudentNotasHeader />
+        <StudentNotasTitle />
+        <StudentNotasList />
+      </StudentNotasLayout>
+    </div>
   );
 }
 

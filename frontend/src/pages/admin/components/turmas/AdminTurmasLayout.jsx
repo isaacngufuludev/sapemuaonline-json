@@ -4,10 +4,11 @@ import AdminTurmasItem from "./AdminTurmasItem";
 import { useCourses } from "../../../../hooks/useCourses";
 import { useTurmas } from "../../../../hooks/useTurmas";
 import AdminTurmasHeading from "./AdminTurmasHeading";
+import Loading from "../../../../components/shared/Loading";
 
 function AdminTurmasLayout() {
   const { courses } = useCourses();
-  const { turmas } = useTurmas();
+  const { turmas, isLoading } = useTurmas();
 
   return (
     <div>
@@ -23,8 +24,10 @@ function AdminTurmasLayout() {
                 return (
                   <ul key={course.id}>
                     <AdminCoursesItem item={course} />
-                    {courseTurmas.length > 0 && (
-                      <ul className="grid grid-cols-4 py-6 px-4 bg-white gap-4 dark:bg-gray-800">
+                    {isLoading ? (
+                      <Loading type="blue" size={40} />
+                    ) : (
+                      <ul className="grid grid-cols-4 pt-6 px-4 bg-white gap-4 dark:bg-gray-800">
                         {courseTurmas.map((turma, i) => (
                           <AdminTurmasItem item={turma} key={i} />
                         ))}

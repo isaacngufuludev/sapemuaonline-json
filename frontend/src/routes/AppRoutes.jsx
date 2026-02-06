@@ -9,8 +9,9 @@ import Home from "../pages/website/Home";
 import Sobre from "../pages/website/Sobre";
 import Gallery from "../pages/website/Gallery";
 import PageNotFound from "../pages/website/PageNotFound";
+import Auth from "../pages/auth/Auth";
+import Login from "../pages/auth/components/Login";
 import ProtectedRoute from "../pages/website/ProtectedRoute";
-import Login from "../pages/auth/Login";
 import Area from "../pages/areas/Area";
 import Admin from "../pages/admin/Admin";
 import AdminDashboard from "../pages/admin/components/dashboard/AdminDashboard";
@@ -44,6 +45,7 @@ import TeacherChats from "../pages/professor/components/chats/TeacherChats";
 import TeacherTurmasInfo from "../pages/professor/components/turmas/TeacherTurmasInfo";
 import TeacherAllTurmas from "../pages/professor/components/turmas/TeacherAllTurmas";
 import TeacherChatLayout from "../pages/professor/components/chats/TeacherChatLayout";
+import StudentChatLayout from "../pages/student/components/chat/StudentChatLayout";
 
 function AppRoutes() {
   return (
@@ -56,14 +58,17 @@ function AppRoutes() {
                 <Route index path="/" element={<Home />} />
                 <Route path="/sobre" element={<Sobre />} />
                 <Route path="/gallery" element={<Gallery />} />
-                <Route path="/login" element={<Login />} />
+                <Route path="auth" element={<Auth />}>
+                  <Route index element={<Navigate replace to="login" />} />
+                  <Route path="login" element={<Login />} />
+                </Route>
                 <Route path="*" element={<PageNotFound />} />
                 <Route
                   path="/area"
                   element={
-                    // <ProtectedRoute>
-                    <Area />
-                    // </ProtectedRoute>
+                    <ProtectedRoute>
+                      <Area />
+                    </ProtectedRoute>
                   }
                 >
                   <Route path="admin" element={<Admin />}>
@@ -201,6 +206,10 @@ function AppRoutes() {
                     <Route
                       path="student-teacher"
                       element={<StudentTeacher />}
+                    />
+                    <Route
+                      path="student-chat"
+                      element={<StudentChatLayout />}
                     />
                     <Route path="student-notas" element={<StudentNotas />} />
                   </Route>

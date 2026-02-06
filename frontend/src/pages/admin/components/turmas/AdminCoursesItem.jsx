@@ -8,7 +8,7 @@ import { BsPencil, BsTrash } from "react-icons/bs";
 import { HiEllipsisVertical } from "react-icons/hi2";
 
 function AdminCoursesItem({ item }) {
-  const { toggleCourse } = useModal();
+  const { toggleCourse, selectOptionItem } = useModal();
   const { showMenu, menuRef, setShowMenu } = useEditOptions();
 
   const handleEdit = () => {
@@ -17,7 +17,7 @@ function AdminCoursesItem({ item }) {
   };
 
   const handleDelete = () => {
-    console.log("Eliminar curso:", item);
+    selectOptionItem(item);
     toggleCourse();
     setShowMenu(false);
   };

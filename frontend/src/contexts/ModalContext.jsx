@@ -17,6 +17,7 @@ function ModalProvider({ children }) {
   const [isShowTeachers, setIsShowTeachers] = useState(false);
   const [isGalleryModal, setIsGalleryModal] = useState(false);
   const [selectedGalleryImg, setSelectedGalleryImg] = useState(null);
+  const [selectedItem, setSelectedItem] = useState(null);
 
   function toggleLogoutModal() {
     setIsLogoutModal((modal) => !modal);
@@ -72,6 +73,10 @@ function ModalProvider({ children }) {
     setSelectedGalleryImg(image);
   }
 
+  function selectOptionItem(item) {
+    setSelectedItem(item);
+  }
+
   function toggle() {
     setIsTurmaModal(false);
     setIsCourseModal(false);
@@ -104,6 +109,9 @@ function ModalProvider({ children }) {
         isShowTeachers,
         isGalleryModal,
         selectedGalleryImg,
+        selectedItem,
+        setGalleryImage,
+        setSelectedItem,
         toggleLogoutModal,
         toggleTurmaModal,
         toggleCourseModal,
@@ -112,12 +120,12 @@ function ModalProvider({ children }) {
         toggleRemoveStudent,
         toggleRemoveTeacher,
         toggleTurmas,
+        selectOptionItem,
         toggleNews,
         toggleCourse,
         toggleClassModal,
         toggleTeachers,
         toggleGalleryModal,
-        setGalleryImage,
         toggle,
       }}
     >

@@ -121,7 +121,7 @@ function ModalTurma() {
           </AdminSelect>
         </div>
         <div>
-          <AdminLabel htmlFor="turma">Periodo</AdminLabel>
+          <AdminLabel htmlFor="turma">Sala</AdminLabel>
           <AdminInput
             type="number"
             value={room}

@@ -56,6 +56,7 @@ export async function patch(endpoint, id, data) {
    DELETE – remover registo
 ========================= */
 export async function remove(endpoint, id) {
+  // turmes/sdfsdsdf
   const res = await fetch(`${API_URL}/${endpoint}/${id}`, {
     method: "DELETE",
   });

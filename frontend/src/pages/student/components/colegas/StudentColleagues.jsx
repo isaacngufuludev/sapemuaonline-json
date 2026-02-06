@@ -6,7 +6,7 @@ import StudentColleaguesTitle from "./StudentColleaguesTitle";
 
 function StudentColleagues() {
   return (
-    <div>
+    <div className="p-10">
       <div className="mb-6">
         <Title3>Colegas da Turma</Title3>
       </div>

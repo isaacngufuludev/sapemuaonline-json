@@ -15,6 +15,7 @@ import ToggleDarkMode from "../../components/shared/ToggleDarkMode";
 import { FiFileText, FiUser } from "react-icons/fi";
 import { LuGraduationCap } from "react-icons/lu";
 import { HiOutlineUsers } from "react-icons/hi";
+import { BsChat } from "react-icons/bs";
 
 const links = [
   {
@@ -32,6 +33,11 @@ const links = [
     link: "student-teacher",
     // icon: <FaChalkboardTeacher />,
     icon: <LuGraduationCap />,
+  },
+  {
+    name: "Chat",
+    link: "student-chat",
+    icon: <BsChat />,
   },
   {
     name: "Notas",
@@ -77,7 +83,7 @@ function Student() {
           <LogoutBtn />
         </div>
       </AuthHeader>
-      <AuthMain>
+      <AuthMain type="noSpace">
         {isLogoutModal ? (
           <div>
             <LogoutModal />

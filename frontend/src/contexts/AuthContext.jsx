@@ -33,11 +33,11 @@ function AuthProvider({ children }) {
   );
   const { showSuccess, showError } = useToast();
 
-  async function login({ email, password }) {
+  async function login({ email ,id, password }) {
     const users = await get("users");
 
     const userFound = users.find(
-      (user) => user.email === email && user.password === password
+      (user) => user.email === email || user.id === id && user.password === password
     );
 
     if (userFound) {

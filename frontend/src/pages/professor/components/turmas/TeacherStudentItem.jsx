@@ -1,7 +1,18 @@
-import BtnEdit from "../../../../components/ui/BtnEdit";
-import { BsPencilSquare } from "react-icons/bs";
+import { BsEye, BsPencil } from "react-icons/bs";
+import { HiEllipsisVertical } from "react-icons/hi2";
+import { useEditOptions } from "../../../../hooks/useEditOptions";
 
 function TeacherStudentItem({ item, i }) {
+  const { showMenu, menuRef, setShowMenu } = useEditOptions();
+  const handleEdit = () => {
+    console.log("Editar estudante:", item);
+    setShowMenu(false);
+  };
+
+  const handleView = () => {
+    console.log("Visualizar estudante:", item);
+    setShowMenu(false);
+  };
   const media = (item.mac + item.npp + item.npt) / 3;
 
   return (
@@ -24,9 +35,33 @@ function TeacherStudentItem({ item, i }) {
       <p className={`${media >= 10 ? "text-blue-700" : "text-red-700"}`}>
         {media.toFixed(1)}
       </p>
-      <BtnEdit type="edit">
-        <BsPencilSquare />
-      </BtnEdit>
+      <div className="relative" ref={menuRef}>
+        <button
+          className="text-xl hover:text-blue-600 transition-colors"
+          onClick={() => setShowMenu(!showMenu)}
+        >
+          <HiEllipsisVertical />
+        </button>
+
+        {showMenu && (
+          <div className="absolute right-0 mt-2 w-36 bg-white dark:bg-gray-800 rounded-lg shadow-lg border border-slate-200 dark:border-gray-700 z-50">
+            <button
+              onClick={handleEdit}
+              className="w-full flex items-center gap-2 px-4 py-2 text-sm hover:bg-yellow-50 dark:hover:bg-gray-700 text-gray-700 dark:text-gray-200 transition-colors border-b border-slate-200 dark:border-gray-700"
+            >
+              <BsEye size={16} />
+              Visualizar
+            </button>
+            <button
+              onClick={handleEdit}
+              className="w-full flex items-center gap-2 px-4 py-2 text-sm hover:bg-yellow-50 dark:hover:bg-gray-700 text-gray-700 dark:text-gray-200 transition-colors border-b border-slate-200 dark:border-gray-700"
+            >
+              <BsPencil size={16} />
+              Editar
+            </button>
+          </div>
+        )}
+      </div>
     </li>
   );
 }

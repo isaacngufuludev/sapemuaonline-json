@@ -2,11 +2,11 @@
   "users": [
     {
       "id": "4355",
+      "name": "Isaac Ngufulu",
       "email": "isaacngufulu70@gmail.com",
-      "name": "Isaac Nzinga",
-      "birthYear": "1985-04-12",
-      "phoneNumber": "+244 923 456 789",
-      "genre": "Masculino",
+      "birthYear": "1992-09-25",
+      "phoneNumber": "+244 934 987 654",
+      "genre": "Feminino",
       "password": "1234",
       "role": "admin"
     },
@@ -29,184 +29,37 @@
       "genre": "Masculino",
       "password": "2005",
       "role": "admin"
-    },
-    {
-      "id": "4206",
-      "dateIn": "28 de janeiro de 2026",
-      "age": "26 anos",
-      "name": "Isaac Yambi",
-      "birthDate": "2000-07-22",
-      "province": "Luanda",
-      "biCode": "000576228LA34",
-      "residence": "Cazenga-Mabor",
-      "phoneNumber": "+244 930886301",
-      "genre": "Masculino",
-      "course": "Informatica",
-      "classLevel": "10ª Classe",
-      "turma": "A",
-      "email": "isaacngufulu@gmail.com",
-      "certificate": {},
-      "fatherJob": "",
-      "fatherName": "",
-      "fatherPhoneNumber": "",
-      "motherName": "",
-      "motherJob": "",
-      "motherPhoneNumber": "",
-      "guardionJob": "",
-      "guardionName": "",
-      "guardionPhoneNumber": "",
-      "password": "94708467",
-      "role": "student"
-    },
-    {
-      "id": "4910",
-      "dateIn": "28 de janeiro de 2026",
-      "age": "3 anos",
-      "name": "Leonardo Tiago",
-      "birthDate": "2023-02-22",
-      "province": "Luanda",
-      "biCode": "0000la44393",
-      "residence": "Rangel-Brigada",
-      "phoneNumber": "+244 930886401",
-      "certificate": {},
-      "cv": {},
-      "genre": "male",
-      "qualification": "superior",
-      "area": "Engenharia Informática",
-      "college": "UAN",
-      "adressCOllege": "",
-      "phoneCollege": "",
-      "email": "leonardotiago@gmail.com",
-      "subjects": "Programação, Seac, Matemática",
-      "description": "Sou muito bom em trabalhar em equipe",
-      "password": "94861428",
-      "role": "teacher"
-    },
-    {
-      "id": "549",
-      "dateIn": "28 de janeiro de 2026",
-      "age": "22 anos",
-      "name": "dhjhdhfhj",
-      "birthDate": "2004-09-05",
-      "province": "",
-      "biCode": "hfh9094494",
-      "residence": "",
-      "phoneNumber": "+244 890887777",
-      "certificate": {},
-      "cv": {},
-      "genre": "male",
-      "qualification": "superior",
-      "area": "jhdhhdhdhjhd",
-      "college": "",
-      "adressCOllege": "",
-      "phoneCollege": "",
-      "email": "llalal@gmail.com",
-      "subjects": "trrrg",
-      "description": "tryhj",
-      "password": "94936279",
-      "role": "teacher"
-    },
-    {
-      "id": 2301,
-      "dateIn": "29 de janeiro de 2026",
-      "age": "17 anos",
-      "name": "Luzia Gonçalves",
-      "birthDate": "2009-03-31",
-      "province": "Luanda",
-      "biCode": "",
-      "residence": "",
-      "phoneNumber": "+244 945668990",
-      "genre": "Feminino",
-      "course": "Informatica",
-      "classLevel": "12ª Classe",
-      "turma": "C",
-      "email": "luziagonçalves@gmail.com",
-      "fatherJob": "",
-      "fatherName": "",
-      "fatherPhoneNumber": "",
-      "motherName": "",
-      "motherJob": "",
-      "motherPhoneNumber": "",
-      "guardionJob": "",
-      "guardionName": "",
-      "guardionPhoneNumber": "",
-      "password": "08341619",
-      "role": "student"
     }
   ],
   "courses": [
     {
-      "id": "e01a",
-      "courseName": "Informática"
-    },
-    {
-      "id": "a68b",
-      "courseName": "Gestão Empresarial"
-    },
-    {
-      "id": "a978",
-      "courseName": "Electricidade"
-    },
-    {
-      "id": "aa24",
-      "courseName": "Enfermagem"
-    },
-    {
-      "id": "a597",
-      "courseName": "Electrònica"
+      "id": "f6af",
+      "dateIn": "6 de fevereiro de 2026",
+      "courseName": "gestão"
     }
   ],
   "classes": [
     {
-      "id": "e377",
-      "classYear": "10ª Classe",
-      "courseId": "a68b"
-    },
-    {
-      "id": "48f1",
-      "classYear": "13ª Classe",
-      "courseId": "a978"
-    },
-    {
-      "id": "16b6",
+      "id": "28a3",
       "classYear": "11ª Classe",
-      "courseId": "e01a"
+      "dateIn": "6 de fevereiro de 2026",
+      "courseId": null
+    },
+    {
+      "id": "5885",
+      "classYear": "12ª Classe",
+      "dateIn": "6 de fevereiro de 2026",
+      "courseId": "f6af"
     }
   ],
   "turmas": [
     {
-      "id": "96a6",
-      "classId": "e377",
-      "courseId": "e01a",
-      "turmaCategory": "A",
-      "period": "Manha"
-    },
-    {
-      "id": "9af6",
-      "classId": "e377",
-      "courseId": "aa24",
-      "turmaCategory": "Unica",
-      "period": "Manha"
-    },
-    {
-      "id": "77bb",
-      "classId": "48f1",
-      "courseId": "a978",
+      "id": "0637",
+      "classId": "28a3",
+      "courseId": null,
+      "room": "10",
       "turmaCategory": "B",
-      "period": "Tarde"
-    },
-    {
-      "id": "f2c1",
-      "classId": "e377",
-      "courseId": "e01a",
-      "turmaCategory": "C",
-      "period": "Manha"
-    },
-    {
-      "id": "c6d7",
-      "classId": "48f1",
-      "courseId": "e01a",
-      "turmaCategory": "B",
+      "dateIn": "6 de fevereiro de 2026",
       "period": "Manha"
     }
   ],
@@ -214,16 +67,6 @@
   "materials": [],
   "messages": [],
   "news": [
-    {
-      "id": "a3fb",
-      "title": "jjjjjfjj",
-      "description": "jgjjg"
-    },
-    {
-      "id": "66d7",
-      "title": "dggdggg",
-      "description": "gdggd"
-    },
     {
       "id": "15fe",
       "title": "fhhfhfh",

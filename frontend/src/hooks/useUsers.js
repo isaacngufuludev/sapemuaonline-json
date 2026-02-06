@@ -1,14 +1,12 @@
 import { useEffect, useState } from "react";
 import { get } from "../services/api";
+import { useRefresh } from "../contexts/RefreshContext";
 
 export function useUsers() {
   const [users, setUsers] = useState([]);
   const [isLoading, setLoading] = useState(false);
   const [error, setError] = useState(null);
-
-  useEffect(() => {
-    fetchUsers();
-  }, []);
+  const { refreshKey } = useRefresh();
 
   async function fetchUsers() {
     try {
@@ -21,6 +19,10 @@ export function useUsers() {
       setLoading(false);
     }
   }
+
+  useEffect(() => {
+    fetchUsers();
+  }, [refreshKey]);
 
   return { users, isLoading, error, fetchUsers };
 }

@@ -2,12 +2,11 @@ import Title3 from "../../../../components/ui/Title3";
 
 import { HiEllipsisVertical } from "react-icons/hi2";
 import { BsPencil, BsTrash } from "react-icons/bs";
-import BtnEdit from "../../../../components/ui/BtnEdit";
 import { useModal } from "../../../../contexts/ModalContext";
 import { useEditOptions } from "../../../../hooks/useEditOptions";
 
 function AdminNewsItem({ item }) {
-  const { toggleNews, toggleNewsModal } = useModal();
+  const { toggleNews, toggleNewsModal, selectOptionItem } = useModal();
   const { showMenu, menuRef, setShowMenu } = useEditOptions();
 
   const handleEdit = () => {
@@ -17,7 +16,7 @@ function AdminNewsItem({ item }) {
   };
 
   const handleDelete = () => {
-    console.log("Eliminar estudante:", item);
+    selectOptionItem(item);
     toggleNews();
     setShowMenu(false);
   };

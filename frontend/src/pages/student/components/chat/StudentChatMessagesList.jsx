@@ -1,4 +1,4 @@
-import TeacherChatMessagesItem from "./TeacherChatMessagesItem";
+import StudentChatMessageItem from "./StudentChatMessageItem";
 
 const messages = [
   {
@@ -95,14 +95,14 @@ const messages = [
   },
 ];
 
-function TeacherChatMessagesList() {
+function StudentChatMessagesList() {
   return (
     <ul className="space-y-6">
       {messages.map((item) => (
-        <TeacherChatMessagesItem item={item} />
+        <StudentChatMessageItem item={item} />
       ))}
     </ul>
   );
 }
 
-export default TeacherChatMessagesList;
+export default StudentChatMessagesList;

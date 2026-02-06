@@ -1,4 +1,4 @@
-function TeacherChats({ children }) {
+function StudentChat({children}) {
   const childrenArray = Array.isArray(children) ? children : [children];
   const [chatList, chatMessages] = childrenArray;
 
@@ -10,4 +10,4 @@ function TeacherChats({ children }) {
   );
 }
 
-export default TeacherChats;
+export default StudentChat

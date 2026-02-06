@@ -1,13 +1,13 @@
 // import { HiOutlineTrashm } from "react-icons/hi";
 import { HiEllipsisVertical } from "react-icons/hi2";
-import { BsEye, BsPencil, BsPencilSquare, BsTrash } from "react-icons/bs";
-import { useModal } from "../../../../contexts/ModalContext";
+import { BsEye, BsPencil, BsTrash } from "react-icons/bs";
 import { useNavigate } from "react-router-dom";
 import { useEditOptions } from "../../../../hooks/useEditOptions";
+import { useModal } from "../../../../contexts/ModalContext";
 
 function AdminStudentItem({ item }) {
-  const { toggleRemoveStudent } = useModal();
   const { showMenu, menuRef, setShowMenu } = useEditOptions();
+  const { toggleRemoveStudent, selectOptionItem } = useModal();
   const navigate = useNavigate();
 
   const handleView = () => {
@@ -22,19 +22,19 @@ function AdminStudentItem({ item }) {
     setShowMenu(false);
   };
 
-  const handleDelete = () => {
-    console.log("Eliminar estudante:", item);
+  function handleDelete() {
+    selectOptionItem(item);
     toggleRemoveStudent();
     setShowMenu(false);
-  };
+  }
 
   return (
     <li className="grid grid-cols-[0.3fr_1.5fr_0.7fr_0.7fr_0.7fr_0.5fr_0.5fr_0.2fr] last:border-0 items-center dark:border-gray-700 border-b border-slate-200 px-4 py-2">
-      <siv className="font-semibold flex items-center justify-start ">
+      <div className="font-semibold flex items-center justify-start ">
         <p className="py-3 px-5 rounded-full bg-slate-100  dark:bg-gray-900">
-          {item.name[0].toUpperCase()}
+          {item.name[0]?.toUpperCase()}
         </p>
-      </siv>
+      </div>
       <p>{item.name}</p>
       <p>{item.id}</p>
       <p>{item.classLevel}</p>

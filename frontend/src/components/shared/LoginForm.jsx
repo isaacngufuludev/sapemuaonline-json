@@ -1,13 +1,13 @@
 import { useEffect, useState } from "react";
-import { useAuth } from "../../contexts/AuthContext";
+import { useAuth } from "../../contexts/AuthContext.jsx";
 import { useNavigate } from "react-router-dom";
-import { useToast } from "../../hooks/useToast";
+import { useToast } from "../../hooks/useToast.js";
 import { FiEye, FiEyeOff } from "react-icons/fi";
-import Loading from "../shared/Loading.jsx";
+import Loading from "./Loading.jsx";
 
-function Form() {
+function LoginForm() {
   const [email, setEmail] = useState("");
-  // const [id, setId] = useState("");
+  const [id, setId] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
 
@@ -18,8 +18,8 @@ function Form() {
   function handleSubmit(e) {
     e.preventDefault();
     if (!email || !password) showWarning("Preencha todos os campos por favor");
-    if (email && password) {
-      login({ email, password });
+    if (email || id && password) {
+      login({id, email , password });
     }
 
     setEmail("");
@@ -39,17 +39,17 @@ function Form() {
 
   return (
     <>
-      <form className="flex flex-col gap-5" action="" onSubmit={handleSubmit}>
+      <form className="flex flex-col gap-5 mb-2" action="" onSubmit={handleSubmit}>
         <div>
           <label className="text-black text-sm dark:text-white" htmlFor="id">
-            Email
+            E-mail ou Codigo Interno
           </label>
           <input
             id="id"
             className="focus:ring-1 dark:bg-gray-800 dark:text-white  dark:border-gray-700 ring-blue-700 pl-1 h-8 w-full border border-stone-300 focus:outline-none rounded-md text-sm"
             type="text"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
+            value={email || id}
+            onChange={(e) => setEmail(e.target.value) || setId(e.target.value)}
           />
         </div>
         <div className="relative">
@@ -90,4 +90,4 @@ function Form() {
   );
 }
 
-export default Form;
+export default LoginForm;

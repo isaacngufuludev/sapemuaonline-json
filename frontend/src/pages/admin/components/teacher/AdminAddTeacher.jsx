@@ -41,6 +41,7 @@ function AdminAddTeacher() {
   const [description, setDescription] = useState("");
   const fileCVRef = useRef(null);
   const fileCertificateRef = useRef(null);
+  const filePhoto = useRef(null);
   const { showSuccess, showWarning } = useToast();
   const navigate = useNavigate();
 
@@ -48,6 +49,7 @@ function AdminAddTeacher() {
     e.preventDefault();
     const certificate = fileCertificateRef.current.files[0];
     const cv = fileCVRef.current.files[0];
+    const photo = filePhoto.current.files[0];
 
     // Validação de email
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -75,7 +77,7 @@ function AdminAddTeacher() {
     }
 
     const newTecher = {
-      id: Math.floor(Math.random() * 5000) + 100,
+      id: (Math.floor(Math.random() * 5000) + 100).toString(),
       dateIn: formateDate(new Date()),
       age: `${calcAge(birthDate)} anos`,
       name,
@@ -85,6 +87,7 @@ function AdminAddTeacher() {
       residence,
       phoneNumber: `+244 ${phoneNumber}`,
       certificate,
+      photo,
       cv,
       genre,
       qualification,
@@ -269,6 +272,10 @@ function AdminAddTeacher() {
           <Title4>Qualificações e documentos</Title4>
         </AdminAddHeader>
         <AdminAddForm type="two">
+          <div>
+            <AdminLabel>Foto-Passe</AdminLabel>
+            <AdminInput type="file" ref={filePhoto} accept=".jpg, .png, .pdf" />
+          </div>
           <div>
             <AdminLabel>Upload Curriculum</AdminLabel>
             <AdminInput type="file" ref={fileCVRef} accept=".jpg, .png, .pdf" />

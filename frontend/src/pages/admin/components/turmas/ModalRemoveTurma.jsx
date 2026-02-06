@@ -3,8 +3,30 @@ import Title3 from "../../../../components/ui/Title3";
 import BtnModal from "../../../../components/shared/BtnModal";
 import Modal from "../../../../components/shared/Modal";
 import { HiOutlineTrash } from "react-icons/hi";
+import { useModal } from "../../../../contexts/ModalContext";
+import { remove } from "../../../../services/api";
+import { useRefresh } from "../../../../contexts/RefreshContext";
+import { useToast } from "../../../../hooks/useToast";
 
 function ModalRemoveTurma() {
+  const { toggleTurmas, selectedItem } = useModal();
+  const { triggerRefresh } = useRefresh();
+  const { showError, showSuccess } = useToast();
+
+  async function handleDelete() {
+    if (!selectedItem) return;
+
+    try {
+      await remove("turmas", selectedItem.id);
+      showSuccess("Turma removida com sucesso!");
+    } catch (error) {
+      showError(error.message);
+    } finally {
+      toggleTurmas();
+      triggerRefresh();
+    }
+  }
+
   return (
     <Modal>
       <BtnCloseModal />
@@ -17,7 +39,9 @@ function ModalRemoveTurma() {
       <p className="text-sm mb-5  ">
         Tens a Certeza que queres eliminar este turma?
       </p>
-      <BtnModal type="remove">Eliminar Turma</BtnModal>
+      <BtnModal onClick={handleDelete} type="remove">
+        Eliminar Turma
+      </BtnModal>
     </Modal>
   );
 }
