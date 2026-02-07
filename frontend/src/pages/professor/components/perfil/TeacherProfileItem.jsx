@@ -3,8 +3,11 @@ import Title4 from "../../../../components/ui/Title4";
 import { FiUser, FiPhone, FiMail, FiCalendar } from "react-icons/fi";
 import { LuGraduationCap } from "react-icons/lu";
 import { HiOutlineHome, HiOutlineBookOpen } from "react-icons/hi";
+import { useAuth } from "../../../../contexts/AuthContext";
 
-function TeacherProfileItem({ item }) {
+function TeacherProfileItem() {
+  const { user } = useAuth();
+
   return (
     <>
       <li className="rounded-md bg-white dark:bg-gray-800  border-[0.1px] dark:border-gray-700 border-slate-200">
@@ -13,8 +16,8 @@ function TeacherProfileItem({ item }) {
             <FiUser />
           </p>
           <div>
-            <Title4>{item.name}</Title4>
-            <p className="text-xs">{item.id}</p>
+            <Title4>{user.name}</Title4>
+            <p className="text-xs">{user.id}</p>
           </div>
         </div>
         <div className="p-5 flex flex-col gap-3 ">
@@ -25,7 +28,7 @@ function TeacherProfileItem({ item }) {
             </p>
             <div className="flex flex-col ">
               <Title4>Telefone</Title4>
-              <p className="text-xs">{item.phoneNumber}</p>
+              <p className="text-xs">{user.phoneNumber}</p>
             </div>
           </div>
           <div className="flex items-center gap-2">
@@ -34,7 +37,7 @@ function TeacherProfileItem({ item }) {
             </p>
             <div className="flex flex-col ">
               <Title4>Email</Title4>
-              <p className="text-xs">{item.email}</p>
+              <p className="text-xs">{user.email}</p>
             </div>
           </div>
           <div className="flex items-center gap-2">
@@ -43,7 +46,7 @@ function TeacherProfileItem({ item }) {
             </p>
             <div className="flex flex-col ">
               <Title4>Adertido aos</Title4>
-              <p className="text-xs">{item.datein}</p>
+              <p className="text-xs">{user.dateIn}</p>
             </div>
           </div>
           <Title4>Informaçóes Acadêmica</Title4>
@@ -54,7 +57,7 @@ function TeacherProfileItem({ item }) {
               </p>
               <div className="flex flex-col ">
                 <Title4>Qualificação</Title4>
-                <p className="text-xs">{item.qualification}</p>
+                <p className="text-xs">{user.qualification}</p>
               </div>
             </div>
           </div>
@@ -64,7 +67,7 @@ function TeacherProfileItem({ item }) {
             </p>
             <div className="flex flex-col ">
               <Title4>Area de formação</Title4>
-              <p className="text-xs">{item.area}</p>
+              <p className="text-xs">{user.area}</p>
             </div>
           </div>
           <div className="flex items-center gap-2">
@@ -73,7 +76,7 @@ function TeacherProfileItem({ item }) {
             </p>
             <div className="flex flex-col ">
               <Title4>Inatituição</Title4>
-              <p className="text-xs">{item.college}</p>
+              <p className="text-xs">{user.college}</p>
             </div>
           </div>
         </div>
@@ -85,27 +88,19 @@ function TeacherProfileItem({ item }) {
         </div>
         <div className="flex  gap-10 py-3 px-5 dark:bg-gray-800 border-b-[0.1px] dark:border-gray-700 border-slate-200 ">
           <p className="w-56 text-sm">Nome Completo</p>
-          <p className="text-sm">{item.name}</p>
-        </div>
-        <div className="flex gap-10 py-3 px-5 dark:bg-gray-800 border-b-[0.1px] dark:border-gray-700 border-slate-200 ">
-          <p className="w-56 text-sm">Filho de </p>
-          <p className="text-sm">{item.father}</p>
-        </div>
-        <div className="flex gap-10 py-3 px-5 dark:bg-gray-800 border-b-[0.1px] dark:border-gray-700 border-slate-200  ">
-          <p className="w-56 text-sm">e de </p>
-          <p className="text-sm">{item.father}</p>
+          <p className="text-sm">{user.name}</p>
         </div>
         <div className="flex gap-10 py-3 px-5 dark:bg-gray-800 border-b-[0.1px] dark:border-gray-700 border-slate-200  ">
           <p className="w-56 text-sm">Data de nascimento </p>
-          <p className="text-sm">{item.birthdate}</p>
+          <p className="text-sm">{user.birthDate}</p>
         </div>
         <div className="flex  gap-10 py-3 px-5 dark:bg-gray-800 border-b-[0.1px] dark:border-gray-700 border-slate-200 ">
           <p className="w-56 text-sm">Residência</p>
-          <p className="text-sm">{item.residencia}</p>
+          <p className="text-sm">{user.residence}</p>
         </div>
         <div className="flex gap-10 pt-3 px-5 ">
           <p className="w-56 text-sm">Bilhete de Identidade</p>
-          <p className="text-sm">{item.bi}</p>
+          <p className="text-sm">{user.biCode}</p>
         </div>
       </li>
     </>

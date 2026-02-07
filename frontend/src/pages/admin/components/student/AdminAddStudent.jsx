@@ -24,6 +24,9 @@ import { useStudentForm } from "../../../../contexts/StudentFormContext";
 import { calcAge, formateDate } from "../../../../utils/helpers";
 import { post } from "../../../../services/api";
 import { useToast } from "../../../../hooks/useToast";
+import { useCourses } from "../../../../hooks/useCourses";
+import { useClasses } from "../../../../hooks/useClasses";
+import { useTurmas } from "../../../../hooks/useTurmas";
 
 const parentLinks = [
   {
@@ -48,9 +51,9 @@ function AdminAddStudent() {
   const [residence, setResidence] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
   const [genre, setGenre] = useState("");
-  const [course, setCourse] = useState("");
-  const [classLevel, setClassLevel] = useState("");
-  const [turma, setTurma] = useState("");
+  const [courseId, setCourseId] = useState("");
+  const [classId, setClassId] = useState("");
+  const [turmaId, setTurmaId] = useState("");
   const [email, setEmail] = useState("");
   const certfificateRef = useRef(null);
   const photoRef = useRef(null);
@@ -67,6 +70,9 @@ function AdminAddStudent() {
     guardionPhoneNumber,
   } = useStudentForm();
   const { showSuccess, showWarning } = useToast();
+  const { courses } = useCourses();
+  const { turmas } = useTurmas();
+  const { classes } = useClasses();
 
   async function handlerSubmit(e) {
     e.preventDefault();
@@ -90,9 +96,9 @@ function AdminAddStudent() {
       !phoneNumber ||
       !certificate ||
       !photo ||
-      !course ||
-      !classLevel ||
-      !turma ||
+      !courseId ||
+      !classId ||
+      !turmaId ||
       !email
     ) {
       showWarning("Por favor, preencha todos os campos");
@@ -117,9 +123,9 @@ function AdminAddStudent() {
       residence,
       phoneNumber: `+244 ${phoneNumber}`,
       genre,
-      course,
-      classLevel: `${classLevel}ª Classe`,
-      turma,
+      courseId,
+      classId,
+      turmaId,
       email,
       certificate,
       photo,
@@ -276,39 +282,48 @@ function AdminAddStudent() {
           <div>
             <AdminLabel>Selecionar Curso/Ensino</AdminLabel>
             <AdminSelect
-              value={course}
-              onChange={(e) => setCourse(e.target.value)}
+              value={courseId}
+              onChange={(e) => setCourseId(e.target.value)}
             >
-              <option>Nenhum Selecionado</option>
-              <option value="Informatica">Informática</option>
-              <option value="Gestao_Empresarial">Gestão Empresarial</option>
-              <option value="Electricidade">Electricidade</option>
+              <option value="">Nenhum Selecionado</option>
+              {courses.map((course) => (
+                <option key={course.id} value={course.id}>
+                  {course.courseName}
+                </option>
+              ))}
             </AdminSelect>
           </div>
           <div>
             <AdminLabel>Selecionar Classe</AdminLabel>
             <AdminSelect
-              value={classLevel}
-              onChange={(e) => setClassLevel(e.target.value)}
+              value={classId}
+              onChange={(e) => setClassId(e.target.value)}
             >
-              <option>Nenhum Selecionado</option>
-              <option value="10">10ª Classe</option>
-              <option value="11">11ª Classe</option>
-              <option value="12">12ª Classe</option>
-              <option value="13">13ª Classe</option>
+              <option value="">Nenhum Selecionado</option>
+              {classes
+                .filter((classItem) => classItem.courseId === courseId)
+                .map((classItem) => (
+                  <option key={classItem.id} value={classItem.id}>
+                    {classItem.classYear}
+                  </option>
+                ))}
             </AdminSelect>
           </div>
           <div>
             <AdminLabel>Selecionar Turma</AdminLabel>
             <AdminSelect
-              value={turma}
-              onChange={(e) => setTurma(e.target.value)}
+              value={turmaId}
+              onChange={(e) => setTurmaId(e.target.value)}
             >
-              <option>Nenhum Selecionado</option>
-              <option value="A">Turma A</option>
-              <option value="B">Turma B</option>
-              <option value="C">Turma C</option>
-              <option value="D">Turma D</option>
+              <option value="">Nenhum Selecionado</option>
+              {turmas
+                .filter((turmaItem) => turmaItem.courseId === courseId)
+                .filter((turmaItem) => turmaItem.classId === classId)
+                .map((turmaItem) => (
+                  <option key={turmaItem.id} value={turmaItem.id}>
+                    {turmaItem.turmaCategory}
+                  </option>
+                ))}
             </AdminSelect>
           </div>
         </AdminAddForm>

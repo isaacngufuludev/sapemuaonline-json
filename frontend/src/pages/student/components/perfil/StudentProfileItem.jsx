@@ -3,8 +3,19 @@ import Title4 from "../../../../components/ui/Title4";
 import { FiUser, FiPhone, FiMail, FiCalendar } from "react-icons/fi";
 import { LuGraduationCap } from "react-icons/lu";
 import { HiOutlineClock, HiOutlineHome } from "react-icons/hi";
+import { useAuth } from "../../../../contexts/AuthContext";
+import { useClasses } from "../../../../hooks/useClasses";
+import { useCourses } from "../../../../hooks/useCourses";
+import { useTurmas } from "../../../../hooks/useTurmas";
 
-function StudentProfileItem({ item }) {
+function StudentProfileItem() {
+  const { user } = useAuth();
+  const { classes } = useClasses();
+  const { courses } = useCourses();
+  const { turmas } = useTurmas();
+  const studentClass = classes.find((c) => c.id === user.classId);
+  const studentCourse = courses.find((course) => course.id === user.courseId);
+  const studentTurma = turmas.find((turma) => turma.id === user.turmaId);
   return (
     <>
       <li className=" rounded-md bg-white dark:bg-gray-800  border-[0.1px] dark:border-gray-700 border-slate-200">
@@ -13,8 +24,8 @@ function StudentProfileItem({ item }) {
             <FiUser />
           </p>
           <div>
-            <Title4>{item.name}</Title4>
-            <p className="text-xs">{item.id}</p>
+            <Title4>{user.name}</Title4>
+            <p className="text-xs">{user.id}</p>
           </div>
         </div>
         <div className="p-5 flex flex-col gap-3 ">
@@ -25,7 +36,7 @@ function StudentProfileItem({ item }) {
             </p>
             <div className="flex flex-col ">
               <Title4>Telefone</Title4>
-              <p className="text-xs">{item.phoneNumber}</p>
+              <p className="text-xs">{user.phoneNumber}</p>
             </div>
           </div>
           <div className="flex items-center gap-2">
@@ -34,7 +45,7 @@ function StudentProfileItem({ item }) {
             </p>
             <div className="flex flex-col ">
               <Title4>Email</Title4>
-              <p className="text-xs">{item.email}</p>
+              <p className="text-xs">{user.email}</p>
             </div>
           </div>
           <div className="flex items-center gap-2">
@@ -43,7 +54,7 @@ function StudentProfileItem({ item }) {
             </p>
             <div className="flex flex-col ">
               <Title4>Adertido aos</Title4>
-              <p className="text-xs">{item.datein}</p>
+              <p className="text-xs">{user.dateIn}</p>
             </div>
           </div>
           <Title4>Informaçóes da Turma</Title4>
@@ -54,7 +65,9 @@ function StudentProfileItem({ item }) {
               </p>
               <div className="flex flex-col ">
                 <Title4>Curso/Ensino</Title4>
-                <p className="text-xs">{item.course}</p>
+                <p className="text-xs">
+                  {studentCourse?.courseName || "Não definido"}
+                </p>
               </div>
             </div>
           </div>
@@ -64,7 +77,9 @@ function StudentProfileItem({ item }) {
             </p>
             <div className="flex flex-col ">
               <Title4>Classe</Title4>
-              <p className="text-xs">{item.class}</p>
+              <p className="text-xs">
+                {studentClass?.classYear || "Não definido"}
+              </p>
             </div>
           </div>
           <div className="flex items-center gap-2">
@@ -73,7 +88,9 @@ function StudentProfileItem({ item }) {
             </p>
             <div className="flex flex-col ">
               <Title4>Turma</Title4>
-              <p className="text-xs">{item.turma}</p>
+              <p className="text-xs">
+                {studentTurma?.turmaCategory || "Não definido"}
+              </p>
             </div>
           </div>
           <div className="flex items-center gap-2">
@@ -82,7 +99,9 @@ function StudentProfileItem({ item }) {
             </p>
             <div className="flex flex-col ">
               <Title4>Periodo</Title4>
-              <p className="text-xs">{item.period}</p>
+              <p className="text-xs">
+                {studentTurma?.period || "Não definido"}
+              </p>
             </div>
           </div>
         </div>
@@ -94,27 +113,27 @@ function StudentProfileItem({ item }) {
         </div>
         <div className="flex  gap-10 py-3 px-5 dark:bg-gray-800 border-b-[0.1px] dark:border-gray-700 border-slate-200 ">
           <p className="w-56 text-sm">Nome Completo</p>
-          <p className="text-sm">{item.name}</p>
+          <p className="text-sm">{user.name}</p>
         </div>
         <div className="flex gap-10 py-3 px-5 dark:bg-gray-800 border-b-[0.1px] dark:border-gray-700 border-slate-200 ">
           <p className="w-56 text-sm">Filho de </p>
-          <p className="text-sm">{item.father}</p>
+          <p className="text-sm">{user.fatherName}</p>
         </div>
         <div className="flex gap-10 py-3 px-5 dark:bg-gray-800 border-b-[0.1px] dark:border-gray-700 border-slate-200  ">
           <p className="w-56 text-sm">e de </p>
-          <p className="text-sm">{item.father}</p>
+          <p className="text-sm">{user.motherName}</p>
         </div>
         <div className="flex gap-10 py-3 px-5 dark:bg-gray-800 border-b-[0.1px] dark:border-gray-700 border-slate-200  ">
           <p className="w-56 text-sm">Data de nascimento </p>
-          <p className="text-sm">{item.birthdate}</p>
+          <p className="text-sm">{user.birthDate}</p>
         </div>
         <div className="flex  gap-10 py-3 px-5 dark:bg-gray-800 border-b-[0.1px] dark:border-gray-700 border-slate-200 ">
           <p className="w-56 text-sm">Residência</p>
-          <p className="text-sm">{item.residencia}</p>
+          <p className="text-sm">{user.residence}</p>
         </div>
         <div className="flex gap-10 pt-3 px-5 ">
           <p className="w-56 text-sm">Bilhete de Identidade</p>
-          <p className="text-sm">{item.bi}</p>
+          <p className="text-sm">{user.biCode}</p>
         </div>
       </li>
     </>

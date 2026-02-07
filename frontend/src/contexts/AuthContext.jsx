@@ -1,4 +1,4 @@
-import { createContext, useContext, useReducer } from "react";
+import { createContext, useContext, useEffect, useReducer } from "react";
 import { useToast } from "../hooks/useToast";
 import { get } from "../services/api";
 
@@ -15,33 +15,45 @@ function reducer(state, action) {
     case "login":
       return {
         ...state,
-        isLoading: true,
         user: action.payload,
+        isLoading: true,
         isAuthenticated: true,
       };
     case "logout":
       return { ...state, isLoading: false, user: null, isAuthenticated: false };
+    case "restore":
+      return { user: action.payload, isAuthenticated: true };
     default:
       throw new Error("Unknown action");
   }
 }
 
 function AuthProvider({ children }) {
-  const [{ user, isLoading, isAuthenticated }, dispatch] = useReducer(
+  const [{ user, isAuthenticated, isLoading }, dispatch] = useReducer(
     reducer,
-    initialState
+    initialState,
   );
   const { showSuccess, showError } = useToast();
 
-  async function login({ email ,id, password }) {
+  useEffect(() => {
+    const saved = localStorage.getItem("currentUser");
+    if (saved) {
+      dispatch({ type: "restore", payload: JSON.parse(saved) });
+    }
+  }, []);
+
+  async function login({ email, id, password }) {
     const users = await get("users");
 
     const userFound = users.find(
-      (user) => user.email === email || user.id === id && user.password === password
+      (user) =>
+        user.email === email || (user.id === id && user.password === password),
     );
 
     if (userFound) {
       dispatch({ type: "login", payload: userFound });
+      localStorage.setItem("currentUser", JSON.stringify(userFound));
+
       showSuccess("Login executado com sucesso");
     } else {
       showError("Credênciais invalidas, tente de novo");
@@ -49,6 +61,7 @@ function AuthProvider({ children }) {
   }
 
   function logout() {
+    localStorage.removeItem("currentUser");
     dispatch({ type: "logout" });
   }
 

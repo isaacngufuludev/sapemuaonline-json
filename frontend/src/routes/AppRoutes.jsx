@@ -58,7 +58,7 @@ function AppRoutes() {
                 <Route index path="/" element={<Home />} />
                 <Route path="/sobre" element={<Sobre />} />
                 <Route path="/gallery" element={<Gallery />} />
-                <Route path="auth" element={<Auth />}>
+                <Route path="/auth" element={<Auth />}>
                   <Route index element={<Navigate replace to="login" />} />
                   <Route path="login" element={<Login />} />
                 </Route>
@@ -126,9 +126,13 @@ function AppRoutes() {
                         element={<AdminMainTeacherLayout />}
                       />
                       <Route
-                        path="teacher-detail"
+                        path="teacher-detail/:teacherId"
                         element={<AdminTeacherDetail />}
                       />
+                      {/* <Route
+                        path="teacher-detail/"
+                        element={<div></div>}
+                      ></Route> */}
 
                       <Route path="add-teacher" element={<AdminAddTeacher />} />
                     </Route>

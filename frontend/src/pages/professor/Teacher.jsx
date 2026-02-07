@@ -15,6 +15,7 @@ import { useModal } from "../../contexts/ModalContext";
 import { FiUser } from "react-icons/fi";
 import { HiOutlineHome } from "react-icons/hi";
 import { BsChat } from "react-icons/bs";
+import { useAuth } from "../../contexts/AuthContext";
 
 const links = [
   {
@@ -36,6 +37,7 @@ const links = [
 
 function Teacher() {
   const { isLogoutModal } = useModal();
+  const { user } = useAuth();
 
   return (
     <AuthLayout>
@@ -53,7 +55,7 @@ function Teacher() {
       </AuthSideBar>
       <AuthHeader>
         <div>
-          <p>Bem Vindo de volta, Henriques</p>
+          <p>Bem Vindo de volta, {user.name.split(" ")[0]}</p>
         </div>
         <div className="flex items-center gap-4 ">
           <ToggleDarkMode />
@@ -62,8 +64,8 @@ function Teacher() {
               <FiUser />
             </div>
             <div>
-              <p className="leading-3 font-semibold">Henriques Cidade</p>
-              <p className="text-xs">Professor</p>
+              <p className="leading-3 font-semibold">{user.name}</p>
+              <p className="text-xs">{user.role}</p>
             </div>
           </div>
           <LogoutBtn />

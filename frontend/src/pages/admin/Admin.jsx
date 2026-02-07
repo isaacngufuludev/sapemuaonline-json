@@ -9,6 +9,7 @@ import {
 import { Outlet } from "react-router-dom";
 import { useModal } from "../../contexts/ModalContext";
 import { FiUser } from "react-icons/fi";
+import { useAuth } from "../../contexts/AuthContext";
 
 import AuthHeader from "../../components/layout/AuthHeader";
 import AuthMain from "../../components/layout/AuthMain";
@@ -57,6 +58,7 @@ const links = [
 
 function Admin() {
   const { isLogoutModal } = useModal();
+  const { user } = useAuth();
 
   return (
     <AuthLayout>
@@ -74,7 +76,7 @@ function Admin() {
       </AuthSideBar>
       <AuthHeader>
         <div>
-          <p>Bem Vindo de volta, Isaac</p>
+          <p>Bem Vindo de volta, {user.name.split(" ")[0]} </p>
         </div>
         <div className="flex items-center gap-4">
           <ToggleDarkMode />
@@ -84,8 +86,8 @@ function Admin() {
                 <FiUser />
               </div>
               <div>
-                <p className="leading-3 font-semibold">Isaac Ngufulu</p>
-                <p className="text-xs">Administrador</p>
+                <p className="leading-3 font-semibold"> {user.name} </p>
+                <p className="text-xs">{user.role}</p>
               </div>
             </div>
           </div>

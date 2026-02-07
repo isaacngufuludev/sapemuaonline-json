@@ -12,8 +12,13 @@ import {
 import { LuGraduationCap } from "react-icons/lu";
 import { HiOutlineClock, HiOutlineHome } from "react-icons/hi";
 import { FaRegIdCard } from "react-icons/fa";
+import { useParams } from "react-router-dom";
 
 function AdminTeacherDetailItem({ item }) {
+  const { teacherId } = useParams();
+  // const [];
+  console.log(teacherId);
+
   return (
     <>
       <li className=" rounded-md bg-white mb-5 dark:bg-gray-800 p-5 flex flex-col gap-3 border-[0.1px] dark:border-gray-700 border-slate-200">

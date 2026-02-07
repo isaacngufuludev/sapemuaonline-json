@@ -4,10 +4,17 @@ import { BsEye, BsPencil, BsTrash } from "react-icons/bs";
 import { useNavigate } from "react-router-dom";
 import { useEditOptions } from "../../../../hooks/useEditOptions";
 import { useModal } from "../../../../contexts/ModalContext";
+import { useClasses } from "../../../../hooks/useClasses";
+import { useCourses } from "../../../../hooks/useCourses";
 
 function AdminStudentItem({ item }) {
   const { showMenu, menuRef, setShowMenu } = useEditOptions();
   const { toggleRemoveStudent, selectOptionItem } = useModal();
+  const { classes } = useClasses();
+  const { courses } = useCourses();
+  const studentClass = classes.find((c) => c.id === item.classId);
+  const studentCourse = courses.find((course) => course.id === item.courseId);
+  console.log(studentClass, studentCourse);
   const navigate = useNavigate();
 
   const handleView = () => {
@@ -31,14 +38,14 @@ function AdminStudentItem({ item }) {
   return (
     <li className="grid grid-cols-[0.3fr_1.5fr_0.7fr_0.7fr_0.7fr_0.5fr_0.5fr_0.2fr] last:border-0 items-center dark:border-gray-700 border-b border-slate-200 px-4 py-2">
       <div className="font-semibold flex items-center justify-start ">
-        <p className="py-3 px-5 rounded-full bg-slate-100  dark:bg-gray-900">
+        <p className="py-3 px-4 rounded-full bg-slate-100  dark:bg-gray-900">
           {item.name[0]?.toUpperCase()}
         </p>
       </div>
       <p>{item.name}</p>
       <p>{item.id}</p>
-      <p>{item.classLevel}</p>
-      <p>{item.course}</p>
+      <p>{studentClass?.classYear}</p>
+      <p>{studentCourse?.courseName}</p>
       <p>{item.genre}</p>
       <p>{item.age}</p>
       <div className="relative" ref={menuRef}>

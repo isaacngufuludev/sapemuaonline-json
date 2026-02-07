@@ -90,9 +90,13 @@ function ModalTurma() {
             onChange={(e) => setClassId(e.target.value)}
           >
             <option value="">Nenhum Selecionado</option>
-            {classes.map((classItem) => (
-              <option value={classItem.id}>{classItem.classYear}</option>
-            ))}
+            {classes
+              .filter((classItem) => classItem.courseId === courseId)
+              .map((classItem) => (
+                <option key={classItem.id} value={classItem.id}>
+                  {classItem.classYear}
+                </option>
+              ))}
           </AdminSelect>
         </div>
         <div>

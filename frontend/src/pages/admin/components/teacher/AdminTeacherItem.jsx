@@ -12,13 +12,13 @@ function AdminTeacherItem({ item }) {
 
   const handleView = () => {
     console.log("Ver Professor:", item);
-    navigate("/area/admin/adminTeacher/teacher-detail");
+    navigate(`/area/admin/adminTeacher/teacher-detail/${item.id}`);
     setShowMenu(false);
   };
 
   const handleEdit = () => {
     console.log("Editar Professor:", item);
-    navigate("/area/admin/adminTeacher/add-teacher");
+    navigate(`/area/admin/adminTeacher/add-teacher`);
     setShowMenu(false);
   };
 

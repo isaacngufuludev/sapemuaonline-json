@@ -4,13 +4,13 @@ import { useNavigate } from "react-router-dom";
 import { useToast } from "../../hooks/useToast.js";
 import { FiEye, FiEyeOff } from "react-icons/fi";
 import Loading from "./Loading.jsx";
+import AuthInput from "../ui/AuthInput.jsx";
 
 function LoginForm() {
   const [email, setEmail] = useState("");
   const [id, setId] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
-
   const { user, login, isAuthenticated, isLoading } = useAuth();
   const { showWarning } = useToast();
   const navigate = useNavigate();
@@ -18,8 +18,8 @@ function LoginForm() {
   function handleSubmit(e) {
     e.preventDefault();
     if (!email || !password) showWarning("Preencha todos os campos por favor");
-    if (email || id && password) {
-      login({id, email , password });
+    if (email || (id && password)) {
+      login({ id, email, password });
     }
 
     setEmail("");
@@ -34,55 +34,50 @@ function LoginForm() {
       if (isAuthenticated && user.role === "teacher") navigate("/area/teacher");
       if (isAuthenticated && user.role === "student") navigate("/area/student");
     },
-    [user, isAuthenticated, navigate]
+    [user, isAuthenticated, navigate],
   );
 
   return (
     <>
-      <form className="flex flex-col gap-5 mb-2" action="" onSubmit={handleSubmit}>
-        <div>
-          <label className="text-black text-sm dark:text-white" htmlFor="id">
-            E-mail ou Codigo Interno
-          </label>
-          <input
-            id="id"
-            className="focus:ring-1 dark:bg-gray-800 dark:text-white  dark:border-gray-700 ring-blue-700 pl-1 h-8 w-full border border-stone-300 focus:outline-none rounded-md text-sm"
-            type="text"
-            value={email || id}
-            onChange={(e) => setEmail(e.target.value) || setId(e.target.value)}
-          />
-        </div>
-        <div className="relative">
-          <label
-            className="text-black text-sm mb-8 dark:text-white"
-            htmlFor="password"
-          >
-            Palavra-Passe
-          </label>
-          <input
+      <form
+        className="flex flex-col gap-4 mb-3"
+        action=""
+        onSubmit={handleSubmit}
+      >
+        <AuthInput
+          id="password"
+          value={email || id}
+          type="text"
+          onChange={(e) => {
+            console.log(email, id);
+            setEmail(e.target.value) || setId(e.target.value);
+          }}
+          name="E-mail ou Codigo Interno"
+        />
+        <div className="relative mb-2">
+          <AuthInput
             id="password"
-            className="focus:ring-1 dark:text-white dark:bg-gray-800  dark:border-gray-700 ring-blue-700 pl-1 text-sm h-8 w-full border border-stone-300 focus:outline-none rounded-md "
-            type={showPassword ? "text" : "password"}
             value={password}
             onChange={(e) => setPassword(e.target.value)}
+            type={showPassword ? "text" : "password"}
+            name="Palavra-Passe"
           />
-
           <button
             type="button"
-            className="absolute flex items-center right-2 top-8 "
+            className="absolute flex items-center right-4 top-1/2 -translate-y-1/2 "
             onClick={(e) => {
               e.preventDefault();
               setShowPassword((show) => !show);
             }}
           >
-            {showPassword ? <FiEye /> : <FiEyeOff />}
+            {showPassword ? <FiEye size={18} /> : <FiEyeOff size={18} />}
           </button>
         </div>
         <button
-          className="h-9 bg-blue-700 text-white rounded-md text-sm font-semibold flex items-center justify-center"
+          className="bg-blue-700 text-white rounded-full text-sm font-semibold flex items-center  p-[12px] justify-center"
           disabled={isLoading}
         >
-          {isLoading ? <Loading /> : "Login"}
+          {isLoading ? <Loading /> : "Iniciar Sessão"}
           {/* {<Loading size={25} />} */}
         </button>
       </form>

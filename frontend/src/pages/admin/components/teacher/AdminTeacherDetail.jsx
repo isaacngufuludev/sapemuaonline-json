@@ -3,7 +3,7 @@ import Title3 from "../../../../components/ui/Title3";
 import AdminButton from "../AdminButton";
 import AdminHeading from "../AdminHeading";
 import AdminTeacherDetailList from "./AdminTeacherDetailList";
-import AdminStudentDetailList from "../student/AdminStudentDetailList";
+import { useParams } from "react-router-dom";
 
 function AdminTeacherDetail() {
   return (

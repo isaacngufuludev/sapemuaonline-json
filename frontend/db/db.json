@@ -6,14 +6,14 @@
       "email": "isaacngufulu70@gmail.com",
       "birthYear": "1992-09-25",
       "phoneNumber": "+244 934 987 654",
-      "genre": "Feminino",
+      "genre": "Masculino",
       "password": "1234",
       "role": "admin"
     },
     {
-      "id": "2",
-      "name": "Ana Paulo",
-      "email": "anapaulo11@gmail.com",
+      "id": "540",
+      "name": "Luzia Gonçaves",
+      "email": "luziagonçalves@gmail.com",
       "birthYear": "1992-09-25",
       "phoneNumber": "+244 934 987 654",
       "genre": "Feminino",
@@ -21,58 +21,195 @@
       "role": "admin"
     },
     {
-      "id": "3",
-      "name": "João Silva",
-      "email": "joaosilva@gmail.com",
+      "id": "4323",
+      "name": "Kinavuide David",
+      "email": "donkinavuide@gmail.com",
       "birthYear": "2004-02-18",
       "phoneNumber": "+244 912 345 678",
       "genre": "Masculino",
-      "password": "2005",
+      "password": "2000",
       "role": "admin"
+    },
+    {
+      "id": "3599",
+      "dateIn": "7 de fevereiro de 2026",
+      "age": "19 anos",
+      "name": "isaac Yambi",
+      "birthDate": "2007-02-22",
+      "province": "Lunada",
+      "biCode": "03993092099239",
+      "residence": "",
+      "phoneNumber": "+244 930886401",
+      "genre": "",
+      "courseId": "b92f",
+      "classId": "cc8e",
+      "turmaId": "4cc2",
+      "email": "isaacyambi@gmail.com",
+      "certificate": {},
+      "photo": {},
+      "fatherJob": "",
+      "fatherName": "",
+      "fatherPhoneNumber": "",
+      "motherName": "",
+      "motherJob": "",
+      "motherPhoneNumber": "",
+      "guardionJob": "",
+      "guardionName": "",
+      "guardionPhoneNumber": "",
+      "password": "52575562",
+      "role": "student"
+    },
+    {
+      "id": "4015",
+      "dateIn": "7 de fevereiro de 2026",
+      "age": "14 anos",
+      "name": "Carlos Manuel",
+      "birthDate": "2012-12-12",
+      "province": "",
+      "biCode": "",
+      "residence": "",
+      "phoneNumber": "+244 984747747",
+      "genre": "Masculino",
+      "courseId": "b92f",
+      "classId": "cc8e",
+      "turmaId": "4cc2",
+      "email": "carlos@gmail.com",
+      "certificate": {},
+      "photo": {},
+      "fatherJob": "",
+      "fatherName": "",
+      "fatherPhoneNumber": "",
+      "motherName": "",
+      "motherJob": "",
+      "motherPhoneNumber": "",
+      "guardionJob": "",
+      "guardionName": "",
+      "guardionPhoneNumber": "",
+      "password": "60858178",
+      "role": "student"
+    },
+    {
+      "id": "228",
+      "dateIn": "7 de fevereiro de 2026",
+      "age": "17 anos",
+      "name": "Leonardo Pequeno",
+      "birthDate": "2009-12-23",
+      "province": "",
+      "biCode": "",
+      "residence": "",
+      "phoneNumber": "+244 939939939",
+      "certificate": {},
+      "photo": {},
+      "cv": {},
+      "genre": "male",
+      "qualification": "superior",
+      "area": "Engenaria",
+      "college": "",
+      "adressCOllege": "",
+      "phoneCollege": "",
+      "email": "isaacngufulu@gmail.com",
+      "subjects": "Lingua Portuguesa",
+      "description": "",
+      "password": "61031433",
+      "role": "teacher"
+    },
+    {
+      "id": "2499",
+      "dateIn": "7 de fevereiro de 2026",
+      "age": "26 anos",
+      "name": "Luzia Gonçalves",
+      "birthDate": "2000-12-07",
+      "province": "Luanda",
+      "biCode": "077097897la",
+      "residence": "",
+      "phoneNumber": "+244 944646646",
+      "genre": "Feminino",
+      "courseId": "e453",
+      "classId": "904a",
+      "turmaId": "1517",
+      "email": "luzia@gmail.com",
+      "certificate": {},
+      "photo": {},
+      "fatherJob": "",
+      "fatherName": "",
+      "fatherPhoneNumber": "",
+      "motherName": "",
+      "motherJob": "",
+      "motherPhoneNumber": "",
+      "guardionJob": "",
+      "guardionName": "",
+      "guardionPhoneNumber": "",
+      "password": "65978389",
+      "role": "student"
     }
   ],
   "courses": [
     {
-      "id": "f6af",
-      "dateIn": "6 de fevereiro de 2026",
-      "courseName": "gestão"
+      "id": "9e44",
+      "dateIn": "7 de fevereiro de 2026",
+      "courseName": "Gestão Empresarial"
+    },
+    {
+      "id": "e453",
+      "dateIn": "7 de fevereiro de 2026",
+      "courseName": "Informática"
     }
   ],
   "classes": [
     {
-      "id": "28a3",
-      "classYear": "11ª Classe",
-      "dateIn": "6 de fevereiro de 2026",
-      "courseId": null
+      "id": "a341",
+      "classYear": "10ª Classe",
+      "dateIn": "7 de fevereiro de 2026",
+      "courseId": "9e44"
     },
     {
-      "id": "5885",
+      "id": "904a",
+      "classYear": "10ª Classe",
+      "dateIn": "7 de fevereiro de 2026",
+      "courseId": "e453"
+    },
+    {
+      "id": "e2ec",
+      "classYear": "11ª Classe",
+      "dateIn": "7 de fevereiro de 2026",
+      "courseId": "9e44"
+    },
+    {
+      "id": "a552",
+      "classYear": "11ª Classe",
+      "dateIn": "7 de fevereiro de 2026",
+      "courseId": "e453"
+    },
+    {
+      "id": "5459",
       "classYear": "12ª Classe",
-      "dateIn": "6 de fevereiro de 2026",
-      "courseId": "f6af"
+      "dateIn": "7 de fevereiro de 2026",
+      "courseId": "e453"
     }
   ],
   "turmas": [
     {
-      "id": "0637",
-      "classId": "28a3",
-      "courseId": null,
-      "room": "10",
+      "id": "1517",
+      "classId": "904a",
+      "courseId": "e453",
+      "room": "7",
+      "turmaCategory": "A",
+      "dateIn": "7 de fevereiro de 2026",
+      "period": "Manha"
+    },
+    {
+      "id": "7fa1",
+      "classId": "a341",
+      "courseId": "9e44",
+      "room": "5",
       "turmaCategory": "B",
-      "dateIn": "6 de fevereiro de 2026",
+      "dateIn": "7 de fevereiro de 2026",
       "period": "Manha"
     }
   ],
   "tasks": [],
   "materials": [],
   "messages": [],
-  "news": [
-    {
-      "id": "15fe",
-      "title": "fhhfhfh",
-      "description": "hfhhfhf",
-      "date": "28/01/2026"
-    }
-  ],
+  "news": [],
   "subjects": []
 }

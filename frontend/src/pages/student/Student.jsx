@@ -16,6 +16,7 @@ import { FiFileText, FiUser } from "react-icons/fi";
 import { LuGraduationCap } from "react-icons/lu";
 import { HiOutlineUsers } from "react-icons/hi";
 import { BsChat } from "react-icons/bs";
+import { useAuth } from "../../contexts/AuthContext";
 
 const links = [
   {
@@ -48,6 +49,7 @@ const links = [
 
 function Student() {
   const { isLogoutModal } = useModal();
+  const { user } = useAuth();
 
   return (
     <AuthLayout>
@@ -65,7 +67,7 @@ function Student() {
       </AuthSideBar>
       <AuthHeader>
         <div>
-          <p>Bem Vindo de volta, Luzia</p>
+          <p>Bem Vindo de volta, {user.name.split(" ")[0]}</p>
         </div>
         <div className="flex items-center gap-4">
           <ToggleDarkMode />
@@ -75,8 +77,8 @@ function Student() {
                 <FiUser />
               </div>
               <div>
-                <p className="leading-3 font-semibold">Luzia Gonçalves</p>
-                <p className="text-xs">Estudante</p>
+                <p className="leading-3 font-semibold">{user.name}</p>
+                <p className="text-xs">{user.role}</p>
               </div>
             </div>
           </div>
