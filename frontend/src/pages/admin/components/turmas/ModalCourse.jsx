@@ -7,19 +7,33 @@ import AdminButton from "../AdminButton";
 import ModalForm from "../../../../components/shared/ModalForm";
 import Loading from "../../../../components/shared/Loading";
 import { MdOutlineDone } from "react-icons/md";
-import { useState } from "react";
-import { post } from "../../../../services/api";
+import { useEffect, useState } from "react";
+import { patch, post } from "../../../../services/api";
 import { useModal } from "../../../../contexts/ModalContext";
 import { useToast } from "../../../../hooks/useToast";
 import { useRefresh } from "../../../../contexts/RefreshContext";
 import { formateDate } from "../../../../utils/helpers";
+import FloatInputLabel from "../../../../components/ui/FloatInputLabel";
 
-function ModalCourse() {
+function ModalCourse({ editedItem }) {
   const [courseName, setCourseName] = useState("");
-  const [isLoading, setIsLoading] = useState(false);
-  const { showSuccess, showWarning } = useToast();
-  const { toggle } = useModal();
+  const { showSuccess, showError, showWarning } = useToast();
+  const { toggle, selectEditedItem } = useModal();
   const { triggerRefresh } = useRefresh();
+
+  function handleClose() {
+    setCourseName("");
+    selectEditedItem(null);
+    toggle();
+  }
+
+  useEffect(() => {
+    if (editedItem) {
+      setCourseName(editedItem.courseName);
+    } else {
+      setCourseName("");
+    }
+  }, [editedItem]);
 
   async function handleSubmit(e) {
     e.preventDefault();
@@ -34,19 +48,19 @@ function ModalCourse() {
     };
 
     try {
-      setIsLoading(true);
-      await post("courses", newCourse);
-      showSuccess("Curso cadastrado com sucesso!");
-      triggerRefresh();
-      toggle();
-      console.log("Novo Curso:", newCourse);
-    } catch (error) {
-      showWarning(error.message || "Erro ao cadastrar curso");
-    } finally {
-      setIsLoading(false);
-    }
+      if (editedItem) {
+        await patch("courses", editedItem.id, newCourse);
+        showSuccess("Curso Atualizado com sucesso!");
+      } else {
+        await post("courses", newCourse);
+        showSuccess("Curso cadastrado com sucesso!");
+      }
 
-    setCourseName("");
+      triggerRefresh();
+      handleClose();
+    } catch (error) {
+      showError(error.message || "Erro ao cadastrar curso");
+    }
   }
 
   return (
@@ -56,11 +70,10 @@ function ModalCourse() {
       <p className="text-sm mb-4">Preencha o fórmulário para cadastrar curso</p>
       <form onSubmit={handleSubmit}>
         <div className="mb-5">
-          <AdminLabel htmlFor="course">Nome do Curso</AdminLabel>
-          <AdminInput
-            id="course"
-            type="text"
+          <FloatInputLabel
             value={courseName}
+            name="Nome do Curso"
+            type="text"
             onChange={(e) => setCourseName(e.target.value)}
           />
         </div>
@@ -69,17 +82,11 @@ function ModalCourse() {
         </p>
 
         <div className="flex justify-end">
-          <AdminButton type="primary" disabled={isLoading}>
-            {isLoading ? (
-              <Loading />
-            ) : (
-              <>
-                <p className="text-lg">
-                  <MdOutlineDone />
-                </p>
-                <p>Cadastrar Curso</p>
-              </>
-            )}
+          <AdminButton type="primary">
+            <p className="text-lg">
+              <MdOutlineDone />
+            </p>
+            <p>Cadastrar Curso</p>
           </AdminButton>
         </div>
       </form>

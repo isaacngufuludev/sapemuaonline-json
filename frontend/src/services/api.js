@@ -46,7 +46,7 @@ export async function patch(endpoint, id, data) {
   });
 
   if (!res.ok) {
-    throw new Error("Erro ao atualizar registo");
+    toast.error("Erro ao atualizar registo");
   }
 
   return res.json();
@@ -62,7 +62,7 @@ export async function remove(endpoint, id) {
   });
 
   if (!res.ok) {
-    throw new Error("Erro ao remover registo");
+    toast.error("Erro ao remover registo");
   }
 
   return true;

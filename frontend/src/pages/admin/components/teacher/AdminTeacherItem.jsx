@@ -6,18 +6,18 @@ import { useEditOptions } from "../../../../hooks/useEditOptions";
 import { HiEllipsisVertical } from "react-icons/hi2";
 
 function AdminTeacherItem({ item }) {
-  const { toggleRemoveTeacher, selectOptionItem } = useModal();
+  const { toggleRemoveTeacher, selectOptionItem, selectEditedItem } =
+    useModal();
   const { showMenu, menuRef, setShowMenu } = useEditOptions();
   const navigate = useNavigate();
 
   const handleView = () => {
-    console.log("Ver Professor:", item);
     navigate(`/area/admin/adminTeacher/teacher-detail/${item.id}`);
     setShowMenu(false);
   };
 
   const handleEdit = () => {
-    console.log("Editar Professor:", item);
+    selectEditedItem(item);
     navigate(`/area/admin/adminTeacher/add-teacher`);
     setShowMenu(false);
   };
@@ -30,11 +30,11 @@ function AdminTeacherItem({ item }) {
 
   return (
     <li className="grid grid-cols-[0.3fr_1.5fr_0.7fr_0.7fr_0.7fr_0.5fr_0.5fr_0.2fr] last:border-0 items-center dark:border-gray-700 border-b border-slate-200  px-4 py-2">
-      <dic className="font-semibold  flex items-center justify-start">
+      <div className="font-semibold  flex items-center justify-start">
         <span className="py-3 px-4 bg-slate-100 rounded-full dark:bg-gray-900">
           {item.name[0].toUpperCase()}
         </span>
-      </dic>
+      </div>
       <div>
         <p className="font-semibold">{item.name}</p>
         <p className="text-xs">{item.email}</p>

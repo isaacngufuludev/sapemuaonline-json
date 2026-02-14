@@ -6,7 +6,7 @@ function BtnGoBack() {
 
   return (
     <button
-      onClick={() => navigate(-1)}
+      onClick={() => navigate("/")}
       className="absolute left-5 text-lg top-10 flex gap-1 items-center"
     >
       <BsChevronLeft />

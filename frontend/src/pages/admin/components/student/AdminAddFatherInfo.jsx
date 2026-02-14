@@ -2,6 +2,7 @@ import AdminAddForm from "../AdminAddForm";
 import AdminInput from "../AdminInput";
 import AdminLabel from "../AdminLabel";
 import { useStudentForm } from "../../../../contexts/StudentFormContext";
+import FloatInputLabel from "../../../../components/ui/FloatInputLabel";
 
 function AdminAddFatherInfo() {
   const {
@@ -17,29 +18,28 @@ function AdminAddFatherInfo() {
     <div>
       <AdminAddForm type="four">
         <div>
-          <AdminLabel htmlFor="pai">Nome Completo</AdminLabel>
-          <AdminInput
-            id="pai"
-            type="text"
+          <FloatInputLabel
             value={fatherName}
+            name="Nome Completo"
+            type="text"
             onChange={(e) => setFatherName(e.target.value)}
           />
         </div>
+
         <div>
-          <AdminLabel htmlFor="pai-telefone">Telefone do Pai</AdminLabel>
-          <AdminInput
-            id="pai-telefone"
-            type="text"
+          <FloatInputLabel
             value={fatherPhoneNumber}
+            name="Telefone do Pai"
+            max={9}
+            type="text"
             onChange={(e) => setFatherPhoneNumber(e.target.value)}
           />
         </div>
         <div>
-          <AdminLabel htmlFor="function-pai">Ocupação do pai</AdminLabel>
-          <AdminInput
-            id="function-pai"
-            type="text"
+          <FloatInputLabel
             value={fatherJob}
+            name="Ocupação do Pai"
+            type="text"
             onChange={(e) => setFatherJob(e.target.value)}
           />
         </div>

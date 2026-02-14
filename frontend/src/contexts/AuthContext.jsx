@@ -42,12 +42,13 @@ function AuthProvider({ children }) {
     }
   }, []);
 
-  async function login({ email, id, password }) {
+  async function login({ loginMethod, password }) {
     const users = await get("users");
 
     const userFound = users.find(
       (user) =>
-        user.email === email || (user.id === id && user.password === password),
+        (user.email === loginMethod || user.id === loginMethod) &&
+        user.password === password,
     );
 
     if (userFound) {

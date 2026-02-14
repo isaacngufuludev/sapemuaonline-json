@@ -1,14 +1,13 @@
 import { useEffect, useState } from "react";
-import { useAuth } from "../../contexts/AuthContext.jsx";
+import { useAuth } from "../../../contexts/AuthContext.jsx";
 import { useNavigate } from "react-router-dom";
-import { useToast } from "../../hooks/useToast.js";
+import { useToast } from "../../../hooks/useToast.js";
 import { FiEye, FiEyeOff } from "react-icons/fi";
-import Loading from "./Loading.jsx";
-import AuthInput from "../ui/AuthInput.jsx";
+import Loading from "../../../components/shared/Loading.jsx";
+import AuthInput from "./AuthInput.jsx";
 
 function LoginForm() {
-  const [email, setEmail] = useState("");
-  const [id, setId] = useState("");
+  const [loginMethod, setLoginMethod] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const { user, login, isAuthenticated, isLoading } = useAuth();
@@ -17,12 +16,14 @@ function LoginForm() {
 
   function handleSubmit(e) {
     e.preventDefault();
-    if (!email || !password) showWarning("Preencha todos os campos por favor");
-    if (email || (id && password)) {
-      login({ id, email, password });
+    if (!loginMethod || !password)
+      showWarning("Preencha todos os campos por favor");
+
+    if (loginMethod && password) {
+      login({ loginMethod, password });
     }
 
-    setEmail("");
+    setLoginMethod("");
     setPassword("");
     document.activeElement.blur();
   }
@@ -46,12 +47,9 @@ function LoginForm() {
       >
         <AuthInput
           id="password"
-          value={email || id}
+          value={loginMethod}
           type="text"
-          onChange={(e) => {
-            console.log(email, id);
-            setEmail(e.target.value) || setId(e.target.value);
-          }}
+          onChange={(e) => setLoginMethod(e.target.value)}
           name="E-mail ou Codigo Interno"
         />
         <div className="relative mb-2">

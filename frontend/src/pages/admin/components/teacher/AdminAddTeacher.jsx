@@ -1,8 +1,8 @@
 import { useNavigate } from "react-router-dom";
 import { FaArrowLeft } from "react-icons/fa";
 import { MdOutlineDone } from "react-icons/md";
-import { useRef, useState } from "react";
-import { post } from "../../../../services/api";
+import { useEffect, useRef, useState } from "react";
+import { patch, post } from "../../../../services/api";
 import { useToast } from "../../../../hooks/useToast";
 import { calcAge, formateDate } from "../../../../utils/helpers";
 import {
@@ -22,28 +22,65 @@ import AdminAddForm from "../AdminAddForm";
 import AdminInput from "../AdminInput";
 import AdminLabel from "../AdminLabel";
 import AdminSelect from "../AdminSelect";
+import FloatInputLabel from "../../../../components/ui/FloatInputLabel";
+import { useModal } from "../../../../contexts/ModalContext";
+
+const initialState = {
+  name: "",
+  birthDate: "",
+  province: "",
+  biCode: "",
+  residence: "",
+  phoneNumber: "",
+  genre: "",
+  qualification: "",
+  area: "",
+  college: "",
+  email: "",
+  adressCOllege: "",
+  phoneCollege: "",
+  subjects: "",
+  description: "",
+};
 
 function AdminAddTeacher() {
-  const [name, setName] = useState("");
-  const [birthDate, setBirthDate] = useState("");
-  const [province, setProvince] = useState("");
-  const [biCode, setBiCode] = useState("");
-  const [residence, setResidence] = useState("");
-  const [phoneNumber, setPhoneNumber] = useState("");
-  const [genre, setGenre] = useState("");
-  const [qualification, setQualification] = useState("");
-  const [area, setArea] = useState("");
-  const [college, setCollege] = useState("");
-  const [email, setEmail] = useState("");
-  const [adressCOllege, setAdressCollege] = useState("");
-  const [phoneCollege, setPhoneCollege] = useState("");
-  const [subjects, setSubjects] = useState("");
-  const [description, setDescription] = useState("");
+  const { edited: editedItem, selectEditedItem } = useModal();
+  const [formData, setFormData] = useState(initialState);
+
   const fileCVRef = useRef(null);
   const fileCertificateRef = useRef(null);
   const filePhoto = useRef(null);
   const { showSuccess, showWarning } = useToast();
   const navigate = useNavigate();
+
+  useEffect(() => {
+    if (editedItem) {
+      setFormData({
+        name: editedItem.name,
+        birthDate: editedItem.birthDate,
+        province: editedItem.province,
+        biCode: editedItem.biCode,
+        residence: editedItem.residence,
+        phoneCollege: editedItem.phoneCollege,
+        phoneNumber: editedItem.phoneNumber.replace("+244 ", ""),
+        genre: editedItem.genre,
+        qualification: editedItem.qualification,
+        area: editedItem.area,
+        college: editedItem.college,
+        email: editedItem.email,
+        adressCOllege: editedItem.adressCOllege,
+        subjects: editedItem.subjects,
+        description: editedItem.description,
+      });
+    } else {
+      setFormData(initialState);
+    }
+  }, [editedItem]);
+
+  function handleClose() {
+    navigate("/area/admin/adminTeacher");
+    selectEditedItem(null);
+  }
 
   async function handleSubmit(e) {
     e.preventDefault();
@@ -53,17 +90,17 @@ function AdminAddTeacher() {
 
     // Validação de email
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    const isValidEmail = emailRegex.test(email);
+    const isValidEmail = emailRegex.test(formData.email);
 
     if (
-      !name ||
-      !birthDate ||
-      !phoneNumber ||
-      !qualification ||
-      !subjects ||
-      !area ||
+      !formData.name ||
+      !formData.birthDate ||
+      !formData.phoneNumber ||
+      !formData.qualification ||
+      !formData.subjects ||
+      !formData.area ||
       !cv ||
-      !email
+      !formData.email
     ) {
       showWarning("Por favor, preencha todos os campos");
       navigate("/area/admin/adminTeacher/add-teacher");
@@ -77,35 +114,27 @@ function AdminAddTeacher() {
     }
 
     const newTecher = {
+      ...formData,
       id: (Math.floor(Math.random() * 5000) + 100).toString(),
       dateIn: formateDate(new Date()),
-      age: `${calcAge(birthDate)} anos`,
-      name,
-      birthDate,
-      province,
-      biCode,
-      residence,
-      phoneNumber: `+244 ${phoneNumber}`,
+      age: `${calcAge(formData.birthDate)} anos`,
+      phoneNumber: `+244 ${formData.phoneNumber}`,
       certificate,
       photo,
       cv,
-      genre,
-      qualification,
-      area,
-      college,
-      adressCOllege,
-      phoneCollege,
-      email,
-      subjects,
-      description,
       password: Date.now().toString().slice(-8),
       role: "teacher",
     };
 
-    await post("users", newTecher);
-    showSuccess("Professor cadastrado com sucesso!");
-    navigate("/area/admin/adminTeacher");
-    console.log("Novo professor cadastrado:", newTecher);
+    if (editedItem) {
+      await patch("users", editedItem.id, newTecher);
+      showSuccess("Professor atualizado com sucesso!");
+    } else {
+      await post("users", newTecher);
+      showSuccess("Professor cadastrado com sucesso!");
+    }
+
+    handleClose();
   }
 
   return (
@@ -131,78 +160,84 @@ function AdminAddTeacher() {
         </AdminAddHeader>
         <AdminAddForm type="three">
           <div>
-            <AdminLabel htmlFor="name">Nome Completo</AdminLabel>
-            <AdminInput
+            <FloatInputLabel
+              value={formData.name}
+              name="Nome Completo"
               type="text"
-              id="name"
-              value={name}
-              onChange={(e) => setName(e.target.value)}
+              onChange={(e) =>
+                setFormData({ ...formData, name: e.target.value })
+              }
             />
           </div>
           <div>
-            <AdminLabel htmlFor="date">Data de nascimento</AdminLabel>
-            <AdminInput
+            <FloatInputLabel
+              value={formData.birthDate}
               type="date"
-              id="date"
-              value={birthDate}
-              onChange={(e) => setBirthDate(e.target.value)}
+              onChange={(e) =>
+                setFormData({ ...formData, birthDate: e.target.value })
+              }
             />
           </div>
           <div>
-            <AdminLabel htmlFor="bi">Número do BI</AdminLabel>
-            <AdminInput
+            <FloatInputLabel
+              value={formData.biCode}
+              name="Número de Identificação"
               type="text"
-              id="bi"
-              value={biCode}
-              onChange={(e) => setBiCode(e.target.value)}
+              onChange={(e) =>
+                setFormData({ ...formData, biCode: e.target.value })
+              }
             />
           </div>
           <div>
-            <AdminLabel htmlFor="bi">Provincia</AdminLabel>
-            <AdminInput
+            <FloatInputLabel
+              value={formData.province}
+              name="Provincia"
               type="text"
-              id="bi"
-              value={province}
-              onChange={(e) => setProvince(e.target.value)}
+              onChange={(e) =>
+                setFormData({ ...formData, province: e.target.value })
+              }
             />
           </div>
           <div>
-            <AdminLabel htmlFor="residencia">Residência Atual</AdminLabel>
-            <AdminInput
+            <FloatInputLabel
+              value={formData.residence}
+              name="Residência Actual"
               type="text"
-              id="residencia"
-              value={residence}
-              onChange={(e) => setResidence(e.target.value)}
+              onChange={(e) =>
+                setFormData({ ...formData, residence: e.target.value })
+              }
             />
           </div>
           <div>
-            <AdminLabel htmlFor="telefone">Telefone</AdminLabel>
-            <AdminInput
+            <FloatInputLabel
+              value={formData.phoneNumber}
+              name="Nº Telefone"
               type="text"
-              id="telefone"
-              max={9}
-              value={phoneNumber}
-              onChange={(e) => setPhoneNumber(e.target.value)}
+              onChange={(e) =>
+                setFormData({ ...formData, phoneNumber: e.target.value })
+              }
             />
           </div>
           <div>
-            <AdminLabel htmlFor="email">Email</AdminLabel>
-            <AdminInput
+            <FloatInputLabel
+              value={formData.email}
+              name="Endereço Email"
               type="text"
-              id="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
+              onChange={(e) =>
+                setFormData({ ...formData, email: e.target.value })
+              }
             />
           </div>
           <div>
-            <AdminLabel>Genero</AdminLabel>
             <AdminSelect
-              value={genre}
-              onChange={(e) => setGenre(e.target.value)}
+              value={formData.genre}
+              onChange={(e) =>
+                setFormData({ ...formData, genre: e.target.value })
+              }
             >
               <option>Selecione o genero</option>
-              <option value="male">Masculino</option>
-              <option value="female">Feminino</option>
+              <option value="Masculino">Masculino</option>
+              <option value="Feminino">Feminino</option>
             </AdminSelect>
           </div>
         </AdminAddForm>
@@ -214,54 +249,55 @@ function AdminAddTeacher() {
         </AdminAddHeader>
         <AdminAddForm type="three">
           <div>
-            <AdminLabel>Grau de qualificação</AdminLabel>
             <AdminSelect
-              value={qualification}
-              onChange={(e) => setQualification(e.target.value)}
+              value={formData.qualification}
+              onChange={(e) =>
+                setFormData({ ...formData, qualification: e.target.value })
+              }
             >
               <option>Selecione a qualificação</option>
-              <option value="medio">Ensino médio</option>
-              <option value="superior">Ensino superior</option>
+              <option value="Medio">Ensino médio</option>
+              <option value="Superior">Ensino superior</option>
             </AdminSelect>
           </div>
           <div>
-            <AdminLabel htmlFor="area">Área de formação</AdminLabel>
-            <AdminInput
+            <FloatInputLabel
+              value={formData.area}
+              name="Area de Formação"
               type="text"
-              id="area"
-              value={area}
-              onChange={(e) => setArea(e.target.value)}
+              onChange={(e) =>
+                setFormData({ ...formData, area: e.target.value })
+              }
             />
           </div>
           <div>
-            <AdminLabel htmlFor="instituicao">Nome da Instituição</AdminLabel>
-            <AdminInput
+            <FloatInputLabel
+              value={formData.college}
+              name="Nome da Instituição"
               type="text"
-              id="instituicao"
-              value={college}
-              onChange={(e) => setCollege(e.target.value)}
+              onChange={(e) =>
+                setFormData({ ...formData, college: e.target.value })
+              }
             />
           </div>
           <div>
-            <AdminLabel htmlFor="instituicao">
-              Endereço da Instituição
-            </AdminLabel>
-            <AdminInput
+            <FloatInputLabel
+              value={formData.adressCOllege}
+              name="Endereço da Instituição"
               type="text"
-              id="instituicao"
-              value={adressCOllege}
-              onChange={(e) => setAdressCollege(e.target.value)}
+              onChange={(e) =>
+                setFormData({ ...formData, adressCOllege: e.target.value })
+              }
             />
           </div>
           <div>
-            <AdminLabel htmlFor="instituicao">
-              Telefone da Instituição
-            </AdminLabel>
-            <AdminInput
+            <FloatInputLabel
+              value={formData.phoneCollege}
+              name="Telefone da Instituição"
               type="text"
-              id="instituicao"
-              value={phoneCollege}
-              onChange={(e) => setPhoneCollege(e.target.value)}
+              onChange={(e) =>
+                setFormData({ ...formData, phoneCollege: e.target.value })
+              }
             />
           </div>
         </AdminAddForm>
@@ -289,19 +325,23 @@ function AdminAddTeacher() {
             />
           </div>
           <div>
-            <AdminLabel>Cadeiras dominantes (separe por virgula)</AdminLabel>
-            <AdminInput
+            <FloatInputLabel
+              value={formData.subjects}
+              name="Cadeiras dominantes (separe por virgula)"
               type="text"
-              value={subjects}
-              onChange={(e) => setSubjects(e.target.value)}
+              onChange={(e) =>
+                setFormData({ ...formData, subjects: e.target.value })
+              }
             />
           </div>
           <div>
-            <AdminLabel>Breve descrição</AdminLabel>
             <AdminInput
-              type="text"
-              value={description}
-              onChange={(e) => setDescription(e.target.value)}
+              type="description"
+              placeholder="Breve descrição"
+              value={formData.description}
+              onChange={(e) =>
+                setFormData({ ...formData, description: e.target.value })
+              }
             />
           </div>
         </AdminAddForm>
@@ -315,7 +355,7 @@ function AdminAddTeacher() {
             </p>
             <p>Cancelar</p>
           </AdminButton>
-          <AdminButton type="primary">
+          <AdminButton type="primary" onClick={handleSubmit}>
             <p className="text-base">
               <MdOutlineDone />
             </p>

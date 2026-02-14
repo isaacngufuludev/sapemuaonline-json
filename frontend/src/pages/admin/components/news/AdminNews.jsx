@@ -15,7 +15,13 @@ import { useNews } from "../../../../hooks/useNews";
 import Message from "../../../../components/ui/Message";
 
 function AdminNews() {
-  const { isNewsModal, toggleNewsModal, isRemoveNewsModal } = useModal();
+  const {
+    isNewsModal,
+    toggleNewsModal,
+    isRemoveNewsModal,
+    edited,
+    selectEditedItem,
+  } = useModal();
   const { news } = useNews();
 
   return (
@@ -45,8 +51,11 @@ function AdminNews() {
 
       {isNewsModal ? (
         <div>
-          <NewsModal />
-          <Overlay />
+          <NewsModal
+            editedItem={edited}
+            onClose={() => selectEditedItem(null)}
+          />
+          <Overlay onClose={() => selectEditedItem(null)} />
         </div>
       ) : (
         ""

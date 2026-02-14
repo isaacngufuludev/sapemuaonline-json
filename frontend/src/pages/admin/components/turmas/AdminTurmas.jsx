@@ -14,53 +14,47 @@ function AdminTurmas() {
     isClassModal,
     isRemoveTurmaModal,
     isRemoveCourseModal,
+    selectEditedItem,
+    edited,
   } = useModal();
 
   return (
     <div>
       <Outlet />
 
-      {isTurmaModal ? (
+      {isTurmaModal && (
         <div>
-          <ModalTurma />
-          <Overlay />
+          <ModalTurma editedItem={edited} />
+          <Overlay onClose={() => selectEditedItem(null)} />
         </div>
-      ) : (
-        ""
       )}
-      {isCourseModal ? (
+
+      {isCourseModal && (
         <div>
-          <ModalCourse />
-          <Overlay />
+          <ModalCourse editedItem={edited} />
+          <Overlay onClose={() => selectEditedItem(null)} />
         </div>
-      ) : (
-        ""
       )}
-      {isClassModal ? (
+
+      {isClassModal && (
         <div>
           <ModalClass />
           <Overlay />
         </div>
-      ) : (
-        ""
       )}
 
-      {isRemoveTurmaModal ? (
+      {isRemoveTurmaModal && (
         <div>
           <ModalRemoveTurma />
           <Overlay />
         </div>
-      ) : (
-        ""
       )}
 
-      {isRemoveCourseModal ? (
+      {isRemoveCourseModal && (
         <div>
           <ModalRemoveCourse />
           <Overlay />
         </div>
-      ) : (
-        ""
       )}
     </div>
   );

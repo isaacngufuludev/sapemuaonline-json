@@ -1,15 +1,35 @@
-function AdminInput({ type, id, value, onChange, max, ref, accept }) {
+function AdminInput({
+  type,
+  id,
+  value,
+  onChange,
+  max,
+  placeholder,
+  ref,
+  accept,
+}) {
   const base =
     "pl-1 focus:ring-1 ring-blue-700 w-full focus:outline-none rounded-md text-xs dark:text-stone-900 dark:bg-gray-800 dark:text-white dark:border-gray-700";
 
   const styles = {
-    text: base + " h-7 border border-gray-200",
-    date: base + " h-7 border border-gray-200",
-    email: base + " h-7 border border-gray-200",
-    number: base + " h-7 border border-gray-200",
-    description: base + " pb-12 border border-gray-200",
+    text: base + " h-8 border border-gray-200",
+    date: base + " h-8 border border-gray-200",
+    email: base + " h-8 border border-gray-200",
+    number: base + " h-8 border border-gray-200 text-xl",
     file: base + " ",
   };
+
+  if (type === "description")
+    return (
+      <textarea
+        typeof={type}
+        placeholder={placeholder}
+        value={value}
+        onChange={onChange}
+        id={id}
+        className=" border border-gray-200 rounded-xl resize-none pl-2 pt-2 text-sm focus:ring-1 ring-blue-700 w-full focus:outline-none text-black dark:bg-gray-800 dark:text-white dark:border-gray-700 h-20"
+      ></textarea>
+    );
 
   return (
     <input
@@ -19,6 +39,7 @@ function AdminInput({ type, id, value, onChange, max, ref, accept }) {
       id={id}
       ref={ref}
       accept={accept}
+      placeholder={placeholder}
       value={value}
       onChange={onChange}
     />

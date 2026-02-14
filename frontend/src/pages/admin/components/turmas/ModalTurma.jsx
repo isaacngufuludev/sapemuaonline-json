@@ -1,8 +1,8 @@
 import { BsX } from "react-icons/bs";
 import { useModal } from "../../../../contexts/ModalContext";
 import { MdOutlineDone } from "react-icons/md";
-import { useState } from "react";
-import { post } from "../../../../services/api";
+import { useEffect, useState } from "react";
+import { patch, post } from "../../../../services/api";
 import { useToast } from "../../../../hooks/useToast";
 import { useCourses } from "../../../../hooks/useCourses";
 import { useRefresh } from "../../../../contexts/RefreshContext";
@@ -17,42 +17,72 @@ import { useClasses } from "../../../../hooks/useClasses";
 import { formateDate } from "../../../../utils/helpers";
 import AdminInput from "../AdminInput";
 
-function ModalTurma() {
-  const [classId, setClassId] = useState("");
-  const [courseId, setCourseId] = useState("");
-  const [period, setPeriod] = useState("");
-  const [room, setRoom] = useState("");
-  const [turmaCategory, setTurmaCategory] = useState("");
-  const { toggle } = useModal();
+const initialState = {
+  classId: "",
+  courseId: "",
+  period: "",
+  room: "",
+  turmaCategory: "",
+};
+
+function ModalTurma({ editedItem }) {
+  const [formData, setFormData] = useState("");
+  const { toggle, selectEditedItem } = useModal();
   const { courses, fetchCourses } = useCourses();
   const { classes } = useClasses();
   const { triggerRefresh } = useRefresh();
   const { showSuccess, showWarning } = useToast();
 
+  function handleClose() {
+    setFormData(initialState);
+    selectEditedItem(null);
+    toggle();
+  }
+
+  useEffect(() => {
+    if (editedItem) {
+      setFormData({
+        classId: editedItem.classId,
+        courseId: editedItem.courseId,
+        period: editedItem.period,
+        room: editedItem.room,
+        turmaCategory: editedItem.turmaCategory,
+      });
+    } else {
+      setFormData(initialState);
+    }
+  }, [editedItem]);
+
   async function handleSubmit(e) {
     e.preventDefault();
 
-    if (!classId || !period || !turmaCategory || !period || !room) {
+    if (
+      !formData.classId ||
+      !formData.period ||
+      !formData.turmaCategory ||
+      !formData.period ||
+      !formData.room
+    ) {
       showWarning("Por favor, preencha todos os campos!");
       return;
     }
 
     const newTurma = {
-      classId,
-      courseId,
-      room,
-      turmaCategory,
+      ...formData,
       dateIn: formateDate(new Date()),
-      period,
     };
 
     try {
-      await post("turmas", newTurma);
-      showSuccess("Turma cadastrada com sucesso!");
+      if (editedItem) {
+        await patch("turmas", editedItem.id, newTurma);
+        showSuccess("Turma atualizada com sucesso");
+      } else {
+        await post("turmas", newTurma);
+        showSuccess("Turma cadastrada com sucesso!");
+      }
+
       triggerRefresh();
-      console.log("Nova turma", newTurma);
-      await fetchCourses();
-      toggle();
+      handleClose();
     } catch (error) {
       showWarning(error.message || "Erro ao cadastrar turma");
     }
@@ -70,12 +100,14 @@ function ModalTurma() {
         className="grid grid-cols-2 gap-y-5 gap-x-3 mb-7"
       >
         <div>
-          <AdminLabel>Curso</AdminLabel>
+          {/* <AdminLabel>Curso</AdminLabel> */}
           <AdminSelect
-            value={courseId}
-            onChange={(e) => setCourseId(e.target.value)}
+            value={formData.courseId}
+            onChange={(e) =>
+              setFormData({ ...formData, courseId: e.target.value })
+            }
           >
-            <option value="">Nenhum Selecionado</option>
+            <option value="">Selecionar Curso</option>
             {courses.map((course) => (
               <option key={course.id} value={course.id}>
                 {course.courseName}
@@ -84,14 +116,16 @@ function ModalTurma() {
           </AdminSelect>
         </div>
         <div>
-          <AdminLabel htmlFor="classe">Classe</AdminLabel>
+          {/* <AdminLabel htmlFor="classe">Classe</AdminLabel> */}
           <AdminSelect
-            value={classId}
-            onChange={(e) => setClassId(e.target.value)}
+            value={formData.classId}
+            onChange={(e) =>
+              setFormData({ ...formData, classId: e.target.value })
+            }
           >
-            <option value="">Nenhum Selecionado</option>
+            <option value="">Selecionar Classe</option>
             {classes
-              .filter((classItem) => classItem.courseId === courseId)
+              .filter((classItem) => classItem.courseId === formData.courseId)
               .map((classItem) => (
                 <option key={classItem.id} value={classItem.id}>
                   {classItem.classYear}
@@ -100,12 +134,17 @@ function ModalTurma() {
           </AdminSelect>
         </div>
         <div>
-          <AdminLabel htmlFor="turma">Categoria (A, B, C, D...)</AdminLabel>
+          {/* <AdminLabel htmlFor="turma">Categoria (A, B, C, D...)</AdminLabel> */}
           <AdminSelect
-            value={turmaCategory}
-            onChange={(e) => setTurmaCategory(e.target.value)}
+            value={formData.turmaCategory}
+            onChange={(e) =>
+              setFormData({ ...formData, turmaCategory: e.target.value })
+            }
           >
-            <option value="">Nenhum Selecionado</option>
+            <option>Selecionar Categoria</option>
+            {/* {
+              classes.filter(classItem => classItem.courseId !== )
+            } */}
             <option value="Unica">Única</option>
             <option value="A">Turma A</option>
             <option value="B">Turma B</option>
@@ -114,22 +153,24 @@ function ModalTurma() {
           </AdminSelect>
         </div>
         <div>
-          <AdminLabel htmlFor="turma">Periodo</AdminLabel>
           <AdminSelect
-            value={period}
-            onChange={(e) => setPeriod(e.target.value)}
+            value={formData.period}
+            onChange={(e) =>
+              setFormData({ ...formData, period: e.target.value })
+            }
           >
-            <option value="">Nenhum Selecionado</option>
+            <option value="">Selecionar Periodo</option>
             <option value="Manha">Manhã</option>
             <option value="Tarde">Tarde</option>
           </AdminSelect>
         </div>
         <div>
-          <AdminLabel htmlFor="turma">Sala</AdminLabel>
+          {/* <AdminLabel htmlFor="turma">Sala</AdminLabel> */}
           <AdminInput
             type="number"
-            value={room}
-            onChange={(e) => setRoom(e.target.value)}
+            placeholder="Sala"
+            value={formData.room}
+            onChange={(e) => setFormData({ ...formData, room: e.target.value })}
           />
         </div>
       </form>

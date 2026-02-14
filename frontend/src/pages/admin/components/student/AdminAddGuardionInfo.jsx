@@ -2,6 +2,7 @@ import AdminAddForm from "../AdminAddForm";
 import AdminLabel from "../AdminLabel";
 import AdminInput from "../AdminInput";
 import { useStudentForm } from "../../../../contexts/StudentFormContext";
+import FloatInputLabel from "../../../../components/ui/FloatInputLabel";
 
 function AdminAddGuardionInfo() {
   const {
@@ -17,33 +18,27 @@ function AdminAddGuardionInfo() {
     <div>
       <AdminAddForm type="four">
         <div>
-          <AdminLabel htmlFor="guardiao">Nome Completo</AdminLabel>
-          <AdminInput
-            id="guardiao"
-            type="text"
+          <FloatInputLabel
             value={guardionName}
+            name="Nome Completo"
+            type="text"
             onChange={(e) => setGuardionName(e.target.value)}
           />
         </div>
         <div>
-          <AdminLabel htmlFor="guardiao-telefone">
-            Telefone do Guardião
-          </AdminLabel>
-          <AdminInput
-            id="guardiao-telefone"
-            type="text"
+          <FloatInputLabel
             value={guardionPhoneNumber}
+            max={9}
+            name="Telefone do Guardião"
+            type="text"
             onChange={(e) => setGuardionPhoneNumber(e.target.value)}
           />
         </div>
         <div>
-          <AdminLabel htmlFor="function-guardiao">
-            Ocupação do Guardião
-          </AdminLabel>
-          <AdminInput
-            id="function-guardiao"
-            type="text"
+          <FloatInputLabel
             value={guardionJob}
+            name="Ocupação do guardião"
+            type="text"
             onChange={(e) => setGuardionJob(e.target.value)}
           />
         </div>

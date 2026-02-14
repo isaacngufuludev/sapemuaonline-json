@@ -31,7 +31,7 @@ function AdminTeacherList() {
         )}
       </div>
 
-      {totalPages > 1 ? (
+      {totalPages > 1 && (
         <div className="flex gap-2 justify-end mt-3 items-center ">
           <BtnPagination onClick={handlerPrevPage} disabled={currentPage === 1}>
             <BsChevronLeft />
@@ -46,8 +46,6 @@ function AdminTeacherList() {
             <BsChevronRight />
           </BtnPagination>
         </div>
-      ) : (
-        ""
       )}
     </div>
   );

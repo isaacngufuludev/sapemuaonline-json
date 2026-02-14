@@ -8,11 +8,17 @@ import { BsPencil, BsTrash } from "react-icons/bs";
 import { HiEllipsisVertical } from "react-icons/hi2";
 
 function AdminCoursesItem({ item }) {
-  const { toggleCourse, selectOptionItem } = useModal();
+  const {
+    toggleCourse,
+    selectOptionItem,
+    toggleCourseModal,
+    selectEditedItem,
+  } = useModal();
   const { showMenu, menuRef, setShowMenu } = useEditOptions();
 
   const handleEdit = () => {
-    console.log("Editar curso:", item);
+    selectEditedItem(item);
+    toggleCourseModal();
     setShowMenu(false);
   };
 

@@ -1,9 +1,9 @@
 import { useModal } from "../../../../contexts/ModalContext";
 import { BsX } from "react-icons/bs";
 import { MdOutlineDone } from "react-icons/md";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useToast } from "../../../../hooks/useToast";
-import { post } from "../../../../services/api";
+import { patch, post } from "../../../../services/api";
 import { useRefresh } from "../../../../contexts/RefreshContext";
 import { formateDate } from "../../../../utils/helpers";
 
@@ -13,75 +13,114 @@ import AdminButton from "../AdminButton";
 import AdminInput from "../AdminInput";
 import AdminLabel from "../AdminLabel";
 import Modal from "../../../../components/shared/Modal";
-import ModalForm from "../../../../components/shared/ModalForm";
+import FloatInput from "../../../auth/components/AuthInput";
+import FloatInputLabel from "../../../../components/ui/FloatInputLabel";
 
-function NewsModal() {
-  const [title, setTitle] = useState("");
-  const [description, setDescription] = useState("");
-  const { toggle } = useModal();
+const initialState = {
+  title: "",
+  description: "",
+};
+
+function NewsModal({ editedItem }) {
+  const [formData, setFormData] = useState(initialState);
+  const { toggle, selectEditedItem } = useModal();
   const { showSuccess, showWarning, showError } = useToast();
   const { triggerRefresh } = useRefresh();
 
+  useEffect(() => {
+    if (editedItem) {
+      setFormData({
+        title: editedItem.title,
+        description: editedItem.description,
+      });
+    } else {
+      setFormData(initialState);
+    }
+  }, [editedItem]);
+
+  function handleClose() {
+    setFormData(initialState);
+    selectEditedItem(null);
+    toggle();
+  }
+
   async function handleSubmit(e) {
     e.preventDefault();
-    if (!title || !description) {
+
+    if (!formData.title || !formData.description) {
       showWarning("Por favor preencha todos os campos");
       return;
     }
 
     const news = {
-      title,
-      description,
+      ...formData,
       date: formateDate(new Date(), "numeric"),
     };
 
     try {
-      await post("news", news);
-      showSuccess("Notícia cadastrada com sucesso!");
+      if (editedItem) {
+        await patch("news", editedItem.id, news);
+        showSuccess("Comunicado atualizado com sucesso!");
+      } else {
+        await post("news", news);
+        showSuccess("Comunicado cadastrado com sucesso!");
+      }
+
       triggerRefresh();
-      toggle();
+      handleClose();
     } catch (error) {
-      showError(error.message || "Erro ao cadastrar notícia");
+      showError(error.message || "Erro ao salvar comunicado");
     }
   }
 
   return (
     <Modal>
-      <BtnCloseModal />
-      <Title3>Cadastrar Noticia</Title3>
+      <BtnCloseModal onClick={handleClose} />
+
+      <Title3>{editedItem ? "Atualizar Noticia" : "Cadastrar Noticia"}</Title3>
+
       <p className="text-xs mb-4">
-        Preencha os campos para adicionar uma nova noticia
+        {editedItem
+          ? "Atualize os campos para atualizar a noticia"
+          : "Preencha os campos para adicionar uma nova noticia"}
       </p>
-      <ModalForm onSubmit={handleSubmit}>
-        <AdminLabel htmlFor="title">Titulo</AdminLabel>
-        <AdminInput
-          value={title}
-          type="text"
-          id="title"
-          onChange={(e) => setTitle(e.target.value)}
-        />
-        <AdminLabel htmlFor="description">Descrição</AdminLabel>
-        <AdminInput
-          value={description}
-          type="description"
-          id="description"
-          onChange={(e) => setDescription(e.target.value)}
-        />
+
+      <form className="flex flex-col gap-3" onSubmit={handleSubmit}>
+        <div>
+          <FloatInputLabel
+            value={formData.title}
+            name="Titulo"
+            type="text"
+            onChange={(e) =>
+              setFormData({ ...formData, title: e.target.value })
+            }
+          />
+        </div>
+
+        <div>
+          <AdminInput
+            id="description"
+            placeholder="Descrição"
+            type="description"
+            value={formData.description}
+            onChange={(e) =>
+              setFormData({ ...formData, description: e.target.value })
+            }
+          />
+        </div>
+
         <div className="flex gap-1 justify-end mt-6">
-          <AdminButton type="secondary" onClick={toggle}>
-            <p className="text-lg">
-              <BsX />
-            </p>
-            <p>Cancelar</p>
+          <AdminButton type="secondary" onClick={handleClose}>
+            <BsX className="text-lg" />
+            Cancelar
           </AdminButton>
+
           <AdminButton type="primary">
-            <p className="text-lg">
-              <MdOutlineDone />
-            </p>
-            <p>Cadastrar</p>
+            <MdOutlineDone className="text-lg" />
+            {editedItem ? "Atualizar" : "Cadastrar"}
           </AdminButton>
         </div>
-      </ModalForm>
+      </form>
     </Modal>
   );
 }

@@ -9,22 +9,22 @@ import { useCourses } from "../../../../hooks/useCourses";
 
 function AdminStudentItem({ item }) {
   const { showMenu, menuRef, setShowMenu } = useEditOptions();
-  const { toggleRemoveStudent, selectOptionItem } = useModal();
+  const { toggleRemoveStudent, selectOptionItem, selectEditedItem } =
+    useModal();
   const { classes } = useClasses();
   const { courses } = useCourses();
   const studentClass = classes.find((c) => c.id === item.classId);
   const studentCourse = courses.find((course) => course.id === item.courseId);
-  console.log(studentClass, studentCourse);
+
   const navigate = useNavigate();
 
   const handleView = () => {
-    console.log("Ver estudante:", item);
-    navigate("/area/admin/adminStudents/student-detail");
+    navigate(`/area/admin/adminStudents/student-detail/${item.id}`);
     setShowMenu(false);
   };
 
   const handleEdit = () => {
-    console.log("Editar estudante:", item);
+    selectEditedItem(item);
     navigate("/area/admin/adminStudents/add-student");
     setShowMenu(false);
   };

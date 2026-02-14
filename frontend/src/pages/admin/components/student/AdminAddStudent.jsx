@@ -19,14 +19,16 @@ import AdminAddHeader from "../AdminAddHeader";
 import AdminAddForm from "../AdminAddForm";
 import AdminSelect from "../AdminSelect";
 import AdminParentLinks from "./AdminParentLinks";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useStudentForm } from "../../../../contexts/StudentFormContext";
 import { calcAge, formateDate } from "../../../../utils/helpers";
-import { post } from "../../../../services/api";
+import { patch, post } from "../../../../services/api";
 import { useToast } from "../../../../hooks/useToast";
 import { useCourses } from "../../../../hooks/useCourses";
 import { useClasses } from "../../../../hooks/useClasses";
 import { useTurmas } from "../../../../hooks/useTurmas";
+import FloatInputLabel from "../../../../components/ui/FloatInputLabel";
+import { useModal } from "../../../../contexts/ModalContext";
 
 const parentLinks = [
   {
@@ -43,18 +45,23 @@ const parentLinks = [
   },
 ];
 
+const initialState = {
+  name: "",
+  birthDate: "",
+  province: "",
+  biCode: "",
+  residence: "",
+  phoneNumber: "",
+  genre: "",
+  courseId: "",
+  classId: "",
+  turmaId: "",
+  email: "",
+};
+
 function AdminAddStudent() {
-  const [name, setName] = useState("");
-  const [birthDate, setBirthDate] = useState("");
-  const [province, setProvince] = useState("");
-  const [biCode, setBiCode] = useState("");
-  const [residence, setResidence] = useState("");
-  const [phoneNumber, setPhoneNumber] = useState("");
-  const [genre, setGenre] = useState("");
-  const [courseId, setCourseId] = useState("");
-  const [classId, setClassId] = useState("");
-  const [turmaId, setTurmaId] = useState("");
-  const [email, setEmail] = useState("");
+  const { edited: editedItem, selectEditedItem } = useModal();
+  const [formData, setFormData] = useState(initialState);
   const certfificateRef = useRef(null);
   const photoRef = useRef(null);
   const navigate = useNavigate();
@@ -74,32 +81,48 @@ function AdminAddStudent() {
   const { turmas } = useTurmas();
   const { classes } = useClasses();
 
+  useEffect(() => {
+    if (editedItem) {
+      setFormData({
+        name: editedItem.name,
+        birthDate: editedItem.birthDate,
+        province: editedItem.province,
+        biCode: editedItem.biCode,
+        residence: editedItem.residence,
+        phoneNumber: editedItem.phoneNumber.replace("+244 ", ""),
+        genre: editedItem.genre,
+        courseId: editedItem.courseId,
+        classId: editedItem.classId,
+        turmaId: editedItem.turmaId,
+        email: editedItem.email,
+      });
+    } else {
+      setFormData(initialState);
+    }
+  }, [editedItem]);
+
+  function handleClose() {
+    navigate("/area/admin/adminStudents");
+    selectEditedItem(null);
+  }
+
   async function handlerSubmit(e) {
     e.preventDefault();
     const certificate = certfificateRef.current.files[0];
     const photo = photoRef.current.files[0];
-    // if (certificate) {
-    //   console.log(
-    //     certificate,
-    //     certificate.name,
-    //     certificate.size,
-    //     certificate.type,
-    //   );
-    // }
-    // Validação de email
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    const isValidEmail = emailRegex.test(email);
+    const isValidEmail = emailRegex.test(formData.email);
 
     if (
-      !name ||
-      !birthDate ||
-      !phoneNumber ||
+      !formData.name ||
+      !formData.birthDate ||
+      !formData.phoneNumber ||
       !certificate ||
       !photo ||
-      !courseId ||
-      !classId ||
-      !turmaId ||
-      !email
+      !formData.courseId ||
+      !formData.classId ||
+      !formData.turmaId ||
+      !formData.email
     ) {
       showWarning("Por favor, preencha todos os campos");
       navigate("/area/admin/adminStudents/add-student");
@@ -113,45 +136,41 @@ function AdminAddStudent() {
     }
 
     const newStudent = {
+      ...formData,
       id: (Math.floor(Math.random() * 5000) + 100).toString(),
       dateIn: formateDate(new Date()),
-      age: `${calcAge(birthDate)} anos`,
-      name,
-      birthDate,
-      province,
-      biCode,
-      residence,
-      phoneNumber: `+244 ${phoneNumber}`,
-      genre,
-      courseId,
-      classId,
-      turmaId,
-      email,
-      certificate,
-      photo,
+      age: `${calcAge(formData.birthDate)} anos`,
+      phoneNumber: `+244 ${formData.phoneNumber}`,
+      fatherPhoneNumber: `${fatherPhoneNumber ? `+244 ${fatherPhoneNumber}` : ""}`,
+      motherPhoneNumber: `${motherPhoneNumber ? `+244 ${motherPhoneNumber}` : ""}`,
+      guardionPhoneNumber: `${guardionPhoneNumber ? `+244 ${guardionPhoneNumber}` : ""}`,
       fatherJob,
-      fatherName,
-      fatherPhoneNumber,
-      motherName,
       motherJob,
-      motherPhoneNumber,
       guardionJob,
+      fatherName,
+      motherName,
       guardionName,
-      guardionPhoneNumber,
       password: Date.now().toString().slice(-8),
       role: "student",
     };
 
-    await post("users", newStudent);
-    showSuccess("Estudante cadastrado com sucesso!");
-    navigate("/area/admin/adminStudents");
-    console.log("Novo estudante:", newStudent);
+    if (editedItem) {
+      await patch("users", editedItem.id, newStudent);
+      showSuccess("Estudante atualizado com sucesso!");
+    } else {
+      await post("users", newStudent);
+      showSuccess("Estudante cadastrado com sucesso!");
+    }
+
+    handleClose();
   }
 
   return (
     <div>
       <AdminHeading>
-        <Title3>Cadastrar Estudante</Title3>
+        <Title3>
+          {editedItem ? "Atualizar Estudante" : "Cadastrar Estudante"}
+        </Title3>
         <AdminButton
           type="secondary"
           onClick={() => navigate("/area/admin/adminStudents")}
@@ -171,76 +190,83 @@ function AdminAddStudent() {
         </AdminAddHeader>
         <AdminAddForm type="four">
           <div>
-            <AdminLabel htmlFor="name">Nome Completo</AdminLabel>
-            <AdminInput
-              id="name"
+            <FloatInputLabel
+              value={formData.name}
+              name="Nome Completo"
               type="text"
-              value={name}
-              onChange={(e) => setName(e.target.value)}
+              onChange={(e) =>
+                setFormData({ ...formData, name: e.target.value })
+              }
             />
           </div>
           <div>
-            <AdminLabel htmlFor="date">Data de nascimento</AdminLabel>
-            <AdminInput
-              id="date"
+            <FloatInputLabel
+              value={formData.birthDate}
               type="date"
-              value={birthDate}
-              onChange={(e) => setBirthDate(e.target.value)}
+              onChange={(e) =>
+                setFormData({ ...formData, birthDate: e.target.value })
+              }
             />
           </div>
           <div>
-            <AdminLabel htmlFor="province">Provincia</AdminLabel>
-            <AdminInput
-              id="province"
+            <FloatInputLabel
+              value={formData.province}
+              name="Provincia"
               type="text"
-              value={province}
-              onChange={(e) => setProvince(e.target.value)}
+              onChange={(e) =>
+                setFormData({ ...formData, province: e.target.value })
+              }
             />
           </div>
           <div>
-            <AdminLabel htmlFor="bi">Numero do BI</AdminLabel>
-            <AdminInput
-              id="bi"
+            <FloatInputLabel
+              value={formData.biCode}
+              name="Numero de Indentificação"
               type="text"
-              value={biCode}
-              onChange={(e) => setBiCode(e.target.value)}
+              onChange={(e) =>
+                setFormData({ ...formData, biCode: e.target.value })
+              }
             />
           </div>
           <div>
-            <AdminLabel htmlFor="residence">Residencia</AdminLabel>
-            <AdminInput
-              id="residence"
+            <FloatInputLabel
+              value={formData.residence}
+              name="Residência"
               type="text"
-              value={residence}
-              onChange={(e) => setResidence(e.target.value)}
+              onChange={(e) =>
+                setFormData({ ...formData, residence: e.target.value })
+              }
             />
           </div>
           <div>
-            <AdminLabel htmlFor="phone">Telefone</AdminLabel>
-            <AdminInput
-              id="phone"
+            <FloatInputLabel
+              value={formData.phoneNumber}
+              name="Nº Telefone"
               max={9}
               type="text"
-              value={phoneNumber}
-              onChange={(e) => setPhoneNumber(e.target.value)}
+              onChange={(e) =>
+                setFormData({ ...formData, phoneNumber: e.target.value })
+              }
             />
           </div>
           <div>
-            <AdminLabel htmlFor="email">Email</AdminLabel>
-            <AdminInput
-              id="email"
+            <FloatInputLabel
+              value={formData.email}
+              name="Endereço Email"
               type="text"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
+              onChange={(e) =>
+                setFormData({ ...formData, email: e.target.value })
+              }
             />
           </div>
           <div>
-            <AdminLabel>Genero</AdminLabel>
             <AdminSelect
-              value={genre}
-              onChange={(e) => setGenre(e.target.value)}
+              value={formData.genre}
+              onChange={(e) =>
+                setFormData({ ...formData, genre: e.target.value })
+              }
             >
-              <option>Nenhum Selecionado</option>
+              <option>Selecione o Genero</option>
               <option value="Masculino">Masculino</option>
               <option value="Feminino">Feminino</option>
             </AdminSelect>
@@ -280,12 +306,13 @@ function AdminAddStudent() {
             />
           </div>
           <div>
-            <AdminLabel>Selecionar Curso/Ensino</AdminLabel>
             <AdminSelect
-              value={courseId}
-              onChange={(e) => setCourseId(e.target.value)}
+              value={formData.courseId}
+              onChange={(e) =>
+                setFormData({ ...formData, courseId: e.target.value })
+              }
             >
-              <option value="">Nenhum Selecionado</option>
+              <option value="">Selecionar Curso</option>
               {courses.map((course) => (
                 <option key={course.id} value={course.id}>
                   {course.courseName}
@@ -294,14 +321,15 @@ function AdminAddStudent() {
             </AdminSelect>
           </div>
           <div>
-            <AdminLabel>Selecionar Classe</AdminLabel>
             <AdminSelect
-              value={classId}
-              onChange={(e) => setClassId(e.target.value)}
+              value={formData.classId}
+              onChange={(e) =>
+                setFormData({ ...formData, classId: e.target.value })
+              }
             >
-              <option value="">Nenhum Selecionado</option>
+              <option value="">Selecionar Classe</option>
               {classes
-                .filter((classItem) => classItem.courseId === courseId)
+                .filter((classItem) => classItem.courseId === formData.courseId)
                 .map((classItem) => (
                   <option key={classItem.id} value={classItem.id}>
                     {classItem.classYear}
@@ -310,15 +338,16 @@ function AdminAddStudent() {
             </AdminSelect>
           </div>
           <div>
-            <AdminLabel>Selecionar Turma</AdminLabel>
             <AdminSelect
-              value={turmaId}
-              onChange={(e) => setTurmaId(e.target.value)}
+              value={formData.turmaId}
+              onChange={(e) =>
+                setFormData({ ...formData, turmaId: e.target.value })
+              }
             >
-              <option value="">Nenhum Selecionado</option>
+              <option value="">Selecionar Turma</option>
               {turmas
-                .filter((turmaItem) => turmaItem.courseId === courseId)
-                .filter((turmaItem) => turmaItem.classId === classId)
+                .filter((turmaItem) => turmaItem.courseId === formData.courseId)
+                .filter((turmaItem) => turmaItem.classId === formData.classId)
                 .map((turmaItem) => (
                   <option key={turmaItem.id} value={turmaItem.id}>
                     {turmaItem.turmaCategory}
@@ -344,7 +373,7 @@ function AdminAddStudent() {
             <p className="text-base">
               <MdOutlineDone />
             </p>
-            <p>Finalizar Cadastro</p>
+            <p>{editedItem ? "Finalizar Atualização" : "Finalizar Cadastro"}</p>
           </AdminButton>
         </div>
       </AdminAddStudentLayout>

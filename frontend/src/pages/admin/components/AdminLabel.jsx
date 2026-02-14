@@ -1,6 +1,6 @@
 function AdminLabel({ children, htmlFor }) {
   return (
-    <label className="text-xs" htmlFor={htmlFor}>
+    <label className="text-xs block" htmlFor={htmlFor}>
       {children}
     </label>
   );

@@ -1,7 +1,7 @@
 import { AiOutlineLoading3Quarters } from "react-icons/ai";
 
 export default function Loading({ size = 25, type = "white" }) {
-  const base = "animate-spin";
+  const base = "animate-spin ";
 
   const styles = {
     blue: base + " text-blue-700",

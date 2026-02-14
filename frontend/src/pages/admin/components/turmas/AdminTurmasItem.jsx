@@ -13,21 +13,28 @@ import { useNavigate } from "react-router-dom";
 import { useEditOptions } from "../../../../hooks/useEditOptions";
 import { HiEllipsisVertical } from "react-icons/hi2";
 import { BsEye, BsPencil, BsTrash } from "react-icons/bs";
+import { useStudents } from "../../../../hooks/useStudents";
 
 function AdminTurmasItem({ item }) {
-  const { toggleTurmas, selectOptionItem } = useModal();
+  const { toggleTurmas, selectOptionItem, toggleTurmaModal, selectEditedItem } =
+    useModal();
   const { classes } = useClasses();
-  const turmaClasse = classes.find((c) => c.id === item.classId);
+  const { students } = useStudents();
   const { showMenu, menuRef, setShowMenu } = useEditOptions();
+  const turmaClasse = classes.find((c) => c.id === item.classId);
+  const turmaStudents = students.filter((s) => s.turmaId === item.id);
+
   const navigate = useNavigate();
 
   const handleView = () => {
     console.log("Ver estudante:", item);
+    navigate(`/area/admin/adminTurmas/turma-detail/${item.id}`);
     setShowMenu(false);
   };
 
   const handleEdit = () => {
-    console.log("Editar estudante:", item);
+    selectEditedItem(item);
+    toggleTurmaModal();
     setShowMenu(false);
   };
 
@@ -83,8 +90,7 @@ function AdminTurmasItem({ item }) {
           <span className="text-sm">
             <HiOutlineUserGroup />
           </span>
-          {/* <span>{item.students.length} Estudantes</span> */}
-          <span> Estudantes</span>
+          <span>{turmaStudents.length} Estudantes</span>
         </p>
         <p className="flex items-center gap-1">
           <span className="text-sm">
@@ -114,8 +120,9 @@ function AdminTurmasItem({ item }) {
         </p>
         <AdminButton
           type="turmas"
-          onClick={() => navigate("/area/admin/adminTurmas/turma-detail")}
-          // onClick={() => navigate("/area/admin/adminStudents/add-student")}
+          onClick={() =>
+            navigate(`/area/admin/adminTurmas/turma-detail/${item.id}`)
+          }
         >
           Ver detalhes
         </AdminButton>

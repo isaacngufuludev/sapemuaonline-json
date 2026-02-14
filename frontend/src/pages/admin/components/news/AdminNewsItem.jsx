@@ -6,11 +6,12 @@ import { useModal } from "../../../../contexts/ModalContext";
 import { useEditOptions } from "../../../../hooks/useEditOptions";
 
 function AdminNewsItem({ item }) {
-  const { toggleNews, toggleNewsModal, selectOptionItem } = useModal();
+  const { toggleNews, toggleNewsModal, selectOptionItem, selectEditedItem } =
+    useModal();
   const { showMenu, menuRef, setShowMenu } = useEditOptions();
 
   const handleEdit = () => {
-    console.log("Editar estudante:", item);
+    selectEditedItem(item);
     toggleNewsModal();
     setShowMenu(false);
   };

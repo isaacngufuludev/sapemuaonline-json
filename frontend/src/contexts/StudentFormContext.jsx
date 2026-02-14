@@ -1,4 +1,5 @@
-import { createContext, useContext, useState } from "react";
+import { createContext, useContext, useEffect, useState } from "react";
+import { useModal } from "./ModalContext";
 
 const StudentFormContext = createContext();
 
@@ -12,6 +13,34 @@ export const StudentFormProvider = ({ children }) => {
   const [guardionName, setGuardionName] = useState("");
   const [guardionPhoneNumber, setGuardionPhoneNumber] = useState("");
   const [guardionJob, setGuardionJob] = useState("");
+  const { edited: editedItem } = useModal();
+  console.log(editedItem);
+
+  useEffect(() => {
+    if (editedItem) {
+      setFatherName(editedItem.fatherName);
+      setFatherPhoneNumber(editedItem.fatherPhoneNumber.replace("+244 ", ""));
+      setFatherJob(editedItem.fatherJob);
+      setMotherName(editedItem.motherName);
+      setMotherPhoneNumber(editedItem.motherPhoneNumber.replace("+244 ", ""));
+      setMotherJob(editedItem.motherJob);
+      setGuardionName(editedItem.guardionName);
+      setGuardionPhoneNumber(
+        editedItem.guardionPhoneNumber.replace("+244 ", ""),
+      );
+      setGuardionJob(editedItem.guardionJob);
+    } else {
+      setFatherName("");
+      setFatherPhoneNumber("");
+      setFatherJob("");
+      setMotherName("");
+      setMotherPhoneNumber("");
+      setMotherJob("");
+      setGuardionName("");
+      setGuardionPhoneNumber("");
+      setGuardionJob("");
+    }
+  }, [editedItem]);
 
   const value = {
     fatherJob,
@@ -45,7 +74,7 @@ export const useStudentForm = () => {
   const context = useContext(StudentFormContext);
   if (!context) {
     throw new Error(
-      "useStudentForm deve ser usado dentro de StudentFormProvider"
+      "useStudentForm deve ser usado dentro de StudentFormProvider",
     );
   }
   return context;
