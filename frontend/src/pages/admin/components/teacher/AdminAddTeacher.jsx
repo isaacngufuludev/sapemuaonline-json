@@ -1,8 +1,8 @@
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { FaArrowLeft } from "react-icons/fa";
 import { MdOutlineDone } from "react-icons/md";
 import { useEffect, useRef, useState } from "react";
-import { patch, post } from "../../../../services/api";
+import { get, patch, post } from "../../../../services/api";
 import { useToast } from "../../../../hooks/useToast";
 import { calcAge, formateDate } from "../../../../utils/helpers";
 import {
@@ -23,7 +23,6 @@ import AdminInput from "../AdminInput";
 import AdminLabel from "../AdminLabel";
 import AdminSelect from "../AdminSelect";
 import FloatInputLabel from "../../../../components/ui/FloatInputLabel";
-import { useModal } from "../../../../contexts/ModalContext";
 
 const initialState = {
   name: "",
@@ -44,48 +43,52 @@ const initialState = {
 };
 
 function AdminAddTeacher() {
-  const { edited: editedItem, selectEditedItem } = useModal();
   const [formData, setFormData] = useState(initialState);
+  // const [selectedTurmas, setSelectedTurmas] = useState([]);
+  // const { turmas } = useTurmas();
 
-  const fileCVRef = useRef(null);
+  // const fileCVRef = useRef(null);
   const fileCertificateRef = useRef(null);
   const filePhoto = useRef(null);
   const { showSuccess, showWarning } = useToast();
   const navigate = useNavigate();
+  const { id } = useParams();
 
   useEffect(() => {
-    if (editedItem) {
+    async function fetchTeacher() {
+      if (!id) return;
+      const teacher = await get(`users/${id}?`);
+
       setFormData({
-        name: editedItem.name,
-        birthDate: editedItem.birthDate,
-        province: editedItem.province,
-        biCode: editedItem.biCode,
-        residence: editedItem.residence,
-        phoneCollege: editedItem.phoneCollege,
-        phoneNumber: editedItem.phoneNumber.replace("+244 ", ""),
-        genre: editedItem.genre,
-        qualification: editedItem.qualification,
-        area: editedItem.area,
-        college: editedItem.college,
-        email: editedItem.email,
-        adressCOllege: editedItem.adressCOllege,
-        subjects: editedItem.subjects,
-        description: editedItem.description,
+        name: teacher.name,
+        birthDate: teacher.birthDate,
+        province: teacher.province,
+        biCode: teacher.biCode,
+        residence: teacher.residence,
+        phoneCollege: teacher.phoneCollege,
+        phoneNumber: teacher?.phoneNumber.replace("+244 ", ""),
+        genre: teacher.genre,
+        qualification: teacher.qualification,
+        area: teacher.area,
+        college: teacher.college,
+        email: teacher.email,
+        adressCOllege: teacher.adressCollege,
+        subjects: teacher.subjects,
+        description: teacher.description,
       });
-    } else {
-      setFormData(initialState);
     }
-  }, [editedItem]);
+
+    fetchTeacher();
+  }, [id]);
 
   function handleClose() {
-    navigate("/area/admin/adminTeacher");
-    selectEditedItem(null);
+    navigate("/area/admin/adminTeacher/main-teacher");
   }
 
   async function handleSubmit(e) {
     e.preventDefault();
     const certificate = fileCertificateRef.current.files[0];
-    const cv = fileCVRef.current.files[0];
+    // const cv = fileCVRef.current.files[0];
     const photo = filePhoto.current.files[0];
 
     // Validação de email
@@ -99,7 +102,6 @@ function AdminAddTeacher() {
       !formData.qualification ||
       !formData.subjects ||
       !formData.area ||
-      !cv ||
       !formData.email
     ) {
       showWarning("Por favor, preencha todos os campos");
@@ -113,38 +115,41 @@ function AdminAddTeacher() {
       return;
     }
 
+    let teacher = null;
+
+    if (id) teacher = await get(`users/${id}`);
+
     const newTecher = {
       ...formData,
-      id: (Math.floor(Math.random() * 5000) + 100).toString(),
-      dateIn: formateDate(new Date()),
+      dateIn: teacher ? teacher.dateIn : formateDate(new Date()),
       age: `${calcAge(formData.birthDate)} anos`,
       phoneNumber: `+244 ${formData.phoneNumber}`,
       certificate,
       photo,
-      cv,
-      password: Date.now().toString().slice(-8),
+      password: teacher ? teacher.password : Date.now().toString().slice(-8),
       role: "teacher",
     };
 
-    if (editedItem) {
-      await patch("users", editedItem.id, newTecher);
-      showSuccess("Professor atualizado com sucesso!");
-    } else {
-      await post("users", newTecher);
-      showSuccess("Professor cadastrado com sucesso!");
-    }
+    try {
+      if (id) {
+        await patch("users", id, newTecher);
+        showSuccess("Professor atualizado com sucesso!");
+      } else {
+        await post("users", newTecher);
+        showSuccess("Professor cadastrado com sucesso!");
+      }
 
-    handleClose();
+      handleClose();
+    } catch (error) {
+      showWarning("Erro ao cadastrar professor", error.message);
+    }
   }
 
   return (
     <div>
       <AdminHeading>
-        <Title3>Cadastrar Professor</Title3>
-        <AdminButton
-          type="secondary"
-          onClick={() => navigate("/area/admin/adminTeacher")}
-        >
+        <Title3>{id ? "Atualizar Professor" : "Cadastrar Professor"}</Title3>
+        <AdminButton type="secondary" onClick={handleClose}>
           <p>
             <FaArrowLeft />
           </p>
@@ -305,17 +310,17 @@ function AdminAddTeacher() {
           <p className="bg-white inline-block p-[6px] text-blue-700 rounded-md">
             <BsFileEarmark />
           </p>
-          <Title4>Qualificações e documentos</Title4>
+          <Title4>Documentos e Vinculo</Title4>
         </AdminAddHeader>
         <AdminAddForm type="two">
           <div>
             <AdminLabel>Foto-Passe</AdminLabel>
             <AdminInput type="file" ref={filePhoto} accept=".jpg, .png, .pdf" />
           </div>
-          <div>
+          {/* <div>
             <AdminLabel>Upload Curriculum</AdminLabel>
             <AdminInput type="file" ref={fileCVRef} accept=".jpg, .png, .pdf" />
-          </div>
+          </div> */}
           <div>
             <AdminLabel>Cerificado</AdminLabel>
             <AdminInput
@@ -335,6 +340,27 @@ function AdminAddTeacher() {
             />
           </div>
           <div>
+            {/* <AdminSelect
+            multiple
+            value={selectedTurmas}
+            onChange={(e) => {
+              const values = Array.from(
+                e.target.selectedOptions,
+                (option) => option.value,
+              );
+
+              setSelectedTurmas(values);
+            }}
+          >
+            <option>Selecione as turmas</option>
+            {turmas.map((turma) => (
+              <option key={turma.id} value={turma.id}>
+                {turma.turmaCategory}
+              </option>
+            ))}
+          </AdminSelect> */}
+          </div>
+          <div>
             <AdminInput
               type="description"
               placeholder="Breve descrição"
@@ -345,24 +371,21 @@ function AdminAddTeacher() {
             />
           </div>
         </AdminAddForm>
-        <div className="flex items-center gap-2 justify-end mt-4">
-          <AdminButton
-            type="secondary"
-            onClick={() => navigate("/area/admin/adminTeacher")}
-          >
-            <p className="text-lg">
-              <BsX />
-            </p>
-            <p>Cancelar</p>
-          </AdminButton>
-          <AdminButton type="primary" onClick={handleSubmit}>
-            <p className="text-base">
-              <MdOutlineDone />
-            </p>
-            <p>Finalizar Cadastro</p>
-          </AdminButton>
-        </div>
       </AdminAddTeacherLayout>
+      <div className="flex items-center gap-2 justify-end mt-4">
+        <AdminButton type="secondary" onClick={handleClose}>
+          <p className="text-lg">
+            <BsX />
+          </p>
+          <p>Cancelar</p>
+        </AdminButton>
+        <AdminButton type="primary" onClick={handleSubmit}>
+          <p className="text-base">
+            <MdOutlineDone />
+          </p>
+          <p>{id ? "Finalizar Atualização" : "Finalizar Cadastro"}</p>
+        </AdminButton>
+      </div>
     </div>
   );
 }

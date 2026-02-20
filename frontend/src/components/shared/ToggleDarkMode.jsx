@@ -8,7 +8,7 @@ function ToggleDarkMode({ type = "default" }) {
 
   const styles = {
     default: base + " text-xl",
-    absolute: base + " absolute right-5 top-10 text-2xl",
+    absolute: base + " absolute right-7 top-10 text-2xl",
   };
 
   return (

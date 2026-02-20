@@ -42,7 +42,7 @@ function AdminDashboardLayout() {
         </div>
         <div id="admin-dashboard-content">
           <AdminDashboardCards />
-          <div className="grid grid-cols-[3fr_1fr] gap-3 mb-10">
+          <div className="grid grid-cols-[3fr_1.3fr] gap-3 mb-10">
             <ChartUsersGrowth />
             <ChartUsersRole />
           </div>

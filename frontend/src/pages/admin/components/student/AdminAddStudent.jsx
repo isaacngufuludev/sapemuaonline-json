@@ -1,4 +1,4 @@
-import { Outlet, useNavigate } from "react-router-dom";
+import { Outlet, useNavigate, useParams } from "react-router-dom";
 import { FaArrowLeft } from "react-icons/fa";
 import {
   BsExclamationCircle,
@@ -22,13 +22,12 @@ import AdminParentLinks from "./AdminParentLinks";
 import { useEffect, useRef, useState } from "react";
 import { useStudentForm } from "../../../../contexts/StudentFormContext";
 import { calcAge, formateDate } from "../../../../utils/helpers";
-import { patch, post } from "../../../../services/api";
+import { get, patch, post } from "../../../../services/api";
 import { useToast } from "../../../../hooks/useToast";
 import { useCourses } from "../../../../hooks/useCourses";
 import { useClasses } from "../../../../hooks/useClasses";
 import { useTurmas } from "../../../../hooks/useTurmas";
 import FloatInputLabel from "../../../../components/ui/FloatInputLabel";
-import { useModal } from "../../../../contexts/ModalContext";
 
 const parentLinks = [
   {
@@ -60,7 +59,6 @@ const initialState = {
 };
 
 function AdminAddStudent() {
-  const { edited: editedItem, selectEditedItem } = useModal();
   const [formData, setFormData] = useState(initialState);
   const certfificateRef = useRef(null);
   const photoRef = useRef(null);
@@ -76,34 +74,37 @@ function AdminAddStudent() {
     guardionName,
     guardionPhoneNumber,
   } = useStudentForm();
-  const { showSuccess, showWarning } = useToast();
+  const { showSuccess, showWarning, showError } = useToast();
   const { courses } = useCourses();
   const { turmas } = useTurmas();
   const { classes } = useClasses();
+  const { id } = useParams();
 
   useEffect(() => {
-    if (editedItem) {
+    async function fetchStudent() {
+      if (!id) return;
+      const student = await get(`users/${id}`);
+
       setFormData({
-        name: editedItem.name,
-        birthDate: editedItem.birthDate,
-        province: editedItem.province,
-        biCode: editedItem.biCode,
-        residence: editedItem.residence,
-        phoneNumber: editedItem.phoneNumber.replace("+244 ", ""),
-        genre: editedItem.genre,
-        courseId: editedItem.courseId,
-        classId: editedItem.classId,
-        turmaId: editedItem.turmaId,
-        email: editedItem.email,
+        name: student.name,
+        birthDate: student.birthDate,
+        province: student.province,
+        biCode: student.biCode,
+        residence: student.residence,
+        phoneNumber: student.phoneNumber.replace("+244 ", ""),
+        genre: student.genre,
+        courseId: student.courseId,
+        classId: student.classId,
+        turmaId: student.turmaId,
+        email: student.email,
       });
-    } else {
-      setFormData(initialState);
     }
-  }, [editedItem]);
+
+    fetchStudent();
+  }, [id]);
 
   function handleClose() {
-    navigate("/area/admin/adminStudents");
-    selectEditedItem(null);
+    navigate("/area/admin/adminStudents/main-student");
   }
 
   async function handlerSubmit(e) {
@@ -112,13 +113,12 @@ function AdminAddStudent() {
     const photo = photoRef.current.files[0];
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     const isValidEmail = emailRegex.test(formData.email);
+    // const student = await get(`users/${id}`);
 
     if (
       !formData.name ||
       !formData.birthDate ||
       !formData.phoneNumber ||
-      !certificate ||
-      !photo ||
       !formData.courseId ||
       !formData.classId ||
       !formData.turmaId ||
@@ -135,46 +135,54 @@ function AdminAddStudent() {
       return;
     }
 
+    let student = null;
+
+    if (id) {
+      student = await get(`users/${id}`);
+    }
+
     const newStudent = {
       ...formData,
-      id: (Math.floor(Math.random() * 5000) + 100).toString(),
-      dateIn: formateDate(new Date()),
+      dateIn: student ? student.dateIn : formateDate(new Date()),
       age: `${calcAge(formData.birthDate)} anos`,
       phoneNumber: `+244 ${formData.phoneNumber}`,
-      fatherPhoneNumber: `${fatherPhoneNumber ? `+244 ${fatherPhoneNumber}` : ""}`,
-      motherPhoneNumber: `${motherPhoneNumber ? `+244 ${motherPhoneNumber}` : ""}`,
-      guardionPhoneNumber: `${guardionPhoneNumber ? `+244 ${guardionPhoneNumber}` : ""}`,
+      fatherPhoneNumber: fatherPhoneNumber ? `+244 ${fatherPhoneNumber}` : "",
+      motherPhoneNumber: motherPhoneNumber ? `+244 ${motherPhoneNumber}` : "",
+      guardionPhoneNumber: guardionPhoneNumber
+        ? `+244 ${guardionPhoneNumber}`
+        : "",
       fatherJob,
       motherJob,
       guardionJob,
       fatherName,
       motherName,
+      certificate,
+      photo,
       guardionName,
-      password: Date.now().toString().slice(-8),
+      password: student ? student.dateIn : Date.now().toString().slice(-8),
       role: "student",
     };
 
-    if (editedItem) {
-      await patch("users", editedItem.id, newStudent);
-      showSuccess("Estudante atualizado com sucesso!");
-    } else {
-      await post("users", newStudent);
-      showSuccess("Estudante cadastrado com sucesso!");
-    }
+    try {
+      if (id) {
+        await patch("users", id, newStudent);
+        showSuccess("Estudante atualizado com sucesso!");
+      } else {
+        await post("users", newStudent);
+        showSuccess("Estudante cadastrado com sucesso!");
+      }
 
-    handleClose();
+      handleClose();
+    } catch (error) {
+      showError("Erro ao cadastrar estudante: ", error.message);
+    }
   }
 
   return (
     <div>
       <AdminHeading>
-        <Title3>
-          {editedItem ? "Atualizar Estudante" : "Cadastrar Estudante"}
-        </Title3>
-        <AdminButton
-          type="secondary"
-          onClick={() => navigate("/area/admin/adminStudents")}
-        >
+        <Title3>{id ? "Atualizar Estudante" : "Cadastrar Estudante"}</Title3>
+        <AdminButton type="secondary" onClick={handleClose}>
           <p>
             <FaArrowLeft />
           </p>
@@ -356,27 +364,21 @@ function AdminAddStudent() {
             </AdminSelect>
           </div>
         </AdminAddForm>
-        <div className="flex items-center gap-2 justify-end mt-4">
-          <AdminButton
-            type="secondary"
-            onClick={() => navigate("/area/admin/adminStudents")}
-          >
-            <p className="text-lg">
-              <BsX />
-            </p>
-            <p>Cancelar</p>
-          </AdminButton>
-          <AdminButton
-            type="primary"
-            onClick={() => navigate("/area/admin/adminStudents")}
-          >
-            <p className="text-base">
-              <MdOutlineDone />
-            </p>
-            <p>{editedItem ? "Finalizar Atualização" : "Finalizar Cadastro"}</p>
-          </AdminButton>
-        </div>
       </AdminAddStudentLayout>
+      <div className="flex items-center gap-2 justify-end mt-4">
+        <AdminButton type="secondary" onClick={handleClose}>
+          <p className="text-lg">
+            <BsX />
+          </p>
+          <p>Cancelar</p>
+        </AdminButton>
+        <AdminButton type="primary" onClick={handlerSubmit}>
+          <p className="text-base">
+            <MdOutlineDone />
+          </p>
+          <p>{id ? "Finalizar Atualização" : "Finalizar Cadastro"}</p>
+        </AdminButton>
+      </div>
     </div>
   );
 }

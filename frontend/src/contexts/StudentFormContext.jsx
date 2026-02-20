@@ -14,19 +14,18 @@ export const StudentFormProvider = ({ children }) => {
   const [guardionPhoneNumber, setGuardionPhoneNumber] = useState("");
   const [guardionJob, setGuardionJob] = useState("");
   const { edited: editedItem } = useModal();
-  console.log(editedItem);
 
   useEffect(() => {
     if (editedItem) {
       setFatherName(editedItem.fatherName);
-      setFatherPhoneNumber(editedItem.fatherPhoneNumber.replace("+244 ", ""));
+      setFatherPhoneNumber(editedItem.fatherPhoneNumber?.replace("+244 ", ""));
       setFatherJob(editedItem.fatherJob);
       setMotherName(editedItem.motherName);
-      setMotherPhoneNumber(editedItem.motherPhoneNumber.replace("+244 ", ""));
+      setMotherPhoneNumber(editedItem.motherPhoneNumber?.replace("+244 ", ""));
       setMotherJob(editedItem.motherJob);
       setGuardionName(editedItem.guardionName);
       setGuardionPhoneNumber(
-        editedItem.guardionPhoneNumber.replace("+244 ", ""),
+        editedItem?.guardionPhoneNumber?.replace("+244 ", ""),
       );
       setGuardionJob(editedItem.guardionJob);
     } else {

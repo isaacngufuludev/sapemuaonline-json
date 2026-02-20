@@ -46,7 +46,7 @@ function LoginForm() {
         onSubmit={handleSubmit}
       >
         <AuthInput
-          id="password"
+          id="email"
           value={loginMethod}
           type="text"
           onChange={(e) => setLoginMethod(e.target.value)}

@@ -41,7 +41,7 @@ function ChartUsersGrowth() {
 
   return (
     <div
-      className="bg-white dark:bg-gray-800 p-6 rounded-md border border-slate-200 dark:border-gray-700"
+      className="bg-white dark:bg-gray-800 p-4 rounded-md border border-slate-200 dark:border-gray-700"
       ref={LineChartRef}
     >
       <div className="mb-3">

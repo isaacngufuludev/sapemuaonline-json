@@ -6,8 +6,7 @@ import { useEditOptions } from "../../../../hooks/useEditOptions";
 import { HiEllipsisVertical } from "react-icons/hi2";
 
 function AdminTeacherItem({ item }) {
-  const { toggleRemoveTeacher, selectOptionItem, selectEditedItem } =
-    useModal();
+  const { toggleRemoveTeacher, selectOptionItem } = useModal();
   const { showMenu, menuRef, setShowMenu } = useEditOptions();
   const navigate = useNavigate();
 
@@ -17,8 +16,7 @@ function AdminTeacherItem({ item }) {
   };
 
   const handleEdit = () => {
-    selectEditedItem(item);
-    navigate(`/area/admin/adminTeacher/add-teacher`);
+    navigate(`/area/admin/adminTeacher/add-teacher/${item.id}`);
     setShowMenu(false);
   };
 

@@ -69,7 +69,7 @@ function ModalTurma({ editedItem }) {
 
     const newTurma = {
       ...formData,
-      dateIn: formateDate(new Date()),
+      dateIn: editedItem ? editedItem.dateIn : formateDate(new Date()),
     };
 
     try {

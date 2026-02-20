@@ -6,7 +6,7 @@ import BtnGoBack from "../../components/ui/BtnGoBack";
 
 function Auth() {
   return (
-    <div className="grid grid-cols-[3fr_1fr]">
+    <div className="grid grid-cols-[3fr_1.1fr]">
       <div
         className="min-h-screen bg-cover bg-center"
         style={{ backgroundImage: "url('/imgs/login.png')" }}

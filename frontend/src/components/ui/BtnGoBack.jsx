@@ -7,7 +7,7 @@ function BtnGoBack() {
   return (
     <button
       onClick={() => navigate("/")}
-      className="absolute left-5 text-lg top-10 flex gap-1 items-center"
+      className="absolute left-7 text-lg top-10 flex gap-1 items-center"
     >
       <BsChevronLeft />
       <p className="text-sm">Voltar</p>

@@ -18,6 +18,7 @@ import FloatInputLabel from "../../../../components/ui/FloatInputLabel";
 
 const initialState = {
   title: "",
+  date: "",
   description: "",
 };
 
@@ -31,6 +32,7 @@ function NewsModal({ editedItem }) {
     if (editedItem) {
       setFormData({
         title: editedItem.title,
+        date: editedItem.date,
         description: editedItem.description,
       });
     } else {
@@ -54,7 +56,8 @@ function NewsModal({ editedItem }) {
 
     const news = {
       ...formData,
-      date: formateDate(new Date(), "numeric"),
+      date: formData.date || formateDate(new Date(), "numeric"),
+      dateIn: editedItem ? editedItem.dateIn : formateDate(new Date()),
     };
 
     try {
@@ -94,6 +97,13 @@ function NewsModal({ editedItem }) {
             onChange={(e) =>
               setFormData({ ...formData, title: e.target.value })
             }
+          />
+        </div>
+        <div>
+          <FloatInputLabel
+            value={formData.date}
+            type="date"
+            onChange={(e) => setFormData({ ...formData, date: e.target.value })}
           />
         </div>
 

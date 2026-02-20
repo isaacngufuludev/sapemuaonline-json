@@ -43,7 +43,7 @@ function ModalCourse({ editedItem }) {
     }
 
     const newCourse = {
-      dateIn: formateDate(new Date()),
+      dateIn: editedItem ? editedItem.dateIn : formateDate(new Date()),
       courseName,
     };
 

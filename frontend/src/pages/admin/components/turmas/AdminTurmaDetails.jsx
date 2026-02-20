@@ -4,7 +4,6 @@ import AdminButton from "../AdminButton";
 import AdminHeading from "../AdminHeading";
 import AdminTurmasDetailList from "./AdminTurmasDetailList";
 import { useParams } from "react-router-dom";
-import { useTurmas } from "../../../../hooks/useTurmas";
 import { useCourses } from "../../../../hooks/useCourses";
 import { useEffect, useState } from "react";
 import { useClasses } from "../../../../hooks/useClasses";
@@ -32,7 +31,7 @@ function AdminTurmaDetails() {
     <div>
       <AdminHeading>
         <Title3>
-          {turmaCourse?.courseName}-{turmaClasse.classYear}-{turma?.period}
+          {turmaCourse?.courseName}-{turmaClasse?.classYear}-{turma?.period}
         </Title3>
         <AdminButton type="primary">
           <p>

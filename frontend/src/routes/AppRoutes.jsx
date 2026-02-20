@@ -1,6 +1,6 @@
 import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 import { ThemeProvider } from "../contexts/ThemeContext";
-import { ModalProvider, useModal } from "../contexts/ModalContext";
+import { ModalProvider } from "../contexts/ModalContext";
 import { AuthProvider } from "../contexts/AuthContext";
 import { StudentFormProvider } from "../contexts/StudentFormContext";
 import { RefreshProvider } from "../contexts/RefreshContext";
@@ -91,7 +91,7 @@ function AppRoutes() {
                         element={<AdminStudentDetail />}
                       />
                       <Route
-                        path="add-student"
+                        path="add-student/:id?"
                         element={
                           <StudentFormProvider>
                             <AdminAddStudent />
@@ -129,7 +129,10 @@ function AppRoutes() {
                         path="teacher-detail/:teacherId"
                         element={<AdminTeacherDetail />}
                       />
-                      <Route path="add-teacher" element={<AdminAddTeacher />} />
+                      <Route
+                        path="add-teacher/:id?"
+                        element={<AdminAddTeacher />}
+                      />
                     </Route>
                     <Route path="adminTurmas" element={<AdminTurmas />}>
                       <Route

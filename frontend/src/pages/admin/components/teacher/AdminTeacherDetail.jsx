@@ -3,13 +3,28 @@ import Title3 from "../../../../components/ui/Title3";
 import AdminButton from "../AdminButton";
 import AdminHeading from "../AdminHeading";
 import AdminTeacherDetailList from "./AdminTeacherDetailList";
+import { useNavigate, useParams } from "react-router-dom";
+import { useTeachers } from "../../../../hooks/useTeachers";
+import { useModal } from "../../../../contexts/ModalContext";
 
 function AdminTeacherDetail() {
+  const { teacherId } = useParams();
+  const { selectEditedItem } = useModal();
+  const { teachers } = useTeachers();
+  const navigate = useNavigate();
+  const item = teachers.find((item) => item.id === teacherId);
+
+  function handleEdit() {
+    selectEditedItem(item);
+    ("");
+    navigate("/area/admin/adminTeacher/add-teacher");
+  }
+
   return (
     <div>
       <AdminHeading>
         <Title3>Detalhes do Professor</Title3>
-        <AdminButton type="primary">
+        <AdminButton onClick={handleEdit} type="primary">
           <BsPencil size={16} />
           <span>Editar</span>
         </AdminButton>
