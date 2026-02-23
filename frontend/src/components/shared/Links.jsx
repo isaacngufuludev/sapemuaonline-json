@@ -78,7 +78,7 @@ function Links() {
                 <NavLink
                   className={({ isActive }) => (isActive ? "text-white" : "")}
                   onClick={close}
-                  to="/login"
+                  to="/auth/login"
                 >
                   <span className="bg-blue-700 text-white px-4 py-1 rounded-full">
                     Login

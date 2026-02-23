@@ -66,13 +66,13 @@ function Footer() {
                 <Link to="/">Home</Link>
               </li>
               <li>
-                <Link to="/Sobre">Sobre</Link>
+                <Link to="/sobre">Sobre</Link>
               </li>
               <li>
-                <Link to="/ChatBoot">Chat</Link>
+                <Link to="/auth/login">Chat</Link>
               </li>
               <li>
-                <Link to="/Login">Login</Link>
+                <Link to="/auth/login">Login</Link>
               </li>
             </ul>
           </nav>
