@@ -31,31 +31,6 @@
       "role": "admin"
     },
     {
-      "id": "335",
-      "dateIn": "18 de fevereiro de 2026",
-      "age": "31 anos",
-      "name": "Leonardo Pequeno Tiago",
-      "birthDate": "1995-06-22",
-      "province": "Luanda",
-      "biCode": "000459i45i0909",
-      "residence": "Vila",
-      "phoneNumber": "+244 940407979",
-      "certificate": {},
-      "photo": {},
-      "cv": {},
-      "genre": "Feminino",
-      "qualification": "Medio",
-      "area": "Enfermagem",
-      "college": "UAN",
-      "adressCOllege": "Maianga",
-      "phoneCollege": "",
-      "email": "yanick@gmail.com",
-      "subjects": "mat, geo, fis",
-      "description": "",
-      "password": "28478969",
-      "role": "teacher"
-    },
-    {
       "id": "c613",
       "name": "Enoque Filipe",
       "birthDate": "2000-06-22",
@@ -162,6 +137,39 @@
       "guardionName": "",
       "password": "33640193",
       "role": "student"
+    },
+    {
+      "id": "5958",
+      "name": "Leonardo ",
+      "birthDate": "1990-04-05",
+      "province": "Luanda",
+      "biCode": "-00020000333",
+      "residence": "",
+      "phoneNumber": "+244 939939393",
+      "genre": "Masculino",
+      "qualification": "Superior",
+      "area": "TI",
+      "college": "",
+      "email": "isaacbgoidid@gmail.com",
+      "adressCollege": "",
+      "phoneCollege": "",
+      "subjects": "Informática",
+      "turmasId": [
+        "1517",
+        "7fa1"
+      ],
+      "classesId": [
+        "a341",
+        "904a"
+      ],
+      "coursesId": [
+        "9e44",
+        "e453"
+      ],
+      "dateIn": "20 de fevereiro de 2026",
+      "age": "36 anos",
+      "password": "02058404",
+      "role": "teacher"
     }
   ],
   "courses": [

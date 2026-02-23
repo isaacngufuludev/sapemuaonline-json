@@ -9,7 +9,7 @@ function Overlay({ onClose }) {
 
   return (
     <div
-      className="fixed top-0 left-0 backdrop-blur-sm h-screen bg-black/30 w-full z-10"
+      className="fixed top-0 left-0 backdrop-blur-sm h-screen bg-black/30 w-full z-40"
       onClick={handleClose}
     ></div>
   );

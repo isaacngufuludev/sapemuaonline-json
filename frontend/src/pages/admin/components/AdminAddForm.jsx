@@ -6,6 +6,7 @@ function AdminAddForm({ children, type, onSubmit }) {
     four: base + " grid-cols-4",
     two: base + " grid-cols-2",
     three: base + " grid-cols-3",
+    none: base,
   };
 
   return (

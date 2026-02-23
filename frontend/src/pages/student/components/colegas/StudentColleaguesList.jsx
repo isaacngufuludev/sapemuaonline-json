@@ -1,30 +1,18 @@
 import StudentColleaguesItem from "./StudentColleaguesItem";
-
-const colleaguesData = [
-  {
-    name: "Isaac Ngufulu Nzinga Yambi",
-    idade: "15 anos",
-    genero: "Masculino",
-    phoneNumber: "+244 930886401",
-  },
-  {
-    name: "Henriques Cidade",
-    idade: "15 anos",
-    genero: "Masculino",
-    phoneNumber: "+244 930886401",
-  },
-  {
-    name: "Luzia Gonçalves",
-    idade: "15 anos",
-    genero: "Feminino",
-    phoneNumber: "+244 930886401",
-  },
-];
+import { useStudents } from "../../../../hooks/useStudents";
+import { useAuth } from "../../../../contexts/AuthContext";
 
 function StudentColleaguesList() {
+  const { students } = useStudents();
+  const { user } = useAuth();
+  const colleagues = students.filter(
+    (student) => student.turmaId === user.turmaId && student.id !== user.id,
+  );
+  console.log(colleagues);
+
   return (
     <ul>
-      {colleaguesData.map((item, i) => (
+      {colleagues.map((item, i) => (
         <StudentColleaguesItem item={item} i={i} />
       ))}
     </ul>

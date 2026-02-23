@@ -11,18 +11,25 @@ import {
 import { useClasses } from "../../../../hooks/useClasses";
 import { useNavigate } from "react-router-dom";
 import { useEditOptions } from "../../../../hooks/useEditOptions";
-import { HiEllipsisVertical } from "react-icons/hi2";
+import {
+  HiEllipsisVertical,
+  HiOutlineHome,
+  HiOutlineUsers,
+} from "react-icons/hi2";
 import { BsEye, BsPencil, BsTrash } from "react-icons/bs";
 import { useStudents } from "../../../../hooks/useStudents";
+import { useTeachers } from "../../../../hooks/useTeachers";
 
 function AdminTurmasItem({ item }) {
   const { toggleTurmas, selectOptionItem, toggleTurmaModal, selectEditedItem } =
     useModal();
   const { classes } = useClasses();
   const { students } = useStudents();
+  const { teachers } = useTeachers();
   const { showMenu, menuRef, setShowMenu } = useEditOptions();
   const turmaClasse = classes.find((c) => c.id === item.classId);
   const turmaStudents = students.filter((s) => s.turmaId === item.id);
+  const turmaTeachers = teachers.filter((t) => t.turmasId.includes(item.id));
 
   const navigate = useNavigate();
 
@@ -90,7 +97,17 @@ function AdminTurmasItem({ item }) {
           <span className="text-sm">
             <HiOutlineUserGroup />
           </span>
-          <span>{turmaStudents.length} Estudantes</span>
+          <span>
+            {turmaStudents.length} Estudante{turmaStudents.length > 1 && "s"}
+          </span>
+        </p>
+        <p className="flex items-center gap-1">
+          <span className="text-sm">
+            <HiOutlineUsers />
+          </span>
+          <span>
+            {turmaTeachers.length} Professor{turmaTeachers.length > 1 && "es"}
+          </span>
         </p>
         <p className="flex items-center gap-1">
           <span className="text-sm">
@@ -101,7 +118,7 @@ function AdminTurmasItem({ item }) {
         </p>
         <p className="flex items-center gap-1">
           <span className="text-sm">
-            <HiOutlineBookOpen />
+            <HiOutlineHome />
           </span>
           {/* <span>{item.subjects.length} Disciplinas</span> */}
           <span>Sala {item.room}</span>

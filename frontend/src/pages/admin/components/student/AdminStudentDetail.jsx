@@ -3,21 +3,17 @@ import AdminHeading from "../AdminHeading";
 import AdminStudentDetailList from "./AdminStudentDetailList";
 import AdminButton from "../AdminButton";
 import { BsPencil } from "react-icons/bs";
-import { Navigate, useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useStudents } from "../../../../hooks/useStudents";
-import { useModal } from "../../../../contexts/ModalContext";
 
 function AdminStudentDetail() {
-  const { selectEditedItem } = useModal();
   const { studentId } = useParams();
   const { students } = useStudents();
   const navigate = useNavigate();
   const item = students.find((item) => item.id === studentId);
-  console.log(item);
 
   function handleEdit() {
-    selectEditedItem(item);
-    navigate("/area/admin/adminStudents/add-student");
+    navigate(`/area/admin/adminStudents/add-student/${item.id}`);
   }
 
   return (

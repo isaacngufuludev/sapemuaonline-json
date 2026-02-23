@@ -1,3 +1,4 @@
+import { memo } from "react";
 import { NavLink } from "react-router-dom";
 
 function StudentLinks({ item }) {
@@ -18,4 +19,4 @@ function StudentLinks({ item }) {
   );
 }
 
-export default StudentLinks;
+export default memo(StudentLinks);

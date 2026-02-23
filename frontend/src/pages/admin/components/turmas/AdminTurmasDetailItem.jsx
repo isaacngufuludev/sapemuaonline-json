@@ -8,6 +8,7 @@ import { get } from "../../../../services/api";
 import { useClasses } from "../../../../hooks/useClasses";
 import { useCourses } from "../../../../hooks/useCourses";
 import { useStudents } from "../../../../hooks/useStudents";
+import { useTeachers } from "../../../../hooks/useTeachers";
 
 function AdminTurmasDetailItem() {
   const { turmaId } = useParams();
@@ -16,9 +17,11 @@ function AdminTurmasDetailItem() {
   const { classes } = useClasses();
   const { courses } = useCourses();
   const { students } = useStudents();
+  const { teachers } = useTeachers();
   const turmaCourse = courses.find((c) => c.id === turma?.courseId);
   const turmaClasse = classes.find((c) => c.id === turma?.classId);
   const turmaStudents = students.filter((s) => s.turmaId === turma?.id);
+  const turmaTeachers = teachers.filter((s) => s.turmasId.includes(turma?.id));
 
   useEffect(() => {
     async function fetchTurma() {
@@ -65,12 +68,12 @@ function AdminTurmasDetailItem() {
               <p> {turma?.room > 9 ? turma?.room : `0${turma?.room}`}</p>
             </div>
             <div className="flex items-center justify-between ">
-              <Title4>Total de Estudantes</Title4>
+              <Title4>Estudantes</Title4>
               <p>{turmaStudents.length}</p>
             </div>
             <div className="flex items-center justify-between ">
-              <Title4>Total Professores</Title4>
-              <p>{turma?.teachers}</p>
+              <Title4>Professores</Title4>
+              <p>{turmaTeachers.length}</p>
             </div>
             <div className="flex items-center justify-between ">
               <Title4>Total Disciplinas</Title4>

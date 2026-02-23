@@ -9,7 +9,7 @@ function AdminInput({
   accept,
 }) {
   const base =
-    "pl-1 focus:ring-1 ring-blue-700 w-full focus:outline-none rounded-md text-xs dark:text-stone-900 dark:bg-gray-800 dark:text-white dark:border-gray-700";
+    "pl-1 w-full  rounded-md text-xs dark:text-stone-900 dark:bg-gray-800 dark:text-white dark:border-gray-700";
 
   const styles = {
     text: base + " h-8 border border-gray-200",
@@ -27,7 +27,7 @@ function AdminInput({
         value={value}
         onChange={onChange}
         id={id}
-        className=" border border-gray-200 rounded-xl resize-none pl-2 pt-2 text-sm focus:ring-1 ring-blue-700 w-full focus:outline-none text-black dark:bg-gray-800 dark:text-white dark:border-gray-700 h-20"
+        className=" border border-gray-200 rounded-xl resize-none pl-2 pt-2 text-sm w-full text-black dark:bg-gray-800 dark:text-white dark:border-gray-700 h-20"
       ></textarea>
     );
 

@@ -33,12 +33,12 @@ function AdminTurmaDetails() {
         <Title3>
           {turmaCourse?.courseName}-{turmaClasse?.classYear}-{turma?.period}
         </Title3>
-        <AdminButton type="primary">
+        {/* <AdminButton type="primary">
           <p>
             <HiOutlinePlus />
           </p>
           <p>Disciplina</p>
-        </AdminButton>
+        </AdminButton> */}
       </AdminHeading>
       <div>
         <AdminTurmasDetailList />

@@ -75,7 +75,7 @@ function TeacherProfileItem() {
               <HiOutlineHome />
             </p>
             <div className="flex flex-col ">
-              <Title4>Inatituição</Title4>
+              <Title4>Instituição</Title4>
               <p className="text-xs">{user.college}</p>
             </div>
           </div>
@@ -98,9 +98,17 @@ function TeacherProfileItem() {
           <p className="w-56 text-sm">Residência</p>
           <p className="text-sm">{user.residence}</p>
         </div>
-        <div className="flex gap-10 pt-3 px-5 ">
+        <div className="flex gap-10 py-3 px-5  dark:bg-gray-800 border-b-[0.1px] dark:border-gray-700 border-slate-200">
           <p className="w-56 text-sm">Bilhete de Identidade</p>
           <p className="text-sm">{user.biCode}</p>
+        </div>
+        <div className="flex gap-10 py-3 px-5  dark:bg-gray-800 border-b-[0.1px] dark:border-gray-700 border-slate-200">
+          <p className="w-56 text-sm">Disciplinas</p>
+          <p className="text-sm">{user.subjects}</p>
+        </div>
+        <div className="flex gap-10 pt-3 px-5  dark:bg-gray-800">
+          <p className="w-56 text-sm">Turmas Vinculadas</p>
+          <p className="text-sm">{user.turmasId.join(", ")}</p>
         </div>
       </li>
     </>

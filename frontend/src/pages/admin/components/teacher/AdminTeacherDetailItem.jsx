@@ -1,14 +1,6 @@
 import Title4 from "../../../../components/ui/Title4";
 
-import {
-  FiUser,
-  FiPhone,
-  FiMail,
-  FiCalendar,
-  FiSmile,
-  FiFile,
-  FiFolder,
-} from "react-icons/fi";
+import { FiUser, FiPhone, FiMail, FiSmile, FiFolder } from "react-icons/fi";
 import { get } from "../../../../services/api";
 import { LuGraduationCap } from "react-icons/lu";
 import { HiOutlineHome } from "react-icons/hi";
@@ -128,7 +120,7 @@ function AdminTeacherDetailItem() {
           </div>
         </div>
 
-        <div className="rounded-md bg-white py-3 dark:bg-gray-800 border-[0.1px] dark:border-gray-700 border-slate-200">
+        <div className="rounded-md bg-white pt-3 dark:bg-gray-800 border-[0.1px] dark:border-gray-700 border-slate-200">
           <div className="py-5 px-5 border-b-[0.1px] dark:border-gray-700 border-slate-200 ">
             <Title4>Informaçoes Adicionais</Title4>
           </div>
@@ -136,14 +128,11 @@ function AdminTeacherDetailItem() {
             <p className="w-56 text-sm">Nome Completo</p>
             <p className="text-sm">{teacher.name}</p>
           </div>
-          <div className="flex gap-10 py-3 px-5 dark:bg-gray-800 border-b-[0.1px] dark:border-gray-700 border-slate-200  ">
-            <p className="w-56 text-sm">Descrição </p>
-            <p className="text-sm">{teacher.description}</p>
+          <div className="flex  gap-10 py-3 px-5 dark:bg-gray-800 border-b-[0.1px] dark:border-gray-700 border-slate-200 ">
+            <p className="w-56 text-sm">Bilhete de Identidade</p>
+            <p className="text-sm">{teacher.biCode}</p>
           </div>
-          <div className="flex gap-10 py-3 px-5 dark:bg-gray-800 border-b-[0.1px] dark:border-gray-700 border-slate-200 ">
-            <p className="w-56 text-sm">Turmas Vinculadas </p>
-            <p className="text-sm"></p>
-          </div>
+
           <div className="flex gap-10 py-3 px-5 dark:bg-gray-800 border-b-[0.1px] dark:border-gray-700 border-slate-200  ">
             <p className="w-56 text-sm">Data de nascimento </p>
             <p className="text-sm">{teacher.birthDate}</p>
@@ -152,9 +141,13 @@ function AdminTeacherDetailItem() {
             <p className="w-56 text-sm">Residência</p>
             <p className="text-sm">{teacher.residence}</p>
           </div>
-          <div className="flex gap-10 pt-3 px-5 ">
-            <p className="w-56 text-sm">Bilhete de Identidade</p>
-            <p className="text-sm">{teacher.biCode}</p>
+          <div className="flex gap-10 py-3 px-5 dark:bg-gray-800 border-b-[0.1px] dark:border-gray-700 border-slate-200  ">
+            <p className="w-56 text-sm">Disciplinas </p>
+            <p className="text-sm">{teacher.subjects}</p>
+          </div>
+          <div className="flex gap-10 py-3 px-5 ">
+            <p className="w-56 text-sm">Turmas Vinculadas </p>
+            <p className="text-sm">{teacher.turmasId.join(", ")}</p>
           </div>
         </div>
       </div>

@@ -50,6 +50,7 @@ const links = [
 function Student() {
   const { isLogoutModal } = useModal();
   const { user } = useAuth();
+  const firstName = user?.name?.split(" ")[0] ?? "Estudante";
 
   return (
     <AuthLayout>
@@ -59,15 +60,15 @@ function Student() {
         </div>
         <AuthNav>
           <ul className="flex flex-col ">
-            {links.map((item, i) => (
-              <StudentLinks item={item} key={i} />
+            {links.map((item) => (
+              <StudentLinks item={item} key={item.link} />
             ))}
           </ul>
         </AuthNav>
       </AuthSideBar>
       <AuthHeader>
         <div>
-          <p>Bem Vindo de volta, {user.name.split(" ")[0]}</p>
+          <p>Bem Vindo de volta, {firstName}</p>
         </div>
         <div className="flex items-center gap-4">
           <ToggleDarkMode />
@@ -77,8 +78,8 @@ function Student() {
                 <FiUser />
               </div>
               <div>
-                <p className="leading-3 font-semibold">{user.name}</p>
-                <p className="text-xs">{user.role}</p>
+                <p className="leading-3 font-semibold">{user?.name ?? "-"}</p>
+                <p className="text-xs">{user?.role ?? "-"}</p>
               </div>
             </div>
           </div>
@@ -91,9 +92,7 @@ function Student() {
             <LogoutModal />
             <Overlay />
           </div>
-        ) : (
-          ""
-        )}
+        ) : null}
 
         <Outlet />
       </AuthMain>

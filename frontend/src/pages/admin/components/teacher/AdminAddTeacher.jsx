@@ -23,6 +23,9 @@ import AdminInput from "../AdminInput";
 import AdminLabel from "../AdminLabel";
 import AdminSelect from "../AdminSelect";
 import FloatInputLabel from "../../../../components/ui/FloatInputLabel";
+import { useTurmas } from "../../../../hooks/useTurmas";
+import { useClasses } from "../../../../hooks/useClasses";
+import { useCourses } from "../../../../hooks/useCourses";
 
 const initialState = {
   name: "",
@@ -36,16 +39,22 @@ const initialState = {
   area: "",
   college: "",
   email: "",
-  adressCOllege: "",
+  adressCollege: "",
   phoneCollege: "",
   subjects: "",
-  description: "",
+  turmasId: [],
+  classesId: [],
+  coursesId: [],
 };
 
 function AdminAddTeacher() {
   const [formData, setFormData] = useState(initialState);
-  // const [selectedTurmas, setSelectedTurmas] = useState([]);
-  // const { turmas } = useTurmas();
+  const [selectedTurmas, setSelectedTurmas] = useState([]);
+  const [selectedCourses, setSelectedCourses] = useState([]);
+  const [selectedClasses, setSelectedClasses] = useState([]);
+  const { turmas } = useTurmas();
+  const { classes } = useClasses();
+  const { courses } = useCourses();
 
   // const fileCVRef = useRef(null);
   const fileCertificateRef = useRef(null);
@@ -57,7 +66,7 @@ function AdminAddTeacher() {
   useEffect(() => {
     async function fetchTeacher() {
       if (!id) return;
-      const teacher = await get(`users/${id}?`);
+      const teacher = await get(`users/${id}`);
 
       setFormData({
         name: teacher.name,
@@ -72,10 +81,13 @@ function AdminAddTeacher() {
         area: teacher.area,
         college: teacher.college,
         email: teacher.email,
-        adressCOllege: teacher.adressCollege,
+        adressCollege: teacher.adressCollege,
         subjects: teacher.subjects,
-        description: teacher.description,
       });
+
+      setSelectedCourses(teacher.coursesId || []);
+      setSelectedTurmas(teacher.turmasId || []);
+      setSelectedClasses(teacher.classesId || []);
     }
 
     fetchTeacher();
@@ -128,6 +140,9 @@ function AdminAddTeacher() {
       photo,
       password: teacher ? teacher.password : Date.now().toString().slice(-8),
       role: "teacher",
+      turmasId: selectedTurmas,
+      classesId: selectedClasses,
+      coursesId: selectedCourses,
     };
 
     try {
@@ -217,6 +232,7 @@ function AdminAddTeacher() {
             <FloatInputLabel
               value={formData.phoneNumber}
               name="Nº Telefone"
+              max={9}
               type="text"
               onChange={(e) =>
                 setFormData({ ...formData, phoneNumber: e.target.value })
@@ -287,11 +303,11 @@ function AdminAddTeacher() {
           </div>
           <div>
             <FloatInputLabel
-              value={formData.adressCOllege}
+              value={formData.adressCollege}
               name="Endereço da Instituição"
               type="text"
               onChange={(e) =>
-                setFormData({ ...formData, adressCOllege: e.target.value })
+                setFormData({ ...formData, adressCollege: e.target.value })
               }
             />
           </div>
@@ -312,63 +328,113 @@ function AdminAddTeacher() {
           </p>
           <Title4>Documentos e Vinculo</Title4>
         </AdminAddHeader>
-        <AdminAddForm type="two">
-          <div>
-            <AdminLabel>Foto-Passe</AdminLabel>
-            <AdminInput type="file" ref={filePhoto} accept=".jpg, .png, .pdf" />
+        <AdminAddForm type="none">
+          <div className="grid grid-cols-2 mb-2">
+            <div>
+              <AdminLabel>Foto-Passe</AdminLabel>
+              <AdminInput
+                type="file"
+                ref={filePhoto}
+                accept=".jpg, .png, .pdf"
+              />
+            </div>
+            <div>
+              <AdminLabel>Cerificado</AdminLabel>
+              <AdminInput
+                type="file"
+                ref={fileCertificateRef}
+                accept=".jpg, .png, .pdf"
+              />
+            </div>
           </div>
-          {/* <div>
-            <AdminLabel>Upload Curriculum</AdminLabel>
-            <AdminInput type="file" ref={fileCVRef} accept=".jpg, .png, .pdf" />
-          </div> */}
-          <div>
-            <AdminLabel>Cerificado</AdminLabel>
-            <AdminInput
-              type="file"
-              ref={fileCertificateRef}
-              accept=".jpg, .png, .pdf"
-            />
-          </div>
-          <div>
-            <FloatInputLabel
-              value={formData.subjects}
-              name="Cadeiras dominantes (separe por virgula)"
-              type="text"
-              onChange={(e) =>
-                setFormData({ ...formData, subjects: e.target.value })
-              }
-            />
-          </div>
-          <div>
-            {/* <AdminSelect
-            multiple
-            value={selectedTurmas}
-            onChange={(e) => {
-              const values = Array.from(
-                e.target.selectedOptions,
-                (option) => option.value,
-              );
-
-              setSelectedTurmas(values);
-            }}
-          >
-            <option>Selecione as turmas</option>
-            {turmas.map((turma) => (
-              <option key={turma.id} value={turma.id}>
-                {turma.turmaCategory}
-              </option>
-            ))}
-          </AdminSelect> */}
-          </div>
-          <div>
-            <AdminInput
-              type="description"
-              placeholder="Breve descrição"
-              value={formData.description}
-              onChange={(e) =>
-                setFormData({ ...formData, description: e.target.value })
-              }
-            />
+          <div className="grid grid-cols-3 gap-4">
+            <div>
+              <AdminSelect
+                type="many"
+                value={selectedCourses}
+                onChange={(e) => {
+                  const values = Array.from(
+                    e.target.selectedOptions,
+                    (option) => option.value,
+                  );
+                  setSelectedCourses(values);
+                  setSelectedClasses([]);
+                  setSelectedTurmas([]);
+                }}
+              >
+                <option disabled className="font-semibold dark:text-white">
+                  Selecione o cursos
+                </option>
+                {courses.map((course) => (
+                  <option key={course.id} value={course.id}>
+                    {course.courseName}
+                  </option>
+                ))}
+              </AdminSelect>
+            </div>
+            <div>
+              <AdminSelect
+                type="many"
+                value={selectedClasses}
+                onChange={(e) => {
+                  const values = Array.from(
+                    e.target.selectedOptions,
+                    (option) => option.value,
+                  );
+                  setSelectedClasses(values);
+                  setSelectedTurmas([]);
+                }}
+                disabled={selectedCourses.length === 0}
+              >
+                <option disabled className="font-semibold dark:text-white">
+                  Selecione a Classe
+                </option>
+                {classes
+                  .filter((classItem) =>
+                    selectedCourses.includes(classItem.courseId),
+                  )
+                  .map((classItem) => (
+                    <option key={classItem.id} value={classItem.id}>
+                      {classItem.classYear}
+                    </option>
+                  ))}
+              </AdminSelect>
+            </div>
+            <div>
+              <AdminSelect
+                type="many"
+                value={selectedTurmas}
+                onChange={(e) => {
+                  const values = Array.from(
+                    e.target.selectedOptions,
+                    (option) => option.value,
+                  );
+                  setSelectedTurmas(values);
+                }}
+                disabled={selectedClasses.length === 0}
+              >
+                <option disabled className="font-semibold dark:text-white">
+                  Selecione as turmas
+                </option>
+                {turmas
+                  .filter((turma) => selectedClasses.includes(turma.classId))
+                  .map((turma) => (
+                    <option key={turma.id} value={turma.id}>
+                      {turma.turmaCategory}
+                    </option>
+                  ))}
+              </AdminSelect>
+            </div>
+            <div>
+              <FloatInputLabel
+                type="text"
+                name="Disciplinas"
+                value={formData.subjects}
+                onChange={(e) =>
+                  setFormData({ ...formData, subjects: e.target.value })
+                }
+              />
+            </div>
           </div>
         </AdminAddForm>
       </AdminAddTeacherLayout>
