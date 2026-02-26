@@ -3,7 +3,7 @@ import TeacherSearchStudent from "./TeacherSearchStudent";
 
 function TeacherTurmasStudentsHeader() {
   return (
-    <div className="flex items-center justify-between p-4">
+    <div className="flex bg-white items-center justify-between p-4 rounded-md dark:bg-gray-800  border-[0.1px] dark:border-gray-700 border-slate-200">
       <Title3>Todos Estudantes</Title3>
       <div className="flex items-center gap-2">
         <TeacherSearchStudent />

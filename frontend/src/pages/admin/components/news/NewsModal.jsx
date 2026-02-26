@@ -119,7 +119,7 @@ function NewsModal({ editedItem }) {
           />
         </div>
 
-        <div className="flex gap-1 justify-end mt-6">
+        <div className="mt-6 flex flex-col-reverse gap-2 sm:flex-row sm:justify-end">
           <AdminButton type="secondary" onClick={handleClose}>
             <BsX className="text-lg" />
             Cancelar

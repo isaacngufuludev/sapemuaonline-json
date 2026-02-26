@@ -22,21 +22,22 @@ function ChartUsersRole() {
 
   return (
     <div
-      className="bg-white rounded-md p-4 dark:bg-gray-800 border border-slate-200 dark:border-gray-700"
+      className="h-[320px] min-w-[260px] rounded-md border border-slate-200 bg-white p-3 dark:border-gray-700 dark:bg-gray-800 sm:h-[340px] sm:p-4"
       ref={PieChartRef}
     >
       <Title3>Usuários por Papel</Title3>
 
-      <ResponsiveContainer width="100%" height={250}>
-        <PieChart>
+      <div className="h-[calc(100%-40px)]">
+        <ResponsiveContainer width="100%" height="100%">
+          <PieChart>
           <Pie
             data={stats}
             dataKey="value"
             nameKey="name"
             cx="50%"
-            cy="50%"
-            innerRadius={55}
-            outerRadius={85}
+            cy="43%"
+            innerRadius="42%"
+            outerRadius="68%"
             paddingAngle={4}
           >
             {stats.map((_, index) => (
@@ -53,18 +54,19 @@ function ChartUsersRole() {
           />
 
           <Legend
-            layout="vertical"
-            align="right"
-            verticalAlign="middle"
+            layout="horizontal"
+            align="center"
+            verticalAlign="bottom"
             iconType="circle"
             wrapperStyle={{
-              fontSize: 14,
+              fontSize: 12,
               paddingLeft: 0,
-              lineHeight: "40px",
+              lineHeight: "18px",
             }}
           />
-        </PieChart>
-      </ResponsiveContainer>
+          </PieChart>
+        </ResponsiveContainer>
+      </div>
     </div>
   );
 }

@@ -51,7 +51,7 @@ function ModalClass() {
       </p>
       <form
         onSubmit={handleSubmit}
-        className="grid grid-cols-2 gap-y-5 gap-x-3 mb-7"
+        className="mb-7 grid grid-cols-1 gap-x-3 gap-y-5 sm:grid-cols-2"
       >
         <div>
           <AdminLabel htmlFor="classe">Classe</AdminLabel>
@@ -81,7 +81,7 @@ function ModalClass() {
           </AdminSelect>
         </div>
       </form>
-      <div className="flex gap-1 justify-end">
+      <div className="flex flex-col-reverse gap-2 sm:flex-row sm:justify-end">
         <AdminButton type="secondary" onClick={toggle}>
           <p className="text-lg">
             <BsX />

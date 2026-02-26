@@ -16,7 +16,7 @@ const links = [
 
 function AdminTurmasLinks() {
   return (
-    <ul className="flex items-center gap-4 mb-4">
+    <ul className="mb-4 flex flex-wrap items-center gap-2 sm:gap-4">
       {links.map((item) => (
         <AdminTurmasLinksItem item={item} key={item.link} />
       ))}

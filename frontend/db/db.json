@@ -156,11 +156,14 @@
       "subjects": "Informática",
       "turmasId": [
         "1517",
-        "7fa1"
+        "7fa1",
+        "31cd"
       ],
       "classesId": [
         "a341",
-        "904a"
+        "904a",
+        "e2ec",
+        "a552"
       ],
       "coursesId": [
         "9e44",
@@ -169,6 +172,38 @@
       "dateIn": "20 de fevereiro de 2026",
       "age": "36 anos",
       "password": "02058404",
+      "role": "teacher"
+    },
+    {
+      "id": "d191",
+      "name": "Makiadi Ndinambote",
+      "birthDate": "1980-07-07",
+      "province": "Uige",
+      "biCode": "005990023021",
+      "residence": "Malueka",
+      "phoneNumber": "+244 930886401",
+      "genre": "Masculino",
+      "qualification": "Superior",
+      "area": "Engenharia",
+      "college": "",
+      "email": "makiadi@gmail.com",
+      "adressCollege": "",
+      "phoneCollege": "",
+      "subjects": "Matemática, Seac",
+      "turmasId": [
+        "1517"
+      ],
+      "classesId": [
+        "904a",
+        "a552",
+        "5459"
+      ],
+      "coursesId": [
+        "e453"
+      ],
+      "dateIn": "26 de fevereiro de 2026",
+      "age": "46 anos",
+      "password": "86273516",
       "role": "teacher"
     }
   ],
@@ -234,6 +269,15 @@
       "turmaCategory": "Unica",
       "dateIn": "12 de fevereiro de 2026",
       "period": "Manha"
+    },
+    {
+      "id": "31cd",
+      "classId": "a552",
+      "courseId": "e453",
+      "period": "Manha",
+      "room": "30",
+      "turmaCategory": "A",
+      "dateIn": "26 de fevereiro de 2026"
     }
   ],
   "tasks": [],
@@ -246,6 +290,20 @@
       "date": "2026-07-12",
       "description": "O Pagamento do prova está no valor de 10000\n",
       "dateIn": "20 de fevereiro de 2026"
+    },
+    {
+      "id": "3c31",
+      "title": "Baptismo Caloiros",
+      "date": "2027-07-07",
+      "description": "No dia 7 será realuzado o baptismo dos caloiros no curso de informática",
+      "dateIn": "26 de fevereiro de 2026"
+    },
+    {
+      "id": "4e8c",
+      "title": "djhbdjhdfssd",
+      "date": "26/02/2026",
+      "description": "jjdkbdkd jksjksksa",
+      "dateIn": "26 de fevereiro de 2026"
     }
   ],
   "subjects": []

@@ -65,7 +65,9 @@ function TeacherTurmasItem({ item, classYear, courseName, studentCount }) {
           <span>Turma {item.turmaCategory} </span>
         </p>
         <TeacherTurmasBtn
-          onClick={() => navigate("/area/teacher/teacher-turmas/teacher-info")}
+          onClick={() =>
+            navigate(`/area/teacher/teacher-turmas/teacher-info/${item.id}`)
+          }
         />
       </div>
     </li>

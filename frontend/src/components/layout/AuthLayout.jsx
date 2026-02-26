@@ -1,6 +1,6 @@
 function AuthLayout({ children }) {
   return (
-    <div className="grid grid-cols-[230px_1fr] grid-rows-[65px_1fr] h-[100dvh]  dark:bg-gray-800 ">
+    <div className="grid h-[100dvh] grid-cols-1 grid-rows-[65px_1fr] dark:bg-gray-800 md:grid-cols-[auto_1fr]">
       {children}
     </div>
   );

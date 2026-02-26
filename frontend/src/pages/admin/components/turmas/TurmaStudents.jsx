@@ -15,36 +15,29 @@ function TurmaStudents() {
   return (
     <div>
       {filteredStudents.length > 0 && (
-        <div>
+        <div className="space-y-3">
           <SearchBox>
             <InputSearch placeholder="Procurar estudante" />
             <SelectSearch />
           </SearchBox>
-          <table className="w-full text-sm">
-            <thead>
-              <tr className="grid grid-cols-[0.3fr_1fr_0.7fr_0.7fr_0.7fr_0.2fr] px-2 py-1">
-                <th className="text-left py-2 text-sm font-semibold"></th>
-                <th className="text-left py-2 text-sm font-semibold">Nome</th>
-                <th className="text-left py-2 text-sm font-semibold">
-                  Codigo Interno
-                </th>
-                <th className="text-left py-2 text-sm font-semibold">Idade</th>
-                <th className="text-left py-2 text-sm font-semibold">Status</th>
-              </tr>
-            </thead>
+          <div className="hidden grid-cols-[0.3fr_1fr_0.7fr_0.7fr_0.7fr_0.2fr] px-2 text-sm md:grid">
+            <p className=" font-semibold"></p>
+            <p className=" font-semibold">Nome</p>
+            <p className=" font-semibold">Codigo Interno</p>
+            <p className=" font-semibold">Idade</p>
+            <p className=" font-semibold">Status</p>
+            <p className="font-semibold"></p>
+          </div>
 
-            <div>
-              {isLoading ? (
-                <Loading type="blue" size={30} />
-              ) : (
-                <ul>
-                  {filteredStudents.map((item) => (
-                    <TurmaStudentsItem item={item} />
-                  ))}
-                </ul>
-              )}
-            </div>
-          </table>
+          {isLoading ? (
+            <Loading type="blue" size={30} />
+          ) : (
+            <ul className="space-y-2 md:space-y-0">
+              {filteredStudents.map((item) => (
+                <TurmaStudentsItem item={item} key={item.id} />
+              ))}
+            </ul>
+          )}
         </div>
       )}
 

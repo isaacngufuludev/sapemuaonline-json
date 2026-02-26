@@ -6,8 +6,8 @@ import AdminTeacherItem from "./AdminTeacherItem";
 import Loading from "../../../../components/shared/Loading";
 import { useTeachers } from "../../../../hooks/useTeachers";
 
-function AdminTeacherList() {
-  const { teachers, isLoading } = useTeachers();
+function AdminTeacherList({ teachers = [] }) {
+  const { isLoading } = useTeachers();
 
   const {
     currentData,
@@ -22,6 +22,10 @@ function AdminTeacherList() {
       <div>
         {isLoading ? (
           <Loading type="blue" size={40} />
+        ) : teachers.length === 0 ? (
+          <div className="rounded-md bg-white p-4 text-sm text-gray-500 dark:bg-gray-800 dark:text-gray-400">
+            Nenhum professor encontrado para os filtros aplicados.
+          </div>
         ) : (
           <ul className="bg-white dark:bg-gray-800 text-sm">
             {currentData.map((item, i) => (

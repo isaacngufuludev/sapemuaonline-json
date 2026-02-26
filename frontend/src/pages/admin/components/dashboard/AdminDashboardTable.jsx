@@ -4,7 +4,6 @@ import Title3 from "../../../../components/ui/Title3";
 import { usePagination } from "../../../../hooks/UsePagination";
 import { BsChevronLeft, BsChevronRight } from "react-icons/bs";
 import { ITEMS_PER_PAGE } from "../../../../utils/constants";
-import AdminButton from "../AdminButton";
 import { usePDFExport } from "./AdminDashboardLayout";
 
 const updates = [
@@ -60,8 +59,39 @@ function AdminDashboardTable() {
   return (
     <div>
       <Title3>Atualizações Recentes</Title3>
-      <div className="bg-white rounded-md px-5 mt-4 dark:bg-gray-800 mb-7">
-        <table className="w-full text-sm">
+      <div className="mt-4 mb-7 rounded-md bg-white px-3 py-3 dark:bg-gray-800 sm:px-5 sm:py-4">
+        <div className="flex flex-col gap-3 md:hidden">
+          {dataToDisplay.map((item) => (
+            <article
+              key={item.id}
+              className="rounded-xl border border-slate-200 p-3 shadow-sm dark:border-gray-700 sm:p-4"
+            >
+              <p className="text-xs text-gray-500 dark:text-gray-400">Ação</p>
+              <p className="break-words text-sm font-semibold">{item.action}</p>
+
+              <p className="mt-2 text-xs text-gray-500 dark:text-gray-400">Usuário</p>
+              <p className="break-words text-sm">{item.user}</p>
+
+              <p className="mt-2 text-xs text-gray-500 dark:text-gray-400">Data</p>
+              <p className="break-words text-sm">{item.time}</p>
+
+              <p className="mt-2 text-xs text-gray-500 dark:text-gray-400">Estado</p>
+              <span
+                className={`inline-block rounded-full px-2 py-1 text-xs font-medium ${
+                  item.status === "success"
+                    ? "bg-green-100 text-green-700 dark:bg-green-500 dark:text-green-100"
+                    : item.status === "pending"
+                    ? "bg-yellow-100 text-yellow-700 dark:bg-yellow-500 dark:text-yellow-100"
+                    : "bg-red-100 text-red-700 dark:bg-red-500 dark:text-red-100"
+                }`}
+              >
+                {item.status}
+              </span>
+            </article>
+          ))}
+        </div>
+
+        <table className="hidden w-full text-sm md:table">
           <thead className="border-b border-slate-200 dark:border-gray-700">
             <tr>
               <th className="text-left py-3 text-sm font-semibold">Ação</th>
@@ -82,14 +112,13 @@ function AdminDashboardTable() {
                 <td>{item.time}</td>
                 <td>
                   <span
-                    className={`px-2 py-1 rounded-full text-xs font-medium
-                ${
-                  item.status === "success"
-                    ? "bg-green-100 text-green-700 dark:bg-green-500 dark:text-green-100"
-                    : item.status === "pending"
-                    ? "bg-yellow-100 text-yellow-700 dark:bg-yellow-500 dark:text-yellow-100"
-                    : "bg-red-100 text-red-700 dark:bg-red-500 dark:text-red-100"
-                }`}
+                    className={`rounded-full px-2 py-1 text-xs font-medium ${
+                      item.status === "success"
+                        ? "bg-green-100 text-green-700 dark:bg-green-500 dark:text-green-100"
+                        : item.status === "pending"
+                        ? "bg-yellow-100 text-yellow-700 dark:bg-yellow-500 dark:text-yellow-100"
+                        : "bg-red-100 text-red-700 dark:bg-red-500 dark:text-red-100"
+                    }`}
                   >
                     {item.status}
                   </span>

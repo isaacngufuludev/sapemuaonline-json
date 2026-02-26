@@ -1,4 +1,5 @@
 import { HiOutlinePlus } from "react-icons/hi";
+import { useMemo, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 import Title3 from "../../../../components/ui/Title3";
@@ -9,11 +10,37 @@ import AdminStudentList from "./AdminStudentList";
 import AdminHeading from "../AdminHeading";
 import { useStudents } from "../../../../hooks/useStudents";
 import Message from "../../../../components/ui/Message";
-import Loading from "../../../../components/shared/Loading";
 
 function AdminMainStudentLayout() {
   const navigate = useNavigate();
   const { students } = useStudents();
+  const [searchTerm, setSearchTerm] = useState("");
+  const [sortBy, setSortBy] = useState("");
+
+  const filteredStudents = useMemo(() => {
+    const normalizedSearch = searchTerm.trim().toLowerCase();
+
+    const filtered = students.filter((student) => {
+      if (!normalizedSearch) return true;
+      return (
+        student.name?.toLowerCase().includes(normalizedSearch) ||
+        student.id?.toLowerCase().includes(normalizedSearch)
+      );
+    });
+
+    const sorted = [...filtered];
+    if (sortBy === "name-asc") {
+      sorted.sort((a, b) => (a.name || "").localeCompare(b.name || ""));
+    } else if (sortBy === "name-desc") {
+      sorted.sort((a, b) => (b.name || "").localeCompare(a.name || ""));
+    } else if (sortBy === "age-asc") {
+      sorted.sort((a, b) => Number(a.age || 0) - Number(b.age || 0));
+    } else if (sortBy === "age-desc") {
+      sorted.sort((a, b) => Number(b.age || 0) - Number(a.age || 0));
+    }
+
+    return sorted;
+  }, [students, searchTerm, sortBy]);
 
   return (
     <div>
@@ -30,10 +57,15 @@ function AdminMainStudentLayout() {
         </AdminButton>
       </AdminHeading>
       {students.length > 0 ? (
-        <div className="rounded-md ">
-          <AdminSearch />
+        <div className="rounded-md  ">
+          <AdminSearch
+            searchTerm={searchTerm}
+            sortBy={sortBy}
+            onSearchChange={(e) => setSearchTerm(e.target.value)}
+            onSortChange={(e) => setSortBy(e.target.value)}
+          />
           <AdminStudentTitle />
-          <AdminStudentList />
+          <AdminStudentList students={filteredStudents} />
         </div>
       ) : (
         ""

@@ -1,5 +1,5 @@
 function AuthMain({ children, type = "default" }) {
-  const base = "overflow-auto bg-slate-100  dark:bg-gray-900 ";
+  const base = "overflow-auto bg-slate-100 dark:bg-gray-900 ";
 
   const styles = {
     default: base + "p-10",

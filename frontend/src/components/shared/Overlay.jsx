@@ -4,12 +4,12 @@ function Overlay({ onClose }) {
   const { toggle } = useModal();
   function handleClose() {
     toggle();
-    onClose();
+    if (onClose) onClose();
   }
 
   return (
     <div
-      className="fixed top-0 left-0 backdrop-blur-sm h-screen bg-black/30 w-full z-40"
+      className="fixed left-0 top-0 z-40 h-screen w-full bg-black/30 backdrop-blur-sm"
       onClick={handleClose}
     ></div>
   );

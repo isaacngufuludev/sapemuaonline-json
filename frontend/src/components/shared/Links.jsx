@@ -10,7 +10,7 @@ function Links() {
   const close = () => setOpen(false);
 
   return (
-    <nav>
+    <nav className="font-roboto">
       {/* Desktop links */}
       <ul className="hidden md:flex items-center text-sm md:gap-6 lg:gap-9 xl:gap-10 font-semibold">
         <li>

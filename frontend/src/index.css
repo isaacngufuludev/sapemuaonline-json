@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap");
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -7,6 +9,7 @@
     @apply mx-auto my-0 max-w-[1300px] px-4 sm:px-6 lg:px-8 xl:px-6 2xl:px-8 2xl:max-w-[1450px];
   }
 }
+
 .active {
   color: #1d4ed8;
 }

@@ -4,6 +4,7 @@ import { ModalProvider } from "../contexts/ModalContext";
 import { AuthProvider } from "../contexts/AuthContext";
 import { StudentFormProvider } from "../contexts/StudentFormContext";
 import { RefreshProvider } from "../contexts/RefreshContext";
+import { AuthSidebarProvider } from "../context/AuthSidebarContext";
 
 import Home from "../pages/website/Home";
 import Sobre from "../pages/website/Sobre";
@@ -52,9 +53,10 @@ function AppRoutes() {
     <AuthProvider>
       <ThemeProvider>
         <ModalProvider>
-          <RefreshProvider>
-            <BrowserRouter>
-              <Routes>
+          <AuthSidebarProvider>
+            <RefreshProvider>
+              <BrowserRouter>
+                <Routes>
                 <Route index path="/" element={<Home />} />
                 <Route path="/sobre" element={<Sobre />} />
                 <Route path="/gallery" element={<Gallery />} />
@@ -183,7 +185,7 @@ function AppRoutes() {
                         element={<TeacherAllTurmas />}
                       />
                       <Route
-                        path="teacher-info"
+                        path="teacher-info/:turmaId"
                         element={<TeacherTurmasInfo />}
                       />
                     </Route>
@@ -216,9 +218,10 @@ function AppRoutes() {
                     <Route path="student-notas" element={<StudentNotas />} />
                   </Route>
                 </Route>
-              </Routes>
-            </BrowserRouter>
-          </RefreshProvider>
+                </Routes>
+              </BrowserRouter>
+            </RefreshProvider>
+          </AuthSidebarProvider>
         </ModalProvider>
       </ThemeProvider>
     </AuthProvider>

@@ -40,10 +40,10 @@ function AdminStudentDetailItem() {
 
   return (
     <li>
-      <div className="grid grid-cols-[1.5fr_3fr] gap-7 items-start">
-        <div className="rounded-md bg-white mb-5 dark:bg-gray-800 p-5 flex flex-col gap-3 border-[0.1px] dark:border-gray-700 border-slate-200">
+      <div className="grid grid-cols-1 items-start gap-4 lg:gap-7 xl:grid-cols-[1.5fr_3fr]">
+        <div className="mb-5 flex flex-col gap-3 rounded-md border-[0.1px] border-slate-200 bg-white p-4 dark:border-gray-700 dark:bg-gray-800 sm:p-5">
           <div className="flex gap-2 items-center pb-5 border-b-[0.1px] dark:border-gray-700 border-slate-200">
-            <p className="text-5xl  bg-blue-200 p-5 rounded-full dark:bg-gray-900">
+            <p className="text-5xl  bg-blue-200 sm:p-3 p-5 sm:text-3xl rounded-full dark:bg-gray-900">
               <FiUser />
             </p>
             <div>
@@ -140,44 +140,44 @@ function AdminStudentDetailItem() {
           </div>
         </div>
 
-        <div className="rounded-md bg-white py-3 dark:bg-gray-800 border-[0.1px] dark:border-gray-700 border-slate-200">
+        <div className="rounded-md border-[0.1px] border-slate-200 bg-white py-3 dark:border-gray-700 dark:bg-gray-800">
           <div className="py-5 px-5 border-b-[0.1px] dark:border-gray-700 border-slate-200 ">
             <Title4>Informaçoes Adicionais</Title4>
           </div>
-          <div className="flex  gap-10 py-3 px-5 dark:bg-gray-800 border-b-[0.1px] dark:border-gray-700 border-slate-200 ">
-            <p className="w-56 text-sm">Nome Completo</p>
+          <div className="flex flex-col gap-1 border-b-[0.1px] border-slate-200 px-5 py-3 dark:border-gray-700 dark:bg-gray-800 sm:flex-row sm:gap-10">
+            <p className="text-sm sm:w-56">Nome Completo</p>
             <p className="text-sm">{student.name}</p>
           </div>
-          <div className="flex gap-10 py-3 px-5 dark:bg-gray-800 border-b-[0.1px] dark:border-gray-700 border-slate-200 ">
-            <p className="w-56 text-sm">Filho de </p>
+          <div className="flex flex-col gap-1 border-b-[0.1px] border-slate-200 px-5 py-3 dark:border-gray-700 dark:bg-gray-800 sm:flex-row sm:gap-10">
+            <p className="text-sm sm:w-56">Filho de </p>
             <p className="text-sm">{student.fatherName}</p>
           </div>
-          <div className="flex gap-10 py-3 px-5 dark:bg-gray-800 border-b-[0.1px] dark:border-gray-700 border-slate-200  ">
-            <p className="w-56 text-sm">e de </p>
+          <div className="flex flex-col gap-1 border-b-[0.1px] border-slate-200 px-5 py-3 dark:border-gray-700 dark:bg-gray-800 sm:flex-row sm:gap-10">
+            <p className="text-sm sm:w-56">e de </p>
             <p className="text-sm">{student.motherName}</p>
           </div>
-          <div className="flex gap-10 py-3 px-5 dark:bg-gray-800 border-b-[0.1px] dark:border-gray-700 border-slate-200  ">
-            <p className="w-56 text-sm">Contacto do Pai </p>
+          <div className="flex flex-col gap-1 border-b-[0.1px] border-slate-200 px-5 py-3 dark:border-gray-700 dark:bg-gray-800 sm:flex-row sm:gap-10">
+            <p className="text-sm sm:w-56">Contacto do Pai </p>
             <p className="text-sm">{student.fatherPhoneNumber}</p>
           </div>
-          <div className="flex gap-10 py-3 px-5 dark:bg-gray-800 border-b-[0.1px] dark:border-gray-700 border-slate-200  ">
-            <p className="w-56 text-sm">Contacto do Mãe </p>
+          <div className="flex flex-col gap-1 border-b-[0.1px] border-slate-200 px-5 py-3 dark:border-gray-700 dark:bg-gray-800 sm:flex-row sm:gap-10">
+            <p className="text-sm sm:w-56">Contacto do Mãe </p>
             <p className="text-sm">{student.motherPhoneNumber}</p>
           </div>
-          <div className="flex gap-10 py-3 px-5 dark:bg-gray-800 border-b-[0.1px] dark:border-gray-700 border-slate-200  ">
-            <p className="w-56 text-sm">Contacto do Guardião </p>
+          <div className="flex flex-col gap-1 border-b-[0.1px] border-slate-200 px-5 py-3 dark:border-gray-700 dark:bg-gray-800 sm:flex-row sm:gap-10">
+            <p className="text-sm sm:w-56">Contacto do Guardião </p>
             <p className="text-sm">{student.guardionPhoneNumber}</p>
           </div>
-          <div className="flex gap-10 py-3 px-5 dark:bg-gray-800 border-b-[0.1px] dark:border-gray-700 border-slate-200  ">
-            <p className="w-56 text-sm">Data de nascimento </p>
+          <div className="flex flex-col gap-1 border-b-[0.1px] border-slate-200 px-5 py-3 dark:border-gray-700 dark:bg-gray-800 sm:flex-row sm:gap-10">
+            <p className="text-sm sm:w-56">Data de nascimento </p>
             <p className="text-sm">{student.birthDate}</p>
           </div>
-          <div className="flex  gap-10 py-3 px-5 dark:bg-gray-800 border-b-[0.1px] dark:border-gray-700 border-slate-200 ">
-            <p className="w-56 text-sm">Residência</p>
+          <div className="flex flex-col gap-1 border-b-[0.1px] border-slate-200 px-5 py-3 dark:border-gray-700 dark:bg-gray-800 sm:flex-row sm:gap-10">
+            <p className="text-sm sm:w-56">Residência</p>
             <p className="text-sm">{student.residencia}</p>
           </div>
-          <div className="flex gap-10 pt-3 px-5 ">
-            <p className="w-56 text-sm">Bilhete de Identidade</p>
+          <div className="flex flex-col gap-1 px-5 pt-3 sm:flex-row sm:gap-10">
+            <p className="text-sm sm:w-56">Bilhete de Identidade</p>
             <p className="text-sm">{student.biCode}</p>
           </div>
         </div>

@@ -13,17 +13,22 @@ function AdminTeacherDetail() {
   const item = teachers.find((item) => item.id === teacherId);
 
   function handleEdit() {
+    if (!item) return;
     navigate(`/area/admin/adminTeacher/add-teacher/${item.id}`);
   }
 
   return (
     <div>
       <AdminHeading>
-        <Title3>Detalhes do Professor #{item?.id} </Title3>
-        <AdminButton onClick={handleEdit} type="primary">
-          <BsPencil size={16} />
-          <span>Editar</span>
-        </AdminButton>
+        <div className="text-center sm:text-left">
+          <Title3>Detalhes do Professor #{item?.id} </Title3>
+        </div>
+        <div className="mx-auto sm:mx-0">
+          <AdminButton onClick={handleEdit} type="primary">
+            <BsPencil size={16} />
+            <span>Editar</span>
+          </AdminButton>
+        </div>
       </AdminHeading>
       <div>
         <AdminTeacherDetailList />

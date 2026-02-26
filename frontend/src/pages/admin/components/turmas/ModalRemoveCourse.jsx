@@ -46,7 +46,7 @@ function ModalRemoveCourse() {
   return (
     <Modal>
       <BtnCloseModal />
-      <div className="flex items-center gap-3 mb-3">
+      <div className="mb-3 flex flex-wrap items-center gap-3">
         <p className="text-red-700 bg-red-100 p-2  text-xl rounded-full inline-block ">
           <HiOutlineTrash />
         </p>

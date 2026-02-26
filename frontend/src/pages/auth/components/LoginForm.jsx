@@ -75,7 +75,7 @@ function LoginForm() {
           className="bg-blue-700 text-white rounded-full text-sm font-semibold flex items-center  p-[12px] justify-center"
           disabled={isLoading}
         >
-          {isLoading ? <Loading /> : "Iniciar Sessão"}
+          {isLoading ? <Loading size={25} /> : "Iniciar Sessão"}
           {/* {<Loading size={25} />} */}
         </button>
       </form>

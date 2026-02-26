@@ -25,7 +25,7 @@ function AdminNewsItem({ item }) {
   return (
     <li className="flex flex-col justify-between p-3 dark:border-gray-700 rounded-md duration-300 border border-slate-200 ">
       <div>
-        <div className="flex items-center justify-between mb-2">
+        <div className="sm:flex block items-center justify-between mb-2">
           <Title3>{item.title}</Title3>
           <p className="text-xs font-medium text-gray-700 dark:text-gray-300">
             {item.date}

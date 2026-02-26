@@ -3,10 +3,8 @@ import AuthSideBar from "../../components/layout/AuthSideBar";
 import AuthMain from "../../components/layout/AuthMain";
 import AuthNav from "../../components/layout/AuthNav";
 import AuthHeader from "../../components/layout/AuthHeader";
-import LogoutBtn from "../../components/shared/LogoutBtn";
 import LogoutModal from "../../components/shared/LogoutModal";
 import Overlay from "../../components/shared/Overlay";
-import ToggleDarkMode from "../../components/shared/ToggleDarkMode";
 import Logo from "../../components/shared/Logo";
 import TeacherLinks from "./components/TeacherLinks";
 
@@ -15,7 +13,6 @@ import { useModal } from "../../contexts/ModalContext";
 import { FiUser } from "react-icons/fi";
 import { HiOutlineHome } from "react-icons/hi";
 import { BsChat } from "react-icons/bs";
-import { useAuth } from "../../contexts/AuthContext";
 
 const links = [
   {
@@ -37,12 +34,11 @@ const links = [
 
 function Teacher() {
   const { isLogoutModal } = useModal();
-  const { user } = useAuth();
 
   return (
     <AuthLayout>
       <AuthSideBar>
-        <div className="pl-4 flex items-center">
+        <div className="flex items-center">
           <Logo />
         </div>
         <AuthNav>
@@ -53,24 +49,7 @@ function Teacher() {
           </ul>
         </AuthNav>
       </AuthSideBar>
-      <AuthHeader>
-        <div>
-          <p>Bem Vindo de volta, {user.name.split(" ")[0]}</p>
-        </div>
-        <div className="flex items-center gap-4 ">
-          <ToggleDarkMode />
-          <div className="flex items-center gap-3 ">
-            <div className="text-2xl bg-blue-200 p-3 rounded-full dark:bg-gray-900 ">
-              <FiUser />
-            </div>
-            <div>
-              <p className="leading-3 font-semibold">{user.name}</p>
-              <p className="text-xs">{user.role}</p>
-            </div>
-          </div>
-          <LogoutBtn />
-        </div>
-      </AuthHeader>
+      <AuthHeader />
       <AuthMain type="noSpace">
         {isLogoutModal ? (
           <div>

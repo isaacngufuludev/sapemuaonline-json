@@ -81,7 +81,7 @@ function ModalCourse({ editedItem }) {
           OBS: Verifique bem o nome antes finalizar o cadastro
         </p>
 
-        <div className="flex justify-end">
+        <div className="flex flex-col-reverse gap-2 sm:flex-row sm:justify-end">
           <AdminButton type="primary">
             <p className="text-lg">
               <MdOutlineDone />

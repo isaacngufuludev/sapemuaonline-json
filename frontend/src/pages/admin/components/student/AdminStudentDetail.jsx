@@ -13,17 +13,22 @@ function AdminStudentDetail() {
   const item = students.find((item) => item.id === studentId);
 
   function handleEdit() {
+    if (!item) return;
     navigate(`/area/admin/adminStudents/add-student/${item.id}`);
   }
 
   return (
     <div>
       <AdminHeading>
-        <Title3>Detalhes do Estudante #{item?.id}</Title3>
-        <AdminButton onClick={handleEdit} type="primary">
-          <BsPencil size={16} />
-          <span>Editar</span>
-        </AdminButton>
+        <div className="text-center sm:text-left">
+          <Title3>Detalhes do Estudante #{item?.id}</Title3>
+        </div>
+        <div className="sm:mx-0">
+          <AdminButton onClick={handleEdit} type="primary">
+            <BsPencil size={16} />
+            <span>Editar</span>
+          </AdminButton>
+        </div>
       </AdminHeading>
       <div>
         <AdminStudentDetailList />

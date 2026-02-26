@@ -29,10 +29,10 @@ function AdminTeacherDetailItem() {
 
   return (
     <li>
-      <div className="grid grid-cols-[1.5fr_3fr] gap-7 items-start">
-        <div className=" rounded-md bg-white mb-5 dark:bg-gray-800 p-5 flex flex-col gap-3 border-[0.1px] dark:border-gray-700 border-slate-200">
+      <div className="grid grid-cols-1 items-start gap-4 lg:gap-7 xl:grid-cols-[1.5fr_3fr]">
+        <div className="mb-5 flex flex-col gap-3 rounded-md border-[0.1px] border-slate-200 bg-white p-4 dark:border-gray-700 dark:bg-gray-800 sm:p-5">
           <div className="flex gap-2 items-center p-5 border-b-[0.1px] dark:border-gray-700 border-slate-200">
-            <p className="text-4xl  bg-blue-200 p-5 rounded-full dark:bg-gray-900">
+            <p className="text-4xl  bg-blue-200 p-5 sm:px-4 rounded-full dark:bg-gray-900">
               <FiUser />
             </p>
             <div>
@@ -120,33 +120,33 @@ function AdminTeacherDetailItem() {
           </div>
         </div>
 
-        <div className="rounded-md bg-white pt-3 dark:bg-gray-800 border-[0.1px] dark:border-gray-700 border-slate-200">
+        <div className="rounded-md border-[0.1px] border-slate-200 bg-white pt-3 dark:border-gray-700 dark:bg-gray-800">
           <div className="py-5 px-5 border-b-[0.1px] dark:border-gray-700 border-slate-200 ">
             <Title4>Informaçoes Adicionais</Title4>
           </div>
-          <div className="flex  gap-10 py-3 px-5 dark:bg-gray-800 border-b-[0.1px] dark:border-gray-700 border-slate-200 ">
-            <p className="w-56 text-sm">Nome Completo</p>
+          <div className="flex flex-col gap-1 border-b-[0.1px] border-slate-200 px-5 py-3 dark:border-gray-700 dark:bg-gray-800 sm:flex-row sm:gap-10">
+            <p className="text-sm sm:w-56">Nome Completo</p>
             <p className="text-sm">{teacher.name}</p>
           </div>
-          <div className="flex  gap-10 py-3 px-5 dark:bg-gray-800 border-b-[0.1px] dark:border-gray-700 border-slate-200 ">
-            <p className="w-56 text-sm">Bilhete de Identidade</p>
+          <div className="flex flex-col gap-1 border-b-[0.1px] border-slate-200 px-5 py-3 dark:border-gray-700 dark:bg-gray-800 sm:flex-row sm:gap-10">
+            <p className="text-sm sm:w-56">Bilhete de Identidade</p>
             <p className="text-sm">{teacher.biCode}</p>
           </div>
 
-          <div className="flex gap-10 py-3 px-5 dark:bg-gray-800 border-b-[0.1px] dark:border-gray-700 border-slate-200  ">
-            <p className="w-56 text-sm">Data de nascimento </p>
+          <div className="flex flex-col gap-1 border-b-[0.1px] border-slate-200 px-5 py-3 dark:border-gray-700 dark:bg-gray-800 sm:flex-row sm:gap-10">
+            <p className="text-sm sm:w-56">Data de nascimento </p>
             <p className="text-sm">{teacher.birthDate}</p>
           </div>
-          <div className="flex  gap-10 py-3 px-5 dark:bg-gray-800 border-b-[0.1px] dark:border-gray-700 border-slate-200 ">
-            <p className="w-56 text-sm">Residência</p>
+          <div className="flex flex-col gap-1 border-b-[0.1px] border-slate-200 px-5 py-3 dark:border-gray-700 dark:bg-gray-800 sm:flex-row sm:gap-10">
+            <p className="text-sm sm:w-56">Residência</p>
             <p className="text-sm">{teacher.residence}</p>
           </div>
-          <div className="flex gap-10 py-3 px-5 dark:bg-gray-800 border-b-[0.1px] dark:border-gray-700 border-slate-200  ">
-            <p className="w-56 text-sm">Disciplinas </p>
+          <div className="flex flex-col gap-1 border-b-[0.1px] border-slate-200 px-5 py-3 dark:border-gray-700 dark:bg-gray-800 sm:flex-row sm:gap-10">
+            <p className="text-sm sm:w-56">Disciplinas </p>
             <p className="text-sm">{teacher.subjects}</p>
           </div>
-          <div className="flex gap-10 py-3 px-5 ">
-            <p className="w-56 text-sm">Turmas Vinculadas </p>
+          <div className="flex flex-col gap-1 px-5 py-3 sm:flex-row sm:gap-10">
+            <p className="text-sm sm:w-56">Turmas Vinculadas </p>
             <p className="text-sm">{teacher.turmasId.join(", ")}</p>
           </div>
         </div>

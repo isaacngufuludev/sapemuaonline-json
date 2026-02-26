@@ -11,37 +11,37 @@ function AdminTurmasLayout() {
   const { turmas, isLoading } = useTurmas();
 
   return (
-    <div>
+    <div className="max-w-full">
       <div>
         <AdminTurmasHeading />
         {courses.length > 0 ? (
-          <div>
-            <ul className="">
+          <div className="space-y-4">
+            <div className="space-y-">
               {courses.map((course) => {
                 const courseTurmas = turmas.filter(
                   (turma) => turma.courseId === course.id,
                 );
                 return (
-                  <ul key={course.id}>
+                  <div key={course.id} className="overflow-hidden rounded-md">
                     <AdminCoursesItem item={course} />
                     {isLoading ? (
                       <Loading type="blue" size={40} />
                     ) : (
-                      <ul className="grid grid-cols-4 pt-6 px-4 bg-white gap-4 dark:bg-gray-800">
+                      <ul className="grid grid-cols-1 gap-4 bg-white px-3 pb-3 pt-4 dark:bg-gray-800 sm:grid-cols-2 sm:px-4 sm:pt-6 lg:grid-cols-3 xl:grid-cols-4">
                         {courseTurmas.map((turma, i) => (
                           <AdminTurmasItem item={turma} key={i} />
                         ))}
                       </ul>
                     )}
-                    <div className="bg-white dark:bg-gray-800 flex items-center justify-center py-3">
+                    <div className="flex items-center justify-center bg-white px-3 py-3 dark:bg-gray-800">
                       {!courseTurmas.length && (
                         <Message message="Nenhuma turma cadastrada, adicione a primeira clicando no botão acima" />
                       )}
                     </div>
-                  </ul>
+                  </div>
                 );
               })}
-            </ul>
+            </div>
           </div>
         ) : (
           ""

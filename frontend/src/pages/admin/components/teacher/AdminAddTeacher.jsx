@@ -161,7 +161,7 @@ function AdminAddTeacher() {
   }
 
   return (
-    <div>
+    <div className="max-w-full">
       <AdminHeading>
         <Title3>{id ? "Atualizar Professor" : "Cadastrar Professor"}</Title3>
         <AdminButton type="secondary" onClick={handleClose}>
@@ -329,7 +329,7 @@ function AdminAddTeacher() {
           <Title4>Documentos e Vinculo</Title4>
         </AdminAddHeader>
         <AdminAddForm type="none">
-          <div className="grid grid-cols-2 mb-2">
+          <div className="mb-2 grid grid-cols-1 gap-3 sm:grid-cols-2">
             <div>
               <AdminLabel>Foto-Passe</AdminLabel>
               <AdminInput
@@ -347,7 +347,7 @@ function AdminAddTeacher() {
               />
             </div>
           </div>
-          <div className="grid grid-cols-3 gap-4">
+          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-3">
             <div>
               <AdminSelect
                 type="many"
@@ -438,7 +438,7 @@ function AdminAddTeacher() {
           </div>
         </AdminAddForm>
       </AdminAddTeacherLayout>
-      <div className="flex items-center gap-2 justify-end mt-4">
+      <div className="mt-4 flex flex-col-reverse gap-2 sm:flex-row sm:items-center sm:justify-end">
         <AdminButton type="secondary" onClick={handleClose}>
           <p className="text-lg">
             <BsX />

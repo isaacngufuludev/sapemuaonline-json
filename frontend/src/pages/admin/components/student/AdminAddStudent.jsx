@@ -179,7 +179,7 @@ function AdminAddStudent() {
   }
 
   return (
-    <div>
+    <div className="max-w-full">
       <AdminHeading>
         <Title3>{id ? "Atualizar Estudante" : "Cadastrar Estudante"}</Title3>
         <AdminButton type="secondary" onClick={handleClose}>
@@ -286,8 +286,8 @@ function AdminAddStudent() {
           </p>
           <Title4>Informação dos parentes & Guardião</Title4>
         </AdminAddHeader>
-        <div className="bg-white dark:bg-gray-800 flex items-center gap-2 pt-8 px-4 text-sm">
-          <ul className="flex items-center gap-2">
+        <div className="bg-white px-3 pt-6 text-sm dark:bg-gray-800 sm:px-4 sm:pt-8">
+          <ul className="flex flex-wrap items-center gap-2">
             {parentLinks.map((item) => (
               <AdminParentLinks item={item} key={item.name} />
             ))}
@@ -365,7 +365,7 @@ function AdminAddStudent() {
           </div>
         </AdminAddForm>
       </AdminAddStudentLayout>
-      <div className="flex items-center gap-2 justify-end mt-4">
+      <div className="mt-4 flex flex-col-reverse gap-2 sm:flex-row sm:items-center sm:justify-end">
         <AdminButton type="secondary" onClick={handleClose}>
           <p className="text-lg">
             <BsX />

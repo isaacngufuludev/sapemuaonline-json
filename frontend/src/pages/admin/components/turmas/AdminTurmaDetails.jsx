@@ -1,6 +1,4 @@
-import { HiOutlinePlus, HiPlus } from "react-icons/hi";
 import Title3 from "../../../../components/ui/Title3";
-import AdminButton from "../AdminButton";
 import AdminHeading from "../AdminHeading";
 import AdminTurmasDetailList from "./AdminTurmasDetailList";
 import { useParams } from "react-router-dom";
@@ -30,9 +28,11 @@ function AdminTurmaDetails() {
   return (
     <div>
       <AdminHeading>
-        <Title3>
-          {turmaCourse?.courseName}-{turmaClasse?.classYear}-{turma?.period}
-        </Title3>
+        <div className="text-center sm:text-left">
+          <Title3>
+            {turmaCourse?.courseName}-{turmaClasse?.classYear}-{turma?.period}
+          </Title3>
+        </div>
         {/* <AdminButton type="primary">
           <p>
             <HiOutlinePlus />

@@ -41,15 +41,16 @@ function ChartUsersGrowth() {
 
   return (
     <div
-      className="bg-white dark:bg-gray-800 p-4 rounded-md border border-slate-200 dark:border-gray-700"
+      className="h-[320px] min-w-[260px] rounded-md border border-slate-200 bg-white p-3 dark:border-gray-700 dark:bg-gray-800 sm:h-[340px] sm:p-4"
       ref={LineChartRef}
     >
       <div className="mb-3">
         <Title3>Crescimento de Usuários</Title3>
       </div>
 
-      <ResponsiveContainer width="100%" height={250}>
-        <AreaChart data={userGrowthData}>
+      <div className="h-[calc(100%-40px)]">
+        <ResponsiveContainer width="100%" height="100%">
+          <AreaChart data={userGrowthData} margin={{ top: 5, right: 8, left: -18, bottom: 0 }}>
           {/* Gradientes */}
           <defs>
             <linearGradient id="totalGradient" x1="0" y1="0" x2="0" y2="1">
@@ -69,13 +70,17 @@ function ChartUsersGrowth() {
           {/* Eixos */}
           <XAxis
             dataKey="date"
-            tick={{ fill: "#94a3b8", fontSize: 12 }}
+            tick={{ fill: "#94a3b8", fontSize: 10 }}
+            minTickGap={24}
+            interval="preserveStartEnd"
+            tickMargin={8}
             axisLine={false}
             tickLine={false}
           />
 
           <YAxis
-            tick={{ fill: "#94a3b8", fontSize: 12 }}
+            width={32}
+            tick={{ fill: "#94a3b8", fontSize: 10 }}
             axisLine={false}
             tickLine={false}
           />
@@ -97,7 +102,7 @@ function ChartUsersGrowth() {
             stroke="#6366f1"
             fill="url(#totalGradient)"
             strokeWidth={2}
-            dot={{ r: 3 }}
+            dot={false}
           />
 
           {/* Linha novos usuários */}
@@ -106,10 +111,11 @@ function ChartUsersGrowth() {
             dataKey="novos"
             stroke="#22c55e"
             strokeWidth={2}
-            dot={{ r: 3 }}
+            dot={false}
           />
-        </AreaChart>
-      </ResponsiveContainer>
+          </AreaChart>
+        </ResponsiveContainer>
+      </div>
     </div>
   );
 }

@@ -1,4 +1,3 @@
-import BtnEdit from "../../../../components/ui/BtnEdit";
 import Title4 from "../../../../components/ui/Title4";
 import AdminButton from "../AdminButton";
 
@@ -52,8 +51,8 @@ function AdminTurmasItem({ item }) {
   };
 
   return (
-    <li className="border border-slate-200  rounded-md text-xs  dark:border-gray-700">
-      <div className="bg-gray-200 py-[10px] px-3 dark:bg-gray-900 rounded-t-md flex items-center justify-between">
+    <li className="rounded-md border border-slate-200 text-xs dark:border-gray-700">
+      <div className="flex items-center justify-between rounded-t-md bg-gray-200 px-3 py-[10px] dark:bg-gray-900">
         <Title4>
           {turmaClasse?.classYear}-{item.turmaCategory}/{item.period}
         </Title4>
@@ -92,7 +91,7 @@ function AdminTurmasItem({ item }) {
           )}
         </div>
       </div>
-      <div className="py-2 px-3 flex flex-col gap-2">
+      <div className="flex flex-col gap-2 px-3 py-2">
         <p className="flex items-center gap-1">
           <span className="text-sm">
             <HiOutlineUserGroup />

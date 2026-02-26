@@ -2,12 +2,12 @@ import { NavLink } from "react-router-dom";
 
 function AdminTurmasLinksItem({ item }) {
   return (
-    <li className=" ">
+    <li>
       <NavLink
         className={({ isActive }) =>
           isActive
-            ? "bg-blue-700 px-4 py-1 dark:bg-blue-700 rounded-md text-white flex items-center gap-1 border dark:border-gray-700"
-            : "px-4 py-1 rounded-md bg-white dark:bg-gray-800 flex items-center gap-1"
+            ? "flex items-center gap-1 rounded-md border border-gray-700 bg-blue-700 px-3 py-1 text-xs text-white dark:bg-blue-700 sm:px-4 sm:text-sm"
+            : "flex items-center gap-1 rounded-md bg-white px-3 py-1 text-xs dark:bg-gray-800 sm:px-4 sm:text-sm"
         }
         to={item.to}
       >

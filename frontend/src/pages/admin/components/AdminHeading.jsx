@@ -1,6 +1,6 @@
 function AdminHeading({ children }) {
   return (
-    <div className="flex items-center justify-between mb-6">{children}</div>
+    <div className="mb-6 flex items-center justify-between">{children}</div>
   );
 }
 

@@ -76,9 +76,9 @@ function GalleryList() {
       {isGalleryModal ? (
         <>
           <Overlay />
-          <div className="fixed inset-0 z-20 flex items-center justify-center pointer-events-none">
+          <div className="pointer-events-none fixed inset-0 z-40 flex items-center justify-center p-3 sm:p-4">
             <div
-              className="relative bg-white dark:bg-gray-800 xl:p-[15px] pt-1 p-[10px] rounded-lg shadow-xl  pointer-events-auto "
+              className="pointer-events-auto relative max-h-[calc(100dvh-1.5rem)] w-full max-w-3xl overflow-y-auto rounded-lg bg-white p-[10px] pt-1 shadow-xl dark:bg-gray-800 sm:max-h-[calc(100dvh-2rem)] xl:p-[15px]"
               onClick={(e) => e.stopPropagation()}
             >
               <BtnCloseModal />

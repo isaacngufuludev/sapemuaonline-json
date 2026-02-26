@@ -9,9 +9,11 @@ function AdminTurmasHeading() {
   const { toggleTurmaModal, toggleCourseModal, toggleClassModal } = useModal();
 
   return (
-    <AdminHeading>
-      <Title3>Turmas e Cursos</Title3>
-      <div className="flex items-center gap-2">
+    <div className="mb-6 block sm:flex items-center justify-between">
+      <div className="text-left mb-3">
+        <Title3>Turmas e Cursos</Title3>
+      </div>
+      <div className="grid w-full gap-5 sm:gap-2 sm:w-auto grid-cols-3">
         <AdminButton type="primary" onClick={toggleCourseModal}>
           <p>
             <HiOutlinePlus />
@@ -31,7 +33,7 @@ function AdminTurmasHeading() {
           <p>Turma</p>
         </AdminButton>
       </div>
-    </AdminHeading>
+    </div>
   );
 }
 

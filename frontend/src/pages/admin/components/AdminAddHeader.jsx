@@ -1,6 +1,6 @@
 function AdminAddHeader({ children, type }) {
   const base =
-    "bg-blue-200 dark:bg-gray-900 p-3 flex items-center gap-2 dark:border dark:border-gray-800";
+    "flex flex-wrap items-center gap-2 bg-blue-200 p-3 dark:border dark:border-gray-800 dark:bg-gray-900";
 
   const styles = {
     turma: base + " justify-between",
