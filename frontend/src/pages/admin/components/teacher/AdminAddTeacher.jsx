@@ -41,7 +41,7 @@ const initialState = {
   email: "",
   adressCollege: "",
   phoneCollege: "",
-  subjects: "",
+  subjects: [],
   turmasId: [],
   classesId: [],
   coursesId: [],
@@ -49,6 +49,8 @@ const initialState = {
 
 function AdminAddTeacher() {
   const [formData, setFormData] = useState(initialState);
+  const [subjects, setSubjects] = useState([]);
+  const [inputValue, setInputValue] = useState("");
   const [selectedTurmas, setSelectedTurmas] = useState([]);
   const [selectedCourses, setSelectedCourses] = useState([]);
   const [selectedClasses, setSelectedClasses] = useState([]);
@@ -88,6 +90,7 @@ function AdminAddTeacher() {
       setSelectedCourses(teacher.coursesId || []);
       setSelectedTurmas(teacher.turmasId || []);
       setSelectedClasses(teacher.classesId || []);
+      setSubjects(teacher.subjects || []);
     }
 
     fetchTeacher();
@@ -95,6 +98,22 @@ function AdminAddTeacher() {
 
   function handleClose() {
     navigate("/area/admin/adminTeacher/main-teacher");
+  }
+
+  function handleKeyDown(e) {
+    if (e.key === "Enter" && inputValue.trim() !== "") {
+      e.preventDefault();
+
+      if (!subjects.includes(inputValue.trim())) {
+        setSubjects([...subjects, inputValue.trim()]);
+      }
+
+      setInputValue("");
+    }
+  }
+
+  function removeSubject(index) {
+    setSubjects(subjects.filter((_, i) => i !== index));
   }
 
   async function handleSubmit(e) {
@@ -112,7 +131,7 @@ function AdminAddTeacher() {
       !formData.birthDate ||
       !formData.phoneNumber ||
       !formData.qualification ||
-      !formData.subjects ||
+      !subjects ||
       !formData.area ||
       !formData.email
     ) {
@@ -143,6 +162,7 @@ function AdminAddTeacher() {
       turmasId: selectedTurmas,
       classesId: selectedClasses,
       coursesId: selectedCourses,
+      subjects: subjects,
     };
 
     try {
@@ -425,14 +445,31 @@ function AdminAddTeacher() {
                   ))}
               </AdminSelect>
             </div>
-            <div>
-              <FloatInputLabel
+            <div className="border rounded-lg p-2 flex flex-wrap gap-2">
+              {subjects.map((subject, index) => (
+                <span
+                  key={index}
+                  className="bg-blue-600 text-white px-3 py-1 rounded-full flex items-center gap-2"
+                >
+                  {subject}
+
+                  <button
+                    type="button"
+                    onClick={() => removeSubject(index)}
+                    className="text-sm"
+                  >
+                    ✕
+                  </button>
+                </span>
+              ))}
+
+              <input
                 type="text"
-                name="Disciplinas"
-                value={formData.subjects}
-                onChange={(e) =>
-                  setFormData({ ...formData, subjects: e.target.value })
-                }
+                placeholder="Digite a disciplina e pressione Enter"
+                value={inputValue}
+                onChange={(e) => setInputValue(e.target.value)}
+                onKeyDown={handleKeyDown}
+                className="flex-1 h-7 outline-none min-w-[150px]"
               />
             </div>
           </div>

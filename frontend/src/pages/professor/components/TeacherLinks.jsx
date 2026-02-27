@@ -1,5 +1,5 @@
 import { NavLink } from "react-router-dom";
-import { useAuthSidebar } from "../../../context/AuthSidebarContext";
+import { useAuthSidebar } from "../../../contexts/AuthSidebarContext";
 
 function TeacherLinks({ item }) {
   const { isSidebarOpen } = useAuthSidebar();

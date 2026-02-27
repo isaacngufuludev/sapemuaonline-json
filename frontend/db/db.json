@@ -139,71 +139,104 @@
       "role": "student"
     },
     {
-      "id": "5958",
-      "name": "Leonardo ",
-      "birthDate": "1990-04-05",
-      "province": "Luanda",
-      "biCode": "-00020000333",
+      "id": "37e0",
+      "name": "Leonardo Pequeno",
+      "birthDate": "1990-02-05",
+      "province": "",
+      "biCode": "0121011101",
       "residence": "",
-      "phoneNumber": "+244 939939393",
+      "phoneNumber": "+244 945055050",
       "genre": "Masculino",
       "qualification": "Superior",
-      "area": "TI",
+      "area": "Engenharia Informática",
       "college": "",
-      "email": "isaacbgoidid@gmail.com",
+      "email": "leonardodev@gmail.com",
       "adressCollege": "",
       "phoneCollege": "",
-      "subjects": "Informática",
       "turmasId": [
         "1517",
-        "7fa1",
         "31cd"
       ],
       "classesId": [
+        "904a",
+        "a552"
+      ],
+      "coursesId": [
+        "e453"
+      ],
+      "dateIn": "27 de fevereiro de 2026",
+      "age": "36 anos",
+      "password": "93775880",
+      "role": "teacher",
+      "subjects": [
+        "TLP"
+      ]
+    },
+    {
+      "id": "46de",
+      "name": "Makiadi Ndingambote",
+      "birthDate": "1980-05-07",
+      "province": "",
+      "biCode": "00009990109ss",
+      "residence": "",
+      "phoneNumber": "+244 934959599",
+      "genre": "Masculino",
+      "qualification": "Superior",
+      "area": "Engenharia ",
+      "college": "",
+      "email": "makiadi@gmail.com",
+      "adressCollege": "",
+      "phoneCollege": "",
+      "turmasId": [],
+      "classesId": [
         "a341",
         "904a",
-        "e2ec",
         "a552"
       ],
       "coursesId": [
         "9e44",
         "e453"
       ],
-      "dateIn": "20 de fevereiro de 2026",
-      "age": "36 anos",
-      "password": "02058404",
-      "role": "teacher"
+      "dateIn": "27 de fevereiro de 2026",
+      "age": "46 anos",
+      "password": "93871426",
+      "role": "teacher",
+      "subjects": []
     },
     {
-      "id": "d191",
-      "name": "Makiadi Ndinambote",
-      "birthDate": "1980-07-07",
-      "province": "Uige",
-      "biCode": "005990023021",
-      "residence": "Malueka",
-      "phoneNumber": "+244 930886401",
+      "id": "8de1",
+      "name": "João Finda",
+      "birthDate": "1996-06-07",
+      "province": "",
+      "biCode": "9590999399210919",
+      "residence": "",
+      "phoneNumber": "+244 940400499",
       "genre": "Masculino",
-      "qualification": "Superior",
-      "area": "Engenharia",
+      "qualification": "Medio",
+      "area": "Informática",
       "college": "",
-      "email": "makiadi@gmail.com",
+      "email": "joaofinda@gmail.com",
       "adressCollege": "",
       "phoneCollege": "",
-      "subjects": "Matemática, Seac",
+      "subjects": [
+        "Seac",
+        "TIC",
+        "Gestão"
+      ],
       "turmasId": [
-        "1517"
+        "1517",
+        "31cd"
       ],
       "classesId": [
         "904a",
-        "a552",
-        "5459"
+        "a552"
       ],
       "coursesId": [
         "e453"
       ],
-      "dateIn": "26 de fevereiro de 2026",
-      "age": "46 anos",
-      "password": "86273516",
+      "dateIn": "27 de fevereiro de 2026",
+      "age": "30 anos",
+      "password": "94656138",
       "role": "teacher"
     }
   ],
@@ -280,9 +313,6 @@
       "dateIn": "26 de fevereiro de 2026"
     }
   ],
-  "tasks": [],
-  "materials": [],
-  "messages": [],
   "news": [
     {
       "id": "5cbb",
@@ -306,5 +336,9 @@
       "dateIn": "26 de fevereiro de 2026"
     }
   ],
-  "subjects": []
+  "tasks": [],
+  "materials": [],
+  "messages": [],
+  "subjects": [],
+  "grades": []
 }

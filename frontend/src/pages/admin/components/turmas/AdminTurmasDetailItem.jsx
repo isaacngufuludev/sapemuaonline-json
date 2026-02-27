@@ -38,7 +38,7 @@ function AdminTurmasDetailItem() {
 
   return (
     <li>
-      <div className="grid grid-cols-1 gap-4 lg:gap-5 xl:grid-cols-[0.8fr_3fr]">
+      <div className="grid grid-cols-1 gap-7 xl:gap-4 lg:gap-3 lg:grid-cols-[1fr_2.5fr] xl:grid-cols-[1fr_3fr]">
         <div className="flex flex-col gap-3 rounded-md border-[0.1px] border-slate-200 bg-white dark:border-gray-700 dark:bg-gray-800">
           <div className="flex items-center justify-between border-b-[0.1px] border-slate-200 px-4 py-3 dark:border-gray-700 sm:px-5">
             <Title3>Turma</Title3>

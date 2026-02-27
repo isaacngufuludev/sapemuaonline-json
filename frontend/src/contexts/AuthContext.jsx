@@ -22,7 +22,7 @@ function reducer(state, action) {
     case "logout":
       return { ...state, isLoading: false, user: null, isAuthenticated: false };
     case "restore":
-      return { user: action.payload, isAuthenticated: true };
+      return { ...state, user: action.payload, isAuthenticated: true };
     default:
       throw new Error("Unknown action");
   }
@@ -62,8 +62,8 @@ function AuthProvider({ children }) {
   }
 
   function logout() {
-    localStorage.removeItem("currentUser");
     dispatch({ type: "logout" });
+    localStorage.removeItem("currentUser");
   }
 
   return (

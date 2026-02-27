@@ -4,7 +4,7 @@ import { ModalProvider } from "../contexts/ModalContext";
 import { AuthProvider } from "../contexts/AuthContext";
 import { StudentFormProvider } from "../contexts/StudentFormContext";
 import { RefreshProvider } from "../contexts/RefreshContext";
-import { AuthSidebarProvider } from "../context/AuthSidebarContext";
+import { AuthSidebarProvider } from "../contexts/AuthSidebarContext";
 
 import Home from "../pages/website/Home";
 import Sobre from "../pages/website/Sobre";
@@ -57,167 +57,170 @@ function AppRoutes() {
             <RefreshProvider>
               <BrowserRouter>
                 <Routes>
-                <Route index path="/" element={<Home />} />
-                <Route path="/sobre" element={<Sobre />} />
-                <Route path="/gallery" element={<Gallery />} />
-                <Route path="/auth" element={<Auth />}>
-                  <Route index element={<Navigate replace to="login" />} />
-                  <Route path="login" element={<Login />} />
-                </Route>
-                <Route path="*" element={<PageNotFound />} />
-                <Route
-                  path="/area"
-                  element={
-                    <ProtectedRoute>
-                      <Area />
-                    </ProtectedRoute>
-                  }
-                >
-                  <Route path="admin" element={<Admin />}>
-                    <Route
-                      index
-                      element={<Navigate replace to="adminDashboard" />}
-                    />
-                    <Route path="adminDashboard" element={<AdminDashboard />} />
-                    <Route path="adminStudents" element={<AdminStudents />}>
+                  <Route index path="/" element={<Home />} />
+                  <Route path="/sobre" element={<Sobre />} />
+                  <Route path="/gallery" element={<Gallery />} />
+                  <Route path="/auth" element={<Auth />}>
+                    <Route index element={<Navigate replace to="login" />} />
+                    <Route path="login" element={<Login />} />
+                  </Route>
+                  <Route path="*" element={<PageNotFound />} />
+                  <Route
+                    path="/area"
+                    element={
+                      <ProtectedRoute>
+                        <Area />
+                      </ProtectedRoute>
+                    }
+                  >
+                    <Route path="admin" element={<Admin />}>
                       <Route
                         index
-                        element={<Navigate replace to="main-student" />}
+                        element={<Navigate replace to="adminDashboard" />}
                       />
                       <Route
-                        path="main-student"
-                        element={<AdminMainStudentLayout />}
+                        path="adminDashboard"
+                        element={<AdminDashboard />}
                       />
-                      <Route
-                        path="student-detail/:studentId"
-                        element={<AdminStudentDetail />}
-                      />
-                      <Route
-                        path="add-student/:id?"
-                        element={
-                          <StudentFormProvider>
-                            <AdminAddStudent />
-                          </StudentFormProvider>
-                        }
-                      >
+                      <Route path="adminStudents" element={<AdminStudents />}>
                         <Route
                           index
-                          element={<Navigate replace to="father-info" />}
+                          element={<Navigate replace to="main-student" />}
                         />
                         <Route
-                          path="father-info"
-                          element={<AdminAddFatherInfo />}
+                          path="main-student"
+                          element={<AdminMainStudentLayout />}
                         />
                         <Route
-                          path="mother-info"
-                          element={<AdminAddMotherInfo />}
+                          path="student-detail/:studentId"
+                          element={<AdminStudentDetail />}
                         />
                         <Route
-                          path="guardion-info"
-                          element={<AdminAddGuardionInfo />}
-                        />
+                          path="add-student/:id?"
+                          element={
+                            <StudentFormProvider>
+                              <AdminAddStudent />
+                            </StudentFormProvider>
+                          }
+                        >
+                          <Route
+                            index
+                            element={<Navigate replace to="father-info" />}
+                          />
+                          <Route
+                            path="father-info"
+                            element={<AdminAddFatherInfo />}
+                          />
+                          <Route
+                            path="mother-info"
+                            element={<AdminAddMotherInfo />}
+                          />
+                          <Route
+                            path="guardion-info"
+                            element={<AdminAddGuardionInfo />}
+                          />
+                        </Route>
                       </Route>
-                    </Route>
-                    <Route path="adminTeacher" element={<AdminTeacher />}>
-                      <Route
-                        index
-                        element={<Navigate replace to="main-teacher" />}
-                      />
-                      <Route
-                        path="main-teacher"
-                        element={<AdminMainTeacherLayout />}
-                      />
-                      <Route
-                        path="teacher-detail/:teacherId"
-                        element={<AdminTeacherDetail />}
-                      />
-                      <Route
-                        path="add-teacher/:id?"
-                        element={<AdminAddTeacher />}
-                      />
-                    </Route>
-                    <Route path="adminTurmas" element={<AdminTurmas />}>
-                      <Route
-                        index
-                        element={<Navigate replace to="turma-layout" />}
-                      />
-                      <Route
-                        path="turma-layout"
-                        element={<AdminTurmasLayout />}
-                      />
-                      <Route
-                        path="turma-detail/:turmaId"
-                        element={<AdminTurmaDetails />}
-                      >
+                      <Route path="adminTeacher" element={<AdminTeacher />}>
                         <Route
                           index
-                          element={<Navigate replace to="turma-students" />}
+                          element={<Navigate replace to="main-teacher" />}
                         />
                         <Route
-                          path="turma-students"
-                          element={<TurmaStudents />}
+                          path="main-teacher"
+                          element={<AdminMainTeacherLayout />}
                         />
                         <Route
-                          path="turma-subjects"
-                          element={<TurmaSubjects />}
+                          path="teacher-detail/:teacherId"
+                          element={<AdminTeacherDetail />}
+                        />
+                        <Route
+                          path="add-teacher/:id?"
+                          element={<AdminAddTeacher />}
                         />
                       </Route>
+                      <Route path="adminTurmas" element={<AdminTurmas />}>
+                        <Route
+                          index
+                          element={<Navigate replace to="turma-layout" />}
+                        />
+                        <Route
+                          path="turma-layout"
+                          element={<AdminTurmasLayout />}
+                        />
+                        <Route
+                          path="turma-detail/:turmaId"
+                          element={<AdminTurmaDetails />}
+                        >
+                          <Route
+                            index
+                            element={<Navigate replace to="turma-students" />}
+                          />
+                          <Route
+                            path="turma-students"
+                            element={<TurmaStudents />}
+                          />
+                          <Route
+                            path="turma-subjects"
+                            element={<TurmaSubjects />}
+                          />
+                        </Route>
+                      </Route>
+                      <Route path="adminNews" element={<AdminNews />} />
+                      <Route path="adminConfigs" element={<AdminConfigs />} />
                     </Route>
-                    <Route path="adminNews" element={<AdminNews />} />
-                    <Route path="adminConfigs" element={<AdminConfigs />} />
-                  </Route>
-                  <Route path="teacher" element={<Teacher />}>
-                    <Route
-                      index
-                      element={<Navigate replace to="teacher-profile" />}
-                    />
-                    <Route
-                      path="teacher-profile"
-                      element={<TeacherProfile />}
-                    />
-                    <Route path="teacher-turmas" element={<TeacherTurmas />}>
+                    <Route path="teacher" element={<Teacher />}>
                       <Route
                         index
-                        element={<Navigate to="teacher-all-turmas" />}
+                        element={<Navigate replace to="teacher-profile" />}
                       />
                       <Route
-                        path="teacher-all-turmas"
-                        element={<TeacherAllTurmas />}
+                        path="teacher-profile"
+                        element={<TeacherProfile />}
                       />
+                      <Route path="teacher-turmas" element={<TeacherTurmas />}>
+                        <Route
+                          index
+                          element={<Navigate to="teacher-all-turmas" />}
+                        />
+                        <Route
+                          path="teacher-all-turmas"
+                          element={<TeacherAllTurmas />}
+                        />
+                        <Route
+                          path="teacher-info/:turmaId"
+                          element={<TeacherTurmasInfo />}
+                        />
+                      </Route>
                       <Route
-                        path="teacher-info/:turmaId"
-                        element={<TeacherTurmasInfo />}
+                        path="teacher-chats"
+                        element={<TeacherChatLayout />}
                       />
                     </Route>
-                    <Route
-                      path="teacher-chats"
-                      element={<TeacherChatLayout />}
-                    />
+                    <Route path="student" element={<Student />}>
+                      <Route
+                        index
+                        element={<Navigate replace to="student-profile" />}
+                      />
+                      <Route
+                        path="student-profile"
+                        element={<StudentProfile />}
+                      />
+                      <Route
+                        path="student-colleagues"
+                        element={<StudentColleagues />}
+                      />
+                      <Route
+                        path="student-teacher"
+                        element={<StudentTeacher />}
+                      />
+                      <Route
+                        path="student-chat"
+                        element={<StudentChatLayout />}
+                      />
+                      <Route path="student-notas" element={<StudentNotas />} />
+                    </Route>
                   </Route>
-                  <Route path="student" element={<Student />}>
-                    <Route
-                      index
-                      element={<Navigate replace to="student-profile" />}
-                    />
-                    <Route
-                      path="student-profile"
-                      element={<StudentProfile />}
-                    />
-                    <Route
-                      path="student-colleagues"
-                      element={<StudentColleagues />}
-                    />
-                    <Route
-                      path="student-teacher"
-                      element={<StudentTeacher />}
-                    />
-                    <Route
-                      path="student-chat"
-                      element={<StudentChatLayout />}
-                    />
-                    <Route path="student-notas" element={<StudentNotas />} />
-                  </Route>
-                </Route>
                 </Routes>
               </BrowserRouter>
             </RefreshProvider>

@@ -1,7 +1,7 @@
 function StudentNotasTitleItem({ item }) {
   return (
     <li>
-      <p className="font-semibold">{item}</p>
+      <p className="font-semibold text-sm">{item}</p>
     </li>
   );
 }

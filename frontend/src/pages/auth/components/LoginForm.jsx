@@ -41,7 +41,7 @@ function LoginForm() {
   return (
     <>
       <form
-        className="flex flex-col gap-4 mb-3"
+        className="flex flex-col gap-3 sm:gap-4 mb-2 md:mb-3"
         action=""
         onSubmit={handleSubmit}
       >
@@ -72,7 +72,7 @@ function LoginForm() {
           </button>
         </div>
         <button
-          className="bg-blue-700 text-white rounded-full text-sm font-semibold flex items-center  p-[12px] justify-center"
+          className="bg-blue-700 text-white rounded-full text-sm font-semibold flex items-center  sm:p-[10px] p-[12px] justify-center"
           disabled={isLoading}
         >
           {isLoading ? <Loading size={25} /> : "Iniciar Sessão"}

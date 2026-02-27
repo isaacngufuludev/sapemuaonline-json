@@ -143,7 +143,7 @@ function AdminTeacherDetailItem() {
           </div>
           <div className="flex flex-col gap-1 border-b-[0.1px] border-slate-200 px-5 py-3 dark:border-gray-700 dark:bg-gray-800 sm:flex-row sm:gap-10">
             <p className="text-sm sm:w-56">Disciplinas </p>
-            <p className="text-sm">{teacher.subjects}</p>
+            <p className="text-sm">{teacher.subjects.join(", ")}</p>
           </div>
           <div className="flex flex-col gap-1 px-5 py-3 sm:flex-row sm:gap-10">
             <p className="text-sm sm:w-56">Turmas Vinculadas </p>

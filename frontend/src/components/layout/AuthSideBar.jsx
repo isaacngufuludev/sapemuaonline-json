@@ -2,7 +2,7 @@ import { useMemo, useState } from "react";
 import { FiMenu } from "react-icons/fi";
 import { HiChevronDoubleLeft } from "react-icons/hi";
 import { useAuth } from "../../contexts/AuthContext";
-import { useAuthSidebar } from "../../context/AuthSidebarContext";
+import { useAuthSidebar } from "../../contexts/AuthSidebarContext";
 
 function AuthSideBar({ children }) {
   const [isMobileOpen, setIsMobileOpen] = useState(false);
@@ -29,10 +29,10 @@ function AuthSideBar({ children }) {
       <button
         type="button"
         onClick={() => setIsMobileOpen(true)}
-        className="fixed left-3 top-3 z-40 rounded-md bg-blue-700 p-2 text-white shadow-md transition-all duration-300 md:hidden"
+        className="fixed left-3 top-3 z-40 p-2 transition-all duration-300 md:hidden"
         aria-label="Abrir menu"
       >
-        <FiMenu className="text-lg" />
+        <FiMenu className="text-2xl" />
       </button>
 
       <div
