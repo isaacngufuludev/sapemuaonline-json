@@ -1,6 +1,13 @@
-function TeacherChatItem({ item }) {
+function TeacherChatItem({ item, isSelected, onClick }) {
   return (
-    <li className="px-5 py-4 hover:bg-blue-200 duration-300 dark:hover:bg-gray-800 cursor-pointer transition-colors">
+    <li
+      className={`px-5 py-4 duration-300 cursor-pointer transition-colors ${
+        isSelected
+          ? "bg-blue-200 dark:bg-gray-800"
+          : "hover:bg-blue-200 dark:hover:bg-gray-800"
+      }`}
+      onClick={onClick}
+    >
       <div className="flex items-center justify-between mb-1">
         <h4 className="font-medium text-sm text-gray-900 dark:text-white truncate">
           {item.name}

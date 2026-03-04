@@ -10,41 +10,41 @@ function ToggleDarkMode({ type = "default" }) {
     default: base + " text-xl",
     absolute:
       base +
-      " absolute 2xl:right-4 lg:right-3 sm:right-10 right-3 top-10 text-2xl lg:border-none border-stone-300 dark:border-gray-700 py-1 px-2 border",
+      " absolute z-10 2xl:right-4 lg:right-3 sm:right-10 right-3 top-10 text-2xl lg:border-none border-stone-300 dark:border-gray-700 py-1 px-2 border",
   };
 
   if (type === "absolute")
     return (
       <button onClick={toggleDarkMode} className={styles[type]}>
-        <p className="text-xl dark:text-white">
+        <span className="text-xl dark:text-white">
           {isDark ? (
-            <p className="flex items-center gap-1">
+            <span className="flex items-center gap-1">
               <HiOutlineSun />
               <span className="lg:hidden text-sm">Claro</span>
-            </p>
+            </span>
           ) : (
-            <p className="flex items-center gap-1">
+            <span className="flex items-center gap-1">
               <HiOutlineMoon />
               <span className="lg:hidden text-sm">Escuro</span>
-            </p>
+            </span>
           )}
-        </p>
+        </span>
       </button>
     );
 
   return (
     <button onClick={toggleDarkMode} className={styles[type]}>
-      <p className="text-xl dark:text-white">
+      <span className="text-xl dark:text-white">
         {isDark ? (
-          <p>
+          <span>
             <HiOutlineSun />
-          </p>
+          </span>
         ) : (
-          <p>
+          <span>
             <HiOutlineMoon />
-          </p>
+          </span>
         )}
-      </p>
+      </span>
     </button>
   );
 }

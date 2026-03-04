@@ -7,6 +7,7 @@ import BtnCloseModal from "./BtnCloseModal";
 import Modal from "./Modal";
 import Title3 from "../ui/Title3";
 import BtnModal from "./BtnModal";
+import { HiOutlineLogout } from "react-icons/hi";
 
 function LogoutModal() {
   const { toggle } = useModal();
@@ -20,7 +21,12 @@ function LogoutModal() {
   return (
     <Modal>
       <BtnCloseModal />
-      <Title3>Terminar Sessão</Title3>
+      <div className="flex items-center gap-2 mb-3 ">
+        <p className="text-xl bg-blue-200 p-2 rounded-full text-blue-700">
+          <HiOutlineLogout />
+        </p>
+        <Title3>Terminar Sessão</Title3>
+      </div>
       <p className="text-sm mb-5">Tens a Certeza que queres terminar sessão?</p>
       <div className="flex gap-2 justify-end">
         <BtnModal type="smallSecondary" onClick={toggle}>

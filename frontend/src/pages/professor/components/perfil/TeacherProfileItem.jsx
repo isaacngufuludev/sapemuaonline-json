@@ -105,7 +105,7 @@ function TeacherProfileItem() {
           </div>
           <div className="flex gap-10 py-3 px-5  dark:bg-gray-800 border-b-[0.1px] dark:border-gray-700 border-slate-200">
             <p className="w-56 text-sm">Disciplinas</p>
-            <p className="text-sm">{user.subjects}</p>
+            <p className="text-sm">{user.subjects.join(", ")}</p>
           </div>
           <div className="flex gap-10 pt-3 px-5  dark:bg-gray-800">
             <p className="w-56 text-sm">Turmas Vinculadas</p>

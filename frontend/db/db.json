@@ -187,7 +187,11 @@
       "email": "makiadi@gmail.com",
       "adressCollege": "",
       "phoneCollege": "",
-      "turmasId": [],
+      "turmasId": [
+        "1517",
+        "7fa1",
+        "31cd"
+      ],
       "classesId": [
         "a341",
         "904a",
@@ -201,7 +205,10 @@
       "age": "46 anos",
       "password": "93871426",
       "role": "teacher",
-      "subjects": []
+      "subjects": [
+        "Matemática",
+        "TREI"
+      ]
     },
     {
       "id": "8de1",
@@ -225,13 +232,18 @@
       ],
       "turmasId": [
         "1517",
+        "7fa1",
         "31cd"
       ],
       "classesId": [
+        "a341",
         "904a",
-        "a552"
+        "e2ec",
+        "a552",
+        "5459"
       ],
       "coursesId": [
+        "9e44",
         "e453"
       ],
       "dateIn": "27 de fevereiro de 2026",
@@ -340,5 +352,58 @@
   "materials": [],
   "messages": [],
   "subjects": [],
-  "grades": []
+  "grades": [
+    {
+      "id": "ef18",
+      "student_id": "c613",
+      "teacher_id": "37e0",
+      "subject": "TLP",
+      "term": 1,
+      "mac": 11,
+      "npp": 11,
+      "npt": 14,
+      "average": 12,
+      "updated_at": "2026-03-04T15:10:44.306Z",
+      "created_at": "2026-03-04T15:10:01.225Z"
+    },
+    {
+      "id": "1c3c",
+      "student_id": "53e1",
+      "teacher_id": "46de",
+      "subject": "Matemática",
+      "term": 1,
+      "mac": 4,
+      "npp": 8,
+      "npt": 18,
+      "average": 10,
+      "updated_at": "2026-03-04T15:31:41.772Z",
+      "created_at": "2026-03-04T15:31:41.772Z"
+    },
+    {
+      "id": "e714",
+      "student_id": "5959",
+      "teacher_id": "46de",
+      "subject": "Matemática",
+      "term": 1,
+      "mac": 16,
+      "npp": 4,
+      "npt": 2,
+      "average": 7,
+      "updated_at": "2026-03-04T15:32:14.139Z",
+      "created_at": "2026-03-04T15:32:14.139Z"
+    },
+    {
+      "id": "7d8a",
+      "student_id": "4ea7",
+      "teacher_id": "46de",
+      "subject": "Matemática",
+      "term": 1,
+      "mac": 14,
+      "npp": 10,
+      "npt": 0,
+      "average": 8,
+      "updated_at": "2026-03-04T15:32:26.476Z",
+      "created_at": "2026-03-04T15:32:26.476Z"
+    }
+  ]
 }

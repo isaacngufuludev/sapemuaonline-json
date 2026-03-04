@@ -12,14 +12,14 @@ import TeacherStudentsList from "./TeacherStudentsList";
 function TeacherTurmasInfoItem({ item, course, students }) {
   return (
     <>
-      <li className="rounded-md bg-white dark:bg-gray-800  border-[0.1px] dark:border-gray-700 border-slate-200">
+      <li className="rounded-md bg-white dark:bg-gray-800 border-[0.1px] dark:border-gray-700 border-slate-200 overflow-hidden">
         <div className="p-5 border-b-[0.1px] dark:border-gray-700 border-slate-200">
           <Title4>
             Turma {item.turmaCategory}
             {item.period[0]}
           </Title4>
         </div>
-        <div className="p-5 flex flex-col gap-5 text-sm">
+        <div className="p-4 sm:p-5 flex flex-col gap-5 text-sm">
           <div className="flex items-center gap-2">
             <p className=" bg-slate-100 p-4 rounded-md dark:bg-gray-900 text-lg">
               <LuGraduationCap />
@@ -77,7 +77,7 @@ function TeacherTurmasInfoItem({ item, course, students }) {
         </div>
       </li>
       {/* ESTUDANTES E NOTAS */}
-      <li className="rounded-md">
+      <li className="rounded-md overflow-hidden">
         <TeacherStudentsList />
       </li>
     </>

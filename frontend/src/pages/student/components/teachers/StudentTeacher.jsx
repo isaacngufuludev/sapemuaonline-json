@@ -6,7 +6,7 @@ import StudentTeachersTitle from "./StudentTeachersTitle";
 
 function StudentTeacher() {
   return (
-    <div className="p-10">
+    <div className="p-4 sm:p-6 lg:p-10">
       <div className="mb-6">
         <Title3>Professores da Turma</Title3>
       </div>

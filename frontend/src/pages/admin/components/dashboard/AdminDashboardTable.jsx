@@ -4,7 +4,7 @@ import Title3 from "../../../../components/ui/Title3";
 import { usePagination } from "../../../../hooks/UsePagination";
 import { BsChevronLeft, BsChevronRight } from "react-icons/bs";
 import { ITEMS_PER_PAGE } from "../../../../utils/constants";
-import { usePDFExport } from "./AdminDashboardLayout";
+import { usePDFExport } from "../../../../contexts/PDFExportContext";
 
 const updates = [
   {
@@ -46,6 +46,7 @@ const updates = [
 
 function AdminDashboardTable() {
   const { isExporting } = usePDFExport();
+
   const {
     currentData,
     currentPage,
@@ -69,20 +70,26 @@ function AdminDashboardTable() {
               <p className="text-xs text-gray-500 dark:text-gray-400">Ação</p>
               <p className="break-words text-sm font-semibold">{item.action}</p>
 
-              <p className="mt-2 text-xs text-gray-500 dark:text-gray-400">Usuário</p>
+              <p className="mt-2 text-xs text-gray-500 dark:text-gray-400">
+                Usuário
+              </p>
               <p className="break-words text-sm">{item.user}</p>
 
-              <p className="mt-2 text-xs text-gray-500 dark:text-gray-400">Data</p>
+              <p className="mt-2 text-xs text-gray-500 dark:text-gray-400">
+                Data
+              </p>
               <p className="break-words text-sm">{item.time}</p>
 
-              <p className="mt-2 text-xs text-gray-500 dark:text-gray-400">Estado</p>
+              <p className="mt-2 text-xs text-gray-500 dark:text-gray-400">
+                Estado
+              </p>
               <span
                 className={`inline-block rounded-full px-2 py-1 text-xs font-medium ${
                   item.status === "success"
                     ? "bg-green-100 text-green-700 dark:bg-green-500 dark:text-green-100"
                     : item.status === "pending"
-                    ? "bg-yellow-100 text-yellow-700 dark:bg-yellow-500 dark:text-yellow-100"
-                    : "bg-red-100 text-red-700 dark:bg-red-500 dark:text-red-100"
+                      ? "bg-yellow-100 text-yellow-700 dark:bg-yellow-500 dark:text-yellow-100"
+                      : "bg-red-100 text-red-700 dark:bg-red-500 dark:text-red-100"
                 }`}
               >
                 {item.status}
@@ -116,8 +123,8 @@ function AdminDashboardTable() {
                       item.status === "success"
                         ? "bg-green-100 text-green-700 dark:bg-green-500 dark:text-green-100"
                         : item.status === "pending"
-                        ? "bg-yellow-100 text-yellow-700 dark:bg-yellow-500 dark:text-yellow-100"
-                        : "bg-red-100 text-red-700 dark:bg-red-500 dark:text-red-100"
+                          ? "bg-yellow-100 text-yellow-700 dark:bg-yellow-500 dark:text-yellow-100"
+                          : "bg-red-100 text-red-700 dark:bg-red-500 dark:text-red-100"
                     }`}
                   >
                     {item.status}

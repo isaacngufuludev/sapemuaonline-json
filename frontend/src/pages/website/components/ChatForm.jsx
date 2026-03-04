@@ -4,10 +4,12 @@ import BtnSendMessages from "../../../components/ui/BtnSendMessages";
 
 function ChatForm() {
   return (
-    <MessagesForm>
-      <InputMessages />
-      <BtnSendMessages />
-    </MessagesForm>
+    <div className="pt-2 sm:pt-3 border-t border-slate-200 dark:border-gray-700 shrink-0">
+      <MessagesForm>
+        <InputMessages />
+        <BtnSendMessages />
+      </MessagesForm>
+    </div>
   );
 }
 export default ChatForm;

@@ -51,9 +51,9 @@ const mensagens = [
 
 const ChatMessageList = () => {
   return (
-    <ul className="flex-1 overflow-y-scroll scrollbar-none h-[500px] 2xl:h-[600px] p-2 space-y-4 no-scrollbar">
-      {mensagens.map((item) => (
-        <ChatMessage key={item.id} item={item} />
+    <ul className="flex-1 min-h-0 overflow-y-auto scrollbar-none p-2 space-y-4 no-scrollbar">
+      {mensagens.map((item, index) => (
+        <ChatMessage key={`${item.id}-${index}`} item={item} />
       ))}
     </ul>
   );

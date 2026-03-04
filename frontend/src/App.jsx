@@ -1,8 +1,11 @@
 import AppRoutes from "./routes/AppRoutes";
+import { PDFExportProvider } from "./contexts/PDFExportContext";
 function App() {
   return (
     <div className="font-roboto">
-      <AppRoutes />
+      <PDFExportProvider>
+        <AppRoutes />
+      </PDFExportProvider>
     </div>
   );
 }

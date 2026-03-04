@@ -29,6 +29,9 @@ function AdminTurmasItem({ item }) {
   const turmaClasse = classes.find((c) => c.id === item.classId);
   const turmaStudents = students.filter((s) => s.turmaId === item.id);
   const turmaTeachers = teachers.filter((t) => t.turmasId.includes(item.id));
+  const uniqueSubjects = [
+    ...new Set(turmaTeachers.flatMap((teacher) => teacher.subjects)),
+  ];
 
   const navigate = useNavigate();
 
@@ -112,14 +115,12 @@ function AdminTurmasItem({ item }) {
           <span className="text-sm">
             <HiOutlineBookOpen />
           </span>
-          {/* <span>{item.subjects.length} Disciplinas</span> */}
-          <span> Disciplinas</span>
+          <span>{uniqueSubjects.length} Disciplinas</span>
         </p>
         <p className="flex items-center gap-1">
           <span className="text-sm">
             <HiOutlineHome />
           </span>
-          {/* <span>{item.subjects.length} Disciplinas</span> */}
           <span>Sala {item.room}</span>
         </p>
         <p className="flex items-center gap-1">

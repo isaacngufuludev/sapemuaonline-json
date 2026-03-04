@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import TeacherChatMessagesItem from "./TeacherChatMessagesItem";
 
 const messages = [
@@ -95,11 +96,19 @@ const messages = [
   },
 ];
 
-function TeacherChatMessagesList() {
+function TeacherChatMessagesList({ containerRef }) {
+  useEffect(() => {
+    if (!containerRef?.current) return;
+    containerRef.current.scrollTo({
+      top: containerRef.current.scrollHeight,
+      behavior: "smooth",
+    });
+  }, [containerRef]);
+
   return (
     <ul className="space-y-6">
       {messages.map((item) => (
-        <TeacherChatMessagesItem item={item} />
+        <TeacherChatMessagesItem key={item.id} item={item} />
       ))}
     </ul>
   );

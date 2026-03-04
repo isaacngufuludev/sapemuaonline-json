@@ -1,31 +1,15 @@
 import StudentNotasItem from "./StudentNotasItem";
 
-const notas = [
-  {
-    disciplina: "Matemática",
-    mac: 12,
-    npp: 9,
-    npt: 15,
-  },
-  {
-    disciplina: "TLP",
-    mac: 6,
-    npp: 14,
-    npt: 9,
-  },
-  {
-    disciplina: "SEAC",
-    mac: 12,
-    npp: 14,
-    npt: 15,
-  },
-];
-
-function StudentNotasList() {
+function StudentNotasList({ grades }) {
   return (
     <ul>
-      {notas.map((item, i) => (
-        <StudentNotasItem item={item} i={i} />
+      {grades.length === 0 && (
+        <li className="p-4 text-sm text-gray-500 dark:text-gray-400 border-t-[0.1px] dark:border-gray-700 border-slate-200">
+          Nenhuma nota encontrada.
+        </li>
+      )}
+      {grades.map((item, i) => (
+        <StudentNotasItem key={`${item.disciplina}-${i}`} item={item} i={i} />
       ))}
     </ul>
   );

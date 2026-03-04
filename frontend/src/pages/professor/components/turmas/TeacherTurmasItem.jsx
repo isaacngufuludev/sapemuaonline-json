@@ -42,12 +42,6 @@ function TeacherTurmasItem({ item, classYear, courseName, studentCount }) {
         </p>
         <p className="flex items-center gap-1">
           <span className="text-sm">
-            <HiOutlineBookOpen />
-          </span>
-          <span>{item.disciplinas} Disciplinas</span>
-        </p>
-        <p className="flex items-center gap-1">
-          <span className="text-sm">
             <HiOutlineHome />
           </span>
           <span>Sala {item.room}</span>

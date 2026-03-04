@@ -22,6 +22,9 @@ function AdminTurmasDetailItem() {
   const turmaClasse = classes.find((c) => c.id === turma?.classId);
   const turmaStudents = students.filter((s) => s.turmaId === turma?.id);
   const turmaTeachers = teachers.filter((s) => s.turmasId.includes(turma?.id));
+  const uniqueSubjects = [
+    ...new Set(turmaTeachers.flatMap((teacher) => teacher.subjects)),
+  ];
 
   useEffect(() => {
     async function fetchTurma() {
@@ -77,7 +80,7 @@ function AdminTurmasDetailItem() {
             </div>
             <div className="flex items-center justify-between gap-3">
               <Title4>Total Disciplinas</Title4>
-              <p>{turma?.subjects}</p>
+              <p>{uniqueSubjects.length}</p>
             </div>
           </div>
         </div>
