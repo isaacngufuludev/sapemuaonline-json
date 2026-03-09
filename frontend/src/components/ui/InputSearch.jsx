@@ -2,7 +2,6 @@ import { HiOutlineSearch } from "react-icons/hi";
 
 function InputSearch({
   placeholder,
-  value = "",
   onChange,
   name = "search",
   id = "search",
@@ -17,7 +16,6 @@ function InputSearch({
         id={id}
         name={name}
         placeholder={placeholder}
-        value={value}
         onChange={onChange}
         className="w-full focus:outline-none text-sm dark:bg-gray-800 sm:w-auto"
       />

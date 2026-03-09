@@ -6,10 +6,24 @@ import StudentNotasHeader from "./StudentNotasHeader";
 import StudentNotasLayout from "./StudentNotasLayout";
 import StudentNotasList from "./StudentNotasList";
 import Loading from "../../../../components/shared/Loading";
+import { usePDFExport } from "../../../../contexts/PDFExportContext";
 
 function StudentNotas() {
   const { user } = useAuth();
   const { grades, isLoading, generalAverage } = useGrades();
+  const { exportToPDF, isExporting, setIsExporting } = usePDFExport();
+
+  const handleExportPDF = async () => {
+    setIsExporting(true);
+    await new Promise((resolve) => setTimeout(resolve, 300));
+    try {
+      await exportToPDF("student-notes", "Boletim_Escolar");
+    } catch (error) {
+      ("Erro ao exportar PDF:", error);
+    } finally {
+      setIsExporting(false);
+    }
+  };
   const [selectedTerm, setSelectedTerm] = useState(1);
 
   const studentGrades = useMemo(
@@ -32,15 +46,31 @@ function StudentNotas() {
 
   return (
     <div className="p-4 sm:p-6 lg:p-10">
-      <StudentNotasLayout>
-        <StudentNotasHeader
-          selectedTerm={selectedTerm}
-          onTermChange={setSelectedTerm}
-          generalAverage={generalAverage(user?.id)}
-        />
-        <StudentNotasTitle />
-        {isLoading ? <Loading type="blue" size={30} /> : <StudentNotasList grades={studentGrades} />}
-      </StudentNotasLayout>
+      <div className="flex justify-end mb-4">
+        <button
+          className="bg-blue-700 text-white p-2 rounded-md hover:bg-blue-800 focus:outline-none focus:ring-2 focus:ring-blue-500"
+          type="primary"
+          onClick={handleExportPDF}
+          disabled={isExporting}
+        >
+          {isExporting ? "Gerando PDF..." : "📥 Gerar PDF"}
+        </button>
+      </div>
+      <div id="student-notes">
+        <StudentNotasLayout>
+          <StudentNotasHeader
+            selectedTerm={selectedTerm}
+            onTermChange={setSelectedTerm}
+            generalAverage={generalAverage(user?.id)}
+          />
+          <StudentNotasTitle />
+          {isLoading ? (
+            <Loading type="blue" size={30} />
+          ) : (
+            <StudentNotasList grades={studentGrades} />
+          )}
+        </StudentNotasLayout>
+      </div>
     </div>
   );
 }

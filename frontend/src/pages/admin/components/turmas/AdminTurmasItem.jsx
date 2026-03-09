@@ -36,7 +36,6 @@ function AdminTurmasItem({ item }) {
   const navigate = useNavigate();
 
   const handleView = () => {
-    console.log("Ver estudante:", item);
     navigate(`/area/admin/adminTurmas/turma-detail/${item.id}`);
     setShowMenu(false);
   };

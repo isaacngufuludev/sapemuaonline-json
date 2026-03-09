@@ -47,6 +47,7 @@ import TeacherTurmasInfo from "../pages/professor/components/turmas/TeacherTurma
 import TeacherAllTurmas from "../pages/professor/components/turmas/TeacherAllTurmas";
 import TeacherChatLayout from "../pages/professor/components/chats/TeacherChatLayout";
 import StudentChatLayout from "../pages/student/components/chat/StudentChatLayout";
+import TeacherStudentDetail from "../pages/professor/components/turmas/TeacherStudentDetail";
 
 function AppRoutes() {
   return (
@@ -190,6 +191,10 @@ function AppRoutes() {
                         <Route
                           path="teacher-info/:turmaId"
                           element={<TeacherTurmasInfo />}
+                        />
+                        <Route
+                          path="teacher-student-detail/:studentId"
+                          element={<TeacherStudentDetail />}
                         />
                       </Route>
                       <Route

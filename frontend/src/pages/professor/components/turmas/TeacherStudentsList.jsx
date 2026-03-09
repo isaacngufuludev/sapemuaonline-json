@@ -16,7 +16,9 @@ function TeacherStudentsList() {
   const { grades, isLoading: isLoadingGrades } = useGrades();
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedTerm, setSelectedTerm] = useState(1);
-  const [selectedSubject, setSelectedSubject] = useState(user?.subjects?.[0] || "");
+  const [selectedSubject, setSelectedSubject] = useState(
+    user?.subjects?.[0] || "",
+  );
 
   useEffect(() => {
     if (!selectedSubject && user?.subjects?.length) {
@@ -56,7 +58,8 @@ function TeacherStudentsList() {
     const map = new Map();
     const filtered = grades.filter(
       (grade) =>
-        grade.subject === selectedSubject && Number(grade.term) === Number(selectedTerm),
+        grade.subject === selectedSubject &&
+        Number(grade.term) === Number(selectedTerm),
     );
 
     for (const grade of filtered) {
@@ -67,7 +70,9 @@ function TeacherStudentsList() {
   }, [grades, selectedSubject, selectedTerm]);
 
   if (!isTeacherFromTurma) {
-    return <Message message="Você não tem permissão para lançar notas nesta turma." />;
+    return (
+      <Message message="Você não tem permissão para lançar notas nesta turma." />
+    );
   }
 
   if (!selectedSubject) {

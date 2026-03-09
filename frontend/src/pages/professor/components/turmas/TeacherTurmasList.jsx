@@ -2,16 +2,16 @@ import { useMemo } from "react";
 import TeacherTurmasItem from "./TeacherTurmasItem";
 import { useAuth } from "../../../../contexts/AuthContext";
 import { useTurmas } from "../../../../hooks/useTurmas";
-import { useCourses } from "../../../../hooks/useCourses";
-import { useClasses } from "../../../../hooks/useClasses";
 import { useStudents } from "../../../../hooks/useStudents";
+import { useClassYearById } from "../../../../hooks/useClassYearById";
+import { useCourseNameById } from "../../../../hooks/useCourseNameById";
 
 function TeacherTurmasList() {
   const { user } = useAuth();
   const { turmas } = useTurmas();
-  const { courses } = useCourses();
-  const { classes } = useClasses();
   const { students } = useStudents();
+  const { classYearById } = useClassYearById();
+  const { courseNameById } = useCourseNameById();
 
   const teacherTurmaIds = useMemo(
     () => new Set(user?.turmasId ?? []),
@@ -21,28 +21,9 @@ function TeacherTurmasList() {
     () => new Set(user?.classesId ?? []),
     [user?.classesId],
   );
-
   const turmasTeacher = useMemo(
     () => turmas.filter((turma) => teacherTurmaIds.has(turma.id)),
     [turmas, teacherTurmaIds],
-  );
-
-  const courseNameById = useMemo(
-    () =>
-      courses.reduce((acc, course) => {
-        acc[course.id] = course.courseName;
-        return acc;
-      }, {}),
-    [courses],
-  );
-
-  const classYearById = useMemo(
-    () =>
-      classes.reduce((acc, classItem) => {
-        acc[classItem.id] = classItem.classYear;
-        return acc;
-      }, {}),
-    [classes],
   );
 
   const studentCountByTurmaId = useMemo(

@@ -2,6 +2,8 @@ import { FaHashtag } from "react-icons/fa";
 import { FiArrowLeft } from "react-icons/fi";
 
 function TeacherChatHeader({ conversation, onBack, showBackButton }) {
+  const period = conversation?.period ?? "";
+  const periodInitial = Array.isArray(period) ? period[0] : String(period)[0];
   const onlineLabel = conversation?.subtitle ?? "0 alunos online";
 
   return (
@@ -22,7 +24,12 @@ function TeacherChatHeader({ conversation, onBack, showBackButton }) {
         </div>
         <div className="">
           <h2 className="text-base font-semibold text-gray-900 dark:text-white">
-            {conversation?.name ?? "Conversa"}
+            {conversation.course} {conversation.classYear}{" "}
+            {conversation.turmaCategory === "Unica"
+              ? conversation.turmaCategory[0]
+              : conversation.turmaCategory}
+            {periodInitial}
+            {/* {conversation?.name ?? "Conversa"} */}
           </h2>
           <div className="flex items-center gap-1">
             <span className="inline-block p-1 rounded-full bg-blue-600"></span>

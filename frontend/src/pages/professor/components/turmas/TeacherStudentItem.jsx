@@ -2,6 +2,7 @@ import { BsEye, BsPencil } from "react-icons/bs";
 import { HiEllipsisVertical } from "react-icons/hi2";
 import { useEditOptions } from "../../../../hooks/useEditOptions";
 import { useModal } from "../../../../contexts/ModalContext";
+import { useNavigate } from "react-router-dom";
 
 function TeacherStudentItem({
   item,
@@ -17,6 +18,7 @@ function TeacherStudentItem({
   const npp = grade?.npp ?? "-";
   const npt = grade?.npt ?? "-";
   const media = grade?.average ?? "-";
+  const navigate = useNavigate();
 
   const handleEdit = () => {
     openGradesModal({
@@ -31,6 +33,7 @@ function TeacherStudentItem({
 
   const handleView = () => {
     console.log("Visualizar estudante:", item);
+    navigate(`/area/teacher/teacher-turmas/teacher-student-detail/${item.id}`);
     setShowMenu(false);
   };
   const scoreClass = (value) =>

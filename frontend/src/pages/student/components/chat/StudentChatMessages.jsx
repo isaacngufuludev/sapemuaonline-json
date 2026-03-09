@@ -10,7 +10,7 @@ function StudentChatMessages({ conversation, onBack, showBackButton }) {
     <div className="bg-white dark:bg-gray-800 flex flex-col h-full w-full overflow-hidden">
       <div className="sticky top-0 z-10">
         <StudentChatHeader
-          conversation={conversation}
+          // conversation={conversation}
           showBackButton={showBackButton}
           onBack={onBack}
         />
@@ -21,7 +21,7 @@ function StudentChatMessages({ conversation, onBack, showBackButton }) {
         className="flex-1 overflow-y-auto overflow-x-hidden px-3 py-4 md:px-4"
       >
         <StudentChatMessagesList
-          conversation={conversation}
+          // conversation={conversation}
           containerRef={messagesContainerRef}
         />
       </div>

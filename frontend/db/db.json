@@ -350,7 +350,48 @@
   ],
   "tasks": [],
   "materials": [],
-  "messages": [],
+  "messages": [
+    {
+      "id": "5605",
+      "message": "Ola a todos",
+      "turmaId": "1517",
+      "senderId": "37e0",
+      "senderRole": "teacher",
+      "createdAt": "10 de março de 2026"
+    },
+    {
+      "id": "9afc",
+      "message": "Boa noite alunos",
+      "turmaId": "31cd",
+      "senderId": "37e0",
+      "senderRole": "teacher",
+      "createdAt": "10 de março de 2026"
+    },
+    {
+      "id": "3f0d",
+      "message": "Em Uma certa noite um jovem estava voltando da igreja, quando no meio do caminho ocorreu um tiroteio , de bandidos com a policia , o jovem foi atingido com um tiro no peito. Muitos pensaram que ele tinha morrido, mas a bala havia acertado a sua Bíblia, ",
+      "turmaId": "1517",
+      "senderId": "37e0",
+      "senderRole": "teacher",
+      "createdAt": "10 de março de 2026"
+    },
+    {
+      "id": "d891",
+      "message": " Acreditamos nos jornais, mas questionamos a Bíblia .",
+      "turmaId": "31cd",
+      "senderId": "37e0",
+      "senderRole": "teacher",
+      "createdAt": "10 de março de 2026"
+    },
+    {
+      "id": "2d40",
+      "message": "Em Uma certa noite um jovem estava voltando da igreja, quando no meio do caminho ocorreu um tiroteio , de bandidos com a policia , o jovem foi atingido com um tiro no peito. Muitos pensaram que ele tinha morrido, mas a bala havia acertado a sua Bíblia, ",
+      "turmaId": "31cd",
+      "senderId": "37e0",
+      "senderRole": "teacher",
+      "createdAt": "10 de março de 2026"
+    }
+  ],
   "subjects": [],
   "grades": [
     {
@@ -360,10 +401,10 @@
       "subject": "TLP",
       "term": 1,
       "mac": 11,
-      "npp": 11,
+      "npp": 8,
       "npt": 14,
-      "average": 12,
-      "updated_at": "2026-03-04T15:10:44.306Z",
+      "average": 11,
+      "updated_at": "2026-03-06T13:01:32.617Z",
       "created_at": "2026-03-04T15:10:01.225Z"
     },
     {

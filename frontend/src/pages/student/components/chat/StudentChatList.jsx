@@ -1,10 +1,6 @@
 import StudentChatItem from "./StudentChatItem";
 
-function StudentChatList({
-  conversations,
-  selectedConversationId,
-  onSelectConversation,
-}) {
+function StudentChatList({ conversations }) {
   return (
     <div className="dark:bg-gray-900 bg-gray-100 h-full w-full flex flex-col overflow-hidden">
       <div className="px-5 py-4 border-b border-gray-200 dark:border-gray-700 flex-shrink-0">
@@ -18,12 +14,7 @@ function StudentChatList({
       <div className="flex-1 overflow-y-auto">
         <ul className="divide-y divide-gray-200 dark:divide-gray-700">
           {conversations.map((item) => (
-            <StudentChatItem
-              key={item.id}
-              item={item}
-              isSelected={selectedConversationId === item.id}
-              onClick={() => onSelectConversation(item.id)}
-            />
+            <StudentChatItem key={item.id} item={item} />
           ))}
         </ul>
       </div>
