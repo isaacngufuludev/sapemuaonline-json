@@ -6,7 +6,6 @@ import { HiOutlinePlus } from "react-icons/hi";
 import { FaPaperclip } from "react-icons/fa";
 import { useLocation } from "react-router-dom";
 import { useAuth } from "../../../../contexts/AuthContext";
-import { formateDate } from "../../../../utils/helpers";
 import { post } from "../../../../services/api";
 
 function TeacherChatForm() {
@@ -25,7 +24,7 @@ function TeacherChatForm() {
         turmaId,
         senderId: user.id,
         senderRole: user.role,
-        createdAt: formateDate(new Date()),
+        createdAt: new Date().toISOString(),
       };
 
       await post("messages", newMessage);

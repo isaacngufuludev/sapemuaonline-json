@@ -1,8 +1,9 @@
 import { FiUser } from "react-icons/fi";
+import { formateDate } from "../../../../utils/helpers";
 
 function TeacherChatMessagesItem({ item, currUser }) {
   const isMine = item.senderId === currUser?.id;
-  const timeLabel = item.time ?? item.createdAt;
+  const timeLabel = item.time ?? formateDate(item.createdAt, "relative");
 
   return (
     <li className={`flex gap-2 ${isMine ? "justify-end" : "justify-start"}`}>
