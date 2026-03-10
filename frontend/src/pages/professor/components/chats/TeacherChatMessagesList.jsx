@@ -121,7 +121,6 @@ function TeacherChatMessagesList({ containerRef }) {
         <TeacherChatMessagesItem
           key={item.id}
           item={item}
-          turmaId={turmaId}
           currUser={user}
         />
       ))}
