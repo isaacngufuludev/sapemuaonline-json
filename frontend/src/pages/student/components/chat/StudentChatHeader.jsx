@@ -2,6 +2,8 @@ import { FaHashtag } from "react-icons/fa";
 import { FiArrowLeft } from "react-icons/fi";
 
 function StudentChatHeader({ conversation, onBack, showBackButton }) {
+  const period = conversation?.period ?? "";
+  const periodInitial = Array.isArray(period) ? period[0] : String(period)[0];
   const onlineLabel = conversation?.subtitle ?? "0 online";
 
   return (

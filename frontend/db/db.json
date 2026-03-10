@@ -390,6 +390,14 @@
       "senderId": "37e0",
       "senderRole": "teacher",
       "createdAt": "10 de março de 2026"
+    },
+    {
+      "id": "7bec",
+      "message": "oi",
+      "turmaId": "1517",
+      "senderId": "37e0",
+      "senderRole": "teacher",
+      "createdAt": "2026-03-10T12:23:06.061Z"
     }
   ],
   "subjects": [],
