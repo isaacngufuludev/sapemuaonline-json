@@ -3,19 +3,33 @@ import BtnSendMessages from "../../../../components/ui/BtnSendMessages";
 import InputMessages from "../../../../components/ui/InputMessages";
 import MessagesForm from "../../../../components/ui/MessagesForm";
 import { HiOutlinePlus } from "react-icons/hi";
+import { useAuth } from "../../../../contexts/AuthContext";
+import { useLocation } from "react-router-dom";
+import { post } from "../../../../services/api";
 
 function StudentChatForm() {
   const [message, setMessage] = useState("");
   const [isUploadMenuOpen, setIsUploadMenuOpen] = useState(false);
   const uploadMenuRef = useRef(null);
+  const turmaId = useLocation().hash.slice(1);
+  const { user } = useAuth();
 
-  const handleSubmit = (e) => {
+  async function handleSubmit(e) {
     e.preventDefault();
     if (message.trim()) {
-      console.log("Enviando mensagem:", message);
+      const newMessage = {
+        message,
+        turmaId,
+        senderId: user.id,
+        senderRole: user.role,
+        createdAt: new Date().toISOString(),
+      };
+
+      await post("messages", newMessage);
+      console.log(newMessage);
       setMessage("");
     }
-  };
+  }
 
   const handleKeyPress = (e) => {
     if (e.key === "Enter" && !e.shiftKey) {

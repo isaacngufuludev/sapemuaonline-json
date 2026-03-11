@@ -24,10 +24,10 @@ function TeacherChatHeader({ conversation, onBack, showBackButton }) {
         </div>
         <div className="">
           <h2 className="text-base font-semibold text-gray-900 dark:text-white">
-            {conversation.course} {conversation.classYear}{" "}
-            {conversation.turmaCategory === "Unica"
-              ? conversation.turmaCategory[0]
-              : conversation.turmaCategory}
+            {conversation?.course} {conversation?.classYear}{" "}
+            {conversation?.turmaCategory === "Unica"
+              ? conversation?.turmaCategory[0]
+              : conversation?.turmaCategory}
             {periodInitial}
             {/* {conversation?.name ?? "Conversa"} */}
           </h2>

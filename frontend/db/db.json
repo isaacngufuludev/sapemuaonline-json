@@ -398,6 +398,86 @@
       "senderId": "37e0",
       "senderRole": "teacher",
       "createdAt": "2026-03-10T12:23:06.061Z"
+    },
+    {
+      "id": "535f",
+      "message": "Como estão",
+      "turmaId": "31cd",
+      "senderId": "37e0",
+      "senderRole": "teacher",
+      "createdAt": "2026-03-11T14:55:43.185Z"
+    },
+    {
+      "id": "9db0",
+      "message": "oi",
+      "turmaId": "7fa1",
+      "senderId": "4ea7",
+      "senderRole": "student",
+      "createdAt": "2026-03-11T17:05:45.368Z"
+    },
+    {
+      "id": "6d20",
+      "message": "Como estão todos",
+      "turmaId": "31cd",
+      "senderId": "8de1",
+      "senderRole": "teacher",
+      "createdAt": "2026-03-11T17:12:26.476Z"
+    },
+    {
+      "id": "2f5f",
+      "message": "hoje teremos avalição no primetiro tempo ",
+      "turmaId": "31cd",
+      "senderId": "8de1",
+      "senderRole": "teacher",
+      "createdAt": "2026-03-11T17:12:54.629Z"
+    },
+    {
+      "id": "d753",
+      "message": "estejem preoarados estudantes",
+      "turmaId": "31cd",
+      "senderId": "8de1",
+      "senderRole": "teacher",
+      "createdAt": "2026-03-11T17:13:11.426Z"
+    },
+    {
+      "id": "ba35",
+      "message": "Como estas aluno",
+      "turmaId": "7fa1",
+      "senderId": "8de1",
+      "senderRole": "teacher",
+      "createdAt": "2026-03-11T17:13:30.648Z"
+    },
+    {
+      "id": "23c7",
+      "message": "preparem se amanha teremos uma nova aula",
+      "turmaId": "7fa1",
+      "senderId": "8de1",
+      "senderRole": "teacher",
+      "createdAt": "2026-03-11T17:13:47.121Z"
+    },
+    {
+      "id": "4860",
+      "message": "vou enviar um material para servor de apoio",
+      "turmaId": "7fa1",
+      "senderId": "8de1",
+      "senderRole": "teacher",
+      "createdAt": "2026-03-11T17:14:07.035Z"
+    },
+    {
+      "id": "c24d",
+      "message": "Irei dispensar dois alunos para amnha ",
+      "turmaId": "1517",
+      "senderId": "8de1",
+      "senderRole": "teacher",
+      "createdAt": "2026-03-11T17:14:45.259Z"
+    },
+    {
+      "id": "1950",
+      "message": "Tragam todos 100kz para terem acesso ao material",
+      "turmaId": "1517",
+      "senderId": "8de1",
+      "senderRole": "teacher",
+      "createdAt": "2026-03-11T17:15:08.852Z"
     }
   ],
   "subjects": [],

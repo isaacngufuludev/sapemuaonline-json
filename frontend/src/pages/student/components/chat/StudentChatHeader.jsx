@@ -24,7 +24,11 @@ function StudentChatHeader({ conversation, onBack, showBackButton }) {
         </div>
         <div className="">
           <h2 className="text-base font-semibold text-gray-900 dark:text-white">
-            {conversation?.name ?? "Conversa"}
+            {conversation?.course} {conversation?.classYear}{" "}
+            {conversation?.turmaCategory === "Unica"
+              ? conversation?.turmaCategory[0]
+              : conversation?.turmaCategory}
+            {periodInitial}
           </h2>
           <div className="flex items-center gap-1">
             <span className="inline-block p-1 rounded-full bg-blue-600"></span>

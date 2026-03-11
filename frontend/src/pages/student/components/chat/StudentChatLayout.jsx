@@ -10,17 +10,16 @@ function StudentChatLayout() {
   const { studentChats } = useStudentConversations();
   const conversations = studentChats;
   const currentId = useLocation().hash;
+  const hashId = currentId.startsWith("#") ? currentId.slice(1) : null;
 
-  const [selectedConversationId, setSelectedConversationId] = useState(
-    conversations[0]?.id ?? null,
-  );
   const [isMobileChatOpen, setIsMobileChatOpen] = useState(false);
+  const selectedConversationId =
+    hashId ?? conversations[0]?.id ?? null;
 
   const selectedConversation =
     conversations.find((item) => item.id === selectedConversationId) ?? null;
 
   const handleSelectConversation = (conversationId) => {
-    setSelectedConversationId(conversationId);
     setIsMobileChatOpen(true);
   };
 
