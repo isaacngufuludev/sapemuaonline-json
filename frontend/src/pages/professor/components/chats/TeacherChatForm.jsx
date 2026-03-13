@@ -7,6 +7,7 @@ import { FaPaperclip } from "react-icons/fa";
 import { useLocation } from "react-router-dom";
 import { useAuth } from "../../../../contexts/AuthContext";
 import { post } from "../../../../services/api";
+import { useRefresh } from "../../../../contexts/RefreshContext";
 
 function TeacherChatForm() {
   const [message, setMessage] = useState("");
@@ -14,6 +15,7 @@ function TeacherChatForm() {
   const uploadMenuRef = useRef(null);
   const turmaId = useLocation().hash.slice(1);
   const { user } = useAuth();
+  const { triggerRefresh } = useRefresh();
 
   async function handleSubmit(e) {
     e.preventDefault();
@@ -28,6 +30,7 @@ function TeacherChatForm() {
       };
 
       await post("messages", newMessage);
+      triggerRefresh();
       console.log(newMessage);
       setMessage("");
     }

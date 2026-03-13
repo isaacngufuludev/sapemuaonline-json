@@ -478,6 +478,54 @@
       "senderId": "8de1",
       "senderRole": "teacher",
       "createdAt": "2026-03-11T17:15:08.852Z"
+    },
+    {
+      "id": "2141",
+      "message": "ola",
+      "turmaId": "1517",
+      "senderId": "8de1",
+      "senderRole": "teacher",
+      "createdAt": "2026-03-12T11:22:37.378Z"
+    },
+    {
+      "id": "ad10",
+      "message": "tudo bem?",
+      "turmaId": "7fa1",
+      "senderId": "8de1",
+      "senderRole": "teacher",
+      "createdAt": "2026-03-12T11:22:51.230Z"
+    },
+    {
+      "id": "3a87",
+      "message": "hoje teremos aula",
+      "turmaId": "31cd",
+      "senderId": "8de1",
+      "senderRole": "teacher",
+      "createdAt": "2026-03-12T11:23:13.084Z"
+    },
+    {
+      "id": "eaa0",
+      "message": "oi",
+      "turmaId": "1517",
+      "senderId": "37e0",
+      "senderRole": "teacher",
+      "createdAt": "2026-03-13T11:32:59.728Z"
+    },
+    {
+      "id": "bfc0",
+      "message": "oi",
+      "turmaId": "1517",
+      "senderId": "37e0",
+      "senderRole": "teacher",
+      "createdAt": "2026-03-13T11:33:03.723Z"
+    },
+    {
+      "id": "3af8",
+      "message": "como estas?",
+      "turmaId": "1517",
+      "senderId": "37e0",
+      "senderRole": "teacher",
+      "createdAt": "2026-03-13T11:33:18.892Z"
     }
   ],
   "subjects": [],

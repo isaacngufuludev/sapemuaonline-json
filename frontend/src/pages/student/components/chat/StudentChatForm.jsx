@@ -6,6 +6,7 @@ import { HiOutlinePlus } from "react-icons/hi";
 import { useAuth } from "../../../../contexts/AuthContext";
 import { useLocation } from "react-router-dom";
 import { post } from "../../../../services/api";
+import { useRefresh } from "../../../../contexts/RefreshContext";
 
 function StudentChatForm() {
   const [message, setMessage] = useState("");
@@ -13,6 +14,7 @@ function StudentChatForm() {
   const uploadMenuRef = useRef(null);
   const turmaId = useLocation().hash.slice(1);
   const { user } = useAuth();
+  const { triggerRefresh } = useRefresh();
 
   async function handleSubmit(e) {
     e.preventDefault();
@@ -26,6 +28,7 @@ function StudentChatForm() {
       };
 
       await post("messages", newMessage);
+      triggerRefresh();
       console.log(newMessage);
       setMessage("");
     }
