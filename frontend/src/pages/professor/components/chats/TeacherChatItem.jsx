@@ -1,4 +1,5 @@
 import { useLocation, useNavigate } from "react-router-dom";
+import { useModal } from "../../../../contexts/ModalContext";
 
 // function TeacherChatItem({ item, isSelected, onClick }) {
 function TeacherChatItem({ item, onClick }) {
@@ -7,6 +8,7 @@ function TeacherChatItem({ item, onClick }) {
   const navigate = useNavigate();
   const currentId = useLocation().hash;
   const isCurrent = currentId.split("#").at(1) === item.id;
+  const { toggle } = useModal();
 
   return (
     <li
@@ -18,6 +20,7 @@ function TeacherChatItem({ item, onClick }) {
       onClick={() => {
         navigate(`#${item.id}`);
         onClick();
+        toggle();
       }}
     >
       <div className="flex items-center justify-between mb-1">

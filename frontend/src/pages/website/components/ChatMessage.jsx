@@ -11,7 +11,7 @@ const ChatMessage = ({ item }) => {
               }
             `}
       >
-        <p className="text-sm "> {item.text} </p>
+        <p className="text-sm ">{item.text}</p>
       </div>
     </li>
   );

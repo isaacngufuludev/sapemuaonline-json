@@ -9,7 +9,7 @@ export default function Loading({ size = 25, type = "white" }) {
   };
 
   return (
-    <div className="flex items-center justify-center py-6">
+    <div className="flex items-center justify-center">
       <AiOutlineLoading3Quarters className={styles[type]} size={size} />
     </div>
   );

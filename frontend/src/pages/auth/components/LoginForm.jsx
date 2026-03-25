@@ -76,7 +76,6 @@ function LoginForm() {
           disabled={isLoading}
         >
           {isLoading ? <Loading size={25} /> : "Iniciar Sessão"}
-          {/* {<Loading size={25} />} */}
         </button>
       </form>
     </>

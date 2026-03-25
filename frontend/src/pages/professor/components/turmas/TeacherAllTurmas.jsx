@@ -2,6 +2,7 @@ import TeacherTurmasLayout from "./TeacherTurmasLayout";
 import Title3 from "../../../../components/ui/Title3";
 import TeacherTurmasHeader from "./TeacherTurmasHeader";
 import TeacherTurmasList from "./TeacherTurmasList";
+import TeacherSenderDetail from "../../../../components/shared/SenderDetail";
 
 function TeacherAllTurmas() {
   return (

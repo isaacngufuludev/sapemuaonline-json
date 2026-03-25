@@ -5,6 +5,10 @@ import { useEffect, useRef, useState } from "react";
 import { get, patch, post } from "../../../../services/api";
 import { useToast } from "../../../../hooks/useToast";
 import { calcAge, formateDate } from "../../../../utils/helpers";
+import FloatInputLabel from "../../../../components/ui/FloatInputLabel";
+import { useTurmas } from "../../../../hooks/useTurmas";
+import { useClasses } from "../../../../hooks/useClasses";
+import { useCourses } from "../../../../hooks/useCourses";
 import {
   BsExclamationCircle,
   BsFileEarmark,
@@ -22,10 +26,6 @@ import AdminAddForm from "../AdminAddForm";
 import AdminInput from "../AdminInput";
 import AdminLabel from "../AdminLabel";
 import AdminSelect from "../AdminSelect";
-import FloatInputLabel from "../../../../components/ui/FloatInputLabel";
-import { useTurmas } from "../../../../hooks/useTurmas";
-import { useClasses } from "../../../../hooks/useClasses";
-import { useCourses } from "../../../../hooks/useCourses";
 
 const initialState = {
   name: "",
@@ -383,7 +383,7 @@ function AdminAddTeacher() {
                 }}
               >
                 <option disabled className="font-semibold dark:text-white">
-                  Selecione o cursos
+                  Selecione os cursos
                 </option>
                 {courses.map((course) => (
                   <option key={course.id} value={course.id}>
@@ -445,7 +445,7 @@ function AdminAddTeacher() {
                   ))}
               </AdminSelect>
             </div>
-            <div className="border rounded-lg p-2 flex flex-wrap gap-2">
+            <div className="border  dark:border-gray-700 rounded-lg p-2 flex flex-wrap gap-2">
               {subjects.map((subject, index) => (
                 <span
                   key={index}
@@ -469,7 +469,7 @@ function AdminAddTeacher() {
                 value={inputValue}
                 onChange={(e) => setInputValue(e.target.value)}
                 onKeyDown={handleKeyDown}
-                className="flex-1 h-7 outline-none min-w-[150px]"
+                className="flex-1 h-7 outline-none min-w-[150px] dark:bg-gray-800"
               />
             </div>
           </div>

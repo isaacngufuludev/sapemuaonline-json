@@ -25,7 +25,6 @@ function TeacherChatForm() {
         message,
         turmaId,
         senderId: user.id,
-        senderRole: user.role,
         createdAt: new Date().toISOString(),
       };
 

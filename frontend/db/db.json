@@ -526,6 +526,68 @@
       "senderId": "37e0",
       "senderRole": "teacher",
       "createdAt": "2026-03-13T11:33:18.892Z"
+    },
+    {
+      "id": "1c16",
+      "message": "Bom dia",
+      "turmaId": "7fa1",
+      "senderId": "4ea7",
+      "senderRole": "student",
+      "createdAt": "2026-03-14T08:08:51.065Z"
+    },
+    {
+      "id": "14b9",
+      "message": "Tudo bem aluno?",
+      "turmaId": "7fa1",
+      "senderId": "46de",
+      "senderRole": "teacher",
+      "createdAt": "2026-03-14T08:09:14.259Z"
+    },
+    {
+      "id": "72d1",
+      "message": "oi",
+      "turmaId": "7fa1",
+      "senderId": "4ea7",
+      "senderRole": "student",
+      "createdAt": "2026-03-14T08:12:41.265Z"
+    },
+    {
+      "id": "e4aa",
+      "message": "oi",
+      "turmaId": "1517",
+      "senderId": "37e0",
+      "senderRole": "teacher",
+      "createdAt": "2026-03-18T07:53:35.165Z"
+    },
+    {
+      "id": "9652",
+      "message": "Hoje n poderei aparecer devido ao meu estado de saúde",
+      "turmaId": "7fa1",
+      "senderId": "4ea7",
+      "senderRole": "student",
+      "createdAt": "2026-03-18T21:02:25.392Z"
+    },
+    {
+      "id": "e1f7",
+      "message": "professor haverá como repetir a prova?",
+      "turmaId": "7fa1",
+      "senderId": "4ea7",
+      "senderRole": "student",
+      "createdAt": "2026-03-18T21:02:48.570Z"
+    },
+    {
+      "id": "ca63",
+      "message": "oi",
+      "turmaId": "31cd",
+      "senderId": "8de1",
+      "createdAt": "2026-03-19T15:06:25.092Z"
+    },
+    {
+      "id": "b7d4",
+      "message": "Boa tarde",
+      "turmaId": "1517",
+      "senderId": "37e0",
+      "createdAt": "2026-03-20T14:00:22.180Z"
     }
   ],
   "subjects": [],
@@ -536,11 +598,11 @@
       "teacher_id": "37e0",
       "subject": "TLP",
       "term": 1,
-      "mac": 11,
-      "npp": 8,
-      "npt": 14,
-      "average": 11,
-      "updated_at": "2026-03-06T13:01:32.617Z",
+      "mac": 19,
+      "npp": 10,
+      "npt": 10,
+      "average": 13,
+      "updated_at": "2026-03-20T14:02:09.053Z",
       "created_at": "2026-03-04T15:10:01.225Z"
     },
     {
@@ -581,6 +643,19 @@
       "average": 8,
       "updated_at": "2026-03-04T15:32:26.476Z",
       "created_at": "2026-03-04T15:32:26.476Z"
+    },
+    {
+      "id": "4ac5",
+      "student_id": "53e1",
+      "teacher_id": "8de1",
+      "subject": "Seac",
+      "term": 1,
+      "mac": 10,
+      "npp": 0,
+      "npt": 0,
+      "average": 3,
+      "updated_at": "2026-03-18T21:13:04.972Z",
+      "created_at": "2026-03-18T21:13:04.972Z"
     }
   ]
 }

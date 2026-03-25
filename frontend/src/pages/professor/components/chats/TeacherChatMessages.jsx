@@ -7,7 +7,7 @@ function TeacherChatMessages({ conversation, onBack, showBackButton }) {
   const messagesContainerRef = useRef(null);
 
   return (
-    <div className="bg-white dark:bg-gray-800 flex flex-col h-full w-full overflow-hidden">
+    <div className="bg-white dark:bg-gray-800 flex flex-col h-full w-full overflow-hidden relative">
       <div className="sticky top-0 z-10">
         <TeacherChatHeader
           conversation={conversation}
@@ -18,7 +18,7 @@ function TeacherChatMessages({ conversation, onBack, showBackButton }) {
 
       <div
         ref={messagesContainerRef}
-        className="flex-1 overflow-y-auto overflow-x-hidden px-3 py-4 md:px-4"
+        className="flex-1 overflow-y-auto overflow-x-hidden"
       >
         <TeacherChatMessagesList
           conversation={conversation}

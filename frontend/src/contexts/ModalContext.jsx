@@ -17,6 +17,7 @@ function ModalProvider({ children }) {
   const [isShowTeachers, setIsShowTeachers] = useState(false);
   const [isGalleryModal, setIsGalleryModal] = useState(false);
   const [isGradesModal, setIsGradesModal] = useState(false);
+  const [isSenderDetail, setIsSenderDetail] = useState(false);
   const [selectedGradeContext, setSelectedGradeContext] = useState(null);
   const [selectedGalleryImg, setSelectedGalleryImg] = useState(null);
   const [selectedItem, setSelectedItem] = useState(null);
@@ -72,6 +73,10 @@ function ModalProvider({ children }) {
     setIsGalleryModal((modal) => !modal);
   }
 
+  function toggleSenderDetail() {
+    setIsSenderDetail((show) => !show);
+  }
+
   function toggleGradesModal() {
     setIsGradesModal((modal) => {
       const next = !modal;
@@ -116,6 +121,7 @@ function ModalProvider({ children }) {
     setIsRemoveCourseModal(false);
     setIsGalleryModal(false);
     setIsGradesModal(false);
+    setIsSenderDetail(false);
     setSelectedGradeContext(null);
   }
 
@@ -135,6 +141,7 @@ function ModalProvider({ children }) {
         isRemoveCourseModal,
         isShowTeachers,
         isGalleryModal,
+        isSenderDetail,
         isGradesModal,
         selectedGradeContext,
         selectedGalleryImg,
@@ -150,6 +157,7 @@ function ModalProvider({ children }) {
         toggleNewsModal,
         toggleChatBoot,
         toggleRemoveStudent,
+        toggleSenderDetail,
         toggleRemoveTeacher,
         toggleGradesModal,
         openGradesModal,

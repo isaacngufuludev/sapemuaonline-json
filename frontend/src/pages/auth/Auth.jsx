@@ -7,7 +7,7 @@ import BtnGoBack from "../../components/ui/BtnGoBack";
 function Auth() {
   return (
     <div className="">
-      <div className=" lg:grid lg:grid-cols-[2.5fr_1.1fr] xl:grid-cols-[3fr_1.1fr] px-3 sm:px-0 max-w-[350px] lg:max-w-max lg:mx-0 mx-auto">
+      <div className=" lg:grid lg:grid-cols-[2.5fr_1.1fr] xl:grid-cols-[3fr_1.1fr] px-3 sm:px-0 max-w-[350px] lg:max-w-full lg:mx-0 mx-auto">
         <div
           className="hidden lg:block lg:min-h-screen lg:bg-cover lg:bg-center"
           style={{ backgroundImage: "url('/imgs/login.png')" }}
