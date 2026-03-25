@@ -1,11 +1,16 @@
 import { useLocation, useNavigate } from "react-router-dom";
 
-function StudentChatItem({ item }) {
+function StudentChatItem({ item, onSelectConversation }) {
   const period = item?.period ?? "";
   const periodInitial = Array.isArray(period) ? period[0] : String(period)[0];
   const navigate = useNavigate();
   const currentId = useLocation().hash;
   const isCurrent = currentId.split("#").at(1) === item.id;
+
+  function handleSelectConversation() {
+    onSelectConversation?.(item.id);
+    navigate(`#${item.id}`);
+  }
 
   return (
     <li
@@ -14,7 +19,7 @@ function StudentChatItem({ item }) {
           ? "bg-blue-200 dark:bg-gray-800"
           : "hover:bg-blue-200 dark:hover:bg-gray-800"
       }`}
-      onClick={() => navigate(`#${item.id}`)}
+      onClick={handleSelectConversation}
     >
       <div className="flex items-center justify-between mb-1">
         <h4 className="font-medium text-sm text-gray-900 dark:text-white truncate">

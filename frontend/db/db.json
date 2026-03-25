@@ -250,6 +250,27 @@
       "age": "30 anos",
       "password": "94656138",
       "role": "teacher"
+    },
+    {
+      "id": "bd1a",
+      "name": "Matondo Pedro",
+      "birthDate": "2000-05-15",
+      "province": "Luanda",
+      "biCode": "09903230930993",
+      "residence": "Cazenga",
+      "phoneNumber": "+244 934811011",
+      "genre": "Masculino",
+      "courseId": "9e44",
+      "classId": "a341",
+      "turmaId": "7fa1",
+      "email": "matondo@gmail.com",
+      "dateIn": "25 de março de 2026",
+      "age": "26 anos",
+      "fatherPhoneNumber": "",
+      "motherPhoneNumber": "",
+      "guardionPhoneNumber": "",
+      "password": "25727179",
+      "role": "student"
     }
   ],
   "courses": [

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import StudentChatList from "./StudentChatList";
 import StudentChat from "./StudentChat";
 import StudentChatMessages from "./StudentChatMessages";
@@ -26,6 +26,10 @@ function StudentChatLayout() {
   const handleBackToList = () => {
     setIsMobileChatOpen(false);
   };
+
+  useEffect(() => {
+    setIsMobileChatOpen(Boolean(hashId));
+  }, [hashId]);
 
   return (
     <StudentChat isMobileChatOpen={isMobileChatOpen}>
