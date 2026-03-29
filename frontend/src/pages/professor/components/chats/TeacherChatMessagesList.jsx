@@ -17,11 +17,17 @@ function TeacherChatMessagesList({ containerRef }) {
 
   useEffect(() => {
     if (!containerRef?.current) return;
-    containerRef.current.scrollTo({
-      top: containerRef.current.scrollHeight,
-      behavior: "smooth",
+    const el = containerRef.current;
+    // ensure we scroll after DOM updates; use requestAnimationFrame for reliability
+    requestAnimationFrame(() => {
+      if (!el) return;
+      if (typeof el.scrollTo === "function") {
+        el.scrollTo({ top: el.scrollHeight, behavior: "smooth" });
+      } else {
+        el.scrollTop = el.scrollHeight;
+      }
     });
-  }, [containerRef]);
+  }, [containerRef, turmaMessages.length]);
 
   return (
     <div className="  bg-center bg-no-repeat py-4  px-3 md:px-4">
