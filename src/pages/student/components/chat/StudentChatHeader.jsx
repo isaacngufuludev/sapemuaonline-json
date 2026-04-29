@@ -23,7 +23,7 @@ function StudentChatHeader({ conversation, onBack, showBackButton }) {
           <FaHashtag />
         </div>
         <div className="">
-          <h2 className="text-base font-semibold text-gray-900 dark:text-white">
+          <h2 className="lg:text-base text-sm font-semibold text-gray-900 dark:text-white">
             {conversation?.course} {conversation?.classYear}{" "}
             {conversation?.turmaCategory === "Unica"
               ? conversation?.turmaCategory[0]

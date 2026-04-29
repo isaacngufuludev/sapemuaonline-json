@@ -691,6 +691,32 @@
       "average": 3,
       "updated_at": "2026-03-18T21:13:04.972Z",
       "created_at": "2026-03-18T21:13:04.972Z"
+    },
+    {
+      "id": "1864",
+      "student_id": "bd1a",
+      "teacher_id": "46de",
+      "subject": "Matemática",
+      "term": 1,
+      "mac": 17,
+      "npp": 12,
+      "npt": 10,
+      "average": 13,
+      "updated_at": "2026-04-26T20:50:39.308Z",
+      "created_at": "2026-04-26T20:50:39.308Z"
+    },
+    {
+      "id": "0021",
+      "student_id": "5959",
+      "teacher_id": "8de1",
+      "subject": "Seac",
+      "term": 1,
+      "mac": 8,
+      "npp": 10,
+      "npt": 10,
+      "average": 9,
+      "updated_at": "2026-04-26T20:55:02.539Z",
+      "created_at": "2026-04-26T20:55:02.539Z"
     }
   ]
 }

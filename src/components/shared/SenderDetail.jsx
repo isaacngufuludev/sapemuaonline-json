@@ -12,7 +12,7 @@ function SenderDetail({ selectedSender }) {
   const isTeacher = sender?.role === "teacher";
 
   return (
-    <div className=" h-full w-[40%] bg-white p-4  dark:bg-gray-800 z-10 absolute top-0 right-0 shadow-xl ">
+    <div className=" h-full w-[30%] bg-white p-4  dark:bg-gray-800 z-10 absolute top-0 right-0 shadow-xl ">
       <div className="flex items-center gap-2 mb-8">
         <button onClick={toggleSenderDetail}>
           <HiOutlineArrowLeft size={18} />
