@@ -6,36 +6,47 @@ import {
   HiOutlineUserGroup,
   HiOutlineUsers,
 } from "react-icons/hi";
-
-const cards = [
-  {
-    title: "Total de Estudantes",
-    value: 1200,
-    icon: <HiOutlineUserGroup />,
-  },
-  {
-    title: "Total de Professores",
-    value: 40,
-    icon: <HiOutlineUsers />,
-  },
-  {
-    title: "Total de Cursos",
-    value: 4,
-    icon: <HiOutlineAcademicCap />,
-  },
-  {
-    title: "Total de Turmas",
-    value: 20,
-    icon: <HiOutlineHome />,
-  },
-  {
-    title: "Total de Noticias",
-    value: 3,
-    icon: <HiOutlineNewspaper />,
-  },
-];
+import { useStudents } from "../../../../hooks/useStudents";
+import { useTeachers } from "../../../../hooks/useTeachers";
+import { useCourses } from "../../../../hooks/useCourses";
+import { useTurmas } from "../../../../hooks/useTurmas";
+import { useNews } from "../../../../hooks/useNews";
 
 function AdminDashboardCards() {
+  const { students } = useStudents();
+  const { teachers } = useTeachers();
+  const { courses } = useCourses();
+  const { turmas } = useTurmas();
+  const { news } = useNews();
+
+  const cards = [
+    {
+      title: "Total de Estudantes",
+      value: students.length,
+      icon: <HiOutlineUserGroup />,
+    },
+    {
+      title: "Total de Professores",
+      value: teachers.length,
+      icon: <HiOutlineUsers />,
+    },
+    {
+      title: "Total de Cursos",
+      value: courses.length,
+      icon: <HiOutlineAcademicCap />,
+    },
+    {
+      title: "Total de Turmas",
+      value: turmas.length,
+      icon: <HiOutlineHome />,
+    },
+    {
+      title: "Total de Noticias",
+      value: news.length,
+      icon: <HiOutlineNewspaper />,
+    },
+  ];
+
   return (
     <ul className="mb-6 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
       {cards.map((item) => (

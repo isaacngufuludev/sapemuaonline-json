@@ -3,7 +3,7 @@
     {
       "id": "4355",
       "name": "Isaac Ngufulu",
-      "email": "isaacngufulu70@gmail.com",
+      "email": "admin@gmail.com",
       "birthYear": "1992-09-25",
       "phoneNumber": "+244 934 987 654",
       "genre": "Masculino",
@@ -29,87 +29,6 @@
       "genre": "Masculino",
       "password": "2000",
       "role": "admin"
-    },
-    {
-      "id": "c613",
-      "name": "Enoque Filipe",
-      "birthDate": "2000-06-22",
-      "province": "Luanda",
-      "biCode": "000deragas677788",
-      "residence": "",
-      "phoneNumber": "+244 938489490",
-      "genre": "Masculino",
-      "courseId": "e453",
-      "classId": "904a",
-      "turmaId": "1517",
-      "email": "isaacngufuliu@gmail.com",
-      "dateIn": "18 de fevereiro de 2026",
-      "age": "26 anos",
-      "fatherPhoneNumber": "",
-      "motherPhoneNumber": "",
-      "guardionPhoneNumber": "",
-      "fatherJob": "",
-      "motherJob": "",
-      "guardionJob": "",
-      "fatherName": "",
-      "motherName": "",
-      "guardionName": "",
-      "password": "18 de fevereiro de 2026",
-      "role": "student"
-    },
-    {
-      "id": "53e1",
-      "name": "Mundu Yambi",
-      "birthDate": "2000-06-22",
-      "province": "Luanda",
-      "biCode": "000deragas677788",
-      "residence": "Cazenga Mabor",
-      "phoneNumber": "+244 938489497",
-      "genre": "Masculino",
-      "courseId": "9e44",
-      "classId": "a341",
-      "turmaId": "7fa1",
-      "email": "isaacngufuliu@gmail.com",
-      "dateIn": "18 de fevereiro de 2026",
-      "age": "26 anos",
-      "fatherPhoneNumber": "",
-      "motherPhoneNumber": "",
-      "guardionPhoneNumber": "",
-      "fatherJob": "",
-      "motherJob": "",
-      "guardionJob": "",
-      "fatherName": "",
-      "motherName": "",
-      "guardionName": "",
-      "password": "18 de fevereiro de 2026",
-      "role": "student"
-    },
-    {
-      "id": "5959",
-      "name": "Henriques Manuel Antóbio",
-      "birthDate": "2000-06-22",
-      "province": "Luanda",
-      "biCode": "000deragas677788",
-      "residence": "",
-      "phoneNumber": "+244 938489490",
-      "genre": "Masculino",
-      "courseId": "9e44",
-      "classId": "a341",
-      "turmaId": "7fa1",
-      "email": "isaacngufuliu@gmail.com",
-      "dateIn": "18 de fevereiro de 2026",
-      "age": "26 anos",
-      "fatherPhoneNumber": "",
-      "motherPhoneNumber": "",
-      "guardionPhoneNumber": "",
-      "fatherJob": "",
-      "motherJob": "",
-      "guardionJob": "",
-      "fatherName": "",
-      "motherName": "",
-      "guardionName": "",
-      "password": "18 de fevereiro de 2026",
-      "role": "student"
     },
     {
       "id": "4ea7",
@@ -153,24 +72,14 @@
       "email": "leonardodev@gmail.com",
       "adressCollege": "",
       "phoneCollege": "",
-      "turmasId": [
-        "1517",
-        "31cd"
-      ],
-      "classesId": [
-        "904a",
-        "a552"
-      ],
-      "coursesId": [
-        "e453"
-      ],
+      "turmasId": ["1517", "31cd"],
+      "classesId": ["904a", "a552"],
+      "coursesId": ["e453"],
       "dateIn": "27 de fevereiro de 2026",
       "age": "36 anos",
       "password": "93775880",
       "role": "teacher",
-      "subjects": [
-        "TLP"
-      ]
+      "subjects": ["TLP"]
     },
     {
       "id": "46de",
@@ -187,28 +96,14 @@
       "email": "makiadi@gmail.com",
       "adressCollege": "",
       "phoneCollege": "",
-      "turmasId": [
-        "1517",
-        "7fa1",
-        "31cd"
-      ],
-      "classesId": [
-        "a341",
-        "904a",
-        "a552"
-      ],
-      "coursesId": [
-        "9e44",
-        "e453"
-      ],
+      "turmasId": ["1517", "7fa1", "31cd"],
+      "classesId": ["a341", "904a", "a552"],
+      "coursesId": ["9e44", "e453"],
       "dateIn": "27 de fevereiro de 2026",
       "age": "46 anos",
       "password": "93871426",
       "role": "teacher",
-      "subjects": [
-        "Matemática",
-        "TREI"
-      ]
+      "subjects": ["Matemática", "TREI"]
     },
     {
       "id": "8de1",
@@ -225,30 +120,13 @@
       "email": "joaofinda@gmail.com",
       "adressCollege": "",
       "phoneCollege": "",
-      "subjects": [
-        "Seac",
-        "TIC",
-        "Gestão"
-      ],
-      "turmasId": [
-        "1517",
-        "7fa1",
-        "31cd"
-      ],
-      "classesId": [
-        "a341",
-        "904a",
-        "e2ec",
-        "a552",
-        "5459"
-      ],
-      "coursesId": [
-        "9e44",
-        "e453"
-      ],
+      "subjects": ["Seac", "TIC", "Gestão"],
+      "turmasId": ["1517", "7fa1", "31cd"],
+      "classesId": ["a341", "904a", "e2ec", "a552", "5459"],
+      "coursesId": ["9e44", "e453"],
       "dateIn": "27 de fevereiro de 2026",
       "age": "30 anos",
-      "password": "94656138",
+      "password": "Rr~s7Zmkwd.'bgG",
       "role": "teacher"
     },
     {

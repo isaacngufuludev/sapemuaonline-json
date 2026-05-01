@@ -41,7 +41,7 @@ function LoginForm() {
   return (
     <>
       <form
-        className="flex flex-col gap-3 sm:gap-4 mb-2 md:mb-3"
+        className="flex flex-col gap-3 sm:gap-5 mb-2 "
         action=""
         onSubmit={handleSubmit}
       >

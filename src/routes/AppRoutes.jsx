@@ -48,6 +48,8 @@ import TeacherAllTurmas from "../pages/professor/components/turmas/TeacherAllTur
 import TeacherChatLayout from "../pages/professor/components/chats/TeacherChatLayout";
 import StudentChatLayout from "../pages/student/components/chat/StudentChatLayout";
 import TeacherStudentDetail from "../pages/professor/components/turmas/TeacherStudentDetail";
+import ForgotPassword from "../pages/auth/components/ForgotPassword";
+import ResetPassword from "../pages/auth/components/ResetPassword";
 
 function AppRoutes() {
   return (
@@ -64,7 +66,13 @@ function AppRoutes() {
                   <Route path="/auth" element={<Auth />}>
                     <Route index element={<Navigate replace to="login" />} />
                     <Route path="login" element={<Login />} />
+                    <Route
+                      path="forgot-password"
+                      element={<ForgotPassword />}
+                    />
+                    <Route path="reset-password" element={<ResetPassword />} />
                   </Route>
+
                   <Route path="*" element={<PageNotFound />} />
                   <Route
                     path="/area"

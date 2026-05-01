@@ -22,7 +22,7 @@ function AdminDashboardLayout() {
   };
 
   return (
-    <div className="mx-auto w-full max-w-screen-2xl px-2 sm:px-6 lg:px-8">
+    <div className="mx-auto w-full max-w-screen-2xl">
       <div className="flex justify-end mb-4">
         <AdminButton
           type="primary"

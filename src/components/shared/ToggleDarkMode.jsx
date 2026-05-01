@@ -10,7 +10,7 @@ function ToggleDarkMode({ type = "default" }) {
     default: base + " text-xl",
     absolute:
       base +
-      " absolute z-10 2xl:right-4 lg:right-3 sm:right-10 right-3 top-10 text-2xl lg:border-none border-stone-300 dark:border-gray-700 py-1 px-2 border",
+      " absolute z-10 2xl:right-8 lg:right-3 sm:right-10 right-3 top-10 text-2xl lg:border-none border-stone-300 dark:border-gray-700 py-1 px-2 border",
   };
 
   if (type === "absolute")
