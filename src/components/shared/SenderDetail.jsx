@@ -1,9 +1,9 @@
-import { HiOutlineArrowLeft, HiOutlineBookOpen, HiUser } from "react-icons/hi";
+import { HiOutlineArrowLeft, HiOutlineBookOpen } from "react-icons/hi";
 import Title4 from "../ui/Title4";
 import { FiMail, FiPhone } from "react-icons/fi";
-import BtnCloseModal from "./BtnCloseModal";
 import { useModal } from "../../contexts/ModalContext";
 import { useUsers } from "../../hooks/useUsers";
+import UserAvatar from "./UserAvatar";
 
 function SenderDetail({ selectedSender }) {
   const { toggleSenderDetail } = useModal();
@@ -21,9 +21,7 @@ function SenderDetail({ selectedSender }) {
       </div>
 
       <div className="flex items-center justify-center flex-col mb-7">
-        <p className="text-6xl bg-blue-200 dark:bg-gray-900 p-6 rounded-full mb-1">
-          <HiUser />
-        </p>
+        <UserAvatar user={sender} size="xl" className="mb-1" />
         <p className="text-base font-semibold">{sender?.name}</p>
         <p className="text-gray-500 text-sm dark:text-gray-200">
           {sender?.role}

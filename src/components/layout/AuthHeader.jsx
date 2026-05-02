@@ -2,6 +2,7 @@ import { HiOutlineLogout, HiOutlineMoon, HiOutlineSun } from "react-icons/hi";
 import { useAuth } from "../../contexts/AuthContext";
 import { useTheme } from "../../contexts/ThemeContext";
 import { useModal } from "../../contexts/ModalContext";
+import UserAvatar from "../shared/UserAvatar";
 
 function ThemeToggle() {
   const { isDark, toggleDarkMode } = useTheme();
@@ -13,22 +14,24 @@ function ThemeToggle() {
       aria-label="Alternar tema"
       className="flex h-10 w-10 items-center justify-center rounded-full hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-200 transition-all duration-200 ease-in-out hover:scale-[1.03] dark:hover:bg-gray-900 dark:focus:ring-gray-700"
     >
-      <span className="text-xl">{isDark ? <HiOutlineSun /> : <HiOutlineMoon />}</span>
+      <span className="text-xl">
+        {isDark ? <HiOutlineSun /> : <HiOutlineMoon />}
+      </span>
     </button>
   );
 }
 
-function UserInfo({ name, role }) {
-  const initial = name?.[0]?.toUpperCase() || "U";
-
+function UserInfo({ user }) {
   return (
     <div className="flex items-center gap-2 lg:gap-3">
-      <div className="flex h-9 w-9 items-center justify-center rounded-full bg-blue-200 text-sm font-semibold dark:bg-gray-900 md:h-10 md:w-10">
-        {initial}
-      </div>
+      <UserAvatar user={user} size="sm" />
       <div className="hidden md:flex flex-col leading-tight">
-        <p className="text-xs font-semibold lg:text-sm">{name}</p>
-        <p className="text-xs text-gray-500 dark:text-gray-400">{role}</p>
+        <p className="text-xs font-semibold lg:text-sm">
+          {user?.name || "Utilizador"}
+        </p>
+        <p className="text-xs text-gray-500 dark:text-gray-400">
+          {user?.role || "-"}
+        </p>
       </div>
     </div>
   );
@@ -62,7 +65,7 @@ function AuthHeader() {
 
         <div className="ml-auto flex items-center gap-2 md:gap-3 lg:gap-4">
           <ThemeToggle />
-          <UserInfo name={user?.name || "Utilizador"} role={user?.role || "-"} />
+          <UserInfo user={user} />
           <LogoutButton />
         </div>
       </div>

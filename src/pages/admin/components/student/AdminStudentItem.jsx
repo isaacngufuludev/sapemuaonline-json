@@ -6,6 +6,7 @@ import { useEditOptions } from "../../../../hooks/useEditOptions";
 import { useModal } from "../../../../contexts/ModalContext";
 import { useClasses } from "../../../../hooks/useClasses";
 import { useCourses } from "../../../../hooks/useCourses";
+import UserAvatar from "../../../../components/shared/UserAvatar";
 
 function AdminStudentItem({ item }) {
   const { showMenu, menuRef, setShowMenu } = useEditOptions();
@@ -38,9 +39,7 @@ function AdminStudentItem({ item }) {
     <li className="border-b border-slate-200 dark:border-gray-700 last:border-0">
       <article className="p-3 lg:hidden sm:p-4">
         <div className="mb-2 flex items-center gap-3">
-          <p className="rounded-full bg-slate-100 px-3 py-2 font-semibold dark:bg-gray-900">
-            {item.name[0]?.toUpperCase()}
-          </p>
+          <UserAvatar user={item} size="md" />
           <div className="min-w-0">
             <p className="truncate text-sm font-semibold">{item.name}</p>
             <p className="truncate text-xs text-gray-500 dark:text-gray-400">
@@ -91,9 +90,7 @@ function AdminStudentItem({ item }) {
 
       <div className="hidden lg:grid grid-cols-[0.3fr_1.5fr_0.7fr_0.7fr_0.7fr_0.5fr_0.5fr_0.2fr] items-center px-4 py-2">
         <div className="font-semibold flex items-center justify-start ">
-          <p className="py-3 px-4 rounded-full bg-slate-100  dark:bg-gray-900">
-            {item.name[0]?.toUpperCase()}
-          </p>
+          <UserAvatar user={item} size="md" />
         </div>
         <p>{item.name}</p>
         <p>{item.id}</p>

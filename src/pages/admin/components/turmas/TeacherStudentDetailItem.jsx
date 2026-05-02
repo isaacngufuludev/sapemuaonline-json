@@ -10,6 +10,7 @@ import { FaRegIdCard } from "react-icons/fa";
 import { LuGraduationCap } from "react-icons/lu";
 import { HiOutlineClock, HiOutlineHome } from "react-icons/hi";
 import Title4 from "../../../../components/ui/Title4";
+import UserAvatar from "../../../../components/shared/UserAvatar";
 
 function TeacherStudentDetailItem() {
   const { studentId } = useParams();
@@ -42,9 +43,7 @@ function TeacherStudentDetailItem() {
       <div className="grid grid-cols-1 items-start gap-4 xl:gap-4 lg:gap-3 lg:grid-cols-[2fr_3fr] xl:grid-cols-[1.5fr_3fr]">
         <div className="mb-5 flex flex-col gap-3 rounded-md border-[0.1px] border-slate-200 bg-white p-4 dark:border-gray-700 dark:bg-gray-800 sm:p-5">
           <div className="flex gap-2 items-center pb-5 border-b-[0.1px] dark:border-gray-700 border-slate-200">
-            <p className="text-5xl  bg-blue-200 sm:p-3 p-5 sm:text-3xl rounded-full dark:bg-gray-900">
-              <FiUser />
-            </p>
+            <UserAvatar user={student} size="xl" />
             <div>
               <Title4>{student.name}</Title4>
               <p className="text-sm">Aderido aos {student.dateIn} </p>

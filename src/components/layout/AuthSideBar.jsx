@@ -3,6 +3,7 @@ import { FiMenu } from "react-icons/fi";
 import { HiChevronDoubleLeft } from "react-icons/hi";
 import { useAuth } from "../../contexts/AuthContext";
 import { useAuthSidebar } from "../../contexts/AuthSidebarContext";
+import UserAvatar from "../shared/UserAvatar";
 
 function AuthSideBar({ children }) {
   const [isMobileOpen, setIsMobileOpen] = useState(false);
@@ -14,13 +15,6 @@ function AuthSideBar({ children }) {
     [children],
   );
   const [logoSection, ...contentSections] = childrenArray;
-
-  const initials = user?.name
-    ?.split(" ")
-    .slice(0, 2)
-    .map((part) => part[0])
-    .join("")
-    .toUpperCase();
 
   const desktopWidth = isSidebarOpen ? "w-64" : "w-20";
 
@@ -66,9 +60,7 @@ function AuthSideBar({ children }) {
 
           <div className="mx-3 mb-4 rounded-xl bg-slate-100 p-3 dark:bg-gray-900">
             <div className="flex items-center gap-3">
-              <div className="flex h-10 w-10 items-center justify-center rounded-full bg-slate-200 font-semibold dark:bg-gray-700">
-                {initials || "U"}
-              </div>
+              <UserAvatar user={user} size="md" />
               <div className="min-w-0">
                 <p className="truncate text-sm font-semibold">
                   {user?.name || "User"}
@@ -114,9 +106,7 @@ function AuthSideBar({ children }) {
                 isSidebarOpen ? "gap-3" : "justify-center"
               }`}
             >
-              <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-slate-200 font-semibold dark:bg-gray-700">
-                {initials || "U"}
-              </div>
+              <UserAvatar user={user} size="md" />
               <div
                 className={`min-w-0 transition-all duration-300 ${
                   isSidebarOpen

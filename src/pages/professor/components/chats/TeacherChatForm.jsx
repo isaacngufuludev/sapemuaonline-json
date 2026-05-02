@@ -3,39 +3,76 @@ import BtnSendMessages from "../../../../components/ui/BtnSendMessages";
 import InputMessages from "../../../../components/ui/InputMessages";
 import MessagesForm from "../../../../components/ui/MessagesForm";
 import { HiOutlinePaperClip, HiOutlinePlus } from "react-icons/hi";
-import { FaPaperclip } from "react-icons/fa";
 import { useLocation } from "react-router-dom";
 import { useAuth } from "../../../../contexts/AuthContext";
 import { post } from "../../../../services/api";
 import { useRefresh } from "../../../../contexts/RefreshContext";
+import { uploadToCloudinary } from "../../../../services/cloudinary";
+import { useToast } from "../../../../hooks/useToast";
 
 function TeacherChatForm() {
   const [message, setMessage] = useState("");
   const [isUploadMenuOpen, setIsUploadMenuOpen] = useState(false);
-  const [selectedTaskFile, setSelectedTaskFile] = useState(null);
-  const [selectedAvaliationFile, setSelectedAvaliationFile] = useState(null);
+  const [selectedFile, setSelectedFile] = useState(null);
+  const [isSending, setIsSending] = useState(false);
   const uploadMenuRef = useRef(null);
   const turmaId = useLocation().hash.slice(1);
   const { user } = useAuth();
   const { triggerRefresh } = useRefresh();
+  const { showError } = useToast();
 
   async function handleSubmit(e) {
     e.preventDefault();
-    if (!message) return;
-    if (message.trim()) {
+    const trimmedMessage = message.trim();
+    if (!trimmedMessage && !selectedFile) return;
+
+    try {
+      setIsSending(true);
+      const createdAt = new Date().toISOString();
+      let savedFile = null;
+
+      if (selectedFile) {
+        const uploadedFile = await uploadToCloudinary(
+          selectedFile,
+          `sapemua/chats/${turmaId || "sem-turma"}`,
+        );
+
+        savedFile = await post("files", {
+          ...uploadedFile,
+          type: "file",
+          turmaId,
+          senderId: user.id,
+          senderRole: user.role,
+          createdAt,
+        });
+      }
+
       const newMessage = {
-        message,
+        message: trimmedMessage,
         turmaId,
         senderId: user.id,
-        createdAt: new Date().toISOString(),
+        senderRole: user.role,
+        createdAt,
       };
+
+      if (savedFile) {
+        newMessage.attachments = [
+          {
+            type: "file",
+            fileId: savedFile.id,
+            file: savedFile,
+          },
+        ];
+      }
 
       await post("messages", newMessage);
       triggerRefresh();
-      console.log(newMessage);
       setMessage("");
-      setSelectedTaskFile(null);
-      setSelectedAvaliationFile(null);
+      setSelectedFile(null);
+    } catch (error) {
+      showError(error.message || "Erro ao enviar ficheiro no chat");
+    } finally {
+      setIsSending(false);
     }
   }
 
@@ -49,17 +86,9 @@ function TeacherChatForm() {
   const handleTaskUpload = (e) => {
     const file = e.target.files?.[0];
     if (!file) return;
-    setSelectedTaskFile(file);
-    console.log("Upload tarefa:", file.name);
+    setSelectedFile(file);
     setIsUploadMenuOpen(false);
-  };
-
-  const handleEvaluationUpload = (e) => {
-    const file = e.target.files?.[0];
-    if (!file) return;
-    setSelectedAvaliationFile(file);
-    console.log("Upload avaliacao:", file.name);
-    setIsUploadMenuOpen(false);
+    e.target.value = "";
   };
 
   useEffect(() => {
@@ -75,28 +104,18 @@ function TeacherChatForm() {
 
   return (
     <div className="w-full space-y-3">
-      {(selectedTaskFile || selectedAvaliationFile) && (
+      {selectedFile && (
         <div className="rounded-2xl border border-slate-200 bg-white px-4 py-3 text-xs shadow-sm dark:border-gray-700 dark:bg-gray-800 md:text-sm">
           <p className="mb-2 font-semibold text-slate-700 dark:text-gray-100">
-            Arquivos selecionados
+            Ficheiro selecionado
           </p>
-          {selectedTaskFile && (
+          {selectedFile && (
             <div className="flex items-center justify-between gap-3 rounded-xl bg-slate-50 px-3 py-2 dark:bg-gray-900">
               <span className="font-medium text-slate-600 dark:text-gray-300">
-                Tarefa
+                Ficheiro
               </span>
               <span className="truncate text-slate-800 dark:text-gray-100">
-                {selectedTaskFile.name}
-              </span>
-            </div>
-          )}
-          {selectedAvaliationFile && (
-            <div className="mt-2 flex items-center justify-between gap-3 rounded-xl bg-slate-50 px-3 py-2 dark:bg-gray-900">
-              <span className="font-medium text-slate-600 dark:text-gray-300">
-                Avaliacao
-              </span>
-              <span className="truncate text-slate-800 dark:text-gray-100">
-                {selectedAvaliationFile.name}
+                {selectedFile.name}
               </span>
             </div>
           )}
@@ -123,16 +142,7 @@ function TeacherChatForm() {
                 <span className="text-base">
                   <HiOutlinePaperClip />
                 </span>
-                <span>Tarefa</span>
-              </label>
-              <label
-                htmlFor="teacher-evaluation-upload"
-                className="flex items-center gap-1 px-3 py-2 text-xs md:text-sm cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-900 transition-colors border-t border-slate-200 dark:border-gray-700"
-              >
-                <span className="text-base">
-                  <HiOutlinePaperClip />
-                </span>
-                <span>Avaliacao</span>
+                <span>Arquivo</span>
               </label>
             </div>
           )}
@@ -143,20 +153,15 @@ function TeacherChatForm() {
             className="hidden"
             onChange={handleTaskUpload}
           />
-          <input
-            id="teacher-evaluation-upload"
-            type="file"
-            className="hidden"
-            onChange={handleEvaluationUpload}
-          />
         </div>
 
         <InputMessages
           value={message}
           onChange={(e) => setMessage(e.target.value)}
           onKeyPress={handleKeyPress}
+          disabled={isSending}
         />
-        <BtnSendMessages onClick={handleSubmit} />
+        <BtnSendMessages disabled={isSending} />
       </MessagesForm>
     </div>
   );

@@ -4,6 +4,7 @@ import { useModal } from "../../../../contexts/ModalContext";
 import { useNavigate } from "react-router-dom";
 import { useEditOptions } from "../../../../hooks/useEditOptions";
 import { HiEllipsisVertical } from "react-icons/hi2";
+import UserAvatar from "../../../../components/shared/UserAvatar";
 
 function AdminTeacherItem({ item }) {
   const { toggleRemoveTeacher, selectOptionItem } = useModal();
@@ -30,9 +31,7 @@ function AdminTeacherItem({ item }) {
     <li className="border-b border-slate-200 dark:border-gray-700 last:border-0">
       <article className="p-3 lg:hidden sm:p-4">
         <div className="mb-2 flex items-center gap-3">
-          <span className="rounded-full bg-slate-100 px-3 py-2 font-semibold dark:bg-gray-900">
-            {item.name[0].toUpperCase()}
-          </span>
+          <UserAvatar user={item} size="md" />
           <div className="min-w-0">
             <p className="truncate text-sm font-semibold">{item.name}</p>
             <p className="truncate text-xs text-gray-500 dark:text-gray-400">
@@ -88,9 +87,7 @@ function AdminTeacherItem({ item }) {
 
       <div className="hidden lg:grid grid-cols-[0.3fr_1.5fr_0.7fr_0.7fr_0.7fr_0.5fr_0.5fr_0.2fr] items-center px-4 py-2">
         <div className="font-semibold  flex items-center justify-start">
-          <span className="py-3 px-4 bg-slate-100 rounded-full dark:bg-gray-900">
-            {item.name[0].toUpperCase()}
-          </span>
+          <UserAvatar user={item} size="md" />
         </div>
         <div>
           <p className="font-semibold">{item.name}</p>

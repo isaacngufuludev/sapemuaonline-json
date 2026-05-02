@@ -11,6 +11,8 @@ import Loading from "../../../../components/shared/Loading";
 import { useCourses } from "../../../../hooks/useCourses";
 import { useClasses } from "../../../../hooks/useClasses";
 import { useTurmas } from "../../../../hooks/useTurmas";
+import MediaPreview from "../MediaPreview";
+import UserAvatar from "../../../../components/shared/UserAvatar";
 
 function AdminStudentDetailItem() {
   const { studentId } = useParams();
@@ -43,9 +45,7 @@ function AdminStudentDetailItem() {
       <div className="grid grid-cols-1 items-start gap-4 xl:gap-4 lg:gap-3 lg:grid-cols-[2fr_3fr] xl:grid-cols-[1.5fr_3fr]">
         <div className="mb-5 flex flex-col gap-3 rounded-md border-[0.1px] border-slate-200 bg-white p-4 dark:border-gray-700 dark:bg-gray-800 sm:p-5">
           <div className="flex gap-2 items-center pb-5 border-b-[0.1px] dark:border-gray-700 border-slate-200">
-            <p className="text-5xl  bg-blue-200 sm:p-3 p-5 sm:text-3xl rounded-full dark:bg-gray-900">
-              <FiUser />
-            </p>
+            <UserAvatar user={student} size="xl" />
             <div>
               <Title4>{student.name}</Title4>
               <p className="text-sm">Aderido aos {student.dateIn} </p>
@@ -176,6 +176,8 @@ function AdminStudentDetailItem() {
             <p className="text-sm sm:w-56">Residência</p>
             <p className="text-sm">{student.residencia}</p>
           </div>
+          <MediaPreview file={student.photo} title="Foto-Passe" />
+          <MediaPreview file={student.certificate} title="Certificado" />
           <div className="flex flex-col gap-1 px-5 pt-3 sm:flex-row sm:gap-10">
             <p className="text-sm sm:w-56">Bilhete de Identidade</p>
             <p className="text-sm">{student.biCode}</p>

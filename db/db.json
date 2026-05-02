@@ -55,7 +55,16 @@
       "motherName": "",
       "guardionName": "",
       "password": "33640193",
-      "role": "student"
+      "role": "student",
+      "certificate": null,
+      "photo": {
+        "url": "https://res.cloudinary.com/drr516zaf/image/upload/v1777640476/sapemua/students/photos/dgffhonclobcikcyogrp.png",
+        "publicId": "sapemua/students/photos/dgffhonclobcikcyogrp",
+        "resourceType": "image",
+        "format": "png",
+        "originalName": "tanjiro-kamado-red-5120x2880-22577.png",
+        "bytes": 5668468
+      }
     },
     {
       "id": "37e0",
@@ -72,14 +81,24 @@
       "email": "leonardodev@gmail.com",
       "adressCollege": "",
       "phoneCollege": "",
-      "turmasId": ["1517", "31cd"],
-      "classesId": ["904a", "a552"],
-      "coursesId": ["e453"],
+      "turmasId": [
+        "1517",
+        "31cd"
+      ],
+      "classesId": [
+        "904a",
+        "a552"
+      ],
+      "coursesId": [
+        "e453"
+      ],
       "dateIn": "27 de fevereiro de 2026",
       "age": "36 anos",
       "password": "93775880",
       "role": "teacher",
-      "subjects": ["TLP"]
+      "subjects": [
+        "TLP"
+      ]
     },
     {
       "id": "46de",
@@ -96,14 +115,28 @@
       "email": "makiadi@gmail.com",
       "adressCollege": "",
       "phoneCollege": "",
-      "turmasId": ["1517", "7fa1", "31cd"],
-      "classesId": ["a341", "904a", "a552"],
-      "coursesId": ["9e44", "e453"],
+      "turmasId": [
+        "1517",
+        "7fa1",
+        "31cd"
+      ],
+      "classesId": [
+        "a341",
+        "904a",
+        "a552"
+      ],
+      "coursesId": [
+        "9e44",
+        "e453"
+      ],
       "dateIn": "27 de fevereiro de 2026",
       "age": "46 anos",
       "password": "93871426",
       "role": "teacher",
-      "subjects": ["Matemática", "TREI"]
+      "subjects": [
+        "Matemática",
+        "TREI"
+      ]
     },
     {
       "id": "8de1",
@@ -120,10 +153,27 @@
       "email": "joaofinda@gmail.com",
       "adressCollege": "",
       "phoneCollege": "",
-      "subjects": ["Seac", "TIC", "Gestão"],
-      "turmasId": ["1517", "7fa1", "31cd"],
-      "classesId": ["a341", "904a", "e2ec", "a552", "5459"],
-      "coursesId": ["9e44", "e453"],
+      "subjects": [
+        "Seac",
+        "TIC",
+        "Gestão"
+      ],
+      "turmasId": [
+        "1517",
+        "7fa1",
+        "31cd"
+      ],
+      "classesId": [
+        "a341",
+        "904a",
+        "e2ec",
+        "a552",
+        "5459"
+      ],
+      "coursesId": [
+        "9e44",
+        "e453"
+      ],
       "dateIn": "27 de fevereiro de 2026",
       "age": "30 anos",
       "password": "Rr~s7Zmkwd.'bgG",
@@ -148,6 +198,78 @@
       "motherPhoneNumber": "",
       "guardionPhoneNumber": "",
       "password": "25727179",
+      "role": "student"
+    },
+    {
+      "id": "6fef",
+      "name": "Mundu Yambi",
+      "birthDate": "2004-07-04",
+      "province": "",
+      "biCode": "000LA87282992",
+      "residence": "",
+      "phoneNumber": "+244 930778181",
+      "genre": "Masculino",
+      "courseId": "e453",
+      "classId": "a552",
+      "turmaId": "31cd",
+      "email": "mundu@gmail.com",
+      "dateIn": "1 de maio de 2026",
+      "age": "22 anos",
+      "fatherPhoneNumber": "",
+      "motherPhoneNumber": "",
+      "guardionPhoneNumber": "",
+      "fatherJob": "",
+      "motherJob": "",
+      "guardionJob": "",
+      "fatherName": "",
+      "motherName": "",
+      "certificate": null,
+      "photo": null,
+      "guardionName": "",
+      "password": "38403878",
+      "role": "student"
+    },
+    {
+      "id": "a6dd",
+      "name": "Isaac Nzinga",
+      "birthDate": "2007-01-03",
+      "province": "Luanda",
+      "biCode": "000046674674989",
+      "residence": "",
+      "phoneNumber": "+244 930886401",
+      "genre": "Masculino",
+      "courseId": "e453",
+      "classId": "904a",
+      "turmaId": "1517",
+      "email": "isaac@gmail.com",
+      "dateIn": "1 de maio de 2026",
+      "age": "19 anos",
+      "fatherPhoneNumber": "",
+      "motherPhoneNumber": "",
+      "guardionPhoneNumber": "",
+      "fatherJob": "",
+      "motherJob": "",
+      "guardionJob": "",
+      "fatherName": "",
+      "motherName": "",
+      "certificate": {
+        "url": "https://res.cloudinary.com/drr516zaf/raw/upload/v1777667919/sapemua/students/certificates/bhlrsldipzcbprdjqof5.pdf",
+        "publicId": "sapemua/students/certificates/bhlrsldipzcbprdjqof5.pdf",
+        "resourceType": "raw",
+        "format": "pdf",
+        "originalName": "lista.pdf",
+        "bytes": 16919
+      },
+      "photo": {
+        "url": "https://res.cloudinary.com/drr516zaf/image/upload/v1777639159/sapemua/students/photos/thv8pkp2s7yybreyjeug.jpg",
+        "publicId": "sapemua/students/photos/thv8pkp2s7yybreyjeug",
+        "resourceType": "image",
+        "format": "jpg",
+        "originalName": "myself.jpeg",
+        "bytes": 64634
+      },
+      "guardionName": "",
+      "password": "1234",
       "role": "student"
     }
   ],
@@ -247,8 +369,134 @@
       "dateIn": "26 de fevereiro de 2026"
     }
   ],
-  "tasks": [],
-  "materials": [],
+  "files": [
+    {
+      "id": "329a",
+      "url": "https://res.cloudinary.com/drr516zaf/image/upload/v1777667067/sapemua/chats/1517/x33ablbeem8zlylau5yf.jpg",
+      "publicId": "sapemua/chats/1517/x33ablbeem8zlylau5yf",
+      "resourceType": "image",
+      "format": "jpg",
+      "originalName": "myself.jpeg",
+      "bytes": 64634,
+      "type": "file",
+      "turmaId": "1517",
+      "senderId": "a6dd",
+      "senderRole": "student",
+      "createdAt": "2026-05-01T20:22:57.676Z"
+    },
+    {
+      "id": "6c84",
+      "url": "https://res.cloudinary.com/drr516zaf/image/upload/v1777667116/sapemua/chats/1517/bts86r3cxwuus8leltbd.pdf",
+      "publicId": "sapemua/chats/1517/bts86r3cxwuus8leltbd",
+      "resourceType": "image",
+      "format": "pdf",
+      "originalName": "Convite Ana.pdf",
+      "bytes": 51838,
+      "type": "file",
+      "turmaId": "1517",
+      "senderId": "a6dd",
+      "senderRole": "student",
+      "createdAt": "2026-05-01T20:25:15.222Z"
+    },
+    {
+      "id": "daf1",
+      "url": "https://res.cloudinary.com/drr516zaf/raw/upload/v1777667989/sapemua/chats/1517/o1ngxakqtgcvxiskbsqi.pdf",
+      "publicId": "sapemua/chats/1517/o1ngxakqtgcvxiskbsqi.pdf",
+      "resourceType": "raw",
+      "format": "pdf",
+      "originalName": "lista.pdf",
+      "bytes": 16919,
+      "type": "file",
+      "turmaId": "1517",
+      "senderId": "a6dd",
+      "senderRole": "student",
+      "createdAt": "2026-05-01T20:39:48.573Z"
+    },
+    {
+      "id": "9fbd",
+      "url": "https://res.cloudinary.com/drr516zaf/image/upload/v1777668025/sapemua/chats/1517/qbnudinxouwqpxpstuqb.png",
+      "publicId": "sapemua/chats/1517/qbnudinxouwqpxpstuqb",
+      "resourceType": "image",
+      "format": "png",
+      "originalName": "student.png",
+      "bytes": 60886,
+      "type": "file",
+      "turmaId": "1517",
+      "senderId": "a6dd",
+      "senderRole": "student",
+      "createdAt": "2026-05-01T20:40:24.642Z"
+    },
+    {
+      "id": "463d",
+      "url": "https://res.cloudinary.com/drr516zaf/raw/upload/v1777668312/sapemua/chats/1517/bjtweinvpizxrku34doa.pdf",
+      "publicId": "sapemua/chats/1517/bjtweinvpizxrku34doa.pdf",
+      "resourceType": "raw",
+      "format": "pdf",
+      "originalName": "relatorio 26 de abril.pdf",
+      "bytes": 105248,
+      "type": "file",
+      "turmaId": "1517",
+      "senderId": "46de",
+      "senderRole": "teacher",
+      "createdAt": "2026-05-01T20:45:10.830Z"
+    },
+    {
+      "id": "ad3f",
+      "url": "https://res.cloudinary.com/drr516zaf/image/upload/v1777668725/sapemua/chats/7fa1/s3fwdwkdzqfwgqc9x2r4.pdf",
+      "publicId": "sapemua/chats/7fa1/s3fwdwkdzqfwgqc9x2r4",
+      "resourceType": "image",
+      "format": "pdf",
+      "originalName": "lista.pdf",
+      "bytes": 16919,
+      "type": "file",
+      "turmaId": "7fa1",
+      "senderId": "46de",
+      "senderRole": "teacher",
+      "createdAt": "2026-05-01T20:52:04.639Z"
+    },
+    {
+      "id": "87f7",
+      "url": "https://res.cloudinary.com/drr516zaf/image/upload/v1777668798/sapemua/chats/7fa1/bjqynlm8bm4ti5ajql2f.pdf",
+      "publicId": "sapemua/chats/7fa1/bjqynlm8bm4ti5ajql2f",
+      "resourceType": "image",
+      "format": "pdf",
+      "originalName": "Convite Ana.pdf",
+      "bytes": 51838,
+      "type": "file",
+      "turmaId": "7fa1",
+      "senderId": "46de",
+      "senderRole": "teacher",
+      "createdAt": "2026-05-01T20:53:17.392Z"
+    },
+    {
+      "id": "c6c1",
+      "url": "https://res.cloudinary.com/drr516zaf/image/upload/v1777668820/sapemua/chats/7fa1/dfonsbeguvjucrxev1cx.png",
+      "publicId": "sapemua/chats/7fa1/dfonsbeguvjucrxev1cx",
+      "resourceType": "image",
+      "format": "png",
+      "originalName": "student.png",
+      "bytes": 60886,
+      "type": "file",
+      "turmaId": "7fa1",
+      "senderId": "46de",
+      "senderRole": "teacher",
+      "createdAt": "2026-05-01T20:53:39.109Z"
+    },
+    {
+      "id": "8b07",
+      "url": "https://res.cloudinary.com/drr516zaf/image/upload/v1777747627/sapemua/chats/7fa1/uvpsreabznmf7y6mwfhp.pdf",
+      "publicId": "sapemua/chats/7fa1/uvpsreabznmf7y6mwfhp",
+      "resourceType": "image",
+      "format": "pdf",
+      "originalName": "lista.pdf",
+      "bytes": 16919,
+      "type": "file",
+      "turmaId": "7fa1",
+      "senderId": "46de",
+      "senderRole": "teacher",
+      "createdAt": "2026-05-02T18:47:05.503Z"
+    }
+  ],
   "messages": [
     {
       "id": "5605",
@@ -501,9 +749,268 @@
       "turmaId": "1517",
       "senderId": "37e0",
       "createdAt": "2026-03-29T20:45:51.105Z"
+    },
+    {
+      "id": "322a",
+      "message": "olá",
+      "turmaId": "1517",
+      "senderId": "a6dd",
+      "senderRole": "student",
+      "createdAt": "2026-05-01T12:59:03.664Z"
+    },
+    {
+      "id": "3a1b",
+      "message": "",
+      "turmaId": "1517",
+      "senderId": "a6dd",
+      "senderRole": "student",
+      "createdAt": "2026-05-01T20:22:57.676Z",
+      "attachments": [
+        {
+          "type": "file",
+          "fileId": "329a",
+          "file": {
+            "id": "329a",
+            "url": "https://res.cloudinary.com/drr516zaf/image/upload/v1777667067/sapemua/chats/1517/x33ablbeem8zlylau5yf.jpg",
+            "publicId": "sapemua/chats/1517/x33ablbeem8zlylau5yf",
+            "resourceType": "image",
+            "format": "jpg",
+            "originalName": "myself.jpeg",
+            "bytes": 64634,
+            "type": "file",
+            "turmaId": "1517",
+            "senderId": "a6dd",
+            "senderRole": "student",
+            "createdAt": "2026-05-01T20:22:57.676Z"
+          }
+        }
+      ]
+    },
+    {
+      "id": "8cc7",
+      "message": "",
+      "turmaId": "1517",
+      "senderId": "a6dd",
+      "senderRole": "student",
+      "createdAt": "2026-05-01T20:25:15.222Z",
+      "attachments": [
+        {
+          "type": "file",
+          "fileId": "6c84",
+          "file": {
+            "id": "6c84",
+            "url": "https://res.cloudinary.com/drr516zaf/image/upload/v1777667116/sapemua/chats/1517/bts86r3cxwuus8leltbd.pdf",
+            "publicId": "sapemua/chats/1517/bts86r3cxwuus8leltbd",
+            "resourceType": "image",
+            "format": "pdf",
+            "originalName": "Convite Ana.pdf",
+            "bytes": 51838,
+            "type": "file",
+            "turmaId": "1517",
+            "senderId": "a6dd",
+            "senderRole": "student",
+            "createdAt": "2026-05-01T20:25:15.222Z"
+          }
+        }
+      ]
+    },
+    {
+      "id": "6e04",
+      "message": "",
+      "turmaId": "1517",
+      "senderId": "a6dd",
+      "senderRole": "student",
+      "createdAt": "2026-05-01T20:39:48.573Z",
+      "attachments": [
+        {
+          "type": "file",
+          "fileId": "daf1",
+          "file": {
+            "id": "daf1",
+            "url": "https://res.cloudinary.com/drr516zaf/raw/upload/v1777667989/sapemua/chats/1517/o1ngxakqtgcvxiskbsqi.pdf",
+            "publicId": "sapemua/chats/1517/o1ngxakqtgcvxiskbsqi.pdf",
+            "resourceType": "raw",
+            "format": "pdf",
+            "originalName": "lista.pdf",
+            "bytes": 16919,
+            "type": "file",
+            "turmaId": "1517",
+            "senderId": "a6dd",
+            "senderRole": "student",
+            "createdAt": "2026-05-01T20:39:48.573Z"
+          }
+        }
+      ]
+    },
+    {
+      "id": "d842",
+      "message": "",
+      "turmaId": "1517",
+      "senderId": "a6dd",
+      "senderRole": "student",
+      "createdAt": "2026-05-01T20:40:24.642Z",
+      "attachments": [
+        {
+          "type": "file",
+          "fileId": "9fbd",
+          "file": {
+            "id": "9fbd",
+            "url": "https://res.cloudinary.com/drr516zaf/image/upload/v1777668025/sapemua/chats/1517/qbnudinxouwqpxpstuqb.png",
+            "publicId": "sapemua/chats/1517/qbnudinxouwqpxpstuqb",
+            "resourceType": "image",
+            "format": "png",
+            "originalName": "student.png",
+            "bytes": 60886,
+            "type": "file",
+            "turmaId": "1517",
+            "senderId": "a6dd",
+            "senderRole": "student",
+            "createdAt": "2026-05-01T20:40:24.642Z"
+          }
+        }
+      ]
+    },
+    {
+      "id": "b7e1",
+      "message": "",
+      "turmaId": "1517",
+      "senderId": "46de",
+      "senderRole": "teacher",
+      "createdAt": "2026-05-01T20:45:10.830Z",
+      "attachments": [
+        {
+          "type": "file",
+          "fileId": "463d",
+          "file": {
+            "id": "463d",
+            "url": "https://res.cloudinary.com/drr516zaf/raw/upload/v1777668312/sapemua/chats/1517/bjtweinvpizxrku34doa.pdf",
+            "publicId": "sapemua/chats/1517/bjtweinvpizxrku34doa.pdf",
+            "resourceType": "raw",
+            "format": "pdf",
+            "originalName": "relatorio 26 de abril.pdf",
+            "bytes": 105248,
+            "type": "file",
+            "turmaId": "1517",
+            "senderId": "46de",
+            "senderRole": "teacher",
+            "createdAt": "2026-05-01T20:45:10.830Z"
+          }
+        }
+      ]
+    },
+    {
+      "id": "4e94",
+      "message": "Aqui esta a lista nominal",
+      "turmaId": "7fa1",
+      "senderId": "46de",
+      "senderRole": "teacher",
+      "createdAt": "2026-05-01T20:52:04.639Z",
+      "attachments": [
+        {
+          "type": "file",
+          "fileId": "ad3f",
+          "file": {
+            "id": "ad3f",
+            "url": "https://res.cloudinary.com/drr516zaf/image/upload/v1777668725/sapemua/chats/7fa1/s3fwdwkdzqfwgqc9x2r4.pdf",
+            "publicId": "sapemua/chats/7fa1/s3fwdwkdzqfwgqc9x2r4",
+            "resourceType": "image",
+            "format": "pdf",
+            "originalName": "lista.pdf",
+            "bytes": 16919,
+            "type": "file",
+            "turmaId": "7fa1",
+            "senderId": "46de",
+            "senderRole": "teacher",
+            "createdAt": "2026-05-01T20:52:04.639Z"
+          }
+        }
+      ]
+    },
+    {
+      "id": "4b83",
+      "message": "",
+      "turmaId": "7fa1",
+      "senderId": "46de",
+      "senderRole": "teacher",
+      "createdAt": "2026-05-01T20:53:17.392Z",
+      "attachments": [
+        {
+          "type": "file",
+          "fileId": "87f7",
+          "file": {
+            "id": "87f7",
+            "url": "https://res.cloudinary.com/drr516zaf/image/upload/v1777668798/sapemua/chats/7fa1/bjqynlm8bm4ti5ajql2f.pdf",
+            "publicId": "sapemua/chats/7fa1/bjqynlm8bm4ti5ajql2f",
+            "resourceType": "image",
+            "format": "pdf",
+            "originalName": "Convite Ana.pdf",
+            "bytes": 51838,
+            "type": "file",
+            "turmaId": "7fa1",
+            "senderId": "46de",
+            "senderRole": "teacher",
+            "createdAt": "2026-05-01T20:53:17.392Z"
+          }
+        }
+      ]
+    },
+    {
+      "id": "1ebf",
+      "message": "",
+      "turmaId": "7fa1",
+      "senderId": "46de",
+      "senderRole": "teacher",
+      "createdAt": "2026-05-01T20:53:39.109Z",
+      "attachments": [
+        {
+          "type": "file",
+          "fileId": "c6c1",
+          "file": {
+            "id": "c6c1",
+            "url": "https://res.cloudinary.com/drr516zaf/image/upload/v1777668820/sapemua/chats/7fa1/dfonsbeguvjucrxev1cx.png",
+            "publicId": "sapemua/chats/7fa1/dfonsbeguvjucrxev1cx",
+            "resourceType": "image",
+            "format": "png",
+            "originalName": "student.png",
+            "bytes": 60886,
+            "type": "file",
+            "turmaId": "7fa1",
+            "senderId": "46de",
+            "senderRole": "teacher",
+            "createdAt": "2026-05-01T20:53:39.109Z"
+          }
+        }
+      ]
+    },
+    {
+      "id": "ce28",
+      "message": "",
+      "turmaId": "7fa1",
+      "senderId": "46de",
+      "senderRole": "teacher",
+      "createdAt": "2026-05-02T18:47:05.503Z",
+      "attachments": [
+        {
+          "type": "file",
+          "fileId": "8b07",
+          "file": {
+            "id": "8b07",
+            "url": "https://res.cloudinary.com/drr516zaf/image/upload/v1777747627/sapemua/chats/7fa1/uvpsreabznmf7y6mwfhp.pdf",
+            "publicId": "sapemua/chats/7fa1/uvpsreabznmf7y6mwfhp",
+            "resourceType": "image",
+            "format": "pdf",
+            "originalName": "lista.pdf",
+            "bytes": 16919,
+            "type": "file",
+            "turmaId": "7fa1",
+            "senderId": "46de",
+            "senderRole": "teacher",
+            "createdAt": "2026-05-02T18:47:05.503Z"
+          }
+        }
+      ]
     }
   ],
-  "subjects": [],
   "grades": [
     {
       "id": "ef18",

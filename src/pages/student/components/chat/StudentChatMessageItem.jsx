@@ -1,12 +1,13 @@
-import { FiUser } from "react-icons/fi";
 import { formateDate } from "../../../../utils/helpers";
 import { useUsers } from "../../../../hooks/useUsers";
 import { useModal } from "../../../../contexts/ModalContext";
+import UserAvatar from "../../../../components/shared/UserAvatar";
+import ChatAttachments from "../../../../components/shared/ChatAttachments";
 
 function StudentChatMessageItem({ item, currUser }) {
   const { users } = useUsers();
   const { toggleSenderDetail, selectEditedItem } = useModal();
-  const sender = users.filter((user) => user.id === item.senderId);
+  const sender = users.find((user) => user.id === item.senderId);
   const isMine = item.senderId === currUser?.id;
   const timeLabel = item.time ?? formateDate(item.createdAt, "relative");
 
@@ -22,9 +23,7 @@ function StudentChatMessageItem({ item, currUser }) {
           onClick={handleSelectSender}
           className="flex items-end cursor-pointer"
         >
-          <div className="bg-gray-100 dark:bg-gray-900 p-2 rounded-full text-lg">
-            <FiUser />
-          </div>
+          <UserAvatar user={sender} size="xs" />
         </div>
       )}
 
@@ -35,7 +34,7 @@ function StudentChatMessageItem({ item, currUser }) {
       >
         {!isMine && (
           <p className="text-xs font-semibold mb-1 text-gray-600 dark:text-gray-300">
-            {sender.map((item) => item.name)}
+            {sender?.name}
           </p>
         )}
         <div
@@ -45,7 +44,8 @@ function StudentChatMessageItem({ item, currUser }) {
               : "bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-white"
           }`}
         >
-          <p className="text-sm">{item.message}</p>
+          {item.message && <p className="text-sm">{item.message}</p>}
+          <ChatAttachments attachments={item.attachments} />
           {timeLabel && (
             <p
               className={`text-xs mt-1 text-right ${

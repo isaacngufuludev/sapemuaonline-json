@@ -26,6 +26,7 @@ import AdminAddForm from "../AdminAddForm";
 import AdminInput from "../AdminInput";
 import AdminLabel from "../AdminLabel";
 import AdminSelect from "../AdminSelect";
+import { uploadOptionalFile } from "../../../../services/cloudinary";
 
 const initialState = {
   name: "",
@@ -54,6 +55,7 @@ function AdminAddTeacher() {
   const [selectedTurmas, setSelectedTurmas] = useState([]);
   const [selectedCourses, setSelectedCourses] = useState([]);
   const [selectedClasses, setSelectedClasses] = useState([]);
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const { turmas } = useTurmas();
   const { classes } = useClasses();
   const { courses } = useCourses();
@@ -118,6 +120,8 @@ function AdminAddTeacher() {
 
   async function handleSubmit(e) {
     e.preventDefault();
+    if (isSubmitting) return;
+
     const certificate = fileCertificateRef.current.files[0];
     // const cv = fileCVRef.current.files[0];
     const photo = filePhoto.current.files[0];
@@ -150,22 +154,32 @@ function AdminAddTeacher() {
 
     if (id) teacher = await get(`users/${id}`);
 
-    const newTecher = {
-      ...formData,
-      dateIn: teacher ? teacher.dateIn : formateDate(new Date()),
-      age: `${calcAge(formData.birthDate)} anos`,
-      phoneNumber: `+244 ${formData.phoneNumber}`,
-      certificate,
-      photo,
-      password: teacher ? teacher.password : Date.now().toString().slice(-8),
-      role: "teacher",
-      turmasId: selectedTurmas,
-      classesId: selectedClasses,
-      coursesId: selectedCourses,
-      subjects: subjects,
-    };
-
     try {
+      setIsSubmitting(true);
+      const [photoUpload, certificateUpload] = await Promise.all([
+        uploadOptionalFile(photo, teacher?.photo, "sapemua/teachers/photos"),
+        uploadOptionalFile(
+          certificate,
+          teacher?.certificate,
+          "sapemua/teachers/certificates",
+        ),
+      ]);
+
+      const newTecher = {
+        ...formData,
+        dateIn: teacher ? teacher.dateIn : formateDate(new Date()),
+        age: `${calcAge(formData.birthDate)} anos`,
+        phoneNumber: `+244 ${formData.phoneNumber}`,
+        certificate: certificateUpload,
+        photo: photoUpload,
+        password: teacher ? teacher.password : Date.now().toString().slice(-8),
+        role: "teacher",
+        turmasId: selectedTurmas,
+        classesId: selectedClasses,
+        coursesId: selectedCourses,
+        subjects: subjects,
+      };
+
       if (id) {
         await patch("users", id, newTecher);
         showSuccess("Professor atualizado com sucesso!");
@@ -176,7 +190,9 @@ function AdminAddTeacher() {
 
       handleClose();
     } catch (error) {
-      showWarning("Erro ao cadastrar professor", error.message);
+      showWarning(error.message || "Erro ao cadastrar professor");
+    } finally {
+      setIsSubmitting(false);
     }
   }
 
@@ -355,7 +371,7 @@ function AdminAddTeacher() {
               <AdminInput
                 type="file"
                 ref={filePhoto}
-                accept=".jpg, .png, .pdf"
+                accept=".jpg, .jpeg, .png"
               />
             </div>
             <div>
@@ -363,7 +379,7 @@ function AdminAddTeacher() {
               <AdminInput
                 type="file"
                 ref={fileCertificateRef}
-                accept=".jpg, .png, .pdf"
+                accept=".jpg, .jpeg, .png, .pdf"
               />
             </div>
           </div>
@@ -482,11 +498,21 @@ function AdminAddTeacher() {
           </p>
           <p>Cancelar</p>
         </AdminButton>
-        <AdminButton type="primary" onClick={handleSubmit}>
+        <AdminButton
+          type="primary"
+          onClick={handleSubmit}
+          disabled={isSubmitting}
+        >
           <p className="text-base">
             <MdOutlineDone />
           </p>
-          <p>{id ? "Finalizar Atualização" : "Finalizar Cadastro"}</p>
+          <p>
+            {isSubmitting
+              ? "A guardar..."
+              : id
+                ? "Finalizar Atualização"
+                : "Finalizar Cadastro"}
+          </p>
         </AdminButton>
       </div>
     </div>

@@ -1,6 +1,7 @@
 import { HiEllipsisVertical } from "react-icons/hi2";
 import { useEditOptions } from "../../../../hooks/useEditOptions";
-import { BsEye, BsPencil, BsTrash } from "react-icons/bs";
+import { BsEye, BsPencil } from "react-icons/bs";
+import UserAvatar from "../../../../components/shared/UserAvatar";
 
 function TurmaStudentsItem({ item }) {
   const { showMenu, menuRef, setShowMenu } = useEditOptions();
@@ -21,9 +22,7 @@ function TurmaStudentsItem({ item }) {
     <>
       <li className="hidden items-center border-b border-slate-200 bg-white px-2 last:border-0 dark:border-gray-700 dark:bg-gray-800 md:grid md:grid-cols-[0.3fr_1fr_0.7fr_0.7fr_0.7fr_0.2fr]">
         <div className="font-semibold flex items-center justify-start ">
-          <p className="py-3 px-5 bg-slate-100 rounded-full dark:bg-gray-900">
-            {item.name[0].toUpperCase()}
-          </p>
+          <UserAvatar user={item} size="md" />
         </div>
         <p className="py-4">{item.name}</p>
         <p className="py-4">{item.id}</p>

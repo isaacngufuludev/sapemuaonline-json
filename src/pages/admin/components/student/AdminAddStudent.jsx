@@ -28,6 +28,7 @@ import { useCourses } from "../../../../hooks/useCourses";
 import { useClasses } from "../../../../hooks/useClasses";
 import { useTurmas } from "../../../../hooks/useTurmas";
 import FloatInputLabel from "../../../../components/ui/FloatInputLabel";
+import { uploadOptionalFile } from "../../../../services/cloudinary";
 
 const parentLinks = [
   {
@@ -60,6 +61,7 @@ const initialState = {
 
 function AdminAddStudent() {
   const [formData, setFormData] = useState(initialState);
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const certfificateRef = useRef(null);
   const photoRef = useRef(null);
   const navigate = useNavigate();
@@ -109,6 +111,8 @@ function AdminAddStudent() {
 
   async function handlerSubmit(e) {
     e.preventDefault();
+    if (isSubmitting) return;
+
     const certificate = certfificateRef.current.files[0];
     const photo = photoRef.current.files[0];
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -141,29 +145,39 @@ function AdminAddStudent() {
       student = await get(`users/${id}`);
     }
 
-    const newStudent = {
-      ...formData,
-      dateIn: student ? student.dateIn : formateDate(new Date()),
-      age: `${calcAge(formData.birthDate)} anos`,
-      phoneNumber: `+244 ${formData.phoneNumber}`,
-      fatherPhoneNumber: fatherPhoneNumber ? `+244 ${fatherPhoneNumber}` : "",
-      motherPhoneNumber: motherPhoneNumber ? `+244 ${motherPhoneNumber}` : "",
-      guardionPhoneNumber: guardionPhoneNumber
-        ? `+244 ${guardionPhoneNumber}`
-        : "",
-      fatherJob,
-      motherJob,
-      guardionJob,
-      fatherName,
-      motherName,
-      certificate,
-      photo,
-      guardionName,
-      password: student ? student.dateIn : Date.now().toString().slice(-8),
-      role: "student",
-    };
-
     try {
+      setIsSubmitting(true);
+      const [photoUpload, certificateUpload] = await Promise.all([
+        uploadOptionalFile(photo, student?.photo, "sapemua/students/photos"),
+        uploadOptionalFile(
+          certificate,
+          student?.certificate,
+          "sapemua/students/certificates",
+        ),
+      ]);
+
+      const newStudent = {
+        ...formData,
+        dateIn: student ? student.dateIn : formateDate(new Date()),
+        age: `${calcAge(formData.birthDate)} anos`,
+        phoneNumber: `+244 ${formData.phoneNumber}`,
+        fatherPhoneNumber: fatherPhoneNumber ? `+244 ${fatherPhoneNumber}` : "",
+        motherPhoneNumber: motherPhoneNumber ? `+244 ${motherPhoneNumber}` : "",
+        guardionPhoneNumber: guardionPhoneNumber
+          ? `+244 ${guardionPhoneNumber}`
+          : "",
+        fatherJob,
+        motherJob,
+        guardionJob,
+        fatherName,
+        motherName,
+        certificate: certificateUpload,
+        photo: photoUpload,
+        guardionName,
+        password: student ? student.password : Date.now().toString().slice(-8),
+        role: "student",
+      };
+
       if (id) {
         await patch("users", id, newStudent);
         showSuccess("Estudante atualizado com sucesso!");
@@ -174,7 +188,9 @@ function AdminAddStudent() {
 
       handleClose();
     } catch (error) {
-      showError("Erro ao cadastrar estudante: ", error.message);
+      showError(error.message || "Erro ao cadastrar estudante");
+    } finally {
+      setIsSubmitting(false);
     }
   }
 
@@ -303,13 +319,13 @@ function AdminAddStudent() {
         <AdminAddForm type="two">
           <div>
             <AdminLabel>Foto-Passe</AdminLabel>
-            <AdminInput ref={photoRef} accept=".jpg, .png" type="file" />
+            <AdminInput ref={photoRef} accept=".jpg, .jpeg, .png" type="file" />
           </div>
           <div>
             <AdminLabel>Upload do Certificado</AdminLabel>
             <AdminInput
               ref={certfificateRef}
-              accept=".jpg, .png, .pdf"
+              accept=".jpg, .jpeg, .png, .pdf"
               type="file"
             />
           </div>
@@ -372,11 +388,21 @@ function AdminAddStudent() {
           </p>
           <p>Cancelar</p>
         </AdminButton>
-        <AdminButton type="primary" onClick={handlerSubmit}>
+        <AdminButton
+          type="primary"
+          onClick={handlerSubmit}
+          disabled={isSubmitting}
+        >
           <p className="text-base">
             <MdOutlineDone />
           </p>
-          <p>{id ? "Finalizar Atualização" : "Finalizar Cadastro"}</p>
+          <p>
+            {isSubmitting
+              ? "A guardar..."
+              : id
+                ? "Finalizar Atualização"
+                : "Finalizar Cadastro"}
+          </p>
         </AdminButton>
       </div>
     </div>

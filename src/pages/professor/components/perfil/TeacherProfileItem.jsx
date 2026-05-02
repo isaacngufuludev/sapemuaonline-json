@@ -1,9 +1,10 @@
 import Title4 from "../../../../components/ui/Title4";
 
-import { FiUser, FiPhone, FiMail, FiCalendar } from "react-icons/fi";
+import { FiPhone, FiMail, FiCalendar } from "react-icons/fi";
 import { LuGraduationCap } from "react-icons/lu";
 import { HiOutlineHome, HiOutlineBookOpen } from "react-icons/hi";
 import { useAuth } from "../../../../contexts/AuthContext";
+import UserAvatar from "../../../../components/shared/UserAvatar";
 
 function TeacherProfileItem() {
   const { user } = useAuth();
@@ -13,9 +14,7 @@ function TeacherProfileItem() {
       <div className="grid grid-cols-1 items-start gap-4 xl:gap-4 lg:gap-3 lg:grid-cols-[2fr_3fr] xl:grid-cols-[1.5fr_3fr]">
         <div className="rounded-md bg-white dark:bg-gray-800  border-[0.1px] dark:border-gray-700 border-slate-200">
           <div className="flex gap-2 items-center p-5 border-b-[0.1px] dark:border-gray-700 border-slate-200">
-            <p className="text-4xl  bg-blue-200 p-5 rounded-full dark:bg-gray-900">
-              <FiUser />
-            </p>
+            <UserAvatar user={user} size="xl" />
             <div>
               <Title4>{user.name}</Title4>
               <p className="text-xs">{user.id}</p>

@@ -3,6 +3,7 @@ import { HiEllipsisVertical } from "react-icons/hi2";
 import { useEditOptions } from "../../../../hooks/useEditOptions";
 import { useModal } from "../../../../contexts/ModalContext";
 import { useNavigate } from "react-router-dom";
+import UserAvatar from "../../../../components/shared/UserAvatar";
 
 function TeacherStudentItem({
   item,
@@ -45,10 +46,9 @@ function TeacherStudentItem({
       ref={menuRef}
     >
       <div className="hidden md:grid items-center grid-cols-[0.5fr_3fr_0.7fr_0.7fr_0.7fr_0.7fr_0.3fr]">
-        <div className="font-semibold flex items-center justify-center">
-          <p className="py-3 px-4 bg-slate-100 rounded-full dark:bg-gray-900">
-            {i + 1}
-          </p>
+        <div className="font-semibold flex items-center justify-center gap-2">
+          <span className="text-xs text-gray-500">{i + 1}</span>
+          <UserAvatar user={item} size="sm" />
         </div>
         <p className="truncate">{item.name}</p>
         <p className={scoreClass(mac)}>{mac}</p>
@@ -86,9 +86,7 @@ function TeacherStudentItem({
 
       <div className="md:hidden flex items-center justify-between gap-3">
         <div className="min-w-0 flex items-center gap-3">
-          <p className="py-[6px] px-3 bg-slate-100 rounded-full dark:bg-gray-900">
-            {i + 1}
-          </p>
+          <UserAvatar user={item} size="sm" />
           <div className="min-w-0">
             <p className="truncate">{item.name}</p>
             <p className="text-xs text-gray-500 dark:text-gray-400 font-medium truncate">

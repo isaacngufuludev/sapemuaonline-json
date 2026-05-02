@@ -8,6 +8,8 @@ import { FaRegIdCard } from "react-icons/fa";
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import Loading from "../../../../components/shared/Loading";
+import MediaPreview from "../MediaPreview";
+import UserAvatar from "../../../../components/shared/UserAvatar";
 
 function AdminTeacherDetailItem() {
   const { teacherId } = useParams();
@@ -32,9 +34,7 @@ function AdminTeacherDetailItem() {
       <div className="grid grid-cols-1 items-start gap-4 lg:gap-7 xl:grid-cols-[1.5fr_3fr]">
         <div className="mb-5 flex flex-col gap-3 rounded-md border-[0.1px] border-slate-200 bg-white p-4 dark:border-gray-700 dark:bg-gray-800 sm:p-5">
           <div className="flex gap-2 items-center p-5 border-b-[0.1px] dark:border-gray-700 border-slate-200">
-            <p className="text-4xl  bg-blue-200 p-5 sm:px-4 rounded-full dark:bg-gray-900">
-              <FiUser />
-            </p>
+            <UserAvatar user={teacher} size="xl" />
             <div>
               <Title4>{teacher.name}</Title4>
               <p className="text-sm">Aderido aos {teacher.dateIn} </p>
@@ -145,6 +145,8 @@ function AdminTeacherDetailItem() {
             <p className="text-sm sm:w-56">Disciplinas </p>
             <p className="text-sm">{teacher.subjects.join(", ")}</p>
           </div>
+          <MediaPreview file={teacher.photo} title="Foto-Passe" />
+          <MediaPreview file={teacher.certificate} title="Certificado" />
           <div className="flex flex-col gap-1 px-5 py-3 sm:flex-row sm:gap-10">
             <p className="text-sm sm:w-56">Turmas Vinculadas </p>
             <p className="text-sm">{teacher.turmasId.join(", ")}</p>
