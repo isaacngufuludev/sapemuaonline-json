@@ -9,10 +9,10 @@ function TeacherLinks({ item }) {
       <NavLink
         className={({ isActive }) =>
           isActive
-            ? `bg-blue-200 px-3 py-[10px] dark:bg-gray-900 flex items-center text-sm transition-all duration-300 ${
+            ? `bg-blue-200 px-3 py-[14px] dark:bg-gray-900 flex items-center text-sm transition-all duration-300 ${
                 isSidebarOpen ? "gap-1" : "justify-center"
               }`
-            : `px-3 py-[10px] flex items-center text-sm transition-all duration-300 ${
+            : `px-3 py-[14px] flex items-center text-sm transition-all duration-300 ${
                 isSidebarOpen ? "gap-1" : "justify-center"
               }`
         }

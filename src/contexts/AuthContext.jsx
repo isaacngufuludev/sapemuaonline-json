@@ -55,7 +55,11 @@ function AuthProvider({ children }) {
       dispatch({ type: "login", payload: userFound });
       localStorage.setItem("currentUser", JSON.stringify(userFound));
 
-      showSuccess("Login executado com sucesso");
+      const navigationTimer = setTimeout(() => {
+        showSuccess("Login executado com sucesso");
+      }, 1000);
+
+      return () => clearTimeout(navigationTimer);
     } else {
       showError("Credênciais invalidas, tente de novo");
     }

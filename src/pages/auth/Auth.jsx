@@ -1,10 +1,36 @@
 import Header from "../../components/layout/Header";
 import AuthBox from "./components/AuthBox";
-import { Outlet } from "react-router-dom";
+import { Outlet, useNavigate } from "react-router-dom";
 import ToggleDarkMode from "../../components/shared/ToggleDarkMode";
 import BtnGoBack from "../../components/ui/BtnGoBack";
+import { useAuth } from "../../contexts/AuthContext";
+import FullScreenLoading from "../../components/shared/FullScreenLoading";
+import { useEffect } from "react";
 
 function Auth() {
+  const { isAuthenticated, user } = useAuth();
+  const navigate = useNavigate();
+
+  useEffect(
+    function () {
+      if (!user || !isAuthenticated) return;
+
+      // Aguardar um pouco antes de navegar para dar tempo de visualizar o loading
+      const navigationTimer = setTimeout(() => {
+        if (user.role === "admin") navigate("/area/admin");
+        else if (user.role === "teacher") navigate("/area/teacher");
+        else if (user.role === "student") navigate("/area/student");
+      }, 1000);
+
+      return () => clearTimeout(navigationTimer);
+    },
+    [user, isAuthenticated, navigate],
+  );
+
+  if (isAuthenticated) {
+    return <FullScreenLoading isVisible={true} />;
+  }
+
   return (
     <div className="">
       <div className=" lg:grid lg:grid-cols-[2.5fr_1.1fr] xl:grid-cols-[3fr_1.3fr] px-3 sm:px-0 max-w-[350px] lg:max-w-full lg:mx-0 mx-auto">

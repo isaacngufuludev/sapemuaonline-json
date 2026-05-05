@@ -4,7 +4,6 @@ import { FiArrowLeft } from "react-icons/fi";
 function StudentChatHeader({ conversation, onBack, showBackButton }) {
   const period = conversation?.period ?? "";
   const periodInitial = Array.isArray(period) ? period[0] : String(period)[0];
-  const onlineLabel = conversation?.subtitle ?? "0 online";
 
   return (
     <header className="bg-white dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700 px-4 md:px-6 py-4 flex items-center justify-between">
@@ -30,12 +29,6 @@ function StudentChatHeader({ conversation, onBack, showBackButton }) {
               : conversation?.turmaCategory}
             {periodInitial}
           </h2>
-          <div className="flex items-center gap-1">
-            <span className="inline-block p-1 rounded-full bg-blue-600"></span>
-            <p className="text-xs text-gray-500 dark:text-gray-400">
-              {onlineLabel}
-            </p>
-          </div>
         </div>
       </div>
     </header>

@@ -1,6 +1,5 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useAuth } from "../../../contexts/AuthContext.jsx";
-import { useNavigate } from "react-router-dom";
 import { useToast } from "../../../hooks/useToast.js";
 import { FiEye, FiEyeOff } from "react-icons/fi";
 import Loading from "../../../components/shared/Loading.jsx";
@@ -10,9 +9,8 @@ function LoginForm() {
   const [loginMethod, setLoginMethod] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
-  const { user, login, isAuthenticated, isLoading } = useAuth();
+  const { login, isLoading } = useAuth();
   const { showWarning } = useToast();
-  const navigate = useNavigate();
 
   function handleSubmit(e) {
     e.preventDefault();
@@ -27,16 +25,6 @@ function LoginForm() {
     setPassword("");
     document.activeElement.blur();
   }
-
-  useEffect(
-    function () {
-      if (!user) return;
-      if (isAuthenticated && user.role === "admin") navigate("/area/admin");
-      if (isAuthenticated && user.role === "teacher") navigate("/area/teacher");
-      if (isAuthenticated && user.role === "student") navigate("/area/student");
-    },
-    [user, isAuthenticated, navigate],
-  );
 
   return (
     <>

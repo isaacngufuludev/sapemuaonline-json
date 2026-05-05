@@ -45,11 +45,11 @@ const links = [
     icon: <HiOutlineNewspaper />,
     link: "AdminNews",
   },
-  {
-    name: "Configurações",
-    icon: <HiOutlineCog />,
-    link: "AdminConfigs",
-  },
+  // {
+  //   name: "Configurações",
+  //   icon: <HiOutlineCog />,
+  //   link: "AdminConfigs",
+  // },
 ];
 
 function Admin() {
@@ -62,7 +62,7 @@ function Admin() {
           <Logo />
         </div>
         <AuthNav>
-          <ul className="flex flex-col ">
+          <ul className="flex flex-col  ">
             {links.map((item, i) => (
               <AdminLinks item={item} key={i} />
             ))}

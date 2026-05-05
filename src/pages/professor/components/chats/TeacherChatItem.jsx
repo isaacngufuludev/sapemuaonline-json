@@ -1,5 +1,7 @@
 import { useLocation, useNavigate } from "react-router-dom";
 import { useModal } from "../../../../contexts/ModalContext";
+import { useMessages } from "../../../../hooks/useMessages";
+import { formateDate } from "../../../../utils/helpers";
 
 // function TeacherChatItem({ item, isSelected, onClick }) {
 function TeacherChatItem({ item, onClick }) {
@@ -8,6 +10,12 @@ function TeacherChatItem({ item, onClick }) {
   const navigate = useNavigate();
   const currentId = useLocation().hash;
   const isCurrent = currentId.split("#").at(1) === item.id;
+  const { messages } = useMessages();
+  const turmaMessages = messages.filter(
+    (message) => message.turmaId === item.id,
+  );
+  const lastMessage = turmaMessages.at(-1);
+
   const { toggle } = useModal();
 
   return (
@@ -32,12 +40,12 @@ function TeacherChatItem({ item, onClick }) {
           {periodInitial}
         </h4>
         <span className="text-xs text-gray-500 dark:text-gray-400">
-          {item.time}
+          {formateDate(lastMessage?.createdAt, "relative")}
         </span>
       </div>
       <div className="flex items-center justify-between">
         <p className="text-sm text-gray-600 dark:text-gray-300 truncate">
-          {item.lastMessage}
+          {lastMessage?.message}
         </p>
         {item.unread > 0 && (
           <span className="inline-flex items-center justify-center w-5 h-5 text-xs font-medium text-white bg-blue-600 rounded-full mt-1">
