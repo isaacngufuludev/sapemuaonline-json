@@ -174,7 +174,7 @@ function AdminAddStudent() {
         certificate: certificateUpload,
         photo: photoUpload,
         guardionName,
-        password: student ? student.password : Date.now().toString().slice(-8),
+        password: student ? student.password : "1234",
         role: "student",
       };
 

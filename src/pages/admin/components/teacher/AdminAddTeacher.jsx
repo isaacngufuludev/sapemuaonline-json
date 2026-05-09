@@ -172,7 +172,7 @@ function AdminAddTeacher() {
         phoneNumber: `+244 ${formData.phoneNumber}`,
         certificate: certificateUpload,
         photo: photoUpload,
-        password: teacher ? teacher.password : Date.now().toString().slice(-8),
+        password: teacher ? teacher.password : "1234",
         role: "teacher",
         turmasId: selectedTurmas,
         classesId: selectedClasses,
