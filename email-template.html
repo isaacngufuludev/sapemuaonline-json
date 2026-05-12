@@ -1,51 +1,4 @@
-# React + Vite
-
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
-
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
-
-## React Compiler
-
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
-
-## Password Recovery with EmailJS
-
-The application includes email-based password recovery using EmailJS. To configure:
-
-### 1. Create EmailJS Account
-
-- Go to [EmailJS](https://www.emailjs.com/)
-- Sign up for a free account
-
-### 2. Create Email Service
-
-- In your dashboard, go to "Email Services"
-- Add a new service (e.g., Gmail, Outlook)
-- Connect your email account
-- Note the **Service ID** (starts with `service_`)
-
-### 3. Create Email Template
-
-- Go to "Email Templates"
-- Create a new template with these **exact** variables:
-  - `{{to}}` - Recipient email address
-  - `{{from_name}}` - Sender name ("SAPEMUA ONLINE")
-  - `{{to_name}}` - Recipient name
-  - `{{link}}` - Password reset link
-  - `{{email}}` - Recipient email (for footer)
-  - `{{message}}` - Full email message (optional)
-
-**Template Atualizado (HTML Moderno):**
-
-```html
-<!DOCTYPE html>
+<!doctype html>
 <html lang="pt">
   <head>
     <meta charset="UTF-8" />
@@ -177,7 +130,7 @@ The application includes email-based password recovery using EmailJS. To configu
 
         <p>Para criar uma nova senha, clique no botão abaixo:</p>
 
-        <div style="text-align: center;">
+        <div style="text-align: center">
           <a href="{{link}}" class="reset-button">🔑 Redefinir Minha Senha</a>
         </div>
 
@@ -216,58 +169,3 @@ The application includes email-based password recovery using EmailJS. To configu
     </div>
   </body>
 </html>
-```
-
-**📄 Arquivo de Template:** Copie o conteúdo do arquivo `email-template.html` para colar diretamente no EmailJS.
-
-- Note the **Template ID** (starts with `template_`)
-
-### 4. Get Public Key
-
-- Go to "Account" → "General"
-- Copy the **Public Key**
-
-### 5. Configure Environment Variables
-
-Create a `.env` file in the frontend directory:
-
-```
-VITE_EMAILJS_SERVICE_ID=service_your_service_id
-VITE_EMAILJS_TEMPLATE_ID=template_your_template_id
-VITE_EMAILJS_PUBLIC_KEY=your_public_key
-```
-
-### 6. Test Configuration
-
-- Make sure your email service is verified
-- Test the template in EmailJS dashboard
-- Check that all IDs are correct and active
-- **New**: After sending recovery email, the app automatically opens the user's email inbox
-
-### Email Inbox Auto-Open Feature
-
-When users click "Send Recovery Email", the application will:
-
-- Send the recovery email via EmailJS
-- Automatically detect the user's email provider (Gmail, Outlook, Yahoo, iCloud)
-- Open the appropriate webmail in a new tab
-- Redirect to login page
-
-**Supported Providers:**
-
-- Gmail: `https://mail.google.com`
-- Outlook/Hotmail: `https://outlook.live.com`
-- Yahoo: `https://mail.yahoo.com`
-- iCloud: `https://www.icloud.com/mail`
-- Others: Defaults to Gmail
-
-**📄 Implementation Details:** See `email-provider-detection.js` for the detection logic.
-
-### Troubleshooting
-
-- **ERR_NAME_NOT_RESOLVED**: Check internet connection
-- **422 Unprocessable Content**: Check template variables match exactly
-- **Invalid Service/Template ID**: Verify IDs in EmailJS dashboard
-- **Email not sent**: Check email service configuration and quota
-
-5. Start the JSON Server on port 3000: `npx json-server --watch db/db.json --port 3000`

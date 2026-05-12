@@ -63,6 +63,10 @@ function AppRoutes() {
                   <Route index path="/" element={<Home />} />
                   <Route path="/sobre" element={<Sobre />} />
                   <Route path="/gallery" element={<Gallery />} />
+                  <Route
+                    path="/reset-password/:token"
+                    element={<ResetPassword />}
+                  />
                   <Route path="/auth" element={<Auth />}>
                     <Route index element={<Navigate replace to="login" />} />
                     <Route path="login" element={<Login />} />
@@ -70,7 +74,6 @@ function AppRoutes() {
                       path="forgot-password"
                       element={<ForgotPassword />}
                     />
-                    <Route path="reset-password" element={<ResetPassword />} />
                   </Route>
 
                   <Route path="*" element={<PageNotFound />} />

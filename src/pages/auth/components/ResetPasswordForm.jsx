@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { FiEye, FiEyeOff } from "react-icons/fi";
 import { useToast } from "../../../hooks/useToast";
-import { patch } from "../../../services/api";
+import { get, patch } from "../../../services/api";
 import Loading from "../../../components/shared/Loading";
 import AuthInput from "./AuthInput";
 
@@ -11,37 +11,67 @@ function ResetPasswordForm() {
   const [confirmPassword, setConfirmPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [resetUser, setResetUser] = useState(null);
-  const { showError, showSuccess, showWarning } = useToast();
+  const [isValidating, setIsValidating] = useState(true);
+  const [user, setUser] = useState(null);
+  const { token } = useParams();
+  const { showError, showSuccess } = useToast();
   const navigate = useNavigate();
-  const location = useLocation();
 
   useEffect(() => {
-    const savedResetUser = sessionStorage.getItem("passwordResetUser");
-    const parsedResetUser = savedResetUser ? JSON.parse(savedResetUser) : null;
-    const userFromRoute = location.state?.userId
-      ? { id: location.state.userId, email: location.state.email }
-      : null;
+    async function validateToken() {
+      if (!token) {
+        showError("Token inválido");
+        navigate("/auth/forgot-password");
+        return;
+      }
 
-    setResetUser(userFromRoute || parsedResetUser);
-  }, [location.state]);
+      try {
+        // Buscar todos usuários e filtrar pelo resetToken
+        const users = await get("users");
+        const userFound = users.find((u) => u.resetToken === token);
+
+        if (!userFound) {
+          showError("Token inválido ou expirado");
+          navigate("/auth/forgot-password");
+          return;
+        }
+
+        // Verificar expiração
+        const expires = new Date(userFound.resetTokenExpires);
+        if (expires < new Date()) {
+          showError("Token expirado. Solicite um novo link de recuperação.");
+          navigate("/auth/forgot-password");
+          return;
+        }
+
+        setUser(userFound);
+      } catch (error) {
+        console.error("Erro ao validar token:", error);
+        showError("Erro ao validar token");
+        navigate("/auth/forgot-password");
+      } finally {
+        setIsValidating(false);
+      }
+    }
+
+    validateToken();
+  }, [token, navigate, showError]);
 
   async function handleSubmit(e) {
     e.preventDefault();
 
-    if (!resetUser?.id) {
-      showWarning("Informe primeiro o email da conta");
-      navigate("/auth/forgot-password");
+    if (!user) {
+      showError("Usuário não encontrado");
       return;
     }
 
     if (!password || !confirmPassword) {
-      showWarning("Preencha todos os campos por favor");
+      showError("Preencha todos os campos por favor");
       return;
     }
 
     if (password.length < 4) {
-      showWarning("A palavra-passe deve ter pelo menos 4 caracteres");
+      showError("A palavra-passe deve ter pelo menos 4 caracteres");
       return;
     }
 
@@ -52,19 +82,51 @@ function ResetPasswordForm() {
 
     try {
       setIsSubmitting(true);
-      await patch("users", resetUser.id, { password });
-      sessionStorage.removeItem("passwordResetUser");
+      await patch("users", user.id, {
+        password,
+        resetToken: "",
+        resetTokenExpires: "",
+      });
       showSuccess("Palavra-passe redefinida com sucesso");
       navigate("/auth/login");
-    } catch {
+    } catch (error) {
+      console.error("Erro ao redefinir senha:", error);
       showError("Não foi possível redefinir a palavra-passe");
     } finally {
       setIsSubmitting(false);
     }
   }
 
+  if (isValidating) {
+    return (
+      <div className="flex justify-center items-center p-8">
+        <Loading size={40} />
+        <span className="ml-2">Validando token...</span>
+      </div>
+    );
+  }
+
+  if (!user) {
+    return (
+      <div className="text-center p-8">
+        <p className="text-red-600">Token inválido ou expirado.</p>
+        <button
+          onClick={() => navigate("/auth/forgot-password")}
+          className="mt-4 bg-blue-700 text-white px-4 py-2 rounded-full"
+        >
+          Solicitar novo link
+        </button>
+      </div>
+    );
+  }
+
   return (
     <form className="flex flex-col gap-4" onSubmit={handleSubmit}>
+      <div className="text-center mb-4">
+        <p className="text-gray-600">
+          Redefinindo senha para: <strong>{user?.email}</strong>
+        </p>
+      </div>
       <div className="relative">
         <AuthInput
           id="password"
@@ -95,9 +157,9 @@ function ResetPasswordForm() {
       <button
         type="submit"
         disabled={isSubmitting}
-        className="bg-blue-700 w-full text-white rounded-full text-sm font-semibold flex items-center  sm:p-[10px] p-[12px] justify-center"
+        className="bg-blue-700 w-full text-white rounded-full text-sm font-semibold flex items-center sm:p-[10px] p-[12px] justify-center disabled:opacity-50"
       >
-        {isSubmitting ? <Loading size={25} /> : "Redefinir"}
+        {isSubmitting ? <Loading size={25} /> : "Redefinir Senha"}
       </button>
     </form>
   );

@@ -8,7 +8,9 @@
       "phoneNumber": "+244 934 987 654",
       "genre": "Masculino",
       "password": "4024",
-      "role": "admin"
+      "role": "admin",
+      "resetToken": "1d9a4e88-85ee-4ec2-8121-907a7147ae36",
+      "resetTokenExpires": "2026-05-12T00:44:28.979Z"
     },
     {
       "id": "540",
@@ -28,7 +30,9 @@
       "phoneNumber": "+244 912 345 678",
       "genre": "Masculino",
       "password": "2000",
-      "role": "admin"
+      "role": "admin",
+      "resetToken": "349f49b7-0f7c-4212-85df-41de9ae765d9",
+      "resetTokenExpires": "2026-05-11T23:22:27.071Z"
     },
     {
       "id": "4ea7",
@@ -64,7 +68,9 @@
         "format": "png",
         "originalName": "tanjiro-kamado-red-5120x2880-22577.png",
         "bytes": 5668468
-      }
+      },
+      "resetToken": "879c52ce-a698-46ea-873d-033a0316bf12",
+      "resetTokenExpires": "2026-05-12T00:40:29.386Z"
     },
     {
       "id": "37e0",
@@ -81,14 +87,26 @@
       "email": "leonardodev@gmail.com",
       "adressCollege": "",
       "phoneCollege": "",
-      "turmasId": ["1517", "31cd"],
-      "classesId": ["904a", "a552"],
-      "coursesId": ["e453"],
+      "turmasId": [
+        "1517",
+        "31cd"
+      ],
+      "classesId": [
+        "904a",
+        "a552"
+      ],
+      "coursesId": [
+        "e453"
+      ],
       "dateIn": "27 de fevereiro de 2026",
       "age": "36 anos",
-      "password": "1234",
+      "password": "123456",
       "role": "teacher",
-      "subjects": ["TLP"]
+      "subjects": [
+        "TLP"
+      ],
+      "resetToken": "6ba8b5c5-da62-4545-a757-f5d9dea0bea4",
+      "resetTokenExpires": "2026-05-12T00:22:27.819Z"
     },
     {
       "id": "46de",
@@ -105,14 +123,28 @@
       "email": "makiadi@gmail.com",
       "adressCollege": "",
       "phoneCollege": "",
-      "turmasId": ["1517", "7fa1", "31cd"],
-      "classesId": ["a341", "904a", "a552"],
-      "coursesId": ["9e44", "e453"],
+      "turmasId": [
+        "1517",
+        "7fa1",
+        "31cd"
+      ],
+      "classesId": [
+        "a341",
+        "904a",
+        "a552"
+      ],
+      "coursesId": [
+        "9e44",
+        "e453"
+      ],
       "dateIn": "27 de fevereiro de 2026",
       "age": "46 anos",
       "password": "1234",
       "role": "teacher",
-      "subjects": ["Matemática", "TREI"]
+      "subjects": [
+        "Matemática",
+        "TREI"
+      ]
     },
     {
       "id": "8de1",
@@ -129,10 +161,27 @@
       "email": "joaofinda@gmail.com",
       "adressCollege": "",
       "phoneCollege": "",
-      "subjects": ["Seac", "TIC", "Gestão"],
-      "turmasId": ["1517", "7fa1", "31cd"],
-      "classesId": ["a341", "904a", "e2ec", "a552", "5459"],
-      "coursesId": ["9e44", "e453"],
+      "subjects": [
+        "Seac",
+        "TIC",
+        "Gestão"
+      ],
+      "turmasId": [
+        "1517",
+        "7fa1",
+        "31cd"
+      ],
+      "classesId": [
+        "a341",
+        "904a",
+        "e2ec",
+        "a552",
+        "5459"
+      ],
+      "coursesId": [
+        "9e44",
+        "e453"
+      ],
       "dateIn": "27 de fevereiro de 2026",
       "age": "30 anos",
       "password": "1234",
@@ -200,7 +249,7 @@
       "courseId": "e453",
       "classId": "904a",
       "turmaId": "1517",
-      "email": "isaac@gmail.com",
+      "email": "isaacngufulu70@gmail.com",
       "dateIn": "1 de maio de 2026",
       "age": "19 anos",
       "fatherPhoneNumber": "",
@@ -228,8 +277,10 @@
         "bytes": 64634
       },
       "guardionName": "",
-      "password": "1234",
-      "role": "student"
+      "password": "2026",
+      "role": "student",
+      "resetToken": "e4cf040d-dc8d-4db3-9161-5580babc357d",
+      "resetTokenExpires": "2026-05-12T01:01:32.139Z"
     }
   ],
   "courses": [
