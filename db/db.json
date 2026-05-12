@@ -35,44 +35,6 @@
       "resetTokenExpires": "2026-05-11T23:22:27.071Z"
     },
     {
-      "id": "4ea7",
-      "name": "Mesaque Boca",
-      "birthDate": "2000-06-22",
-      "province": "Luanda",
-      "biCode": "000deragas677788",
-      "residence": "Cazenga Mabor",
-      "phoneNumber": "+244 938489490",
-      "genre": "Masculino",
-      "courseId": "9e44",
-      "classId": "a341",
-      "turmaId": "7fa1",
-      "email": "isaacngufuliu@gmail.com",
-      "dateIn": "18 de fevereiro de 2026",
-      "age": "26 anos",
-      "fatherPhoneNumber": "",
-      "motherPhoneNumber": "",
-      "guardionPhoneNumber": "",
-      "fatherJob": "",
-      "motherJob": "",
-      "guardionJob": "",
-      "fatherName": "",
-      "motherName": "",
-      "guardionName": "",
-      "password": "1234",
-      "role": "student",
-      "certificate": null,
-      "photo": {
-        "url": "https://res.cloudinary.com/drr516zaf/image/upload/v1777640476/sapemua/students/photos/dgffhonclobcikcyogrp.png",
-        "publicId": "sapemua/students/photos/dgffhonclobcikcyogrp",
-        "resourceType": "image",
-        "format": "png",
-        "originalName": "tanjiro-kamado-red-5120x2880-22577.png",
-        "bytes": 5668468
-      },
-      "resetToken": "879c52ce-a698-46ea-873d-033a0316bf12",
-      "resetTokenExpires": "2026-05-12T00:40:29.386Z"
-    },
-    {
       "id": "37e0",
       "name": "Leonardo Pequeno",
       "birthDate": "1990-02-05",
@@ -189,7 +151,7 @@
     },
     {
       "id": "bd1a",
-      "name": "Matondo Pedro",
+      "name": "Henriques Cidade",
       "birthDate": "2000-05-15",
       "province": "Luanda",
       "biCode": "09903230930993",
@@ -206,7 +168,15 @@
       "motherPhoneNumber": "",
       "guardionPhoneNumber": "",
       "password": "1234",
-      "role": "student"
+      "role": "student",
+      "fatherJob": "",
+      "motherJob": "",
+      "guardionJob": "",
+      "fatherName": "",
+      "motherName": "",
+      "certificate": null,
+      "photo": null,
+      "guardionName": ""
     },
     {
       "id": "6fef",
@@ -293,6 +263,11 @@
       "id": "e453",
       "dateIn": "15 de fevereiro de 2026",
       "courseName": "Informática"
+    },
+    {
+      "id": "37e9",
+      "dateIn": "12 de maio de 2026",
+      "courseName": "Recursos humanos"
     }
   ],
   "classes": [
@@ -325,6 +300,12 @@
       "classYear": "12ª Classe",
       "dateIn": "7 de fevereiro de 2026",
       "courseId": "e453"
+    },
+    {
+      "id": "5899",
+      "classYear": "12ª Classe",
+      "dateIn": "12 de maio de 2026",
+      "courseId": "37e9"
     }
   ],
   "turmas": [
@@ -354,14 +335,23 @@
       "room": "30",
       "turmaCategory": "A",
       "dateIn": "26 de fevereiro de 2026"
+    },
+    {
+      "id": "bf36",
+      "classId": "5899",
+      "courseId": "37e9",
+      "period": "Manha",
+      "room": "4",
+      "turmaCategory": "B",
+      "dateIn": "12 de maio de 2026"
     }
   ],
   "news": [
     {
       "id": "5cbb",
       "title": "Prova do Professor",
-      "date": "2026-07-12",
-      "description": "O Pagamento do prova está no valor de 10000\n",
+      "date": "2026-04-12",
+      "description": "O Pagamento do prova está no valor de 3000\n",
       "dateIn": "20 de fevereiro de 2026"
     },
     {
@@ -377,6 +367,13 @@
       "date": "26/02/2026",
       "description": "jjdkbdkd jksjksksa",
       "dateIn": "26 de fevereiro de 2026"
+    },
+    {
+      "id": "65ad",
+      "title": "pagamento dos tutores",
+      "date": "2026-05-01",
+      "description": "Os alunos da 13 classe tem apenas uma semana para fazeram o pagamento do dinheiro dos tutores",
+      "dateIn": "12 de maio de 2026"
     }
   ],
   "files": [
