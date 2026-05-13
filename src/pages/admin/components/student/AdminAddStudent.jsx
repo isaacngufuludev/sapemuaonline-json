@@ -117,6 +117,7 @@ function AdminAddStudent() {
     const photo = photoRef.current.files[0];
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     const isValidEmail = emailRegex.test(formData.email);
+    // const phoneNumberRegex = ^9\d{8}$
     // const student = await get(`users/${id}`);
 
     if (
