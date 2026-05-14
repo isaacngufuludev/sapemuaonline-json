@@ -3,6 +3,12 @@ import { useRef, useState } from "react";
 function FloatInputLabel({ value, onChange, type, name, max }) {
   const [isFocus, setIsFocus] = useState(false);
   const ref = useRef();
+  const today = new Date().toISOString().slice(0, 10);
+
+  const handleChange = (e) => {
+    if (type === "date" && e.target.value > today) return;
+    onChange(e);
+  };
 
   return (
     <div>
@@ -22,9 +28,10 @@ function FloatInputLabel({ value, onChange, type, name, max }) {
           name={name}
           className={`p-[8px] translate-y-1  bg-transparent focus:outline-none w-full`}
           type={type}
-          maxLength={max}
+          maxLength={type === "date" ? undefined : max}
+          max={type === "date" ? (max ?? today) : undefined}
           value={value}
-          onChange={onChange}
+          onChange={handleChange}
         />
       </div>
     </div>

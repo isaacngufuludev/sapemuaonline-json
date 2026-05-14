@@ -4,6 +4,7 @@ function AdminInput({
   value,
   onChange,
   max,
+  min,
   placeholder,
   ref,
   accept,
@@ -35,6 +36,7 @@ function AdminInput({
     <input
       className={styles[type]}
       maxLength={max}
+      min={min}
       type={type}
       id={id}
       ref={ref}

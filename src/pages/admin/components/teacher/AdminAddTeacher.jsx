@@ -3,6 +3,7 @@ import { FaArrowLeft } from "react-icons/fa";
 import { MdOutlineDone } from "react-icons/md";
 import { useEffect, useRef, useState } from "react";
 import { get, patch, post } from "../../../../services/api";
+import { addSystemEvent } from "../../../../services/systemEvents";
 import { useToast } from "../../../../hooks/useToast";
 import { calcAge, formateDate } from "../../../../utils/helpers";
 import FloatInputLabel from "../../../../components/ui/FloatInputLabel";
@@ -129,17 +130,35 @@ function AdminAddTeacher() {
     // Validação de email
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     const isValidEmail = emailRegex.test(formData.email);
+    const phoneNumberRegex = /^(9[1-9])[0-9]{7}$/;
+    const isValidPhoneNumber = phoneNumberRegex.test(formData.phoneNumber);
 
     if (
       !formData.name ||
       !formData.birthDate ||
       !formData.phoneNumber ||
       !formData.qualification ||
-      !subjects ||
       !formData.area ||
-      !formData.email
+      !formData.email ||
+      !formData.genre ||
+      !formData.college ||
+      !formData.adressCollege ||
+      !formData.province ||
+      !formData.residence ||
+      !formData.phoneCollege ||
+      !formData.biCode ||
+      !subjects ||
+      selectedTurmas.length === 0 ||
+      selectedClasses.length === 0 ||
+      selectedCourses.length === 0
     ) {
       showWarning("Por favor, preencha todos os campos");
+      navigate("/area/admin/adminTeacher/add-teacher");
+      return;
+    }
+
+    if (!isValidPhoneNumber) {
+      showWarning("Por favor, insira um número de telefone válido");
       navigate("/area/admin/adminTeacher/add-teacher");
       return;
     }
@@ -182,6 +201,11 @@ function AdminAddTeacher() {
 
       if (id) {
         await patch("users", id, newTecher);
+        addSystemEvent({
+          entity: "teacher",
+          action: `Professor ${newTecher.name} atualizado`,
+          type: "Professor",
+        });
         showSuccess("Professor atualizado com sucesso!");
       } else {
         await post("users", newTecher);

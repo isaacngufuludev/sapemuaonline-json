@@ -3,6 +3,7 @@ import { useModal } from "../../../../contexts/ModalContext";
 import { MdOutlineDone } from "react-icons/md";
 import { useEffect, useState } from "react";
 import { patch, post } from "../../../../services/api";
+import { addSystemEvent } from "../../../../services/systemEvents";
 import { useToast } from "../../../../hooks/useToast";
 import { useCourses } from "../../../../hooks/useCourses";
 import { useRefresh } from "../../../../contexts/RefreshContext";
@@ -75,6 +76,11 @@ function ModalTurma({ editedItem }) {
     try {
       if (editedItem) {
         await patch("turmas", editedItem.id, newTurma);
+        addSystemEvent({
+          entity: "turma",
+          action: `Turma atualizada`,
+          type: "Turma",
+        });
         showSuccess("Turma atualizada com sucesso");
       } else {
         await post("turmas", newTurma);
@@ -165,11 +171,14 @@ function ModalTurma({ editedItem }) {
           </AdminSelect>
         </div>
         <div>
-          {/* <AdminLabel htmlFor="turma">Sala</AdminLabel> */}
           <AdminInput
             type="number"
             placeholder="Sala"
-            value={formData.room}
+            value={
+              formData.room > 0 && formData.room <= 30 ? formData.room : ""
+            }
+            min={1}
+            max={30}
             onChange={(e) => setFormData({ ...formData, room: e.target.value })}
           />
         </div>

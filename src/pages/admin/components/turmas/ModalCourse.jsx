@@ -9,6 +9,7 @@ import Loading from "../../../../components/shared/Loading";
 import { MdOutlineDone } from "react-icons/md";
 import { useEffect, useState } from "react";
 import { patch, post } from "../../../../services/api";
+import { addSystemEvent } from "../../../../services/systemEvents";
 import { useModal } from "../../../../contexts/ModalContext";
 import { useToast } from "../../../../hooks/useToast";
 import { useRefresh } from "../../../../contexts/RefreshContext";
@@ -50,6 +51,11 @@ function ModalCourse({ editedItem }) {
     try {
       if (editedItem) {
         await patch("courses", editedItem.id, newCourse);
+        addSystemEvent({
+          entity: "course",
+          action: `Curso ${newCourse.courseName} atualizado`,
+          type: "Curso",
+        });
         showSuccess("Curso Atualizado com sucesso!");
       } else {
         await post("courses", newCourse);

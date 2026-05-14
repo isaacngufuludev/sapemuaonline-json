@@ -5,6 +5,7 @@ import Modal from "../../../../components/shared/Modal";
 import { useModal } from "../../../../contexts/ModalContext";
 import { useRefresh } from "../../../../contexts/RefreshContext";
 import { remove } from "../../../../services/api";
+import { addSystemEvent } from "../../../../services/systemEvents";
 
 import { HiOutlineTrash } from "react-icons/hi";
 import { useToast } from "../../../../hooks/useToast";
@@ -19,6 +20,11 @@ function ModalRemoveStudent() {
 
     try {
       await remove("users", selectedItem.id);
+      addSystemEvent({
+        entity: "student",
+        action: `Estudante ${selectedItem.name} eliminado`,
+        type: "Estudante",
+      });
       triggerRefresh();
       toggleRemoveStudent();
       showSuccess("Estudante eliminado com sucesso");

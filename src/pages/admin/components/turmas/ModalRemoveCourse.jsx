@@ -3,6 +3,7 @@ import Title3 from "../../../../components/ui/Title3";
 import BtnModal from "../../../../components/shared/BtnModal";
 import Modal from "../../../../components/shared/Modal";
 import { HiOutlineTrash } from "react-icons/hi";
+import { addSystemEvent } from "../../../../services/systemEvents";
 import { useModal } from "../../../../contexts/ModalContext";
 import { useRefresh } from "../../../../contexts/RefreshContext";
 import { remove } from "../../../../services/api";
@@ -33,7 +34,11 @@ function ModalRemoveCourse() {
       await Promise.allSettled(
         courseClasses.map((item) => remove("classes", item.id)),
       );
-
+      addSystemEvent({
+        entity: "course",
+        action: `Curso ${selectedItem.courseName || selectedItem.name || selectedItem.id} eliminado`,
+        type: "Curso",
+      });
       showSuccess("Curso removido com sucesso!");
     } catch (error) {
       showError(error.message);

@@ -23,6 +23,7 @@ import { useEffect, useRef, useState } from "react";
 import { useStudentForm } from "../../../../contexts/StudentFormContext";
 import { calcAge, formateDate } from "../../../../utils/helpers";
 import { get, patch, post } from "../../../../services/api";
+import { addSystemEvent } from "../../../../services/systemEvents";
 import { useToast } from "../../../../hooks/useToast";
 import { useCourses } from "../../../../hooks/useCourses";
 import { useClasses } from "../../../../hooks/useClasses";
@@ -117,8 +118,13 @@ function AdminAddStudent() {
     const photo = photoRef.current.files[0];
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     const isValidEmail = emailRegex.test(formData.email);
-    // const phoneNumberRegex = ^9\d{8}$
-    // const student = await get(`users/${id}`);
+    const phoneNumberRegex = /^(9[1-9])[0-9]{7}$/;
+    const isValidPhoneNumber = phoneNumberRegex.test(
+      formData.phoneNumber,
+      guardionPhoneNumber,
+      motherPhoneNumber,
+      fatherPhoneNumber,
+    );
 
     if (
       !formData.name ||
@@ -127,9 +133,19 @@ function AdminAddStudent() {
       !formData.courseId ||
       !formData.classId ||
       !formData.turmaId ||
-      !formData.email
+      !formData.email ||
+      !formData.genre ||
+      !formData.province ||
+      !formData.biCode ||
+      !formData.residence
     ) {
       showWarning("Por favor, preencha todos os campos");
+      navigate("/area/admin/adminStudents/add-student");
+      return;
+    }
+
+    if (!isValidPhoneNumber) {
+      showWarning("Por favor, insira um número de telefone válido");
       navigate("/area/admin/adminStudents/add-student");
       return;
     }
@@ -181,6 +197,11 @@ function AdminAddStudent() {
 
       if (id) {
         await patch("users", id, newStudent);
+        addSystemEvent({
+          entity: "student",
+          action: `Estudante ${newStudent.name} atualizado`,
+          type: "Estudante",
+        });
         showSuccess("Estudante atualizado com sucesso!");
       } else {
         await post("users", newStudent);

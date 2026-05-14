@@ -3,6 +3,7 @@ import Title3 from "../../../../components/ui/Title3";
 import BtnModal from "../../../../components/shared/BtnModal";
 import Modal from "../../../../components/shared/Modal";
 import { HiOutlineTrash } from "react-icons/hi";
+import { addSystemEvent } from "../../../../services/systemEvents";
 import { useModal } from "../../../../contexts/ModalContext";
 import { useRefresh } from "../../../../contexts/RefreshContext";
 import { useToast } from "../../../../hooks/useToast";
@@ -18,6 +19,11 @@ function ModalRemoveNews() {
 
     try {
       await remove("news", selectedItem.id);
+      addSystemEvent({
+        entity: "news",
+        action: `Notícia ${selectedItem.title} eliminada`,
+        type: "Notícia",
+      });
       showSuccess("Notícia removida com sucesso!");
     } catch (error) {
       showError(error.message);

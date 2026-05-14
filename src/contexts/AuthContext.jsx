@@ -1,6 +1,7 @@
 import { createContext, useContext, useEffect, useReducer } from "react";
 import { useToast } from "../hooks/useToast";
 import { get } from "../services/api";
+import { addLoginEvent } from "../services/loginEvents";
 
 const AuthContext = createContext();
 
@@ -54,6 +55,10 @@ function AuthProvider({ children }) {
     if (userFound) {
       dispatch({ type: "login", payload: userFound });
       localStorage.setItem("currentUser", JSON.stringify(userFound));
+
+      if (userFound.role === "student") {
+        addLoginEvent(userFound);
+      }
 
       const navigationTimer = setTimeout(() => {
         showSuccess("Login executado com sucesso");

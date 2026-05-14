@@ -4,6 +4,7 @@ import { MdOutlineDone } from "react-icons/md";
 import { useEffect, useState } from "react";
 import { useToast } from "../../../../hooks/useToast";
 import { patch, post } from "../../../../services/api";
+import { addSystemEvent } from "../../../../services/systemEvents";
 import { useRefresh } from "../../../../contexts/RefreshContext";
 import { formateDate } from "../../../../utils/helpers";
 
@@ -63,6 +64,11 @@ function NewsModal({ editedItem }) {
     try {
       if (editedItem) {
         await patch("news", editedItem.id, news);
+        addSystemEvent({
+          entity: "news",
+          action: `Notícia ${news.title} atualizada`,
+          type: "Notícia",
+        });
         showSuccess("Comunicado atualizado com sucesso!");
       } else {
         await post("news", news);

@@ -3,6 +3,7 @@ import Title3 from "../../../../components/ui/Title3";
 import BtnModal from "../../../../components/shared/BtnModal";
 import Modal from "../../../../components/shared/Modal";
 import { HiOutlineTrash } from "react-icons/hi";
+import { addSystemEvent } from "../../../../services/systemEvents";
 import { useModal } from "../../../../contexts/ModalContext";
 import { remove } from "../../../../services/api";
 import { useRefresh } from "../../../../contexts/RefreshContext";
@@ -18,6 +19,11 @@ function ModalRemoveTurma() {
 
     try {
       await remove("turmas", selectedItem.id);
+      addSystemEvent({
+        entity: "turma",
+        action: `Turma ${selectedItem.name || selectedItem.turmaCategory || selectedItem.id} eliminada`,
+        type: "Turma",
+      });
       showSuccess("Turma removida com sucesso!");
     } catch (error) {
       showError(error.message);
