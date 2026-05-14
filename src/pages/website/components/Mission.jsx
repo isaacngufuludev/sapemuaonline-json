@@ -8,19 +8,19 @@ const mission = [
     icon: <FiTarget />,
     title: "Missão",
     conteudo:
-      "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sequi  recusandae tempore id vero illo quas non, praesentium ab a iuredeleniti nemo ut eveniet ea explicabo! Nemo architecto at deleniti. ",
+      "Promover uma formação académica e técnica de qualidade, baseada na inovação, disciplina e desenvolvimento de competências profissionais, preparando os estudantes para os desafios do mercado de trabalho e para o desenvolvimento da sociedade.. ",
   },
   {
     icon: <FiEye />,
     title: "Visão",
     conteudo:
-      "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sequi  recusandae tempore id vero illo quas non, praesentium ab a iuredeleniti nemo ut eveniet ea explicabo! Nemo architecto at deleniti. ",
+      "Ser uma instituição de referência no ensino técnico e tecnológico em Angola, destacando-se pela excelência académica, modernização dos processos educativos e formação de profissionais qualificados, éticos e inovadores.",
   },
   {
     icon: <FiStar />,
     title: "Valores",
     conteudo:
-      "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sequi  recusandae tempore id vero illo quas non, praesentium ab a iuredeleniti nemo ut eveniet ea explicabo! Nemo architecto at deleniti. ",
+      "Excelência académica, Ética e responsabilidade, Inovação tecnológica, Compromisso com a educação. Disciplina e profissionalismo. ea explicabo! Nemo architecto at deleniti Desenvolvimento contínuo, Criatividade e empreendedorismo . ",
   },
 ];
 

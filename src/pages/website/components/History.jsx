@@ -10,15 +10,11 @@ function History() {
         <Title type="left">Resumo da Nossa Trajetoria</Title>
         <div className="md:grid flex flex-col xl:gap-5 md:grid-cols-2 items-center xl:mb-16 ">
           <div>
-            <p className="md:leading-6 leading-5 md:text-sm text-xs ">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Alias sed
-              dolore atque tempore accusantium natus inventore iure ducimus
-              laudantium impedit exercitationem, quam incidunt sit, repellat
-              dolorum nesciunt eos, doloribus voluptates? Lorem ipsum dolor sit
-              amet consectetur adipisicing elit. Voluptatibus amet beatae ad
-              exercitationem maxime repudiandae explicabo delectus sed voluptate
-              tempora quos expedita cumque adipisci suscipit repellat, officiis
-              ut doloremque nostrum.
+            <p className="md:leading-6 leading-5 md:text-sm text-xs text-justify">
+             O Instituto Politécnico Privado Sapemua tem vindo a destacar-se na formação técnica e académica de jovens, 
+             promovendo ensino de qualidade, inovação e desenvolvimento profissional. Ao longo da sua trajetória, 
+             a instituição consolidou-se como uma referência na área da educação técnica, formando estudantes preparados 
+             para os desafios do mercado de trabalho e da transformação digital.
             </p>
           </div>
           <div className="justify-self-center">IMAGEM</div>

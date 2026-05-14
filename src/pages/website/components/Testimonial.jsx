@@ -8,32 +8,32 @@ import { useRef } from "react";
 
 const testemunhos = [
   {
-    name: "Carlos Alberto",
-    status: "Ex-Aluno",
-    image: "/imgs/depoimentos/customer-1.jpg",
+    name: "Kinavuide David",
+    status: "Estudante de Informatica",
+    image: "/imgs/depoimentos/kinavuidev.png",
     message:
-      "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Tempora nesciunt illo vitae inventore cupiditate error quas voluptate, iure animi, tempore maxime reiciendis quo aut voluptatibus accusamus corporis maiores iste blanditiis?",
+      "O Sapemua Online trouxe mais organização e facilidade no acesso às informações académicas. Hoje consigo acompanhar tarefas, materiais e comunicados de forma rápida e prática. A plataforma melhorou bastante a comunicação entre alunos e professores",
   },
   {
     name: "Carlos Alberto",
     status: "Ex-Aluno",
     image: "/imgs/depoimentos/customer-2.jpg",
     message:
-      "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Tempora nesciunt illo vitae inventore cupiditate error quas voluptate, iure animi, tempore maxime reiciendis quo aut voluptatibus accusamus corporis maiores iste blanditiis?",
+      "O Instituto Sapemua foi muito importante na minha formação académica e profissional. Além da qualidade no ensino, a escola sempre incentivou a disciplina, a criatividade e o desenvolvimento tecnológico dos estudantes. O Sapemua Online veio apenas reforçar essa modernização.”?",
   },
   {
     name: "Carlos Alberto",
     status: "Ex-Aluno",
     image: "/imgs/depoimentos/customer-3.jpg",
     message:
-      "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Tempora nesciunt illo vitae inventore cupiditate error quas voluptate, iure animi, tempore maxime reiciendis quo aut voluptatibus accusamus corporis maiores iste blanditiis?.",
+      "O ambiente escolar é muito acolhedor e os professores demonstram bastante dedicação no acompanhamento dos alunos. A instituição tem investido em tecnologia e inovação, criando melhores condições de aprendizagem para todos.?.",
   },
   {
     name: "Carlos Alberto",
     status: "Ex-Aluno",
     image: "/imgs/depoimentos/customer-4.jpg",
     message:
-      "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Tempora nesciunt illo vitae inventore cupiditate error quas voluptate, iure animi, tempore maxime reiciendis quo aut voluptatibus accusamus corporis maiores iste blanditiis?",
+      "A escola oferece oportunidades que ajudam os estudantes a crescer tanto académica como profissionalmente. As actividades práticas, feiras tecnológicas e projetos desenvolvidos tornam o processo de aprendizagem mais dinâmico e motivador.?",
   },
 ];
 

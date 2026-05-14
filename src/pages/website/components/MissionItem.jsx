@@ -7,7 +7,7 @@ function MissionItem({ item }) {
         <p className="text-blue-700 text-2xl text-center mb-1">{item.icon}</p>
         <Title3>{item.title}</Title3>
       </div>
-      <p className="md:text-sm text-xs leading-5 md:leading-6">
+      <p className="md:text-sm text-xs leading-5 md:leading-6 ">
         {item.conteudo}
       </p>
     </li>
