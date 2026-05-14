@@ -52,7 +52,13 @@ function ChartUsersGrowth() {
         novos: news.length,
       },
     ],
-    [students.length, teachers.length, courses.length, turmas.length, news.length],
+    [
+      students.length,
+      teachers.length,
+      courses.length,
+      turmas.length,
+      news.length,
+    ],
   );
 
   return (
@@ -94,7 +100,12 @@ function ChartUsersGrowth() {
               tickLine={false}
             />
 
-            <YAxis width={32} tick={{ fill: "#94a3b8", fontSize: 10 }} axisLine={false} tickLine={false} />
+            <YAxis
+              width={32}
+              tick={{ fill: "#94a3b8", fontSize: 10 }}
+              axisLine={false}
+              tickLine={false}
+            />
 
             <Tooltip
               contentStyle={{
@@ -105,8 +116,21 @@ function ChartUsersGrowth() {
               labelStyle={{ color: "#e5e7eb" }}
             />
 
-            <Area type="monotone" dataKey="total" stroke="#6366f1" fill="url(#totalGradient)" strokeWidth={2} dot={false} />
-            <Line type="monotone" dataKey="novos" stroke="#22c55e" strokeWidth={2} dot={false} />
+            <Area
+              type="monotone"
+              dataKey="total"
+              stroke="#6366f1"
+              fill="url(#totalGradient)"
+              strokeWidth={2}
+              dot={false}
+            />
+            <Line
+              type="monotone"
+              dataKey="novos"
+              stroke="#22c55e"
+              strokeWidth={2}
+              dot={false}
+            />
           </AreaChart>
         </ResponsiveContainer>
       </div>

@@ -149,8 +149,16 @@ function AdminDashboardTable() {
         id: "student",
         action: `Novo estudante cadastrado: ${latestStudent.name}`,
         type: "Estudante",
-        time: getTimeLabel(latestStudent, ["dateIn", "createdAt", "created_at"]),
-        timestamp: getTimestamp(latestStudent, ["dateIn", "createdAt", "created_at"]),
+        time: getTimeLabel(latestStudent, [
+          "dateIn",
+          "createdAt",
+          "created_at",
+        ]),
+        timestamp: getTimestamp(latestStudent, [
+          "dateIn",
+          "createdAt",
+          "created_at",
+        ]),
         status: "success",
       });
     }
@@ -160,8 +168,16 @@ function AdminDashboardTable() {
         id: "teacher",
         action: `Novo professor cadastrado: ${latestTeacher.name}`,
         type: "Professor",
-        time: getTimeLabel(latestTeacher, ["dateIn", "createdAt", "created_at"]),
-        timestamp: getTimestamp(latestTeacher, ["dateIn", "createdAt", "created_at"]),
+        time: getTimeLabel(latestTeacher, [
+          "dateIn",
+          "createdAt",
+          "created_at",
+        ]),
+        timestamp: getTimestamp(latestTeacher, [
+          "dateIn",
+          "createdAt",
+          "created_at",
+        ]),
         status: "success",
       });
     }
@@ -172,7 +188,11 @@ function AdminDashboardTable() {
         action: `Novo curso cadastrado: ${latestCourse.name || latestCourse.title || "curso novo"}`,
         type: "Curso",
         time: getTimeLabel(latestCourse, ["dateIn", "createdAt", "created_at"]),
-        timestamp: getTimestamp(latestCourse, ["dateIn", "createdAt", "created_at"]),
+        timestamp: getTimestamp(latestCourse, [
+          "dateIn",
+          "createdAt",
+          "created_at",
+        ]),
         status: "success",
       });
     }
@@ -183,7 +203,11 @@ function AdminDashboardTable() {
         action: `Nova turma criada: ${latestTurma.name || latestTurma.title || "turma nova"}`,
         type: "Turma",
         time: getTimeLabel(latestTurma, ["dateIn", "createdAt", "created_at"]),
-        timestamp: getTimestamp(latestTurma, ["dateIn", "createdAt", "created_at"]),
+        timestamp: getTimestamp(latestTurma, [
+          "dateIn",
+          "createdAt",
+          "created_at",
+        ]),
         status: "success",
       });
     }
@@ -194,7 +218,11 @@ function AdminDashboardTable() {
         action: `Nova notícia publicada: ${latestNews.title || latestNews.name || "notícia"}`,
         type: "Notícia",
         time: getTimeLabel(latestNews, ["date", "createdAt", "created_at"]),
-        timestamp: getTimestamp(latestNews, ["date", "createdAt", "created_at"]),
+        timestamp: getTimestamp(latestNews, [
+          "date",
+          "createdAt",
+          "created_at",
+        ]),
         status: "success",
       });
     }

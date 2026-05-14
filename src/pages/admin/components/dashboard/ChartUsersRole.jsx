@@ -18,9 +18,18 @@ function ChartUsersRole() {
 
   const stats = useMemo(
     () => [
-      { name: "Estudantes", value: users.filter((user) => user.role === "student").length },
-      { name: "Professores", value: users.filter((user) => user.role === "teacher").length },
-      { name: "Administradores", value: users.filter((user) => user.role === "admin").length },
+      {
+        name: "Estudantes",
+        value: users.filter((user) => user.role === "student").length,
+      },
+      {
+        name: "Professores",
+        value: users.filter((user) => user.role === "teacher").length,
+      },
+      {
+        name: "Administradores",
+        value: users.filter((user) => user.role === "admin").length,
+      },
     ],
     [users],
   );

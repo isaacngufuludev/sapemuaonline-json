@@ -13,7 +13,10 @@ function parseEvents() {
 
 function saveEvents(events) {
   if (typeof window === "undefined") return;
-  localStorage.setItem(LOGIN_EVENTS_KEY, JSON.stringify(events.slice(0, MAX_LOGIN_EVENTS)));
+  localStorage.setItem(
+    LOGIN_EVENTS_KEY,
+    JSON.stringify(events.slice(0, MAX_LOGIN_EVENTS)),
+  );
 }
 
 export function addLoginEvent(user) {
