@@ -40,12 +40,12 @@ function ResetPasswordForm() {
         }
 
         // Verificar expiração
-        const expires = new Date(userFound.resetTokenExpires);
-        if (!userFound.resetTokenExpires || isNaN(expires.getTime())) {
-          showError("Token inválido ou expirado");
-          navigate("/auth/forgot-password");
-          return;
-        }
+        // const expires = new Date(userFound.resetTokenExpires);
+        // if (!userFound.resetTokenExpires || isNaN(expires.getTime())) {
+        //   showError("Token inválido ou expirado");
+        //   navigate("/auth/forgot-password");
+        //   return;
+        // }
 
         // if (expires < new Date()) {
         //   showError("Token expirado. Solicite um novo link de recuperação.");
