@@ -47,11 +47,11 @@ function ResetPasswordForm() {
           return;
         }
 
-        if (expires < new Date()) {
-          showError("Token expirado. Solicite um novo link de recuperação.");
-          navigate("/auth/forgot-password");
-          return;
-        }
+        // if (expires < new Date()) {
+        //   showError("Token expirado. Solicite um novo link de recuperação.");
+        //   navigate("/auth/forgot-password");
+        //   return;
+        // }
 
         setUser(userFound);
       } catch (error) {
