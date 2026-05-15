@@ -13,7 +13,8 @@ function ResetPasswordForm() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isValidating, setIsValidating] = useState(true);
   const [user, setUser] = useState(null);
-  const { token } = useParams();
+  const { token: rawToken } = useParams();
+  const token = rawToken ? decodeURIComponent(String(rawToken).trim()) : "";
   const { showError, showSuccess } = useToast();
   const navigate = useNavigate();
 
@@ -27,8 +28,10 @@ function ResetPasswordForm() {
 
       try {
         // Buscar todos usuários e filtrar pelo resetToken
-        const users = await get("users");
-        const userFound = users.find((u) => u.resetToken === token);
+        const users = await get("users", { forceFresh: true });
+        const userFound = users.find(
+          (u) => String(u.resetToken).trim() === token,
+        );
 
         if (!userFound) {
           showError("Token inválido ou expirado");
@@ -38,6 +41,12 @@ function ResetPasswordForm() {
 
         // Verificar expiração
         const expires = new Date(userFound.resetTokenExpires);
+        if (!userFound.resetTokenExpires || isNaN(expires.getTime())) {
+          showError("Token inválido ou expirado");
+          navigate("/auth/forgot-password");
+          return;
+        }
+
         if (expires < new Date()) {
           showError("Token expirado. Solicite um novo link de recuperação.");
           navigate("/auth/forgot-password");
