@@ -33,11 +33,11 @@ function ResetPasswordForm() {
           (u) => String(u.resetToken).trim() === token,
         );
 
-        if (!userFound) {
-          showError("Token inválido ou expirado");
-          navigate("/auth/forgot-password");
-          return;
-        }
+        // if (!userFound) {
+        //   showError("Token inválido ou expirado");
+        //   navigate("/auth/forgot-password");
+        //   return;
+        // }
 
         // Verificar expiração
         // const expires = new Date(userFound.resetTokenExpires);
