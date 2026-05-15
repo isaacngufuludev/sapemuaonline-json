@@ -97,7 +97,8 @@ function ResetPasswordForm() {
         resetTokenExpires: "",
       });
       showSuccess("Palavra-passe redefinida com sucesso");
-      navigate("/auth/login");
+      navigate("/auth/login", { replace: true });
+      return;
     } catch (error) {
       console.error("Erro ao redefinir senha:", error);
       showError("Não foi possível redefinir a palavra-passe");
