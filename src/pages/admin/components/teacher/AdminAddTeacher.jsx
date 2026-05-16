@@ -61,12 +61,14 @@ function AdminAddTeacher() {
   const { classes } = useClasses();
   const { courses } = useCourses();
 
-  // const fileCVRef = useRef(null);
   const fileCertificateRef = useRef(null);
   const filePhoto = useRef(null);
-  const { showSuccess, showWarning } = useToast();
+  const { showSuccess, showWarning, showError } = useToast();
   const navigate = useNavigate();
   const { id } = useParams();
+  const today = new Date();
+  const maxYear = today.getFullYear() - 25;
+  const maxDate = `${maxYear}-${String(today.getMonth() + 1).padStart(2, "0")}-${String(today.getDate()).padStart(2, "0")}`;
 
   useEffect(() => {
     async function fetchTeacher() {
@@ -131,7 +133,12 @@ function AdminAddTeacher() {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     const isValidEmail = emailRegex.test(formData.email);
     const phoneNumberRegex = /^(9[1-9])[0-9]{7}$/;
-    const isValidPhoneNumber = phoneNumberRegex.test(formData.phoneNumber);
+    const isValidPhoneNumber = phoneNumberRegex.test(
+      formData.phoneNumber,
+      formData.phoneCollege,
+    );
+    const biRegex = /(^\d{9}[A-Z]{2}\d{3}$)|(^[A-Z]\d{7}$)/;
+    const isValidBiCode = biRegex.test(formData.biCode);
 
     if (
       !formData.name ||
@@ -157,6 +164,28 @@ function AdminAddTeacher() {
       return;
     }
 
+    // Validar data de nascimento em relação a maxDate
+    const parsedMax = new Date(maxDate);
+    const parsedBirth = new Date(formData.birthDate);
+
+    if (isNaN(parsedMax.getTime())) {
+      showError("Data de nascimento inválida");
+      navigate("/area/admin/adminTeacher/add-teacher");
+      return;
+    }
+
+    if (parsedBirth.getTime() > parsedMax.getTime()) {
+      showWarning(`O Professor deve ter no mínimo ${calcAge(maxDate)} anos`);
+      navigate("/area/admin/adminTeacher/add-teacher");
+      return;
+    }
+
+    if (!isValidBiCode) {
+      showWarning("Por favor, Número de identificação válido");
+      navigate("/area/admin/adminTeacher/add-teacher");
+      return;
+    }
+
     if (!isValidPhoneNumber) {
       showWarning("Por favor, insira um número de telefone válido");
       navigate("/area/admin/adminTeacher/add-teacher");
@@ -170,6 +199,68 @@ function AdminAddTeacher() {
     }
 
     let teacher = null;
+
+    // Verificar unicidade de campos (nome completo, biCode, telefone, email)
+    try {
+      const users = await get("users", { forceFresh: true });
+      const emailNormalized = String(formData.email || "").trim().toLowerCase();
+      const biNormalized = String(formData.biCode || "").trim().toUpperCase();
+      const nameNormalized = String(formData.name || "").trim().toLowerCase().replace(/\s+/g, " ");
+      const phoneDigits = String(formData.phoneNumber || "").replace(/\D/g, "");
+      const phoneLast9 = phoneDigits.slice(-9);
+
+      const conflict = users.find((u) => {
+        if (id && String(u.id) === String(id)) return false;
+
+        const uEmail = String(u.email || "").trim().toLowerCase();
+        if (emailNormalized && uEmail === emailNormalized) return true;
+
+        const uBi = String(u.biCode || "").trim().toUpperCase();
+        if (biNormalized && uBi === biNormalized) return true;
+
+        const uName = String(u.name || "").trim().toLowerCase().replace(/\s+/g, " ");
+        if (nameNormalized && uName === nameNormalized) return true;
+
+        const uPhoneDigits = String(u.phoneNumber || "").replace(/\D/g, "");
+        const uPhoneLast9 = uPhoneDigits.slice(-9);
+        if (phoneLast9 && uPhoneLast9 === phoneLast9) return true;
+
+        return false;
+      });
+
+      if (conflict) {
+        const uEmail = String(conflict.email || "").trim().toLowerCase();
+        if (uEmail && uEmail === emailNormalized) {
+          showWarning("Este e-mail já está cadastrado.");
+          navigate("/area/admin/adminTeacher/add-teacher");
+          return;
+        }
+
+        const uBi = String(conflict.biCode || "").trim().toUpperCase();
+        if (uBi && uBi === biNormalized) {
+          showWarning("Número de identificação já existente no sistema.");
+          navigate("/area/admin/adminTeacher/add-teacher");
+          return;
+        }
+
+        const uPhoneDigits = String(conflict.phoneNumber || "").replace(/\D/g, "");
+        const uPhoneLast9 = uPhoneDigits.slice(-9);
+        if (uPhoneLast9 && uPhoneLast9 === phoneLast9) {
+          showWarning("Número de telefone já utilizado por outro usuário.");
+          navigate("/area/admin/adminTeacher/add-teacher");
+          return;
+        }
+
+        const uName = String(conflict.name || "").trim().toLowerCase().replace(/\s+/g, " ");
+        if (uName && uName === nameNormalized) {
+          showWarning("Este nome completo já está cadastrado.");
+          navigate("/area/admin/adminTeacher/add-teacher");
+          return;
+        }
+      }
+    } catch (err) {
+      console.error("Erro ao validar unicidade de usuário:", err);
+    }
 
     if (id) teacher = await get(`users/${id}`);
 
