@@ -18,8 +18,8 @@ function Auth() {
       // Aguardar um pouco antes de navegar para dar tempo de visualizar o loading
       const navigationTimer = setTimeout(() => {
         if (user.role === "admin") navigate("/area/admin");
-        else if (user.role === "teacher") navigate("/area/teacher");
-        else if (user.role === "student") navigate("/area/student");
+        else if (user.role === "Professor") navigate("/area/teacher");
+        else if (user.role === "Estudante") navigate("/area/student");
       }, 1000);
 
       return () => clearTimeout(navigationTimer);

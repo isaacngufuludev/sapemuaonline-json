@@ -310,7 +310,7 @@ function AdminAddStudent() {
         photo: photoUpload,
         guardionName,
         password: student ? student.password : "",
-        role: "student",
+        role: "Estudante",
         ...firstAccessData,
       };
 
@@ -327,7 +327,9 @@ function AdminAddStudent() {
 
         try {
           await sendFirstAccessEmail(createdStudent);
-          showSuccess("Estudante cadastrado e link de primeiro acesso enviado!");
+          showSuccess(
+            "Estudante cadastrado e link de primeiro acesso enviado!",
+          );
         } catch (emailError) {
           console.error("Erro ao enviar primeiro acesso:", emailError);
           showWarning(

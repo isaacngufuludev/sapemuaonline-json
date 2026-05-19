@@ -311,7 +311,7 @@ function AdminAddTeacher() {
         certificate: certificateUpload,
         photo: photoUpload,
         password: teacher ? teacher.password : "",
-        role: "teacher",
+        role: "Professor",
         turmasId: selectedTurmas,
         classesId: selectedClasses,
         coursesId: selectedCourses,
@@ -332,7 +332,9 @@ function AdminAddTeacher() {
 
         try {
           await sendFirstAccessEmail(createdTeacher);
-          showSuccess("Professor cadastrado e link de primeiro acesso enviado!");
+          showSuccess(
+            "Professor cadastrado e link de primeiro acesso enviado!",
+          );
         } catch (emailError) {
           console.error("Erro ao enviar primeiro acesso:", emailError);
           showWarning(
