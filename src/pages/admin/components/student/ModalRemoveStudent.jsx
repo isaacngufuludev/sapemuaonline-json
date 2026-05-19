@@ -6,6 +6,7 @@ import { useModal } from "../../../../contexts/ModalContext";
 import { useRefresh } from "../../../../contexts/RefreshContext";
 import { remove } from "../../../../services/api";
 import { addSystemEvent } from "../../../../services/systemEvents";
+import { removeUserChatData } from "../../../../services/userCleanup";
 
 import { HiOutlineTrash } from "react-icons/hi";
 import { useToast } from "../../../../hooks/useToast";
@@ -19,6 +20,7 @@ function ModalRemoveStudent() {
     if (!selectedItem) return;
 
     try {
+      await removeUserChatData(selectedItem.id);
       await remove("users", selectedItem.id);
       addSystemEvent({
         entity: "student",

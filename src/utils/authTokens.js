@@ -12,7 +12,9 @@ export function generateToken() {
 export function createFirstAccessData() {
   return {
     firstAccessToken: generateToken(),
-    firstAccessExpires: new Date(Date.now() + 24 * 60 * 60 * 1000).toISOString(),
+    firstAccessExpires: new Date(
+      Date.now() + 24 * 60 * 60 * 1000,
+    ).toISOString(),
     isActive: false,
   };
 }
