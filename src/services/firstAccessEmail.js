@@ -30,7 +30,7 @@ export async function sendFirstAccessEmail(user) {
       from_name: "SAPEMUA ONLINE",
       link: firstAccessLink,
       first_access_link: firstAccessLink,
-      message: `Olá ${user.name},\n\nA sua conta foi criada no SAPEMUA ONLINE.\n\nClique no link abaixo para definir a sua palavra-passe:\n\n${firstAccessLink}\n\nEste link expira em 30 minutos.\n\nAtenciosamente,\nEquipe SAPEMUA ONLINE`,
+      message: `Olá ${user.name},\n\nA sua conta foi criada no SAPEMUA ONLINE.\n\nClique no link abaixo para definir a sua palavra-passe:\n\n${firstAccessLink}\n\nEste link expira em 24 horas.\n\nAtenciosamente,\nEquipe SAPEMUA ONLINE`,
     },
     publicKey,
   );

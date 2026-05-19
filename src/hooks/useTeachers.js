@@ -5,7 +5,7 @@ export function useTeachers() {
   const { users, isLoading } = useUsers();
 
   const teachers = useMemo(
-    () => users.filter((user) => user.role === "teacher"),
+    () => users.filter((user) => user.role === "Professor"),
     [users],
   );
 
