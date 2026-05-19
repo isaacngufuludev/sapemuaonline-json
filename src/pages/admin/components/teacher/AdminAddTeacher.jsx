@@ -28,6 +28,8 @@ import AdminInput from "../AdminInput";
 import AdminLabel from "../AdminLabel";
 import AdminSelect from "../AdminSelect";
 import { uploadOptionalFile } from "../../../../services/cloudinary";
+import { createFirstAccessData } from "../../../../utils/authTokens";
+import { sendFirstAccessEmail } from "../../../../services/firstAccessEmail";
 
 const initialState = {
   name: "",
@@ -203,22 +205,36 @@ function AdminAddTeacher() {
     // Verificar unicidade de campos (nome completo, biCode, telefone, email)
     try {
       const users = await get("users", { forceFresh: true });
-      const emailNormalized = String(formData.email || "").trim().toLowerCase();
-      const biNormalized = String(formData.biCode || "").trim().toUpperCase();
-      const nameNormalized = String(formData.name || "").trim().toLowerCase().replace(/\s+/g, " ");
+      const emailNormalized = String(formData.email || "")
+        .trim()
+        .toLowerCase();
+      const biNormalized = String(formData.biCode || "")
+        .trim()
+        .toUpperCase();
+      const nameNormalized = String(formData.name || "")
+        .trim()
+        .toLowerCase()
+        .replace(/\s+/g, " ");
       const phoneDigits = String(formData.phoneNumber || "").replace(/\D/g, "");
       const phoneLast9 = phoneDigits.slice(-9);
 
       const conflict = users.find((u) => {
         if (id && String(u.id) === String(id)) return false;
 
-        const uEmail = String(u.email || "").trim().toLowerCase();
+        const uEmail = String(u.email || "")
+          .trim()
+          .toLowerCase();
         if (emailNormalized && uEmail === emailNormalized) return true;
 
-        const uBi = String(u.biCode || "").trim().toUpperCase();
+        const uBi = String(u.biCode || "")
+          .trim()
+          .toUpperCase();
         if (biNormalized && uBi === biNormalized) return true;
 
-        const uName = String(u.name || "").trim().toLowerCase().replace(/\s+/g, " ");
+        const uName = String(u.name || "")
+          .trim()
+          .toLowerCase()
+          .replace(/\s+/g, " ");
         if (nameNormalized && uName === nameNormalized) return true;
 
         const uPhoneDigits = String(u.phoneNumber || "").replace(/\D/g, "");
@@ -229,21 +245,28 @@ function AdminAddTeacher() {
       });
 
       if (conflict) {
-        const uEmail = String(conflict.email || "").trim().toLowerCase();
+        const uEmail = String(conflict.email || "")
+          .trim()
+          .toLowerCase();
         if (uEmail && uEmail === emailNormalized) {
           showWarning("Este e-mail já está cadastrado.");
           navigate("/area/admin/adminTeacher/add-teacher");
           return;
         }
 
-        const uBi = String(conflict.biCode || "").trim().toUpperCase();
+        const uBi = String(conflict.biCode || "")
+          .trim()
+          .toUpperCase();
         if (uBi && uBi === biNormalized) {
           showWarning("Número de identificação já existente no sistema.");
           navigate("/area/admin/adminTeacher/add-teacher");
           return;
         }
 
-        const uPhoneDigits = String(conflict.phoneNumber || "").replace(/\D/g, "");
+        const uPhoneDigits = String(conflict.phoneNumber || "").replace(
+          /\D/g,
+          "",
+        );
         const uPhoneLast9 = uPhoneDigits.slice(-9);
         if (uPhoneLast9 && uPhoneLast9 === phoneLast9) {
           showWarning("Número de telefone já utilizado por outro usuário.");
@@ -251,7 +274,10 @@ function AdminAddTeacher() {
           return;
         }
 
-        const uName = String(conflict.name || "").trim().toLowerCase().replace(/\s+/g, " ");
+        const uName = String(conflict.name || "")
+          .trim()
+          .toLowerCase()
+          .replace(/\s+/g, " ");
         if (uName && uName === nameNormalized) {
           showWarning("Este nome completo já está cadastrado.");
           navigate("/area/admin/adminTeacher/add-teacher");
@@ -275,6 +301,8 @@ function AdminAddTeacher() {
         ),
       ]);
 
+      const firstAccessData = teacher ? {} : createFirstAccessData();
+
       const newTecher = {
         ...formData,
         dateIn: teacher ? teacher.dateIn : formateDate(new Date()),
@@ -282,12 +310,13 @@ function AdminAddTeacher() {
         phoneNumber: `+244 ${formData.phoneNumber}`,
         certificate: certificateUpload,
         photo: photoUpload,
-        password: teacher ? teacher.password : "1234",
+        password: teacher ? teacher.password : "",
         role: "teacher",
         turmasId: selectedTurmas,
         classesId: selectedClasses,
         coursesId: selectedCourses,
         subjects: subjects,
+        ...firstAccessData,
       };
 
       if (id) {
@@ -299,8 +328,17 @@ function AdminAddTeacher() {
         });
         showSuccess("Professor atualizado com sucesso!");
       } else {
-        await post("users", newTecher);
-        showSuccess("Professor cadastrado com sucesso!");
+        const createdTeacher = await post("users", newTecher);
+
+        try {
+          await sendFirstAccessEmail(createdTeacher);
+          showSuccess("Professor cadastrado e link de primeiro acesso enviado!");
+        } catch (emailError) {
+          console.error("Erro ao enviar primeiro acesso:", emailError);
+          showWarning(
+            "Professor cadastrado, mas não foi possível enviar o email de primeiro acesso.",
+          );
+        }
       }
 
       handleClose();

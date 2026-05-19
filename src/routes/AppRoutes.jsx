@@ -50,6 +50,7 @@ import StudentChatLayout from "../pages/student/components/chat/StudentChatLayou
 import TeacherStudentDetail from "../pages/professor/components/turmas/TeacherStudentDetail";
 import ForgotPassword from "../pages/auth/components/ForgotPassword";
 import ResetPassword from "../pages/auth/components/ResetPassword";
+import PrimeiroAcesso from "../pages/auth/components/PrimeiroAcesso";
 
 function AppRoutes() {
   return (
@@ -66,6 +67,10 @@ function AppRoutes() {
                   <Route
                     path="/reset-password/:token"
                     element={<ResetPassword />}
+                  />
+                  <Route
+                    path="/primeiro-acesso/:token"
+                    element={<PrimeiroAcesso />}
                   />
                   <Route path="/auth" element={<Auth />}>
                     <Route index element={<Navigate replace to="login" />} />

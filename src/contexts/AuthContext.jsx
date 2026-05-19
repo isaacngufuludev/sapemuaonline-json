@@ -53,6 +53,13 @@ function AuthProvider({ children }) {
     );
 
     if (userFound) {
+      if (userFound.isActive === false) {
+        showError(
+          "Conta ainda não ativada. Use o link de primeiro acesso enviado por email.",
+        );
+        return;
+      }
+
       dispatch({ type: "login", payload: userFound });
       localStorage.setItem("currentUser", JSON.stringify(userFound));
 
