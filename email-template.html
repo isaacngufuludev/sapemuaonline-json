@@ -160,12 +160,16 @@
 
       <div class="footer">
         <p><strong>SAPEMUA ONLINE</strong> - Sistema de Gestão Educacional</p>
-        <p>Este email foi enviado para: {{email}}</p>
+        <p>Este email foi enviado para: {{to_email}}</p>
         <p>
           Você recebeu este email porque está registrado em nossa plataforma.
         </p>
-        <p>&copy; 2024 SAPEMUA ONLINE. Todos os direitos reservados.</p>
+        <p>&copy; $ SAPEMUA ONLINE. Todos os direitos reservados.</p>
       </div>
     </div>
   </body>
+  <script>
+    const date = new Date();
+    const year = date.getFullYear();
+  </script>
 </html>

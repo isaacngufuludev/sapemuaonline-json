@@ -71,11 +71,12 @@ function ForgotPasswordForm() {
       }
 
       const templateParams = {
-        to: userFound.email,
+        to_email: userFound.email,
+        recipient_email: userFound.email,
         from_name: "SAPEMUA ONLINE",
         to_name: userFound.name,
+        reply_to: userFound.email,
         link: resetLink,
-        email: userFound.email,
         message: `Olá ${userFound.name},\n\nClique no link abaixo para redefinir sua senha:\n\n${resetLink}\n\nEste link expira em 1 hora.\n\nAtenciosamente,\nEquipe SAPEMUA ONLINE`,
       };
 

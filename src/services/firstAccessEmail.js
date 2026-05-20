@@ -24,10 +24,11 @@ export async function sendFirstAccessEmail(user) {
     serviceId,
     templateId,
     {
-      to: user.email,
-      email: user.email,
+      to_email: user.email,
+      recipient_email: user.email,
       to_name: user.name,
       from_name: "SAPEMUA ONLINE",
+      reply_to: user.email,
       link: firstAccessLink,
       first_access_link: firstAccessLink,
       message: `Olá ${user.name},\n\nA sua conta foi criada no SAPEMUA ONLINE.\n\nClique no link abaixo para definir a sua palavra-passe:\n\n${firstAccessLink}\n\nEste link expira em 24 horas.\n\nAtenciosamente,\nEquipe SAPEMUA ONLINE`,
