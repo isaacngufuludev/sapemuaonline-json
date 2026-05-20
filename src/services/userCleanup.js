@@ -11,8 +11,18 @@ export async function removeUserChatData(userId) {
   const userMessages = messages.filter(
     (message) => String(message.senderId) === String(userId),
   );
+  const attachedFileIds = new Set(
+    userMessages.flatMap((message) =>
+      (message.attachments || [])
+        .map((attachment) => attachment.fileId || attachment.file?.id)
+        .filter(Boolean)
+        .map(String),
+    ),
+  );
   const userFiles = files.filter(
-    (file) => String(file.senderId) === String(userId),
+    (file) =>
+      String(file.senderId) === String(userId) ||
+      attachedFileIds.has(String(file.id)),
   );
 
   await Promise.all([
