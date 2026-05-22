@@ -1,62 +1,51 @@
 import ChatMessage from "./ChatMessage";
+import { useEffect, useRef } from "react";
 
-const mensagens = [
-  {
-    id: 1,
-    text: "Olá! sou seu assistente de suporte, como posso ajudar voçê hoje?",
-    remetente: "bot",
-  },
-  {
-    id: 2,
-    text: "Quem foi o teu desenvolvedor?",
-    remetente: "usuario",
-  },
-  {
-    id: 3,
-    text: `Fui desenvolvido por finalistas do SAPEMUA para a prova de aptdão profissional que são: DORIVALDO QUIZEMBE, HENRIQUES MANUEL, ISAAC NGUFULU YAMBI, LUZIA AGOSTINHO e KINAVUIDE DAVID
-    `,
-    remetente: "bot",
-  },
-  {
-    id: 4,
-    text: "Quando foi fundado a escola do SAPEMUA?",
-    remetente: "usuario",
-  },
-  {
-    id: 5,
-    text: "O Instituto Politécnico Privado SAPEMUA foi fundado em 2007...",
-    remetente: "bot",
-  },
-  {
-    id: 4,
-    text: "Quando foi fundado a escola do SAPEMUA?",
-    remetente: "usuario",
-  },
-  {
-    id: 5,
-    text: "O Instituto Politécnico Privado SAPEMUA foi fundado em 2007...",
-    remetente: "bot",
-  },
-  {
-    id: 6,
-    text: "Quando foi fundado a escola do SAPEMUA?",
-    remetente: "usuario",
-  },
-  {
-    id: 8,
-    text: "O Instituto Politécnico Privado SAPEMUA foi fundado em 2007...",
-    remetente: "bot",
-  },
-];
+const ChatMessageList = ({
+  mensagens,
+  loading,
+}) => {
 
-const ChatMessageList = () => {
+  const messagesEndRef = useRef(null);
+
+  useEffect(() => {
+
+    messagesEndRef.current?.scrollIntoView({
+      behavior: "smooth",
+    });
+
+  }, [mensagens, loading]);
+
   return (
+
     <ul className="flex-1 min-h-0 overflow-y-auto scrollbar-none p-2 space-y-4 no-scrollbar">
+
       {mensagens.map((item, index) => (
-        <ChatMessage key={`${item.id}-${index}`} item={item} />
+
+        <ChatMessage
+          key={`${item.id}-${index}`}
+          item={item}
+        />
+
       ))}
+
+      {loading && (
+
+        <ChatMessage
+          item={{
+            text: "Digitando...",
+            remetente: "bot",
+          }}
+        />
+
+      )}
+
+      <div ref={messagesEndRef} />
+
     </ul>
+
   );
+
 };
 
 export default ChatMessageList;

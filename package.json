@@ -14,6 +14,10 @@
   },
   "dependencies": {
     "@emailjs/browser": "^4.4.1",
+    "@google/generative-ai": "^0.24.1",
+    "cors": "^2.8.6",
+    "dotenv": "^17.4.2",
+    "express": "^5.2.1",
     "html2canvas": "^1.4.1",
     "json-server": "^1.0.0-beta.3",
     "jspdf": "^4.0.0",
@@ -21,6 +25,7 @@
     "react": "^19.2.0",
     "react-dom": "^19.2.0",
     "react-icons": "^5.5.0",
+    "react-markdown": "^10.1.0",
     "react-router-dom": "^7.9.6",
     "react-toastify": "^11.0.5",
     "recharts": "^3.6.0",
@@ -28,6 +33,7 @@
   },
   "devDependencies": {
     "@eslint/js": "^9.39.1",
+    "@tailwindcss/typography": "^0.5.19",
     "@types/react": "^19.2.2",
     "@types/react-dom": "^19.2.2",
     "@vitejs/plugin-react": "^5.1.0",
@@ -40,5 +46,18 @@
     "prettier": "^3.8.1",
     "tailwindcss": "^3.4.18",
     "vite": "^7.2.7"
-  }
+  },
+  "description": "This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.",
+  "main": "email-provider-detection.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/isaacngufuludev/sapemuaonline-json.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/isaacngufuludev/sapemuaonline-json/issues"
+  },
+  "homepage": "https://github.com/isaacngufuludev/sapemuaonline-json#readme"
 }
