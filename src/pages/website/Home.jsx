@@ -8,9 +8,11 @@ import ChatBtn from "./components/ChatBtn";
 import ChatBoot from "./components/ChatBoot";
 import { useModal } from "../../contexts/ModalContext";
 import { useEffect } from "react";
+import { useNews } from "../../hooks/useNews";
 
 function Home() {
   const { isChatModal, toggle } = useModal();
+  const { news } = useNews();
 
   useEffect(function () {
     toggle();
@@ -20,7 +22,7 @@ function Home() {
     <div>
       <Header />
       <Hero />
-      <Noticias />
+      {news.length > 0 ? <Noticias /> : ""}
       <Cursos />
       <Testimonial />
       <ChatBtn />
