@@ -20,15 +20,15 @@ function ChartUsersRole() {
     () => [
       {
         name: "Estudantes",
-        value: users.filter((user) => user.role === "student").length,
+        value: users.filter((user) => user.role === "Estudante").length,
       },
       {
         name: "Professores",
-        value: users.filter((user) => user.role === "teacher").length,
+        value: users.filter((user) => user.role === "Professor").length,
       },
       {
         name: "Administradores",
-        value: users.filter((user) => user.role === "admin").length,
+        value: users.filter((user) => user.role === "Administrador").length,
       },
     ],
     [users],

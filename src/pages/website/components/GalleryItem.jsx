@@ -12,7 +12,7 @@ function GalleryItem({ item }) {
     <li className="overflow-hidden cursor-pointer " onClick={handlerClick}>
       <div
         className="h-60 md:h-72 xl:h-60 w-full bg-cover bg-center hover:scale-110 duration-300 "
-        style={{ backgroundImage: `url(${item})` }}
+        style={{ backgroundImage: `url(${item.src})` }}
       ></div>
     </li>
   );

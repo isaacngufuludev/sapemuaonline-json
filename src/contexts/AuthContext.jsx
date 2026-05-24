@@ -9,6 +9,7 @@ const initialState = {
   user: null,
   isLoading: false,
   isAuthenticated: false,
+  isInitializing: true,
 };
 
 function reducer(state, action) {
@@ -23,57 +24,73 @@ function reducer(state, action) {
     case "logout":
       return { ...state, isLoading: false, user: null, isAuthenticated: false };
     case "restore":
-      return { ...state, user: action.payload, isAuthenticated: true };
+      return {
+        ...state,
+        user: action.payload,
+        isAuthenticated: true,
+        isInitializing: false,
+      };
+    case "initialized":
+      return { ...state, isInitializing: false };
     default:
       throw new Error("Unknown action");
   }
 }
 
 function AuthProvider({ children }) {
-  const [{ user, isAuthenticated, isLoading }, dispatch] = useReducer(
-    reducer,
-    initialState,
-  );
+  const [{ user, isAuthenticated, isLoading, isInitializing }, dispatch] =
+    useReducer(reducer, initialState);
   const { showSuccess, showError } = useToast();
 
   useEffect(() => {
     const saved = localStorage.getItem("currentUser");
     if (saved) {
       dispatch({ type: "restore", payload: JSON.parse(saved) });
+    } else {
+      dispatch({ type: "initialized" });
     }
   }, []);
 
   async function login({ loginMethod, password }) {
-    const users = await get("users");
+    if (!navigator.onLine) {
+      showError("Sem conexão com a internet. Verifique a sua ligação.");
+      return;
+    }
 
-    const userFound = users.find(
-      (user) =>
-        (user.email === loginMethod || user.id === loginMethod) &&
-        user.password === password,
-    );
+    try {
+      const users = await get("users");
 
-    if (userFound) {
-      if (userFound.isActive === false) {
-        showError(
-          "Conta ainda não ativada. Use o link de primeiro acesso enviado por email.",
-        );
-        return;
+      const userFound = users.find(
+        (user) =>
+          (user.email === loginMethod || user.id === loginMethod) &&
+          user.password === password,
+      );
+
+      if (userFound) {
+        if (userFound.isActive === false) {
+          showError(
+            "Conta ainda não ativada. Use o link de primeiro acesso enviado por email.",
+          );
+          return;
+        }
+
+        dispatch({ type: "login", payload: userFound });
+        localStorage.setItem("currentUser", JSON.stringify(userFound));
+
+        if (userFound.role === "student") {
+          addLoginEvent(userFound);
+        }
+
+        const navigationTimer = setTimeout(() => {
+          showSuccess("Login executado com sucesso");
+        }, 1000);
+
+        return () => clearTimeout(navigationTimer);
+      } else {
+        showError("Credênciais invalidas, tente de novo");
       }
-
-      dispatch({ type: "login", payload: userFound });
-      localStorage.setItem("currentUser", JSON.stringify(userFound));
-
-      if (userFound.role === "student") {
-        addLoginEvent(userFound);
-      }
-
-      const navigationTimer = setTimeout(() => {
-        showSuccess("Login executado com sucesso");
-      }, 1000);
-
-      return () => clearTimeout(navigationTimer);
-    } else {
-      showError("Credênciais invalidas, tente de novo");
+    } catch {
+      showError("Sem conexão com a internet. Verifique a sua ligação.");
     }
   }
 
@@ -84,7 +101,14 @@ function AuthProvider({ children }) {
 
   return (
     <AuthContext.Provider
-      value={{ user, isAuthenticated, isLoading, login, logout }}
+      value={{
+        user,
+        isAuthenticated,
+        isLoading,
+        isInitializing,
+        login,
+        logout,
+      }}
     >
       {children}
     </AuthContext.Provider>

@@ -11,30 +11,54 @@ import { usePagination } from "../../../hooks/UsePagination";
 import { BsChevronLeft, BsChevronRight } from "react-icons/bs";
 
 const gallery = [
-  "/imgs/galeria/galeria_1.jpg",
-  "/imgs/galeria/galeria_2.jpg",
-  "/imgs/galeria/galeria_3.jpg",
-  "/imgs/galeria/galeria_4.jpg",
-  "/imgs/galeria/galeria_5.jpg",
-  "/imgs/galeria/galeria_7.jpg",
-  "/imgs/galeria/galeria_8.jpg",
-  "/imgs/galeria/galeria_9.jpg",
-  "/imgs/galeria/galeria_10.jpg",
-  "/imgs/galeria/galeria_11.jpg",
-  "/imgs/galeria/galeria_12.jpg",
-  "/imgs/galeria/galeria_10.jpg",
-  "/imgs/galeria/galeria_11.jpg",
-  "/imgs/galeria/galeria_12.jpg",
-  "/imgs/galeria/galeria_1.jpg",
-  "/imgs/galeria/galeria_2.jpg",
-  "/imgs/galeria/galeria_3.jpg",
-  "/imgs/galeria/galeria_9.jpg",
-  "/imgs/galeria/galeria_10.jpg",
-  "/imgs/galeria/galeria_11.jpg",
-  "/imgs/galeria/galeria_8.jpg",
-  "/imgs/galeria/galeria_9.jpg",
-  "/imgs/galeria/galeria_10.jpg",
-  "/imgs/galeria/galeria_2.jpg",
+  {
+    src: "/imgs/galeria/patio-1.png",
+    description: "Patio EScolar",
+  },
+  {
+    src: "/imgs/galeria/secretaria-2.png",
+    description: "Secretaria",
+  },
+  {
+    src: "/imgs/galeria/sala_de_coordenacao-2.png",
+    description: "Sala de Coordenação",
+  },
+  {
+    src: "/imgs/galeria/informatica-4.jpeg",
+    description: "Laboratório de Informática",
+  },
+  {
+    src: "/imgs/galeria/sala_de_coordenacao-1",
+    description: "Sala de Coordenação",
+  },
+  {
+    src: "/imgs/galeria/electronica_1.jpg",
+    description: "Laboratório de Eletrônica",
+  },
+  {
+    src: "/imgs/galeria/secretaria-1.jpg",
+    description: "Secretaria",
+  },
+  {
+    src: "/imgs/galeria/eletronica_2.jpg",
+    description: "Laboratório de Eletrônica",
+  },
+  {
+    src: "/imgs/galeria/corredor.png",
+    description: "Corredor",
+  },
+  {
+    src: "/imgs/galeria/escola-3.jpg",
+    description: "Polos 3 do Instituto",
+  },
+  {
+    src: "/imgs/galeria/informatica-1.jpeg",
+    description: "Laboratório de Informática",
+  },
+  {
+    src: "/imgs/galeria/patio-3.png",
+    description: "Patio Escolar",
+  },
 ];
 
 function GalleryList() {

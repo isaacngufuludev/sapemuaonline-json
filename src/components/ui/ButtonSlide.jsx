@@ -1,6 +1,6 @@
 function ButtonSlide({ children, onClick, type }) {
   const base =
-    "dark:bg-blue-700 bg-blue-300 px-3 py-2 rounded-full cursor-pointer absolute z-10 top-1/4";
+    "dark:bg-blue-700 bg-blue-300 py-[7px] rounded-full text-xl px-[10px] cursor-pointer absolute z-10 top-1/4";
 
   const styles = {
     left: base + " left-3 md:left-5 lg:left-10",

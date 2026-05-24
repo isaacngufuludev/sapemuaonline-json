@@ -5,7 +5,7 @@ function TestimonialItem({ item }) {
         <blockquote className="text-center md:text-sm text-xs leading-5 mb-5 lg:mb-10">
           {item.message}
         </blockquote>
-        <img src={item.image} className=" h-16 md:h-20 rounded-full mx-auto" />
+        <img src={item.image} className=" h-10 md:h-20 rounded-full mx-auto" />
       </div>
       <div className="mb-10 md:text-sm text-xs">
         <p className="font-semibold md:text-sm text-xs">{item.name}</p>
