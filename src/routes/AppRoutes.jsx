@@ -51,6 +51,7 @@ import TeacherStudentDetail from "../pages/professor/components/turmas/TeacherSt
 import ForgotPassword from "../pages/auth/components/ForgotPassword";
 import ResetPassword from "../pages/auth/components/ResetPassword";
 import PrimeiroAcesso from "../pages/auth/components/PrimeiroAcesso";
+import PageTitle from "./PageTitle";
 
 function AppRoutes() {
   return (
@@ -60,6 +61,7 @@ function AppRoutes() {
           <AuthSidebarProvider>
             <RefreshProvider>
               <BrowserRouter>
+                <PageTitle />
                 <Routes>
                   <Route index path="/" element={<Home />} />
                   <Route path="/sobre" element={<Sobre />} />
