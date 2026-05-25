@@ -506,6 +506,7 @@ function AdminAddTeacher() {
             <FloatInputLabel
               value={formData.phoneCollege}
               name="Telefone da Instituição"
+              max={9}
               type="text"
               onChange={(e) =>
                 setFormData({ ...formData, phoneCollege: e.target.value })

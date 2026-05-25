@@ -7,10 +7,14 @@ import StudentNotasLayout from "./StudentNotasLayout";
 import StudentNotasList from "./StudentNotasList";
 import Loading from "../../../../components/shared/Loading";
 import { usePDFExport } from "../../../../contexts/PDFExportContext";
+import { useTeachers } from "../../../../hooks/useTeachers";
+import { buildAcademicProgress } from "../../../../services/academicProgress";
+import StudentAcademicProgress from "./StudentAcademicProgress";
 
 function StudentNotas() {
   const { user } = useAuth();
   const { grades, isLoading, generalAverage } = useGrades();
+  const { teachers } = useTeachers();
   const { exportToPDF, isExporting, setIsExporting } = usePDFExport();
 
   const handleExportPDF = async () => {
@@ -26,14 +30,31 @@ function StudentNotas() {
   };
   const [selectedTerm, setSelectedTerm] = useState(1);
 
+  const expectedSubjects = useMemo(
+    () => [
+      ...new Set(
+        teachers
+          .filter((teacher) => teacher.turmasId?.includes(user?.turmaId))
+          .flatMap((teacher) => teacher.subjects ?? []),
+      ),
+    ],
+    [teachers, user?.turmaId],
+  );
+
+  const allStudentGrades = useMemo(
+    () => grades.filter((grade) => grade.student_id === user?.id),
+    [grades, user?.id],
+  );
+
+  const academicProgress = useMemo(
+    () => buildAcademicProgress(allStudentGrades, expectedSubjects),
+    [allStudentGrades, expectedSubjects],
+  );
+
   const studentGrades = useMemo(
     () =>
-      grades
-        .filter(
-          (grade) =>
-            grade.student_id === user?.id &&
-            Number(grade.term) === Number(selectedTerm),
-        )
+      allStudentGrades
+        .filter((grade) => Number(grade.term) === Number(selectedTerm))
         .map((grade) => ({
           disciplina: grade.subject,
           mac: grade.mac,
@@ -41,7 +62,7 @@ function StudentNotas() {
           npt: grade.npt,
           average: grade.average,
         })),
-    [grades, selectedTerm, user?.id],
+    [allStudentGrades, selectedTerm],
   );
 
   return (
@@ -63,6 +84,7 @@ function StudentNotas() {
             onTermChange={setSelectedTerm}
             generalAverage={generalAverage(user?.id)}
           />
+          <StudentAcademicProgress progress={academicProgress} />
           <StudentNotasTitle />
           {isLoading ? (
             <Loading type="blue" size={30} />
