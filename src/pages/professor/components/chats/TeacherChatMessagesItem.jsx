@@ -3,10 +3,16 @@ import { useUsers } from "../../../../hooks/useUsers";
 import { useModal } from "../../../../contexts/ModalContext";
 import UserAvatar from "../../../../components/shared/UserAvatar";
 import ChatAttachments from "../../../../components/shared/ChatAttachments";
+import { BsTrash } from "react-icons/bs";
 
 function TeacherChatMessagesItem({ item, currUser }) {
   const { users } = useUsers();
-  const { toggleSenderDetail, selectEditedItem } = useModal();
+  const {
+    toggleSenderDetail,
+    selectEditedItem,
+    selectOptionItem,
+    toggleRemoveMessage,
+  } = useModal();
   const sender = users.find((user) => user.id === item.senderId);
   const isMine = item.senderId === currUser?.id;
   const timeLabel = item.time ?? formateDate(item.createdAt, "relative");
@@ -14,6 +20,11 @@ function TeacherChatMessagesItem({ item, currUser }) {
   function handleSelectSender() {
     selectEditedItem(item);
     toggleSenderDetail();
+  }
+
+  function handleOpenDeleteModal() {
+    selectOptionItem(item);
+    toggleRemoveMessage();
   }
 
   return (
@@ -37,24 +48,37 @@ function TeacherChatMessagesItem({ item, currUser }) {
             {sender?.name}
           </p>
         )}
-        <div
-          className={`px-4 py-3 rounded-2xl ${
-            isMine
-              ? "bg-blue-700 text-white"
-              : "bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-white"
-          }`}
-        >
-          {item.message && <p className="text-sm">{item.message}</p>}
-          <ChatAttachments attachments={item.attachments} />
-          {timeLabel && (
-            <p
-              className={`text-xs mt-1 text-right ${
-                isMine ? "text-blue-200" : "text-gray-500 dark:text-gray-400"
-              }`}
+        <div className="flex items-start gap-2">
+          {isMine && (
+            <button
+              type="button"
+              onClick={handleOpenDeleteModal}
+              className="mt-2 flex h-8 w-8 shrink-0 items-center justify-center rounded-full text-red-600 transition-colors hover:bg-red-50 dark:text-red-400 dark:hover:bg-gray-900"
+              aria-label="Eliminar mensagem"
+              title="Eliminar mensagem"
             >
-              {timeLabel}
-            </p>
+              <BsTrash />
+            </button>
           )}
+          <div
+            className={`px-4 py-3 rounded-2xl ${
+              isMine
+                ? "bg-blue-700 text-white"
+                : "bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-white"
+            }`}
+          >
+            {item.message && <p className="text-sm">{item.message}</p>}
+            <ChatAttachments attachments={item.attachments} />
+            {timeLabel && (
+              <p
+                className={`text-xs mt-1 text-right ${
+                  isMine ? "text-blue-200" : "text-gray-500 dark:text-gray-400"
+                }`}
+              >
+                {timeLabel}
+              </p>
+            )}
+          </div>
         </div>
       </div>
     </li>

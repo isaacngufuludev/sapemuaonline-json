@@ -6,17 +6,17 @@ import Professores from "./Professores";
 
 const data = [
   {
-    name: "Director Dorivaldo",
+    name: "------------",
     img: <FiUser />,
     cargo: "Director Geral",
   },
   {
-    name: "Henriques",
+    name: "------------",
     img: <FiUser />,
     cargo: "Sub-Director Pedagógico",
   },
   {
-    name: "Luzia",
+    name: "------------",
     img: <FiUser />,
     cargo: "Coordenador",
   },

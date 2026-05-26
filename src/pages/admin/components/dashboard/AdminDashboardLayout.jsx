@@ -5,7 +5,6 @@ import ChartUsersGrowth from "./ChartUsersGrowth";
 import ChartUsersRole from "./ChartUsersRole";
 import { usePDFExport } from "../../../../contexts/PDFExportContext";
 
-
 function AdminDashboardLayout() {
   const { exportToPDF, isExporting, setIsExporting } = usePDFExport();
 
@@ -14,7 +13,9 @@ function AdminDashboardLayout() {
     // Aguardar o React re-renderizar com isExporting=true
     await new Promise((resolve) => setTimeout(resolve, 300));
     try {
-      await exportToPDF("admin-dashboard-content", "Relatorio_Dashboard");
+      await exportToPDF("admin-dashboard-content", "Relatorio_Dashboard", {
+        includeInstitutionHeader: true,
+      });
     } catch (error) {
       console.error("Erro ao exportar PDF:", error);
     } finally {

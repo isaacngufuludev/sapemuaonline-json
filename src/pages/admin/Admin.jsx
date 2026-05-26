@@ -36,7 +36,7 @@ const links = [
     link: "AdminTeacher",
   },
   {
-    name: "Turmas e Séries",
+    name: "Turmas e Cursos",
     icon: <HiOutlineHome />,
     link: "AdminTurmas",
   },

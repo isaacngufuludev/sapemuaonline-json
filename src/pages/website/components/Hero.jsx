@@ -15,7 +15,7 @@ function Hero() {
       id: "2",
       titulo: "Bem-vindo ao Sapemua",
       conteudo:
-        " Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ea consectetur ab corrupti aliquid consequuntur, optio corporis doloremque quod illum eius voluptates praesentium incidunt, laudantium dolores? Perspiciatis exercitationem aperiam vero iusto?",
+        "Comprometida com a formação integral, a Sapemua oferece ensino de qualidade ambiente seguro e projetos inovadores que promovem o desenvolvimento académico,  social e humano. Onde aprender é crescer e viver novas possibilidades todos os dias.",
       image: "imgs/item-2.png",
     },
   ];
@@ -27,7 +27,7 @@ function Hero() {
         loop={true}
         modules={[Autoplay]}
         autoplay={{
-          delay: 5000, // Tempo em milissegundos (3 segundos)
+          delay: 5000, // Tempo em milissegundos (5 segundos)
           disableOnInteraction: false,
         }}
       >

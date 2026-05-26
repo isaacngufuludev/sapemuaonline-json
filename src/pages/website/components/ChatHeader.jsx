@@ -2,7 +2,7 @@ import { BsX } from "react-icons/bs";
 import { MdRefresh } from "react-icons/md";
 import { useModal } from "../../../contexts/ModalContext";
 
-function ChatHeader() {
+function ChatHeader({ messageList }) {
   const { toggle } = useModal();
 
   return (
@@ -12,7 +12,7 @@ function ChatHeader() {
         <p className="font-semibold">Sapemua Online</p>
       </div>
       <div className="flex items-center text-2xl gap-2">
-        <button>
+        <button onClick={() => messageList([])}>
           <p>
             <MdRefresh />
           </p>

@@ -14,6 +14,7 @@ function ModalProvider({ children }) {
   const [isRemoveTurmaModal, setIsRemoveTurmaModal] = useState(false);
   const [isRemoveNewsModal, setIsRemoveNewsModal] = useState(false);
   const [isRemoveCourseModal, setIsRemoveCourseModal] = useState(false);
+  const [isRemoveMessageModal, setIsRemoveMessageModal] = useState(false);
   const [isShowTeachers, setIsShowTeachers] = useState(false);
   const [isGalleryModal, setIsGalleryModal] = useState(false);
   const [isGradesModal, setIsGradesModal] = useState(false);
@@ -55,6 +56,10 @@ function ModalProvider({ children }) {
   }
   function toggleCourse() {
     setIsRemoveCourseModal((modal) => !modal);
+  }
+
+  function toggleRemoveMessage() {
+    setIsRemoveMessageModal((modal) => !modal);
   }
 
   function toggleClassModal() {
@@ -119,6 +124,7 @@ function ModalProvider({ children }) {
     setIsRemoveTurmaModal(false);
     setIsRemoveNewsModal(false);
     setIsRemoveCourseModal(false);
+    setIsRemoveMessageModal(false);
     setIsGalleryModal(false);
     setIsGradesModal(false);
     setIsSenderDetail(false);
@@ -139,6 +145,7 @@ function ModalProvider({ children }) {
         isRemoveTurmaModal,
         isRemoveNewsModal,
         isRemoveCourseModal,
+        isRemoveMessageModal,
         isShowTeachers,
         isGalleryModal,
         isSenderDetail,
@@ -165,6 +172,7 @@ function ModalProvider({ children }) {
         toggleTurmas,
         toggleNews,
         toggleCourse,
+        toggleRemoveMessage,
         toggleClassModal,
         toggleTeachers,
         toggleGalleryModal,

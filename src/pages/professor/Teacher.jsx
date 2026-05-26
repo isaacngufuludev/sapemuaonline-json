@@ -4,6 +4,7 @@ import AuthMain from "../../components/layout/AuthMain";
 import AuthNav from "../../components/layout/AuthNav";
 import AuthHeader from "../../components/layout/AuthHeader";
 import LogoutModal from "../../components/shared/LogoutModal";
+import ModalRemoveMessage from "../../components/shared/ModalRemoveMessage";
 import Overlay from "../../components/shared/Overlay";
 import Logo from "../../components/shared/Logo";
 import TeacherLinks from "./components/TeacherLinks";
@@ -33,7 +34,7 @@ const links = [
 ];
 
 function Teacher() {
-  const { isLogoutModal } = useModal();
+  const { isLogoutModal, isRemoveMessageModal } = useModal();
 
   return (
     <AuthLayout>
@@ -54,6 +55,15 @@ function Teacher() {
         {isLogoutModal ? (
           <div>
             <LogoutModal />
+            <Overlay />
+          </div>
+        ) : (
+          ""
+        )}
+
+        {isRemoveMessageModal ? (
+          <div>
+            <ModalRemoveMessage />
             <Overlay />
           </div>
         ) : (
