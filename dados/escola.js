@@ -19,7 +19,6 @@ A plataforma permite:
 - autenticação de usuários;
 - recuperação de conta;
 - ativação de conta por e-mail;
-- controle de propinas;
 - acesso a informações escolares;
 - comunicação institucional;
 - serviços digitais da escola.
@@ -32,7 +31,6 @@ Informações académicas e financeiras:
 Valores apresentados no documento institucional:
 - Matrícula: 5.000,00 Kz
 - Confirmação: 4.000,00 Kz
-- Documento/Processamento adicional: 3.000,00 Kz
 - Outro serviço académico: 7.000,00 Kz
 
 Propinas:
