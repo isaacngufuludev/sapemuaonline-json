@@ -9,14 +9,14 @@ function Hero() {
       titulo: "Bem-vindo ao Sapemua",
       conteudo:
         "Comprometida com a formação integral, a Sapemua oferece ensino de qualidade ambiente seguro e projetos inovadores que promovem o desenvolvimento académico,  social e humano. Onde aprender é crescer e viver novas possibilidades todos os dias.",
-      image: "imgs/hero.png",
+      image: "imgs/hero-1.png",
     },
     {
       id: "2",
       titulo: "Bem-vindo ao Sapemua",
       conteudo:
         "Comprometida com a formação integral, a Sapemua oferece ensino de qualidade ambiente seguro e projetos inovadores que promovem o desenvolvimento académico,  social e humano. Onde aprender é crescer e viver novas possibilidades todos os dias.",
-      image: "imgs/item-2.png",
+      image: "imgs/hero-2.png",
     },
   ];
 
@@ -49,7 +49,7 @@ function Hero() {
               </div>
               <div className="md:justify-self-center">
                 <img
-                  className="h-80 sm:h-96 xl:h-[420px] 2xl:h-[500px] "
+                  className="h-80 sm:h-96 xl:h-[420px] 2xl:h-[550px]  "
                   src={item.image}
                 />
               </div>
