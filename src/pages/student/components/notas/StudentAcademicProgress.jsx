@@ -85,6 +85,12 @@ function TermCard({ summary }) {
 }
 
 function StudentAcademicProgress({ progress }) {
+  const visibleTermSummaries = progress.termSummaries.filter(
+    (summary) => summary.grades.length > 0,
+  );
+  const canShowFinalEvaluation = progress.termSummaries.every(
+    (summary) => summary.grades.length > 0,
+  );
   const finalStyles =
     statusStyles[progress.finalDecision.tone] ?? statusStyles.neutral;
 
@@ -93,84 +99,90 @@ function StudentAcademicProgress({ progress }) {
       <div>
         <Title3>Gestão de Aprovação</Title3>
         <p className="mt-1 text-xs leading-5 text-gray-500 dark:text-gray-400">
-          Regra aplicada: aprovado sem negativas, exame extraordinário até 2
-          negativas e reprovado com mais de 2 negativas.
+          Regra aplicada: aprovado com media iual ou superior a 10, exame
+          extraordinário até 2 negativas e reprovado com mais de 2 negativas.
         </p>
       </div>
 
-      <div className="grid grid-cols-1 gap-4 lg:grid-cols-3">
-        {progress.termSummaries.map((summary) => (
-          <TermCard key={summary.term} summary={summary} />
-        ))}
-      </div>
-
-      <article className={`rounded-md border p-4 ${finalStyles.card}`}>
-        <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
-          <div>
-            <p className="text-xs font-semibold uppercase tracking-wider opacity-80">
-              Resultado final anual
-            </p>
-            <h3 className="mt-1 text-xl font-semibold">
-              {progress.finalDecision.label}
-            </h3>
-            <p className="mt-2 text-sm leading-6 opacity-85">
-              {progress.finalDecision.reason}
-            </p>
-          </div>
-          <span
-            className={`w-fit rounded-full px-3 py-1 text-xs font-semibold ${finalStyles.badge}`}
-          >
-            {progress.hasCompleteYear ? "Final" : "Parcial"}
-          </span>
+      {visibleTermSummaries.length > 0 && (
+        <div className="grid grid-cols-1 gap-4 lg:grid-cols-3">
+          {visibleTermSummaries.map((summary) => (
+            <TermCard key={summary.term} summary={summary} />
+          ))}
         </div>
+      )}
 
-        <div className="mt-5 grid grid-cols-1 gap-4 lg:grid-cols-[0.9fr_1.1fr]">
-          <div>
-            <p className="mb-2 text-xs font-semibold opacity-80">
-              Disciplinas negativas finais
-            </p>
-            {progress.negativeFinals.length ? (
-              <div className="flex flex-wrap gap-2">
-                {progress.negativeFinals.map((item) => (
-                  <span
-                    key={item.subject}
-                    className={`rounded-full px-2 py-1 text-xs font-semibold ${finalStyles.badge}`}
-                  >
-                    {item.subject}: {formatAverage(item.finalAverage)}
-                  </span>
-                ))}
-              </div>
-            ) : (
-              <p className="text-sm opacity-75">Nenhuma disciplina negativa.</p>
-            )}
+      {canShowFinalEvaluation && (
+        <article className={`rounded-md border p-4 ${finalStyles.card}`}>
+          <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
+            <div>
+              <p className="text-xs font-semibold uppercase tracking-wider opacity-80">
+                Resultado final anual
+              </p>
+              <h3 className="mt-1 text-xl font-semibold">
+                {progress.finalDecision.label}
+              </h3>
+              <p className="mt-2 text-sm leading-6 opacity-85">
+                {progress.finalDecision.reason}
+              </p>
+            </div>
+            <span
+              className={`w-fit rounded-full px-3 py-1 text-xs font-semibold ${finalStyles.badge}`}
+            >
+              {progress.hasCompleteYear ? "Final" : "Parcial"}
+            </span>
           </div>
 
-          <div>
-            <p className="mb-2 text-xs font-semibold opacity-80">
-              Médias finais por disciplina
-            </p>
-            <div className="grid grid-cols-1 gap-2 sm:grid-cols-2">
-              {progress.subjectFinals.length ? (
-                progress.subjectFinals.map((item) => (
-                  <div
-                    key={item.subject}
-                    className="flex items-center justify-between gap-3 rounded-md bg-white/70 px-3 py-2 text-sm dark:bg-gray-950/30"
-                  >
-                    <span className="truncate">{item.subject}</span>
-                    <span className="shrink-0 font-semibold">
-                      {formatAverage(item.finalAverage)}
+          <div className="mt-5 grid grid-cols-1 gap-4 lg:grid-cols-[0.9fr_1.1fr]">
+            <div>
+              <p className="mb-2 text-xs font-semibold opacity-80">
+                Disciplinas negativas finais
+              </p>
+              {progress.negativeFinals.length ? (
+                <div className="flex flex-wrap gap-2">
+                  {progress.negativeFinals.map((item) => (
+                    <span
+                      key={item.subject}
+                      className={`rounded-full px-2 py-1 text-xs font-semibold ${finalStyles.badge}`}
+                    >
+                      {item.subject}: {formatAverage(item.finalAverage)}
                     </span>
-                  </div>
-                ))
+                  ))}
+                </div>
               ) : (
                 <p className="text-sm opacity-75">
-                  Sem médias para apresentar.
+                  Nenhuma disciplina negativa.
                 </p>
               )}
             </div>
+
+            <div>
+              <p className="mb-2 text-xs font-semibold opacity-80">
+                Médias finais por disciplina
+              </p>
+              <div className="grid grid-cols-1 gap-2 sm:grid-cols-2">
+                {progress.subjectFinals.length ? (
+                  progress.subjectFinals.map((item) => (
+                    <div
+                      key={item.subject}
+                      className="flex items-center justify-between gap-3 rounded-md bg-white/70 px-3 py-2 text-sm dark:bg-gray-950/30"
+                    >
+                      <span className="truncate">{item.subject}</span>
+                      <span className="shrink-0 font-semibold">
+                        {formatAverage(item.finalAverage)}
+                      </span>
+                    </div>
+                  ))
+                ) : (
+                  <p className="text-sm opacity-75">
+                    Sem médias para apresentar.
+                  </p>
+                )}
+              </div>
+            </div>
           </div>
-        </div>
-      </article>
+        </article>
+      )}
     </section>
   );
 }

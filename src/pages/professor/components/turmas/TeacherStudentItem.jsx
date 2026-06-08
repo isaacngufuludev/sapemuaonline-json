@@ -15,10 +15,10 @@ function TeacherStudentItem({
 }) {
   const { showMenu, menuRef, setShowMenu } = useEditOptions();
   const { openGradesModal } = useModal();
-  const mac = grade?.mac ?? "-";
-  const npp = grade?.npp ?? "-";
-  const npt = grade?.npt ?? "-";
-  const media = grade?.average ?? "-";
+  const mac = grade?.mac || "-";
+  const npp = grade?.npp || "-";
+  const npt = grade?.npt || "-";
+  const media = grade?.average || "-";
   const navigate = useNavigate();
 
   const handleEdit = () => {
@@ -37,8 +37,15 @@ function TeacherStudentItem({
     navigate(`/area/teacher/teacher-turmas/teacher-student-detail/${item.id}`);
     setShowMenu(false);
   };
-  const scoreClass = (value) =>
-    value >= 10 ? "text-blue-700" : "text-red-700";
+  const scoreClass = (value) => {
+    if (value == null || String(value).trim() === "" || value === "-") {
+      return "text-gray-500 dark:text-gray-400";
+    }
+
+    const score = Number(value);
+    if (Number.isNaN(score)) return "text-gray-500 dark:text-gray-400";
+    return score >= 10 ? "text-blue-700" : "text-red-700";
+  };
 
   return (
     <li

@@ -1,7 +1,12 @@
 const PASSING_GRADE = 10;
 const TERMS = [1, 2, 3];
 
+function isBlank(value) {
+  return value == null || String(value).trim() === "";
+}
+
 function toNumber(value) {
+  if (isBlank(value)) return null;
   const parsed = Number(value);
   return Number.isFinite(parsed) ? parsed : null;
 }
@@ -55,6 +60,12 @@ function getTermStatus(negativeCount, gradesCount) {
   };
 }
 
+function hasGradeValue(grade) {
+  return [grade.mac, grade.npp, grade.npt, grade.average].some(
+    (value) => toNumber(value) != null,
+  );
+}
+
 function getFinalDecision(negativeCount, hasCompleteYear, hasSubjects) {
   if (!hasSubjects) {
     return {
@@ -104,23 +115,29 @@ export function buildAcademicProgress(grades, expectedSubjects = []) {
 
   const termSummaries = TERMS.map((term) => {
     const termGrades = grades.filter((grade) => Number(grade.term) === term);
+    const filledTermGrades = termGrades.filter(hasGradeValue);
     const negativeSubjects = termGrades
-      .filter((grade) => Number(grade.average) < PASSING_GRADE)
+      .filter((grade) => {
+        const average = toNumber(grade.average);
+        return average != null && average < PASSING_GRADE;
+      })
       .map((grade) => grade.subject);
-    const termAverage = average(termGrades.map((grade) => grade.average));
+    const termAverage = average(filledTermGrades.map((grade) => grade.average));
 
     return {
       term,
-      grades: termGrades,
+      grades: filledTermGrades,
       average: termAverage,
       negativeSubjects,
       negativeCount: negativeSubjects.length,
-      status: getTermStatus(negativeSubjects.length, termGrades.length),
+      status: getTermStatus(negativeSubjects.length, filledTermGrades.length),
     };
   });
 
   const subjectFinals = subjects.map((subject) => {
-    const subjectGrades = grades.filter((grade) => grade.subject === subject);
+    const subjectGrades = grades.filter(
+      (grade) => grade.subject === subject && toNumber(grade.average) != null,
+    );
     const finalAverage = average(subjectGrades.map((grade) => grade.average));
     const completedTerms = new Set(
       subjectGrades.map((grade) => Number(grade.term)),

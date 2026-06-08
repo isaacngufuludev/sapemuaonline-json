@@ -3,16 +3,27 @@ import { get, patch, post } from "./api";
 const MIN_GRADE = 0;
 const MAX_GRADE = 20;
 
+function isBlank(value) {
+  return value == null || String(value).trim() === "";
+}
+
 function toNumber(value) {
+  if (isBlank(value)) return NaN;
   const parsed = Number(value);
   return Number.isFinite(parsed) ? parsed : NaN;
 }
 
 export function calculateAverage(mac, npp, npt) {
-  return Math.round((Number(mac) + Number(npp) + Number(npt)) / 3);
+  const values = [mac, npp, npt].map((value) => toNumber(value));
+
+  if (values.some((value) => Number.isNaN(value))) return "";
+
+  return Math.round(values.reduce((sum, value) => sum + value, 0) / 3);
 }
 
 export function validateGradeRange(value, label) {
+  if (isBlank(value)) return "";
+
   const parsed = toNumber(value);
 
   if (Number.isNaN(parsed)) {
@@ -24,6 +35,10 @@ export function validateGradeRange(value, label) {
   }
 
   return parsed;
+}
+
+function hasAverage(grade) {
+  return !Number.isNaN(toNumber(grade.average));
 }
 
 export function normalizeTerm(term) {
@@ -130,18 +145,23 @@ export async function saveOrUpdateGrade({
 
 export function getSubjectFinalAverage(grades, studentId, subject) {
   const matches = grades.filter(
-    (grade) => grade.student_id === studentId && grade.subject === subject,
+    (grade) =>
+      grade.student_id === studentId &&
+      grade.subject === subject &&
+      hasAverage(grade),
   );
 
   if (!matches.length) return null;
-  const total = matches.reduce((sum, grade) => sum + Number(grade.average || 0), 0);
+  const total = matches.reduce((sum, grade) => sum + Number(grade.average), 0);
   return Number((total / matches.length).toFixed(2));
 }
 
 export function getStudentGeneralAverage(grades, studentId) {
-  const matches = grades.filter((grade) => grade.student_id === studentId);
+  const matches = grades.filter(
+    (grade) => grade.student_id === studentId && hasAverage(grade),
+  );
 
   if (!matches.length) return null;
-  const total = matches.reduce((sum, grade) => sum + Number(grade.average || 0), 0);
+  const total = matches.reduce((sum, grade) => sum + Number(grade.average), 0);
   return Number((total / matches.length).toFixed(2));
 }

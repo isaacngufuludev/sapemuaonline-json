@@ -69,8 +69,15 @@ function StudentNotasPDFHeader({
 }
 
 function StudentNotasPDFTable({ grades, termDecision }) {
-  const scoreClass = (value) =>
-    Number(value) >= 10 ? "text-blue-700" : "text-red-700";
+  const scoreClass = (value) => {
+    if (value == null || String(value).trim() === "" || value === "-") {
+      return "text-gray-500";
+    }
+
+    const score = Number(value);
+    if (Number.isNaN(score)) return "text-gray-500";
+    return score >= 10 ? "text-blue-700" : "text-red-700";
+  };
 
   return (
     <div className="bg-white text-gray-900">
@@ -101,8 +108,16 @@ function StudentNotasPDFTable({ grades, termDecision }) {
             </tr>
           ) : (
             grades.map((item, index) => {
-              const media = Number(item.average);
-              const status = media >= 10 ? "Aprovado" : "Reprovado";
+              const media =
+                item.average === "" || item.average == null
+                  ? "-"
+                  : Number(item.average);
+              const status =
+                media === "-"
+                  ? "Sem nota"
+                  : media >= 10
+                    ? "Aprovado"
+                    : "Reprovado";
 
               return (
                 <tr key={`${item.disciplina}-${index}`}>
@@ -115,17 +130,17 @@ function StudentNotasPDFTable({ grades, termDecision }) {
                   <td
                     className={`border border-slate-200 px-3 py-3 ${scoreClass(item.mac)}`}
                   >
-                    {item.mac}
+                    {item.mac || "-"}
                   </td>
                   <td
                     className={`border border-slate-200 px-3 py-3 ${scoreClass(item.npp)}`}
                   >
-                    {item.npp}
+                    {item.npp || "-"}
                   </td>
                   <td
                     className={`border border-slate-200 px-3 py-3 ${scoreClass(item.npt)}`}
                   >
-                    {item.npt}
+                    {item.npt || "-"}
                   </td>
                   <td
                     className={`border border-slate-200 px-3 py-3 ${scoreClass(media)}`}
