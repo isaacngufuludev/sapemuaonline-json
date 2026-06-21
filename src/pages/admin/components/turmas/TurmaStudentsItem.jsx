@@ -2,19 +2,19 @@ import { HiEllipsisVertical } from "react-icons/hi2";
 import { useEditOptions } from "../../../../hooks/useEditOptions";
 import { BsEye, BsPencil } from "react-icons/bs";
 import UserAvatar from "../../../../components/shared/UserAvatar";
+import { useNavigate } from "react-router-dom";
 
 function TurmaStudentsItem({ item }) {
   const { showMenu, menuRef, setShowMenu } = useEditOptions();
+  const navigate = useNavigate();
 
   const handleView = () => {
-    console.log("Ver Professor:", item);
-    // navigate("/area/admin/adminStudent/student-detail");
+    navigate(`/area/admin/adminStudents/student-detail/${item.id}`);
     setShowMenu(false);
   };
 
   const handleEdit = () => {
-    console.log("Editar Professor:", item);
-    // navigate("/area/admin/adminTeacher/add-student");
+    navigate(`/area/admin/adminStudents/add-student/${item.id}`);
     setShowMenu(false);
   };
 
@@ -27,7 +27,11 @@ function TurmaStudentsItem({ item }) {
         <p className="py-4">{item.name}</p>
         <p className="py-4">{item.id}</p>
         <p className="py-4">{item.age}</p>
-        <p>Activo</p>
+        <p>
+          <p className="text-sm inline-block dark:bg-green-500 bg-green-200 text-green-700 dark:text-green-100 py-1 px-3 rounded-full">
+            activo
+          </p>
+        </p>
         <div className="relative" ref={menuRef}>
           <button
             className="text-xl hover:text-blue-600 transition-colors"

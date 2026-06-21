@@ -38,7 +38,7 @@ function LoginForm() {
           value={loginMethod}
           type="text"
           onChange={(e) => setLoginMethod(e.target.value)}
-          name="E-mail ou Codigo Interno"
+          name="Endereço de E-mail"
         />
         <div className="relative mb-2">
           <AuthInput
